@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_user, current_user, logout_user
 
 from . import app, db
-from .forms import EmailRegistrationForm
+from .forms import EmailRegistrationForm, LoginForm
 from .models import User
 
 import datetime
@@ -41,16 +41,15 @@ def login():
 
     form = LoginForm()
 
-    if requet.method == 'POST':
-
+    if request.method == 'POST':
         if form.validate_on_submit():
             # Log the user in
-            user = User.query.filter(email=form.email.data).first()
+            user = User.query.filter_by(email=form.email.data).first()
             login_user(user)
 
-        return redirect(url_for('index'))
+            return redirect(url_for('index'))
 
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 @app.route('/logout/')
 def logout():

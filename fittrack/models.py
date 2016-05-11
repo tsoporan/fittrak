@@ -23,7 +23,7 @@ class User(db.Model):
 
     def get_id(self):
         """ Flask login requires ID, this is email in our case. """
-        return self.email
+        return unicode(self.email)
 
     def is_authenticated(self):
         return self.authenticated
@@ -34,3 +34,8 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User: %r>' % self.email
+
+@login_manager.user_loader
+def load_user(email):
+    return User.query.filter_by(email=email).first()
+

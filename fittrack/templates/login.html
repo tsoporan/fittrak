@@ -1,5 +1,13 @@
+<h1> Login </h1>
+
 <form action="/login/" method="POST">
-  <input type="text" name="email" placeholder="Email" />
-  <input type="password" name="password" />
+  {{ form.email.label }}
+  {{ form.email }}
+
+
+  {{ form.password.label }}
+  {{ form.password }}
+
+  {{ form.csrf_token }}
   <input type="submit" value="Login" />
 </form>

@@ -16,7 +16,7 @@ class LoginForm(Form):
         if not super(LoginForm, self).validate():
             return False
 
-        user = User.query.filter(email=self.email.data).first()
+        user = User.query.filter_by(email=self.email.data).first()
 
         # Find user
         if not user:
