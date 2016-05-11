@@ -1,0 +1,10 @@
+<h1>Register</h1>
+
+<form action="{{ url_for('register') }}" method="POST">
+  {{ form.email.label }}
+  {{ form.email }}
+  {{ form.password.label }}
+  {{ form.password }}
+  {{ form.csrf_token }}
+  <input type="submit" value="Register" />
+</form>
