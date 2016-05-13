@@ -14,16 +14,20 @@ class FittrackTestCase(unittest.TestCase):
 
         self.app = app.test_client()
 
-        # Set up a user
-        u = User()
-        u.email = 'a@a.aa'
-        u.set_password('abc')
-        db.session.add(u)
-        db.session.commit()
+    def register(self, email, password):
+        return self.app.post('/register/', data=dict(
+            email = email,
+            password = password,
+        ), follow_redirects=True)
 
-        self.assertTrue(User.query.filter_by(email='a@a.aa').first() != None)
+    def login(self, email, password):
+        return self.app.post('/login/', data=dict(
+            email = email,
+            password = password,
+        ), follow_redirects=True)
 
-        self.user = u
+    def logout(self):
+        return self.app.get('/logout/', follow_redirects=True)
 
     def tearDown(self):
         db.session.remove()
@@ -33,19 +37,31 @@ class FittrackTestCase(unittest.TestCase):
         rv = self.app.get('/')
         self.assertTrue('Home' in rv.data)
 
+    def test_register(self):
+        rv = self.app.get('/register/')
+        self.assertTrue('Register' in rv.data)
+
+        rv = self.register('b@b.bb', 'abc')
+        self.assertTrue('Thanks for registering' in rv.data)
+
+        self.assertTrue(User.query.filter_by(email='b@b.bb').first())
+
     def test_login(self):
         rv = self.app.get('/login/')
         self.assertTrue('Login' in rv.data)
 
-        rv = self.app.post('/login/', data=dict(
-            email = 'a@a.aa',
-            password = 'abc',
-        ), follow_redirects=True)
+        self.register('a@a.aa', 'abc')
+        rv = self.login('a@a.aa', 'abc')
 
         self.assertTrue('Home' in rv.data)
 
     def test_login_logout(self):
-        pass
+
+        self.register('a@a.aa', 'abc')
+        self.login('a@a.aa', 'abc')
+        rv = self.logout()
+
+        self.assertTrue('Home' in rv.data)
 
 if __name__ == '__main__':
     unittest.main()
