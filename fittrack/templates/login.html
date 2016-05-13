@@ -4,9 +4,17 @@
   {{ form.email.label }}
   {{ form.email }}
 
+  {% if form.email.errors %}
+  {{ form.email.errors }}
+  {% endif %}
+
 
   {{ form.password.label }}
   {{ form.password }}
+
+  {% if form.password.errors %}
+  {{ form.password.errors }}
+  {% endif %}
 
   {{ form.csrf_token }}
   <input type="submit" value="Login" />
