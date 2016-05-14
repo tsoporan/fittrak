@@ -1,5 +1,10 @@
-<h1>Home</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+Home
 
 {% if user.is_authenticated %}
-  Welcome {{ user.email }}
+Welcome {{ user }}
 {% endif %}
+
+{% endblock %}
