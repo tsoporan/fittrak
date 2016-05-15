@@ -23,5 +23,6 @@ simplegeneric==0.8.1
 six==1.10.0
 SQLAlchemy==1.0.12
 traitlets==4.2.1
+uWSGI==2.0.13.1
 Werkzeug==0.11.9
 WTForms==2.1
