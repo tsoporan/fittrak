@@ -1,7 +1,7 @@
 import unittest
 
 from fittrack import db, app
-from fittrack.models import User
+from fittrack.models import User, Workout, Exercise, Set
 
 class FittrackTestCase(unittest.TestCase):
 
@@ -56,7 +56,6 @@ class FittrackTestCase(unittest.TestCase):
         self.assertTrue('Home' in rv.data)
 
     def test_login_logout(self):
-
         self.register('a@a.aa', 'abc')
         self.login('a@a.aa', 'abc')
         rv = self.logout()
