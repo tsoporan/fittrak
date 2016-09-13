@@ -123,3 +123,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# Registration
+ACCOUNT_ACTIVATION_DAYS = 3
+
+REGISTRATION_OPEN = True
+
