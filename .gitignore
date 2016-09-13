@@ -1,0 +1,5 @@
+*.db
+*.pyc
+node_modules
+dist
+db.sqlite3

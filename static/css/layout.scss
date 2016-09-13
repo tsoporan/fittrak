@@ -1,0 +1,24 @@
+header {
+  position: fixed;
+  top: 0;
+  height: 5%;
+  width: 100%;
+  background: red;
+}
+
+div.sidebar {
+  left: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background: blue;
+  position: fixed;
+}
+
+div.content {
+  background: grey;
+}
+
+footer {
+
+}

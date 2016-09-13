@@ -1,0 +1,16 @@
+{
+  "name": "fittrack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bulma": "^0.1.2",
+    "node-sass": "^3.9.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build:css": "node-sass --include-path css css/base.scss dist/main.css"
+  },
+  "author": "",
+  "license": "ISC"
+}
