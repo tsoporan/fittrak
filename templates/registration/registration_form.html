@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ form }}
+
+<h2> Register </h2>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p class="control">
+    <label class="label">Username</label>
+    <input class="input" autofocus="" id="id_username" maxlength="150" name="username" type="text" required="" />
+    {{ form.username.errors }}
+    </p>
+
+    <p class="control">
+    <label class="label">Email</label>
+    <input class="input" id="id_email" name="email" type="email" required="" />
+    {{ form.email.errors }}
+    </p>
+
+    <p class="control">
+    <label class="label">Password</label>
+    <input class="input" id="id_password1" name="password1" type="password" required="" />
+    {{ form.password1.errors }}
+    </p>
+
+    <input class="button is-primary" type="submit" value="Register">
+</form>
 {% endblock content %}

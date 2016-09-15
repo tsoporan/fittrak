@@ -13,17 +13,32 @@
         <div class="container is-fluid">
 
           <header>
-            {% if user.is_authenticated %}
-              {{ user.username }}
-            {% endif %}
+
+            <div class="columns is-mobile">
+              <div class="column is-half">
+                <h1><a href="{% url 'index' %}">FitTrack</a></h1>
+              </div>
+
+              <div class="column">
+                <div class="profile-menu">
+                {% if user.is_authenticated %}
+                {% else %}
+                  <a class="button is-link" href="{% url 'auth_login' %}">Login</a>
+                  <a class="button is-link" href="{% url 'registration_register' %}">Register</a>
+                {% endif %}
+                </div>
+              </div>
+            </div>
           </header>
 
+          {% if user.is_authenticated %}
           <div class="sidebar">
             Sidebar
           </div>
+          {% endif %}
 
-          <div class="columns">
-            <div class="column content"> 
+          <div class="columns main">
+            <div class="column"> 
               {% block content %} {% endblock %}
             </div>
           </div>

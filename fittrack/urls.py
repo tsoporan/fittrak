@@ -19,7 +19,7 @@ from django.contrib import admin
 from .views import index
 
 urlpatterns = [
-    url(r'^$', index, name='home'),
+    url(r'^$', index, name='index'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^admin/', admin.site.urls),
 ]

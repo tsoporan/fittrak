@@ -5,11 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "bulma": "^0.1.2",
-    "node-sass": "^3.9.3"
+    "node-sass": "^3.9.3",
+    "nodemon": "^1.10.2"
   },
   "devDependencies": {},
   "scripts": {
-    "build:css": "node-sass --include-path css css/base.scss dist/main.css"
+    "build:css": "node-sass --include-path css css/base.scss dist/main.css",
+    "watch:css": "nodemon -e scss -w css -x 'npm run build:css'"
   },
   "author": "",
   "license": "ISC"

@@ -1,9 +1,15 @@
 header {
   position: fixed;
+  left: 0;
   top: 0;
-  height: 5%;
   width: 100%;
-  background: red;
+  background: white;
+}
+
+header h1 {
+  font-size: 2rem;
+  padding: 0 1rem;
+  color: white;
 }
 
 div.sidebar {
@@ -15,8 +21,18 @@ div.sidebar {
   position: fixed;
 }
 
-div.content {
-  background: grey;
+div.profile-menu {
+  text-align: right;
+  padding: .2rem .5rem;
+  color: white;
+}
+
+div.profile-menu a {
+  color: white;
+}
+
+div.main{
+  margin-top: 5rem;
 }
 
 footer {

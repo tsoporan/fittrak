@@ -1,5 +1,6 @@
 *.db
 *.pyc
+*.log
 node_modules
 dist
 db.sqlite3
