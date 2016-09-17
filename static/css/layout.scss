@@ -1,40 +1,53 @@
+
+// Colors
+$darkgrey: #353535;
+$white: #ffffff;
+
+
 header {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  background: white;
+  background: $white;
 }
 
 header h1 {
   font-size: 2rem;
   padding: 0 1rem;
-  color: white;
+  color: $white;
 }
 
 div.sidebar {
+  z-index: 2;
   left: 0;
   top: 0;
-  width: 25%;
+  width: 50%;
   height: 100%;
-  background: blue;
+  background: $darkgrey;
   position: fixed;
+  padding: 1rem;
+  color: $white;
 }
 
 div.profile-menu {
   text-align: right;
-  padding: .2rem .5rem;
-  color: white;
-}
-
-div.profile-menu a {
-  color: white;
+  margin-right: 1rem;
+  margin-top: .3rem;
+  color: $white;
 }
 
 div.main{
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+
+div.main h2 {
+  margin: 0 1rem;
+  text-align: center;
+  font-size: 2rem;
 }
 
 footer {
-
+  margin: 0 1rem;
+  text-align: center;
 }
