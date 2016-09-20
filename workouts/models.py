@@ -7,7 +7,8 @@ from utils.models import BaseModel, UserBaseModel
 class Workout(UserBaseModel):
     pass
 
-class Exercise(UserBaseModel):
+class Exercise(BaseModel):
+    user = models.ForeignKey(User, null=True, blank=True)
     workout = models.ForeignKey(Workout)
 
 class Set(UserBaseModel):
