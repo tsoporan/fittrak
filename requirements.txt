@@ -1,2 +1,4 @@
 Django==1.10.1
+django-extensions==1.7.4
 django-registration==2.1.2
+six==1.10.0
