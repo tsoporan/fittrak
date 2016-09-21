@@ -16,10 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import index
+import workouts.views
 
 urlpatterns = [
-    url(r'^$', index, name='index'),
+    url(r'^$', workouts.views.new_workout, name='new_workout'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^admin/', admin.site.urls),
 ]
