@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.models import User
 
-import workouts.views
+from rest_framework_jwt.views import obtain_jwt_token
+from workouts.views import WorkoutList
 
 urlpatterns = [
-    url(r'^$', workouts.views.new_workout, name='new_workout'),
+    url(r'^workouts/$', WorkoutList.as_view()),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^admin/', admin.site.urls),
 ]

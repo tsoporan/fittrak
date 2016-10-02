@@ -1,16 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from utils.models import BaseModel, UserBaseModel
+from utils.models import WorkoutBaseModel
 
-# Create your models here.
-class Workout(UserBaseModel):
-    pass
+class Workout(WorkoutBaseModel):
+    
+    class Meta:
+        ordering = ('-id',)
 
-class Exercise(BaseModel):
-    user = models.ForeignKey(User, null=True, blank=True)
+class Exercise(WorkoutBaseModel):
     workout = models.ForeignKey(Workout)
+    name = models.CharField(max_length=250, unique=True, null=True, blank=True)
 
-class Set(UserBaseModel):
+    class Meta:
+        ordering = ('-id',)
+
+class Set(WorkoutBaseModel):
     exercise = models.ForeignKey(Exercise)
+
     repetitions = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ('-id',)

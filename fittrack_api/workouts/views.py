@@ -1,9 +1,21 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
-from .models import Workout, Exercise, Set
+from .serializers import WorkoutSerializer
+from .models import Workout
 
-@login_required
-def new_workout(request):
-    return render(request, 'workouts/new_workout.html')
+class WorkoutList(APIView):
 
+    #authentication_classes = (authentication.TokenAuthentication,)
+
+    def get(self, request, format=None):
+        """
+        Return a list of all workouts.
+        """
+        workouts = Workout.objects.all()
+        serializer = WorkoutSerializer(workouts, many=True)
+        return Response(serializer.data)
+
+class WorkoutDetail(APIView):
+    pass
