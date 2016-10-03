@@ -3,9 +3,10 @@ from .models import Workout, Exercise, Set
 
 class WorkoutSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
-    started = serializers.DateTimeField()
-    ended = serializers.DateTimeField()
-    user = serializers.IntegerField()
+    date_started = serializers.DateTimeField()
+    date_ended = serializers.DateTimeField()
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    display_name = serializers.CharField(max_length=250)
 
     def create(self, validated_data):
         """ Create new Workout based on valid data """
