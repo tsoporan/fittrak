@@ -4,3 +4,4 @@
 node_modules
 dist
 db.sqlite3
+secrets.py
