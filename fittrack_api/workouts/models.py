@@ -15,6 +15,11 @@ class Workout(WorkoutBaseModel):
     class Meta:
         ordering = ('-id',)
 
+    def delete(self):
+        """ Overriden delete method to mark as inactive """
+        self.is_active = False
+        self.save()
+
 class Exercise(WorkoutBaseModel):
     workout = models.ForeignKey(Workout)
     name = models.CharField(max_length=250, unique=True, null=True, blank=True)

@@ -10,6 +10,7 @@ class UserBaseModel(models.Model):
 class WorkoutBaseModel(UserBaseModel):
     date_started = models.DateTimeField(null=True, blank=True)
     date_ended = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
