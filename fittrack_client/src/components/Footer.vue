@@ -1,0 +1,28 @@
+<template>
+<footer class="footer">
+<div class="container">
+    <div class="content has-text-centered">
+    <p>
+        <strong>FitTrack</strong> made with <span style="color:red;">&#10084;</span> by <a href="https://tsoporan.com">tsoporan</a>.
+    </p>
+    <p>
+        <a class="icon" href="https://github.com/tsoporan/fittrack">
+        <i class="fa fa-github"></i>
+        </a>
+    </p>
+    </div>
+</div>
+</footer>
+</template>
+
+
+<style lang="scss" scoped>
+</style>
+
+<script>
+export default {
+  data () {
+    return {}
+  }
+}
+</script>
