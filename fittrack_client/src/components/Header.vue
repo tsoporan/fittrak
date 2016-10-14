@@ -17,6 +17,30 @@
 </template>
 
 <style lang="scss" scoped>
+$white: #ffffff;
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: $white;
+  padding: .1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  padding: 0 1rem;
+  color: $white;
+}
+
+div.profile-menu {
+  text-align: right;
+  margin-right: 1rem;
+  margin-top: .3rem;
+  color: $white;
+}
+
 </style>
 
 <script>

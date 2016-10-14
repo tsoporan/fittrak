@@ -17,6 +17,10 @@
 
 
 <style lang="scss" scoped>
+footer {
+  margin: 0 1rem;
+  text-align: center;
+}
 </style>
 
 <script>

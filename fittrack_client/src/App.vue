@@ -16,7 +16,32 @@
 
 
 <style lang="scss">
-    @import './static/base';
+@import '../node_modules/bulma/css/bulma';
+@import '../node_modules/font-awesome/scss/font-awesome';
+
+div.main{
+  margin-top: 3rem;
+}
+
+div.main h2 {
+  margin: 0 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+form {
+  padding: 1rem;
+  margin: 1rem;
+  background: white;
+} 
+
+form label {
+  display: block;
+} 
+
+form input[type=submit] {
+  display: block;
+}
 </style>
 
 
