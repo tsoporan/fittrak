@@ -1,7 +1,7 @@
 <template>
-<div class="sidebar">
-  <div class="toggle-menu">
-      <button v-on:click="toggleMenu" v-bind:class="{ active: showMenu }">
+<div class="sidebar" v-bind:class="showSidebar">
+  <div class="toggle-menu" v-on:click="toggleSidebar">
+    <button>
       <span class="icon is-medium"><i class="fa fa-bars"></i></span>
     </button>
   </div>
@@ -59,36 +59,49 @@ div.sidebar {
   z-index: 2;
   left: 0;
   top: 0;
-  width: 50%;
   height: 100%;
   background: $darkgrey;
   position: fixed;
   color: $white;
+  display: none;
+}
+
+div.sidebar.active {
+  width: 20%;
+  display: block;
 }
 
 div.sidebar aside.menu {
   padding: 1rem;
 }
 
-div.sidebar div.toggle-menu {
+div.toggle-menu {
   border-bottom: 1px solid $darkgrey2;
 }
 
-div.sidebar div.toggle-menu button span {
+div.toggle-menu button {
+  background: $darkgrey;
+  color: #fff;
+  border: none;
+}
+
+div.toggle-menu button span {
   color: $white;
 }
 </style>
 
 <script>
 export default {
-  data () {
-    return {
-      showMenu: false
+  methods: {
+    toggleSidebar () {
+      this.$store.commit('toggleSidebar')
     }
   },
-  methods: {
-    toggleMenu: function () {
-      this.showMenu = !this.showMenu
+  computed: {
+    showSidebar () {
+      return {
+        active: this.$store.state.showSidebar
+      }
     }
   }
 }

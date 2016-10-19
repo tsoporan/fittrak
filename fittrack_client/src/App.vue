@@ -51,9 +51,6 @@ import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 
 export default {
-  data () {
-    return {}
-  },
   components: {
     Header,
     Sidebar,

@@ -2,7 +2,12 @@
 <header>
 <div class="columns is-mobile">
     <div class="column is-half">
-    <h1><a href="#">FitTrack</a></h1>
+    <h1>
+      <span class="icon is-medium" v-on:click="toggleSidebar">
+        <i class="fa fa-bars"></i>
+      </span>
+      <a href="#">FitTrack</a>
+    </h1>
     </div>
 
     <div class="column">
@@ -18,6 +23,7 @@
 
 <style lang="scss" scoped>
 $white: #ffffff;
+$darkgrey: #4a4a4a;
 
 header {
   position: fixed;
@@ -29,9 +35,21 @@ header {
 }
 
 header h1 {
+  font-family: 'Kaushan Script', cursive;
   font-size: 2rem;
   padding: 0 1rem;
   color: $white;
+}
+
+header h1 a {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+header h1 span.icon {
+  color: $darkgrey;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 div.profile-menu {
@@ -45,8 +63,10 @@ div.profile-menu {
 
 <script>
 export default {
-  data () {
-    return {}
+  methods: {
+    toggleSidebar () {
+      this.$store.commit('toggleSidebar')
+    }
   }
 }
 </script>
