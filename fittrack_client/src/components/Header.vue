@@ -3,9 +3,9 @@
 <div class="columns is-mobile">
     <div class="column is-half">
     <h1>
-      <span class="icon is-medium" v-on:click="toggleSidebar">
-        <i class="fa fa-bars"></i>
-      </span>
+      <button>
+        <span class="icon is-medium" v-on:click="toggleSidebar"> <i class="fa fa-bars"></i> </span>
+      </button>
       <a href="#">FitTrack</a>
     </h1>
     </div>
@@ -36,20 +36,22 @@ header {
 
 header h1 {
   font-family: 'Kaushan Script', cursive;
-  font-size: 2rem;
-  padding: 0 1rem;
+  padding: 0;
   color: $white;
 }
 
 header h1 a {
   display: inline-block;
   vertical-align: middle;
+  font-size: 2rem;
 }
 
-header h1 span.icon {
+header h1 button {
   color: $darkgrey;
   display: inline-block;
   vertical-align: middle;
+  border: none;
+  background: #fff;
 }
 
 div.profile-menu {
