@@ -16,6 +16,7 @@
     "bulma": "^0.2.1",
     "font-awesome": "^4.6.3",
     "vue": "^2.0.1",
+    "vue-router": "^2.0.1",
     "vuex": "^2.0.0"
   },
   "devDependencies": {
