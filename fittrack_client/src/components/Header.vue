@@ -6,7 +6,7 @@
       <button>
         <span class="icon is-medium" v-on:click="toggleSidebar"> <i class="fa fa-bars"></i> </span>
       </button>
-      <a href="#">FitTrack</a>
+      <router-link to="/">FitTrack</router-link>
     </h1>
     </div>
 
