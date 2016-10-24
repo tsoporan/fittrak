@@ -5,15 +5,15 @@
         <Sidebar></Sidebar>
 
         <div class="columns main">
-            <div class="column"> 
-            </div>
+          <div class="column">
+            <router-view></router-view>
+          </div>
         </div>
 
         <Footer></Footer>
     </div> <!-- end container -->
 </div>
 </template>
-
 
 <style lang="scss">
 @import '../node_modules/bulma/css/bulma';
