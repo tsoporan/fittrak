@@ -13,8 +13,8 @@
     <div class="column">
     <div class="profile-menu">
         <!-- <a class="button is-link" href="">{{ user.username }}</a> -->
-        <a class="button is-secondary" href="#">Login</a>
-        <a class="button is-secondary" href="#">Register</a>
+        <router-link to="login" class="button is-secondary">Login</router-link>
+        <router-link to="register" class="button is-secondary">Register</router-link>
     </div>
     </div>
 </div>
