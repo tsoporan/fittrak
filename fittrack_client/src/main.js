@@ -12,7 +12,7 @@ Vue.use(VueResource)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  store,
-  router,
+  store: store,
+  router: router,
   render: h => h(App)
 })
