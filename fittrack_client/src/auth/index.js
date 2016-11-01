@@ -7,8 +7,12 @@ const LOGIN_URL = BASE_URL + 'api-token-auth/'
 const VERIFY_URL = BASE_URL + 'api-token-verify/'
 
 export default {
+  user () {
+    return store.state.user
+  },
+
   isLoggedIn () {
-    return store.state.users.isAuthed
+    return this.user().isAuthed
   },
 
   login (email, password, context) {

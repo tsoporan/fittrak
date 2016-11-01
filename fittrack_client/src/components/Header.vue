@@ -4,7 +4,7 @@
     <div class="column is-half">
     <h1>
       <button>
-        <span class="icon is-medium" v-on:click="toggleSidebar"> <i class="fa fa-bars"></i> </span>
+        <span class="icon is-medium" v-if="authed" @click.prevent="toggleSidebar"> <i class="fa fa-bars"></i> </span>
       </button>
       <router-link to="/">FitTrack</router-link>
     </h1>
@@ -12,7 +12,7 @@
 
     <div class="column">
     <div class="profile-menu">
-        <div v-if="isAuthed">
+        <div v-if="authed">
           Hi, {{ username }}
           <a href="" @click.prevent="logout">Logout</a>
         </div>
@@ -79,11 +79,11 @@ export default {
     }
   },
   computed: {
-    isAuthed () {
-      return this.$store.state.user.isAuthed
+    authed () {
+      return auth.isLoggedIn()
     },
     username () {
-      return this.$store.state.user.username
+      return auth.user().username
     }
   }
 }

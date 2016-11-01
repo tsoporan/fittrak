@@ -1,13 +1,12 @@
 <template>
 <div class="sidebar" v-bind:class="showSidebar">
-  <div class="toggle-menu" v-on:click="toggleSidebar">
+  <div class="toggle-menu" @click.prevent="toggleSidebar">
     <h1>
       <button>
         <span class="icon is-medium"><i class="fa fa-bars"></i></span>
       </button>
       <router-link to="/">FitTrack</router-link>
     </h1>
-
   </div>
 
   <aside class="menu">
