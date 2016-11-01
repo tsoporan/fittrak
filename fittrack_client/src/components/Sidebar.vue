@@ -1,9 +1,13 @@
 <template>
 <div class="sidebar" v-bind:class="showSidebar">
   <div class="toggle-menu" v-on:click="toggleSidebar">
-    <button>
-      <span class="icon is-medium"><i class="fa fa-bars"></i></span>
-    </button>
+    <h1>
+      <button>
+        <span class="icon is-medium"><i class="fa fa-bars"></i></span>
+      </button>
+      <router-link to="/">FitTrack</router-link>
+    </h1>
+
   </div>
 
   <aside class="menu">
@@ -53,7 +57,7 @@
 <style lang="scss" scoped>
 $darkgrey: #353535;
 $darkgrey2: #444444;
-$white: #fffff;
+$white: #ffffff;
 
 div.sidebar {
   z-index: 2;
@@ -64,6 +68,25 @@ div.sidebar {
   position: fixed;
   color: $white;
   display: none;
+}
+
+div.sidebar h1 {
+  color: $white;
+  font-family: 'Kaushan Script', cursive;
+  padding: 0;
+}
+
+div.sidebar h1 a {
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  color: $white;
+}
+
+div.sidebar h1 button {
+  display: inline-block;
+  vertical-align: middle;
+  border: none;
 }
 
 div.sidebar.active {

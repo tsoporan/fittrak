@@ -33,11 +33,11 @@ form {
   padding: 1rem;
   margin: 1rem;
   background: white;
-} 
+}
 
 form label {
   display: block;
-} 
+}
 
 form input[type=submit] {
   display: block;

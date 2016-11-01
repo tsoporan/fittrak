@@ -12,9 +12,14 @@
 
     <div class="column">
     <div class="profile-menu">
-        <!-- <a class="button is-link" href="">{{ user.username }}</a> -->
-        <router-link to="login" class="button is-secondary">Login</router-link>
-        <router-link to="register" class="button is-secondary">Register</router-link>
+        <div v-if="isAuthed">
+          Hi, {{ username }}
+          <a href="" @click.prevent="logout">Logout</a>
+        </div>
+        <div v-else>
+          <router-link to="login" class="button is-secondary">Login</router-link>
+          <router-link to="register" class="button is-secondary">Register</router-link>
+        </div>
     </div>
     </div>
 </div>
@@ -37,7 +42,6 @@ header {
 header h1 {
   font-family: 'Kaushan Script', cursive;
   padding: 0;
-  color: $white;
 }
 
 header h1 a {
@@ -58,16 +62,28 @@ div.profile-menu {
   text-align: right;
   margin-right: 1rem;
   margin-top: .3rem;
-  color: $white;
 }
 
 </style>
 
 <script>
+import auth from '../auth'
+
 export default {
   methods: {
     toggleSidebar () {
       this.$store.commit('toggleSidebar')
+    },
+    logout () {
+      return auth.logout()
+    }
+  },
+  computed: {
+    isAuthed () {
+      return this.$store.state.user.isAuthed
+    },
+    username () {
+      return this.$store.state.user.username
     }
   }
 }
