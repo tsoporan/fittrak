@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from workouts.views import WorkoutList, WorkoutDetail
@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^workouts/(?P<name>\w+)/$', WorkoutDetail.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-verify/', verify_jwt_token),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^admin/', admin.site.urls),
 ]
