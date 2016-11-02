@@ -1,12 +1,21 @@
 <template>
-  <div>
+  <div class="new-workout">
     <h2> It's {{ today }} </h2>
     <router-link to="/startworkout" class="button is-large is-primary is-outlined">New Workout</router-link>
   </div>
 
 </template>
 
-<style>
+<style lang="scss" scoped>
+
+div.new-workout {
+  text-align: center;
+}
+
+div.new-workout h2 {
+  padding: 2rem;
+}
+
 </style>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <div class="container is-fluid">
-        <Header></Header>
+        <Topbar></Topbar>
         <Sidebar></Sidebar>
 
         <div class="columns main">
@@ -46,15 +46,13 @@ form input[type=submit] {
 
 
 <script>
-import Header from './components/Header'
+import Topbar from './components/Topbar'
 import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
 
 export default {
   components: {
-    Header,
-    Sidebar,
-    Footer
+    Topbar,
+    Sidebar
   }
 }
 </script>

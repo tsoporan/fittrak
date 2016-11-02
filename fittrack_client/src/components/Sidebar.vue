@@ -49,6 +49,10 @@
 
     </ul>
   </aside>
+
+  <div class="sidebar-footer">
+    <p>Made with <span style="color:red;">&#10084;</span> by <a href="https://github.com/tsoporan/fittrack">tsoporan</a></p>
+  </div>
 </div>
 
 </template>
@@ -61,6 +65,13 @@ $darkgrey2: #444444;
 $darkgrey3: #2b2b2b;
 $white: #ffffff;
 $lightgrey: #c5c5c5;
+
+div.sidebar-footer {
+  bottom: 10px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
 
 div.sidebar {
   z-index: 2;
