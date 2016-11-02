@@ -1,0 +1,73 @@
+[
+{
+    "model": "workouts.workout",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "date_started": "2016-10-02T05:53:02.549Z",
+        "date_ended": "2016-10-02T05:53:09.627Z",
+        "is_active": false,
+        "display_name": "3k"
+    }
+},
+{
+    "model": "workouts.exercise",
+    "pk": 1,
+    "fields": {
+        "user": null,
+        "date_started": null,
+        "date_ended": null,
+        "is_active": true,
+        "workout": null,
+        "name": "Push-up"
+    }
+},
+{
+    "model": "workouts.exercise",
+    "pk": 2,
+    "fields": {
+        "user": null,
+        "date_started": null,
+        "date_ended": null,
+        "is_active": true,
+        "workout": null,
+        "name": "Pull-up"
+    }
+},
+{
+    "model": "workouts.exercise",
+    "pk": 3,
+    "fields": {
+        "user": null,
+        "date_started": null,
+        "date_ended": null,
+        "is_active": true,
+        "workout": null,
+        "name": "Barbell Flat Bench Press"
+    }
+},
+{
+    "model": "workouts.exercise",
+    "pk": 4,
+    "fields": {
+        "user": null,
+        "date_started": null,
+        "date_ended": null,
+        "is_active": true,
+        "workout": null,
+        "name": "Barbell Back Squat"
+    }
+},
+{
+    "model": "workouts.exercise",
+    "pk": 5,
+    "fields": {
+        "user": null,
+        "date_started": null,
+        "date_ended": null,
+        "is_active": true,
+        "workout": null,
+        "name": "Barbell Deadlift"
+    }
+}
+]

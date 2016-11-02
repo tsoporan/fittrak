@@ -21,11 +21,14 @@ class Workout(WorkoutBaseModel):
         self.save()
 
 class Exercise(WorkoutBaseModel):
-    workout = models.ForeignKey(Workout)
+    workout = models.ForeignKey(Workout, null=True, blank=True)
     name = models.CharField(max_length=250, unique=True, null=True, blank=True)
 
     class Meta:
         ordering = ('-id',)
+
+    def __str__(self):
+        return self.name
 
 class Set(WorkoutBaseModel):
     exercise = models.ForeignKey(Exercise)
