@@ -5,6 +5,7 @@ import Index from './components/Index'
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
+import NewWorkout from './components/NewWorkout'
 
 import auth from './auth'
 
@@ -13,6 +14,7 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Index },
   { path: '/home', component: Home, meta: { requiresAuth: true } },
+  { path: '/newworkout', component: NewWorkout, meta: { requiresAuth: true } },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/*', component: Index }

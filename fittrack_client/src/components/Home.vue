@@ -1,7 +1,7 @@
 <template>
   <div class="new-workout">
     <h2> It's {{ today }} </h2>
-    <router-link to="/startworkout" class="button is-large is-primary is-outlined">New Workout</router-link>
+    <router-link to="/newworkout" class="button is-large is-primary is-outlined">New Workout</router-link>
   </div>
 
 </template>

@@ -13,7 +13,7 @@
     <div class="column">
     <div class="profile-menu">
         <div v-if="authed">
-          Hi, {{ username }}
+          <span class="username">Heya, <strong>{{ username }}</strong></span>
         </div>
         <div v-else>
           <router-link to="login" class="button is-secondary">Login</router-link>
@@ -28,6 +28,11 @@
 <style lang="scss" scoped>
 $white: #ffffff;
 $darkgrey: #4a4a4a;
+
+span.username {
+  margin: 0.7rem 0 0;
+  display: block;
+}
 
 header {
   position: fixed;
