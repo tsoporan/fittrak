@@ -14,7 +14,6 @@
     <div class="profile-menu">
         <div v-if="authed">
           Hi, {{ username }}
-          <a href="" @click.prevent="logout">Logout</a>
         </div>
         <div v-else>
           <router-link to="login" class="button is-secondary">Login</router-link>
@@ -73,9 +72,6 @@ export default {
   methods: {
     toggleSidebar () {
       this.$store.commit('toggleSidebar')
-    },
-    logout () {
-      return auth.logout()
     }
   },
   computed: {

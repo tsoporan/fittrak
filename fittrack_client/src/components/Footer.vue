@@ -3,23 +3,18 @@
 <div class="container">
     <div class="content has-text-centered">
     <p>
-        <strong>FitTrack</strong> made with <span style="color:red;">&#10084;</span> by <a href="https://tsoporan.com">tsoporan</a>.
-    </p>
-    <p>
-        <a class="icon" href="https://github.com/tsoporan/fittrack">
-        <i class="fa fa-github"></i>
-        </a>
+      Made with <span style="color:red;">&#10084;</span> by <a href="https://github.com/tsoporan/fittrack">tsoporan</a>
     </p>
     </div>
 </div>
 </footer>
 </template>
 
-
 <style lang="scss" scoped>
 footer {
   margin: 0 1rem;
   text-align: center;
+  color: #777777;
 }
 </style>
 
