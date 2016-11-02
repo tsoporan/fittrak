@@ -15,6 +15,7 @@
   "dependencies": {
     "bulma": "^0.2.1",
     "font-awesome": "^4.6.3",
+    "moment": "^2.15.2",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.1",
