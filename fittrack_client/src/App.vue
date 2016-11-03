@@ -9,8 +9,6 @@
             <router-view></router-view>
           </div>
         </div>
-
-        <Footer></Footer>
     </div> <!-- end container -->
 </div>
 </template>
