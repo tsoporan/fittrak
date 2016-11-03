@@ -6,6 +6,9 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import NewWorkout from './components/NewWorkout'
+import Progress from './components/Progress'
+import Settings from './components/Settings'
+import History from './components/History'
 
 import auth from './auth'
 
@@ -15,6 +18,9 @@ const routes = [
   { path: '/', component: Index },
   { path: '/home', component: Home, meta: { requiresAuth: true } },
   { path: '/newworkout', component: NewWorkout, meta: { requiresAuth: true } },
+  { path: '/progress', component: Progress, meta: { requiresAuth: true } },
+  { path: '/settings', component: Settings, meta: { requiresAuth: true } },
+  { path: '/history', component: History, meta: { requiresAuth: true } },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/*', component: Index }

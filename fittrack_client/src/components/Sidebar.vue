@@ -13,31 +13,31 @@
     <p class="menu-label">Menu</p>
     <ul class="menu-list">
       <li>
-        <a href="">
+        <router-link to="/home">
           <span class="icon is-small"><i class="fa fa-heart" aria-hidden="true"></i></span>
           Track 
-        </a>
+        </router-link>
       </li>
 
       <li>
-        <a href="">
+        <router-link to="/progress">
           <span class="icon is-small"><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
           Progress
-        </a>
+        </router-link>
       </li>
 
       <li>
-        <a href="">
+        <router-link to="/history">
           <span class="icon is-small"><i class="fa fa-history" aria-hidden="true"></i></span>
           History
-        </a>
+        </router-link>
       </li>
 
       <li>
-        <a href="">
+        <router-link to="/settings">
           <span class="icon is-small"><i class="fa fa-sliders" aria-hidden="true"></i></span>
           Settings
-        </a>
+        </router-link>
       </li>
 
       <li>
