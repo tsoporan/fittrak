@@ -4,7 +4,7 @@
     <div class="column is-half">
     <h1>
       <button>
-        <span class="icon is-medium" v-if="authed" @click.prevent="toggleSidebar"> <i class="fa fa-bars"></i> </span>
+        <span class="icon is-medium" v-if="authed" @click.prevent="toggleSidebar"> <i class="fa fa-bars toggle-icon"></i> </span>
       </button>
       <router-link to="/">FitTrack</router-link>
     </h1>
@@ -35,6 +35,7 @@ span.username {
 }
 
 header {
+  z-index: 1;
   position: fixed;
   left: 0;
   top: 0;

@@ -1,15 +1,15 @@
 <template>
-<div id="app">
-    <div class="container is-fluid">
-        <Topbar></Topbar>
-        <Sidebar></Sidebar>
+<div id="app" @click="away">
+  <div class="container is-fluid">
+    <Topbar></Topbar>
+    <Sidebar></Sidebar>
 
-        <div class="columns main">
-          <div class="column">
-            <router-view></router-view>
-          </div>
-        </div>
-    </div> <!-- end container -->
+    <div class="columns main">
+      <div class="column">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div> <!-- end container -->
 </div>
 </template>
 
@@ -48,6 +48,19 @@ import Topbar from './components/Topbar'
 import Sidebar from './components/Sidebar'
 
 export default {
+  methods: {
+    away (e) {
+      let clsName = e.target.className
+      let showing = this.$store.state.showSidebar
+
+      // Close sidebar if clicked outside
+      if (showing) {
+        if (clsName !== 'sidebar active' && clsName !== 'fa fa-bars toggle-icon') {
+          this.$store.commit('toggleSidebar')
+        }
+      }
+    }
+  },
   components: {
     Topbar,
     Sidebar

@@ -160,7 +160,6 @@ export default {
       this.$store.commit('toggleSidebar')
     },
     logout () {
-      this.$store.commit('toggleSidebar')
       return auth.logout()
     }
   },
