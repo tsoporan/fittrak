@@ -7,7 +7,7 @@
         "date_started": "2016-10-02T05:53:02.549Z",
         "date_ended": "2016-10-02T05:53:09.627Z",
         "is_active": false,
-        "display_name": "3k"
+        "slug": "3k"
     }
 },
 {
@@ -19,7 +19,8 @@
         "date_ended": null,
         "is_active": true,
         "workout": null,
-        "name": "Push-up"
+        "name": "Push-up",
+        "slug": "3k"
     }
 },
 {
@@ -31,7 +32,8 @@
         "date_ended": null,
         "is_active": true,
         "workout": null,
-        "name": "Pull-up"
+        "name": "Pull-up",
+        "slug": "qL"
     }
 },
 {
@@ -43,7 +45,8 @@
         "date_ended": null,
         "is_active": true,
         "workout": null,
-        "name": "Barbell Flat Bench Press"
+        "name": "Barbell Flat Bench Press",
+        "slug": "v5"
     }
 },
 {
@@ -55,7 +58,8 @@
         "date_ended": null,
         "is_active": true,
         "workout": null,
-        "name": "Barbell Back Squat"
+        "name": "Barbell Back Squat",
+        "slug": "oO"
     }
 },
 {
@@ -67,7 +71,8 @@
         "date_ended": null,
         "is_active": true,
         "workout": null,
-        "name": "Barbell Deadlift"
+        "name": "Barbell Deadlift",
+        "slug": "L9"
     }
 }
 ]
