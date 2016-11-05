@@ -14,3 +14,9 @@ class WorkoutBaseModel(UserBaseModel):
 
     class Meta:
         abstract = True
+
+    def delete(self):
+        """ Overriden delete method to mark as inactive """
+        self.is_active = False
+        self.save()
+

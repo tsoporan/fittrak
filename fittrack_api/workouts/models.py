@@ -10,19 +10,18 @@ from utils.models import WorkoutBaseModel
 import hashids
 
 class Workout(WorkoutBaseModel):
-    display_name = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for workout')
+    slug = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for workout')
 
     class Meta:
         ordering = ('-id',)
 
-    def delete(self):
-        """ Overriden delete method to mark as inactive """
-        self.is_active = False
-        self.save()
+    def __str(self):
+        return self.slug
 
 class Exercise(WorkoutBaseModel):
     workout = models.ForeignKey(Workout, null=True, blank=True)
     name = models.CharField(max_length=250, unique=True, null=True, blank=True)
+    slug = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for exercise')
 
     class Meta:
         ordering = ('-id',)
@@ -38,9 +37,19 @@ class Set(WorkoutBaseModel):
     class Meta:
         ordering = ('-id',)
 
+    def __str__(self):
+        return self.exercise
+
 @receiver(post_save, sender=Workout)
-def set_display_name(sender, instance, **kwargs):
-    if not instance.display_name:
+def set_workout_slug(sender, instance, **kwargs):
+    if not instance.slug:
         h = hashids.Hashids(salt=settings.HASHIDS_SALT)
-        instance.display_name = h.encode(instance.id)
+        instance.slug = h.encode(instance.id)
+        instance.save()
+
+@receiver(post_save, sender=Exercise)
+def set_exercise_slug(sender, instance, **kwargs):
+    if not instance.slug:
+        h = hashids.Hashids(salt=settings.HASHIDS_SALT)
+        instance.slug = h.encode(instance.id)
         instance.save()

@@ -6,7 +6,7 @@ class WorkoutSerializer(serializers.Serializer):
     date_started = serializers.DateTimeField()
     date_ended = serializers.DateTimeField()
     user = serializers.PrimaryKeyRelatedField(read_only=True)
-    display_name = serializers.CharField(max_length=15)
+    slug = serializers.CharField(max_length=15)
     is_active = serializers.BooleanField()
 
     def create(self, validated_data):
@@ -15,10 +15,11 @@ class WorkoutSerializer(serializers.Serializer):
 
 class ExerciseSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
-    started = serializers.DateTimeField()
-    ended = serializers.DateTimeField()
+    date_started = serializers.DateTimeField()
+    date_ended = serializers.DateTimeField()
     user = serializers.IntegerField(allow_null=True)
-    name = serializers.CharField(max_length=250)
+    slug = serializers.CharField(max_length=15)
+    name = serializers.CharField()
 
     def create(self, validated_data):
         """ Create new Exercise based on valid data """
