@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Loginn</h2>
     <form @submit.prevent="login">
       <p class="control has-icon">
         <input class="input text" v-model="email" placeholder="Email" required>
@@ -49,4 +49,3 @@ export default {
   }
 }
 </script>
-
