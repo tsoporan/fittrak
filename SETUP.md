@@ -28,7 +28,7 @@ After installing the required packages clone the repository, the repository cont
 
 7. Server up on: http://localhost:8000
 
-### Setting up client server
+#### Setting up client server
 
 0. Install node packages: ```cd fittrack_client && npm install```
 
