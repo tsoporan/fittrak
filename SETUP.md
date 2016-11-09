@@ -1,16 +1,16 @@
 ### Requirements
 
 - Nodejs/NPM
-- Python 3
+- Python3 / pip3
 - virtualenv
 
 On mac you'll find these all using Homebrew (brew command)
 
-### Getting Up and Running
+### Getting up and running
 
 After installing the required packages clone the repository, the repository contains two directories one for the api and the other for the client.
 
-#### Setting up api server
+#### Setting up API server
 
 0. Create a virtualenv: ```virtualenv envs/fittrack```
 
@@ -28,7 +28,7 @@ After installing the required packages clone the repository, the repository cont
 
 7. Server up on: http://localhost:8000
 
-### Setting up client server
+#### Setting up client server
 
 0. Install node packages: ```cd fittrack_client && npm install```
 
