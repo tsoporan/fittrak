@@ -1,3 +1,16 @@
+### Useful documentation
+
+#### Client
+- Vuejs https://vuejs.org/v2/guide/
+- Vue Router https://router.vuejs.org/en/essentials/getting-started.html
+- Vue Resource https://github.com/pagekit/vue-resource
+- Vuex https://vuex.vuejs.org/en/intro.html
+
+#### Backend
+- Django https://www.djangoproject.com/start/
+- Django Rest Framework http://www.django-rest-framework.org/tutorial/quickstart/
+- JSON Web tokens https://getblimp.github.io/django-rest-framework-jwt/
+
 ### Requirements
 
 - Nodejs/NPM
