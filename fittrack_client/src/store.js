@@ -7,8 +7,12 @@ const store = new Vuex.Store({
   state: {
     showSidebar: false,
     user: {
-      isAuthed: false,
+      authed: false,
       username: ''
+    },
+    workouts: {
+      current: [],
+      latest: []
     }
   },
 
@@ -18,12 +22,16 @@ const store = new Vuex.Store({
     },
 
     setAuthed (state, payload) {
-      state.user.isAuthed = payload.authed
+      state.user.authed = payload.authed
     },
 
     setUser (state, payload) {
       state.user.username = payload.username
       state.user.email = payload.email
+    },
+
+    setLatestWorkouts (state, payload) {
+      state.workouts.latest = payload.latest
     }
   }
 })
