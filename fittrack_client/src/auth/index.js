@@ -12,7 +12,7 @@ export default {
   },
 
   isLoggedIn () {
-    return this.user().authed
+    return store.state.user.authed
   },
 
   getToken () {

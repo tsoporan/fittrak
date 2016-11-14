@@ -33,6 +33,11 @@ const router = new VueRouter({
 
 // Need to ensure that we protect auth-dependent endpoints
 router.beforeEach((to, from, next) => {
+  // On refresh of index route if you are logged in take you home
+  if (to.path === '/' && auth.getToken()) {
+    return next({ path: '/home' })
+  }
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
