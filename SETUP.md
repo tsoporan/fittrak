@@ -1,3 +1,16 @@
+### Useful documentation
+
+#### Frontend
+- Vuejs https://vuejs.org/v2/guide/
+- Vue Router https://router.vuejs.org/en/essentials/getting-started.html
+- Vue Resource (http utils) https://github.com/pagekit/vue-resource
+- Vuex (state management) https://vuex.vuejs.org/en/intro.html
+
+#### Backend
+- Django https://www.djangoproject.com/start/
+- Django REST Framework (API) http://www.django-rest-framework.org/tutorial/quickstart/
+- JSON Web tokens https://getblimp.github.io/django-rest-framework-jwt/
+
 ### Requirements
 
 - Nodejs/NPM
