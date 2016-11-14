@@ -15,6 +15,9 @@ class WorkoutBaseModel(UserBaseModel):
     class Meta:
         abstract = True
 
+    def is_finished(self):
+        return True if self.date_ended else False
+
     def delete(self):
         """ Overriden delete method to mark as inactive """
         self.is_active = False

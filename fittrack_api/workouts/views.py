@@ -8,10 +8,12 @@ from .serializers import WorkoutSerializer, ExerciseSerializer
 from .models import Workout, Exercise
 
 class ExerciseList(APIView):
+
     def get(self, request, format=None):
         """
         Return a list of all exercises
         """
+
         exercises = Exercise.objects.all()
         serializer = ExerciseSerializer(exercises, many=True)
         return Response(serializer.data)
@@ -59,12 +61,16 @@ class WorkoutList(APIView):
     """
 
     #authentication_classes = (authentication.TokenAuthentication,)
-
     def get(self, request, format=None):
         """
         Return a list of all workouts.
         """
-        workouts = Workout.objects.all()
+
+        user = request.user
+
+        workouts = Workout.objects.filter(
+            user = user,
+        )
         serializer = WorkoutSerializer(workouts, many=True)
         return Response(serializer.data)
 
