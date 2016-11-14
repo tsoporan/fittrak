@@ -2,9 +2,9 @@ import Vue from 'vue'
 import router from '../router'
 import store from '../store'
 
-const BASE_URL = 'http://localhost:8000/'
-const LOGIN_URL = BASE_URL + 'api-token-auth/'
-const VERIFY_URL = BASE_URL + 'api-token-verify/'
+const API_BASE = 'http://localhost:8000'
+const LOGIN_URL = API_BASE + '/api-token-auth/'
+const VERIFY_URL = API_BASE + '/api-token-verify/'
 
 export default {
   user () {
@@ -12,7 +12,19 @@ export default {
   },
 
   isLoggedIn () {
-    return this.user().isAuthed
+    return this.user().authed
+  },
+
+  getToken () {
+    return window.localStorage.getItem('token')
+  },
+
+  setToken (id) {
+    window.localStorage.setItem('token', id)
+  },
+
+  removeToken () {
+    window.localStorage.removeItem('token')
   },
 
   login (email, password, context) {
@@ -25,7 +37,7 @@ export default {
       // Success logging in
       let resData = res.body
 
-      window.localStorage.setItem('token', resData.token)
+      this.setToken(resData.token)
 
       store.commit('setAuthed', { authed: true, username: this.email })
       store.commit('setUser', {
@@ -49,7 +61,7 @@ export default {
   },
 
   logout () {
-    window.localStorage.removeItem('token')
+    this.removeToken()
     store.commit('setAuthed', { authed: false })
     router.push({ path: '/' })
   },
@@ -58,9 +70,10 @@ export default {
     // Verifies that the current token is still usable
     console.log('checking auth')
 
-    let token = window.localStorage.getItem('token')
+    let token = this.getToken()
+    let data = { token: token }
 
-    return Vue.http.post(VERIFY_URL, { token: token }).then((res) => {
+    return Vue.http.post(VERIFY_URL, data).then((res) => {
       console.log('*** verify token success')
       let data = res.body.user
       store.commit('setAuthed', { authed: true })
@@ -71,7 +84,7 @@ export default {
     }, (res) => {
       console.log('*** verify token failed')
       // Verification failed a new token will be required
-      window.localStorage.removeItem('token')
+      this.removeToken()
       this.reject()
     })
   }
