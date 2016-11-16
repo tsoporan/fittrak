@@ -17,7 +17,7 @@ const actions = {
 }
 
 const mutations = {
-  [types.TOGGLE_SIDEBAR) (state) {
+  [types.TOGGLE_SIDEBAR] (state) {
     state.showSidebar = !state.showSidebar
   }
 }

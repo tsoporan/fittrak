@@ -1,13 +1,13 @@
 import * as types from '../mutation-types'
 
 const state = {
-  authed : false,
-  username : ''
+  authed: false,
+  username: ''
 }
 
 const getters = {
   user: state => {
-    return { username: username, authed: authed }
+    return { username: state.username, authed: state.authed }
   }
 }
 
@@ -15,7 +15,8 @@ const actions = {
   setUser ({ commit, state }, payload) {
     commit(types.SET_USER, payload)
   },
-  setAuthed ({ commit, state}, payload) {
+
+  setAuthed ({ commit, state }, payload) {
     commit(types.SET_AUTHED, payload)
   }
 }
@@ -25,6 +26,7 @@ const mutations = {
     state.username = payload.username
     state.authed = payload.authed
   },
+
   [types.SET_AUTHED] (state, payload) {
     state.authed = payload.authed
   }

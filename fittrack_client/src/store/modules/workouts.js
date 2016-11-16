@@ -18,7 +18,7 @@ const actions = {
 }
 
 const mutations = {
-  setLatestWorkouts (state, payload) {
+  [types.SET_LATEST_WORKOUTS] (state, payload) {
     state.latest.push(payload)
   }
 }

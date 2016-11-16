@@ -41,20 +41,20 @@ export default {
 
   computed: {
     latestWorkouts () {
-      return this.$store.state.workouts.latest
+      return this.$store.getters.latestWorkouts
     }
   },
 
   created () {
     // Fetch the latest workouts
-    let latest = this.$store.state.workouts.latest
+    let latest = this.$store.getters.latestWorkouts
 
     if (!latest.length) {
       console.log('*** created latest workouts')
       utils.getData('/workouts/').then((res) => {
         this.loading = false
         this.hasLatest = true
-        this.$store.commit('setLatestWorkouts', { latest: res.body })
+        this.$store.dispatch('setLatestWorkouts', { latest: res.body })
       }, (res) => {
         console.log('failed to get data', res)
       })

@@ -77,7 +77,7 @@ import auth from '../auth'
 export default {
   methods: {
     toggleSidebar () {
-      this.$store.commit('toggleSidebar')
+      this.$store.dispatch('toggleSidebar')
     }
   },
   computed: {

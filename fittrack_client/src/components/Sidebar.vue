@@ -157,7 +157,7 @@ import auth from '../auth'
 export default {
   methods: {
     toggleSidebar () {
-      this.$store.commit('toggleSidebar')
+      this.$store.dispatch('toggleSidebar')
     },
     logout () {
       return auth.logout()
@@ -166,7 +166,7 @@ export default {
   computed: {
     showSidebar () {
       return {
-        active: this.$store.state.showSidebar
+        active: this.$store.getters.showSidebar
       }
     }
   }

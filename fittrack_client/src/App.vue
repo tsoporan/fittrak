@@ -51,12 +51,12 @@ export default {
   methods: {
     away (e) {
       let clsName = e.target.className
-      let showing = this.$store.state.showSidebar
+      let showing = this.$store.getters.showSidebar
 
       // Close sidebar if clicked outside
       if (showing) {
         if (clsName !== 'sidebar active' && clsName !== 'fa fa-bars toggle-icon') {
-          this.$store.commit('toggleSidebar')
+          this.$store.dispatch('toggleSidebar')
         }
       }
     }

@@ -39,8 +39,8 @@ export default {
 
       this.setToken(resData.token)
 
-      store.commit('setAuthed', { authed: true, username: this.email })
-      store.commit('setUser', {
+      store.dispatch('setAuthed', { authed: true, username: this.email })
+      store.dispatch('setUser', {
         username: resData.username,
         email: resData.email
       })
@@ -62,7 +62,7 @@ export default {
 
   logout () {
     this.removeToken()
-    store.commit('setAuthed', { authed: false })
+    store.dispatch('setAuthed', { authed: false })
     router.push({ path: '/' })
   },
 
@@ -76,8 +76,8 @@ export default {
     return Vue.http.post(VERIFY_URL, data).then((res) => {
       console.log('*** verify token success')
       let data = res.body.user
-      store.commit('setAuthed', { authed: true })
-      store.commit('setUser', {
+      store.dispatch('setAuthed', { authed: true })
+      store.dispatch('setUser', {
         username: data.username,
         email: data.email
       })
