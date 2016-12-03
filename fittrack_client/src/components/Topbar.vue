@@ -82,7 +82,7 @@ export default {
   },
   computed: {
     authed () {
-      return auth.isLoggedIn()
+      return auth.user().authed
     },
     username () {
       return auth.user().username

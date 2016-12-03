@@ -2,7 +2,8 @@ import * as types from '../mutation-types'
 
 const state = {
   authed: false,
-  username: ''
+  username: '',
+  email: ''
 }
 
 const getters = {
@@ -23,11 +24,14 @@ const actions = {
 
 const mutations = {
   [types.SET_USER] (state, payload) {
+    console.log('mutatation set user', state, payload)
+
     state.username = payload.username
-    state.authed = payload.authed
+    state.email = payload.email
   },
 
   [types.SET_AUTHED] (state, payload) {
+    console.log('mutation set authed', payload.authed)
     state.authed = payload.authed
   }
 }

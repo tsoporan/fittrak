@@ -8,11 +8,8 @@ const VERIFY_URL = API_BASE + '/api-token-verify/'
 
 export default {
   user () {
-    return store.state.user
-  },
-
-  isLoggedIn () {
-    return store.state.user.authed
+    let user = store.getters.user
+    return user
   },
 
   getToken () {
@@ -39,7 +36,10 @@ export default {
 
       this.setToken(resData.token)
 
-      store.dispatch('setAuthed', { authed: true, username: this.email })
+      store.dispatch('setAuthed', {
+        authed: true
+      })
+
       store.dispatch('setUser', {
         username: resData.username,
         email: resData.email
