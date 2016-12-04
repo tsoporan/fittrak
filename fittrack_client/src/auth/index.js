@@ -24,7 +24,7 @@ export default {
     window.localStorage.removeItem('token')
   },
 
-  login (email, password, context) {
+  login (email, password) {
     let data = {
       username: email,
       password: password
@@ -50,9 +50,13 @@ export default {
       // Failed login
       let errors = res.body
 
-      context.$set.errors.username = errors.username
-      context.$set.errors.password = errors.password
-      context.$set.errors.formErrors = errors.non_field_errors[0]
+      store.dispatch('setLoginErrors', {
+        loginErrors: {
+          username: errors.username,
+          password: errors.password,
+          form: errors.non_field_errors[0]
+        }
+      })
     })
   },
 

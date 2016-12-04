@@ -2,19 +2,19 @@
   <div>
     <h2>Login</h2>
     <form @submit.prevent="login">
+      <p v-if="formError" class="error">{{ formError }}</p>
       <p class="control has-icon">
         <input class="input text" v-model="email" placeholder="Email" required>
         <i class="fa fa-envelope"></i>
-        <p v-if="errors.username" class="error">{{ errors.username }}</p>
+        <p v-if="usernameError" class="error">{{ usernameError }}</p>
       </p>
       <p class="control has-icon">
         <input class="input text" v-model="password" placeholder="Password" type="password" required>
         <i class="fa fa-lock"></i>
-        <p v-if="errors.password" class="error">{{ errors.password }}</p>
+        <p v-if="passwordError" class="error">{{ passwordError }}</p>
       </p>
 
       <button class="button is-primary" type="submit">Login</button>
-      <p v-if="errors.formErrors" class="error">{{ errors.formErrors }}</p>
     </form>
   </div>
 </template>
@@ -29,12 +29,7 @@ export default {
   data () {
     return {
       email: '',
-      password: '',
-      errors: {
-        username: '',
-        password: '',
-        formErrors: ''
-      }
+      password: ''
     }
   },
 
@@ -43,8 +38,19 @@ export default {
       auth.login(
         this.email,
         this.password,
-        this
       )
+    }
+  },
+
+  computed: {
+    formError () {
+      return this.$store.getters.loginErrors.form
+    },
+    usernameError () {
+      return this.$store.getters.loginErrors.username
+    },
+    passwordError () {
+      return this.$store.getters.loginErrors.password
     }
   }
 }
