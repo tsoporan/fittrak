@@ -6,12 +6,12 @@ const state = {
 
 const getters = {
   showSidebar: state => {
-    state.showSidebar
+    return state.showSidebar
   }
 }
 
 const actions = {
-  toggle ({ commit, state }) {
+  toggleSidebar ({ commit, state }) {
     commit(types.TOGGLE_SIDEBAR)
   }
 }

@@ -19,7 +19,7 @@ const actions = {
 
 const mutations = {
   [types.SET_LATEST_WORKOUTS] (state, payload) {
-    state.latest.push(payload)
+    state.latest = state.latest.concat(payload.latest)
   }
 }
 
