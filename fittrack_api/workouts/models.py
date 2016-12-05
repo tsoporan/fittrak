@@ -15,7 +15,7 @@ class Workout(WorkoutBaseModel):
     class Meta:
         ordering = ('-id',)
 
-    def __str(self):
+    def __str__(self):
         return self.slug
 
 class Exercise(WorkoutBaseModel):
