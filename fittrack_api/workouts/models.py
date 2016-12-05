@@ -38,7 +38,7 @@ class Set(WorkoutBaseModel):
         ordering = ('-id',)
 
     def __str__(self):
-        return self.exercise
+        return self.exercise.name
 
 @receiver(post_save, sender=Workout)
 def set_workout_slug(sender, instance, **kwargs):
