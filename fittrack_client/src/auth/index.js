@@ -5,6 +5,7 @@ import store from '../store'
 const API_BASE = 'http://localhost:8000'
 const LOGIN_URL = API_BASE + '/api-token-auth/'
 const VERIFY_URL = API_BASE + '/api-token-verify/'
+const REGISTER_URL = API_BASE + '/accounts/register'
 
 export default {
   user () {
@@ -60,8 +61,18 @@ export default {
     })
   },
 
-  register () {
-    console.log('do register')
+  register (username, email, password) {
+    let data = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+    return Vue.http.post(REGISTER_URL, data).then((res) => {
+      console.log(res)
+    }, (res) => {
+      console.log(res)
+    })
   },
 
   logout () {
