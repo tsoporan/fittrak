@@ -4,7 +4,13 @@
   <div v-if="hasLatest">
     <ul>
       <li v-for="w in latestWorkouts">
-        Workout {{ w.date_started }} - {{ w.date_ended }}
+        <h4>Workout</h4>
+        <p>
+          Started: {{ w.date_started | moment }} 
+        </p>
+        <p>
+          Ended: {{ w.date_ended | moment }}
+        </p>
       </li>
     </ul>
   </div>
@@ -21,6 +27,12 @@ div.latest-workouts {
   padding: 1rem;
 }
 
+div.latest-workouts ul li {
+  padding: .5rem;
+  margin: .5rem 0;
+  background: #fff;
+}
+
 h3 {
   font-size: 2rem;
   border-bottom: 1px solid $lgrey;
@@ -29,6 +41,7 @@ h3 {
 
 <script>
 import utils from '../utils'
+import moment from 'moment'
 
 export default {
   data () {
@@ -42,6 +55,12 @@ export default {
   computed: {
     latestWorkouts () {
       return this.$store.getters.latestWorkouts
+    }
+  },
+
+  filters: {
+    moment (date) {
+      return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     }
   },
 
