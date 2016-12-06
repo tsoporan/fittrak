@@ -15,6 +15,10 @@ class ExerciseAdmin(admin.ModelAdmin):
 
 @admin.register(Set)
 class SetAdmin(admin.ModelAdmin):
-    search_fields = ('exercise__name', 'user__email')
+    search_fields = ('exercise__name', 'user__email', 'exercise__workout__slug')
     date_hierarchy = 'date_started'
-    list_display = ('exercise', 'repetitions', 'user', 'date_started', 'date_ended', 'is_active')
+    list_display = ('exercise', 'get_workout', 'repetitions', 'user', 'date_started', 'date_ended', 'is_active')
+
+    def get_workout(self, obj):
+        return obj.exercise.workout
+    get_workout.short_description = 'Workout'
