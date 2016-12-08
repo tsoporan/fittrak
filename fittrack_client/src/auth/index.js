@@ -68,17 +68,13 @@ export default {
       password: password
     }
 
-    // From some method in one of your Vue components
-    this.cookie.set('test', 'Hello world!', 1)
-    // This will set a cookie with the name 'test' and the value 'Hello world!' that expires in one day
+    let options = {
+      headers: {
+        'x-csrftoken': Vue.cookie.get('csrftoken')
+      }
+    }
 
-    // To get the value of a cookie use
-    this.cookie.get('test')
-
-    // To delete a cookie use
-    this.cookie.delete('test')
-
-    return Vue.http.post(REGISTER_URL, data).then((res) => {
+    return Vue.http.post(REGISTER_URL, data, options).then((res) => {
       console.log(res)
     }, (res) => {
       console.log(res)
