@@ -70,7 +70,7 @@ export default {
 
     let options = {
       headers: {
-        'x-csrftoken': Vue.cookie.get('csrftoken')
+        'X-CSRF-TOKEN': Vue.cookie.get('csrftoken')
       }
     }
 
