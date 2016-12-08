@@ -6,8 +6,10 @@ import store from './store'
 import router from './router'
 
 import VueResource from 'vue-resource'
+import VueCookie from 'vue-cookie'
 
 Vue.use(VueResource)
+Vue.use(VueCookie)
 
 /* eslint-disable no-new */
 new Vue({
