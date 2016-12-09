@@ -156,3 +156,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
 )
 
+CORS_ALLOW_HEADERS = (
+    'X-CSRF-TOKEN',
+    'content-type',
+)
