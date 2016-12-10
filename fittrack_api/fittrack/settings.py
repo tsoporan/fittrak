@@ -33,13 +33,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'django_extensions',
+    'allauth',
+    'allauth.account',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
     'corsheaders',
     'users',
     'workouts',
     'stats',
 ]
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +124,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -127,11 +133,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-# Registration
-ACCOUNT_ACTIVATION_DAYS = 3
-
-REGISTRATION_OPEN = True
-
 LOGIN_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
@@ -140,7 +141,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
@@ -156,7 +156,10 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
 )
 
-CORS_ALLOW_HEADERS = (
-    'X-CSRF-TOKEN',
-    'content-type',
-)
+REST_USE_JWT = True
+
+SITE_ID = 1
+
+# Temporarily use console backend for activation emails to avoid connection refused
+# issues.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
