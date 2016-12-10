@@ -29,10 +29,17 @@ class Exercise(WorkoutBaseModel):
     def __str__(self):
         return self.name
 
+
+MASS_UNITS = [
+    ('KG', 'Kilograms'),
+    ('LB', 'Pounds'),
+]
+
 class Set(WorkoutBaseModel):
     exercise = models.ForeignKey(Exercise)
-
     repetitions = models.PositiveIntegerField()
+    weight = models.PositiveIntegerField()
+    unit = models.CharField(max_length=32, choices=MASS_UNITS)
 
     class Meta:
         ordering = ('-id',)
