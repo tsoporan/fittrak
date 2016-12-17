@@ -70,9 +70,33 @@ export default {
     }
 
     return Vue.http.post(REGISTER_URL, data).then((res) => {
-      console.log(res)
+      // Sucessful registration
+      let resData = res.body
+
+      this.setToken(resData.token)
+
+      store.dispatch('setAuthed', {
+        authed: true
+      })
+
+      store.dispatch('setUser', {
+        username: resData.username,
+        email: resData.email
+      })
+
+      router.push({ path: '/home' })
     }, (res) => {
-      console.log(res)
+      // Failed registrtation
+      let errors = res.body
+
+      store.dispatch('setRegistrationErrors', {
+        registrationErrors: {
+          username: errors.username[0],
+          email: errors.email[0],
+          password: errors.password1[0],
+          form: 'Regitstration was unsuccessful.'
+        }
+      })
     })
   },
 

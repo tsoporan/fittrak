@@ -9,6 +9,12 @@ const state = {
       username: '',
       password: '',
       form: ''
+    },
+    registrationErrors: {
+      username: '',
+      email: '',
+      password: '',
+      form: ''
     }
   }
 }
@@ -20,6 +26,10 @@ const getters = {
 
   loginErrors: state => {
     return state.errors.loginErrors
+  },
+
+  registrationErrors: state => {
+    return state.errors.registrationErrors
   }
 }
 
@@ -34,6 +44,10 @@ const actions = {
 
   setLoginErrors ({ commit, state }, payload) {
     commit(types.SET_LOGIN_ERRORS, payload)
+  },
+
+  setRegistrationErrors ({ commit, state }, payload) {
+    commit(types.SET_REGISTRATION_ERRORS, payload)
   }
 }
 
@@ -49,6 +63,10 @@ const mutations = {
 
   [types.SET_LOGIN_ERRORS] (state, payload) {
     state.errors.loginErrors = payload.loginErrors
+  },
+
+  [types.SET_REGISTRATION_ERRORS] (state, payload) {
+    state.errors.registrationErrors = payload.registrationErrors
   }
 }
 
