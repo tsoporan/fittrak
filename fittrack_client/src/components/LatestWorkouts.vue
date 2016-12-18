@@ -4,13 +4,15 @@
   <div v-if="hasLatest">
     <ul>
       <li v-for="w in latestWorkouts">
-        <h4>Workout</h4>
-        <p>
-          Started: {{ w.date_started | moment }} 
-        </p>
-        <p>
-          Ended: {{ w.date_ended | moment }}
-        </p>
+        <router-link :to="{ name: 'workout-detail', params: { workoutSlug: w.slug }}">
+          <h4>Workout</h4>
+          <p>
+            Started: {{ w.date_started | moment }} 
+          </p>
+          <p>
+            Ended: {{ w.date_ended | moment }}
+          </p>
+        </router-link>
       </li>
     </ul>
   </div>

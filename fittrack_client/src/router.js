@@ -9,6 +9,7 @@ import NewWorkout from './components/NewWorkout'
 import Progress from './components/Progress'
 import Settings from './components/Settings'
 import History from './components/History'
+import WorkoutDetail from './components/WorkoutDetail'
 
 import auth from './auth'
 
@@ -21,6 +22,7 @@ const routes = [
   { path: '/progress', component: Progress, meta: { requiresAuth: true } },
   { path: '/settings', component: Settings, meta: { requiresAuth: true } },
   { path: '/history', component: History, meta: { requiresAuth: true } },
+  { path: '/workouts/:workoutSlug', name: 'workout-detail', component: WorkoutDetail, meta: { requiresAuth: true } },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/*', component: Index }
