@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Loginn</h2>
     <form @submit.prevent="login">
       <p v-if="formError" class="error">{{ formError }}</p>
       <p class="control has-icon">
@@ -55,4 +55,3 @@ export default {
   }
 }
 </script>
-
