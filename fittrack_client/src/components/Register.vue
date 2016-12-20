@@ -6,17 +6,29 @@
       <p class="control has-icon">
         <input class="input text" v-model="username" placeholder="Username" required>
         <i class="fa fa-user"></i>
-        <p v-if="usernameError" class="error">{{ usernameError }}</p>
+        <ul>
+          <li v-for="error in usernameErrors">
+            {{ error }}
+          </li>
+        </ul>
       </p>
       <p class="control has-icon">
         <input class="input text" v-model="email" placeholder="Email" required>
         <i class="fa fa-envelope"></i>
-        <p v-if="emailError" class="error">{{ emailError }}</p>
+        <ul>
+          <li v-for="error in emailErrors">
+            {{ error }}
+          </li>
+        </ul>
       </p>
       <p class="control has-icon">
         <input class="input text" v-model="password" placeholder="Password" type="password" required>
         <i class="fa fa-lock"></i>
-        <p v-if="passwordError" class="error">{{ passwordError }}</p>
+        <ul>
+          <li v-for="error in passwordErrors">
+            {{ error }}
+          </li>
+        </ul>
       </p>
 
       <button class="button is-primary" type="submit">Register</button>
@@ -59,13 +71,13 @@ export default {
     formError () {
       return this.$store.getters.registrationErrors.form
     },
-    usernameError () {
+    usernameErrors () {
       return this.$store.getters.registrationErrors.username
     },
-    emailError () {
+    emailErrors () {
       return this.$store.getters.registrationErrors.email
     },
-    passwordError () {
+    passwordErrors () {
       return this.$store.getters.registrationErrors.password
     }
   }

@@ -88,12 +88,12 @@ export default {
     }, (res) => {
       // Failed registrtation
       let errors = res.body
-
+      console.log(errors)
       store.dispatch('setRegistrationErrors', {
         registrationErrors: {
-          username: errors.username[0],
-          email: errors.email[0],
-          password: errors.password1[0],
+          username: errors.username,
+          email: errors.email,
+          password: errors.password1,
           form: 'Regitstration was unsuccessful.'
         }
       })
