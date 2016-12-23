@@ -15,7 +15,7 @@ class Workout(WorkoutBaseModel):
     class Meta:
         ordering = ('-id',)
 
-    def __str(self):
+    def __str__(self):
         return self.slug
 
 class Exercise(WorkoutBaseModel):
@@ -29,16 +29,23 @@ class Exercise(WorkoutBaseModel):
     def __str__(self):
         return self.name
 
+
+MASS_UNITS = [
+    ('KG', 'Kilograms'),
+    ('LB', 'Pounds'),
+]
+
 class Set(WorkoutBaseModel):
     exercise = models.ForeignKey(Exercise)
-
     repetitions = models.PositiveIntegerField()
+    weight = models.PositiveIntegerField()
+    unit = models.CharField(max_length=32, choices=MASS_UNITS)
 
     class Meta:
         ordering = ('-id',)
 
     def __str__(self):
-        return self.exercise
+        return self.exercise.name
 
 @receiver(post_save, sender=Workout)
 def set_workout_slug(sender, instance, **kwargs):
