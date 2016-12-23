@@ -3,8 +3,9 @@ import router from '../router'
 import store from '../store'
 
 const API_BASE = 'http://localhost:8000'
-const LOGIN_URL = API_BASE + '/api-token-auth/'
+const LOGIN_URL = API_BASE + '/rest-auth/login/'
 const VERIFY_URL = API_BASE + '/api-token-verify/'
+const REGISTER_URL = API_BASE + '/rest-auth/registration/'
 
 export default {
   user () {
@@ -60,8 +61,43 @@ export default {
     })
   },
 
-  register () {
-    console.log('do register')
+  register (username, email, password) {
+    let data = {
+      username: username,
+      email: email,
+      password1: password, // API Requires both passwords but we only capture password once
+      password2: password
+    }
+
+    return Vue.http.post(REGISTER_URL, data).then((res) => {
+      // Sucessful registration
+      let resData = res.body
+
+      this.setToken(resData.token)
+
+      store.dispatch('setAuthed', {
+        authed: true
+      })
+
+      store.dispatch('setUser', {
+        username: resData.username,
+        email: resData.email
+      })
+
+      router.push({ path: '/home' })
+    }, (res) => {
+      // Failed registrtation
+      let errors = res.body
+      console.log(errors)
+      store.dispatch('setRegistrationErrors', {
+        registrationErrors: {
+          username: errors.username,
+          email: errors.email,
+          password: errors.password1,
+          form: 'Regitstration was unsuccessful.'
+        }
+      })
+    })
   },
 
   logout () {
