@@ -3,7 +3,7 @@
     "model": "workouts.workout",
     "pk": 1,
     "fields": {
-        "user": 1,
+        "user": null,
         "date_started": "2016-10-02T05:53:02.549Z",
         "date_ended": "2016-10-02T05:53:09.627Z",
         "is_active": false,
