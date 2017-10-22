@@ -8,11 +8,13 @@ import router from './router'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   store: store,
-  router: router,
-  render: h => h(App)
+  router,
+  template: '<App/>',
+  components: { App }
 })

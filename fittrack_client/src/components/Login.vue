@@ -37,7 +37,7 @@ export default {
     login () {
       auth.login(
         this.email,
-        this.password,
+        this.password
       )
     }
   },
