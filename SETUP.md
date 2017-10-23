@@ -27,25 +27,27 @@ After installing the required packages clone the repository, the repository cont
 
 0. Create a virtualenv: ```virtualenv envs/fittrack```
 
-1. Activate env: ```cd fittrack_api && source ../envs/fittrack/bin/activate```
+1. Activate env: ```source envs/fittrack/bin/activate```
 
-2. Install packages: ```pip3 install -r requirements.txt```
+2. Install packages: ```cd fittrack/api && pip install -r requirements.txt```
 
-3. Run migrations: ```./manage.py migrate```
+3. Create secrets file `fittrack/secrets.py` and add `SECRET_KEY`
 
-4. Load fixture data: ```./manage.py loaddata workouts/fixtures/exercises.json```
+4. Run migrations: ```./manage.py migrate```
 
-5. Start up dev server: ```./manage.py runserver_plus```
+5. Load fixture data: ```./manage.py loaddata workouts/fixtures/exercises.json```
 
-6. Create a dummy user: ```./manage.py createsuperuser```
+6. Start up dev server: ```./manage.py runserver_plus```
 
-7. Server up on: http://localhost:8000
+7. Create a dummy user: ```./manage.py createsuperuser```
+
+8. Server up on: http://localhost:8000
 
 #### Setting up client server
 
-0. Install node packages: ```cd fittrack_client && npm install```
+0. Install node packages: ```cd client && yarn```
 
-1. Start up the dev server: ```npm run dev```
+1. Start up the dev server: ```yarn start```
 
 2. Server up on: http://localhost:8080
 
