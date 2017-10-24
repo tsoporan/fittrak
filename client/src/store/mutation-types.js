@@ -1,6 +1,8 @@
 // Mutation constants
-export const SET_AUTHED = 'SET_AUTHED'
-export const SET_USER = 'SET_USER'
+
+export const LOGIN_USER = 'LOGIN_USER'
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const UPDATE_USER = 'UPDATE_USER'
 export const SET_LATEST_WORKOUTS = 'SET_LATEST_WORKOUTS'
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 export const SET_LOGIN_ERRORS = 'SET_LOGIN_ERRORS'

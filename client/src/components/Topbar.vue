@@ -82,10 +82,10 @@ export default {
   },
   computed: {
     authed () {
-      return auth.user().authed
+      return auth.user.authed
     },
     username () {
-      return auth.user().username
+      return auth.user.username
     }
   }
 }
