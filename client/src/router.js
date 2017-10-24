@@ -44,19 +44,18 @@ router.beforeEach((to, from, next) => {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     auth.checkAuth().then((res) => {
-      console.log('**** router check auth success')
       next()
     }, (res) => {
-      console.log('**** router check auth failure')
+      console.log('**** router check auth failure', res)
       // Failed auth
       next({
         path: '/login',
         query: { redirect: to.fullPath }
       })
     })
-  } else {
-    next() // make sure to always call next()!
   }
+
+  next() // make sure to always call next()!
 })
 
 export default router

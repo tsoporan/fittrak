@@ -21,7 +21,7 @@ const state = {
 
 const getters = {
   user: state => {
-    return { username: state.username, authed: state.authed }
+    return { username: state.username, email: state.email, authed: state.authed }
   },
 
   loginErrors: state => {
@@ -34,12 +34,16 @@ const getters = {
 }
 
 const actions = {
-  setUser ({ commit, state }, payload) {
-    commit(types.SET_USER, payload)
+  loginUser ({ commit, state }, payload) {
+    commit(types.LOGIN_USER, payload)
   },
 
-  setAuthed ({ commit, state }, payload) {
-    commit(types.SET_AUTHED, payload)
+  logoutUser ({ commit, state }, payload) {
+    commit(types.LOGOUT_USER, payload)
+  },
+
+  updateUser ({ commit, state }, payload) {
+    commit(types.UPDATE_USER, payload)
   },
 
   setLoginErrors ({ commit, state }, payload) {
@@ -52,13 +56,20 @@ const actions = {
 }
 
 const mutations = {
-  [types.SET_USER] (state, payload) {
+  [types.LOGIN_USER] (state, payload) {
+    state.authed = payload.authed
     state.username = payload.username
     state.email = payload.email
   },
 
-  [types.SET_AUTHED] (state, payload) {
+  [types.LOGOUT_USER] (state, payload) {
     state.authed = payload.authed
+  },
+
+  [types.UPDATE_USER] (state, payload) {
+    state.authed = payload.authed
+    state.username = payload.username
+    state.email = payload.email
   },
 
   [types.SET_LOGIN_ERRORS] (state, payload) {

@@ -8,9 +8,8 @@ const VERIFY_URL = API_BASE + '/api-token-verify/'
 const REGISTER_URL = API_BASE + '/rest-auth/registration/'
 
 export default {
-  user () {
-    let user = store.getters.user
-    return user
+  get user () {
+    return store.getters.user
   },
 
   getToken () {
@@ -26,7 +25,7 @@ export default {
   },
 
   login (email, password) {
-    let data = {
+    const data = {
       username: email,
       password: password
     }
@@ -37,11 +36,8 @@ export default {
 
       this.setToken(resData.token)
 
-      store.dispatch('setAuthed', {
-        authed: true
-      })
-
-      store.dispatch('setUser', {
+      store.dispatch('loginUser', {
+        authed: true,
         username: resData.username,
         email: resData.email
       })
@@ -75,11 +71,9 @@ export default {
 
       this.setToken(resData.token)
 
-      store.dispatch('setAuthed', {
-        authed: true
-      })
-
-      store.dispatch('setUser', {
+      // Login a user after successful registration
+      store.dispatch('loginUser', {
+        authed: true,
         username: resData.username,
         email: resData.email
       })
@@ -94,7 +88,7 @@ export default {
           username: errors.username,
           email: errors.email,
           password: errors.password1,
-          form: 'Regitstration was unsuccessful.'
+          form: 'Registration was unsuccessful.'
         }
       })
     })
@@ -102,27 +96,24 @@ export default {
 
   logout () {
     this.removeToken()
-    store.dispatch('setAuthed', { authed: false })
+    store.dispatch('logoutUser', { authed: false })
     router.push({ path: '/' })
   },
 
   checkAuth () {
-    // Verifies that the current token is still usable
-    console.log('checking auth')
+    // Verifies that the current token is still "good":  https://getblimp.github.io/django-rest-framework-jwt/#verify-token
+    const token = this.getToken()
 
-    let token = this.getToken()
-    let data = { token: token }
+    return Vue.http.post(VERIFY_URL, { token }).then((res) => {
+      const { user } = res.body
 
-    return Vue.http.post(VERIFY_URL, data).then((res) => {
-      console.log('*** verify token success')
-      let data = res.body.user
-      store.dispatch('setAuthed', { authed: true })
-      store.dispatch('setUser', {
-        username: data.username,
-        email: data.email
+      store.dispatch('updateUser', {
+        authed: true,
+        username: user.username,
+        email: user.email
       })
     }, (res) => {
-      console.log('*** verify token failed')
+      console.log('*** verify token failed', res)
       // Verification failed a new token will be required
       this.removeToken()
       this.reject()
