@@ -58,8 +58,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../../node_modules/bulma/sass/utilities/mixins';
-
 $darkgrey: #353535;
 $darkgrey2: #444444;
 $darkgrey3: #2b2b2b;
@@ -89,20 +87,6 @@ div.sidebar.active {
   width: 50%;
 }
 
-@media (min-width: $tablet) {
-  div.sidebar.active {
-    width: 30%;
-    display: block;
-  }
-}
-
-@media (min-width: $desktop) {
-  div.sidebar.active {
-    width: 20%;
-    display: block;
-  }
-}
-
 div.sidebar h1 {
   color: $white;
   font-family: 'Kaushan Script', cursive;
@@ -121,7 +105,6 @@ div.sidebar h1 button {
   vertical-align: middle;
   border: none;
 }
-
 
 div.sidebar aside.menu {
   padding: 1rem;

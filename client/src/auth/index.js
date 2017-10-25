@@ -43,17 +43,6 @@ export default {
       })
 
       router.push({ path: '/home' })
-    }, (res) => {
-      // Failed login
-      let errors = res.body
-
-      store.dispatch('setLoginErrors', {
-        loginErrors: {
-          username: errors.username,
-          password: errors.password,
-          form: errors.non_field_errors[0]
-        }
-      })
     })
   },
 
