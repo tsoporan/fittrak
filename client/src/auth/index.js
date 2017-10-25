@@ -68,18 +68,6 @@ export default {
       })
 
       router.push({ path: '/home' })
-    }, (res) => {
-      // Failed registrtation
-      let errors = res.body
-      console.log(errors)
-      store.dispatch('setRegistrationErrors', {
-        registrationErrors: {
-          username: errors.username,
-          email: errors.email,
-          password: errors.password1,
-          form: 'Registration was unsuccessful.'
-        }
-      })
     })
   },
 
