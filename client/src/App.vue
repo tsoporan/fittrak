@@ -1,6 +1,6 @@
 <template>
 <div id="app" @click="away">
-  <div class="container is-fluid">
+  <div class="container">
     <Topbar></Topbar>
     <Sidebar></Sidebar>
 
@@ -14,10 +14,7 @@
 </template>
 
 <style lang="scss">
-@import '../node_modules/bulma/css/bulma';
-@import '../node_modules/font-awesome/scss/font-awesome';
-
-div.main{
+div.main {
   margin-top: 3rem;
 }
 

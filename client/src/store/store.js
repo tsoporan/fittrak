@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     showSidebar: false,
     user: {
       authed: false,
-      username: ''
+      username: '',
+      email: ''
     },
     workouts: {
       current: [],
@@ -19,15 +20,6 @@ const store = new Vuex.Store({
   mutations: {
     toggleSidebar (state) {
       state.showSidebar = !state.showSidebar
-    },
-
-    setAuthed (state, payload) {
-      state.user.authed = payload.authed
-    },
-
-    setUser (state, payload) {
-      state.user.username = payload.username
-      state.user.email = payload.email
     },
 
     setLatestWorkouts (state, payload) {
