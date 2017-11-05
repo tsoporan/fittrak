@@ -74,6 +74,20 @@ export default {
     router.push({ path: '/' })
   },
 
+  emailVerification (emailVerifyKey) {
+    let data = {
+      key: emailVerifyKey
+    }
+
+    return Vue.http.post(Config.EMAIL_VERIFY_URL, data).then((res) => {
+      router.push({ path: '/home' })
+    }, (res) => {
+      // TODO: Deal with error.
+      console.log('Error')
+      console.log(res.body)
+    })
+  },
+
   checkAuth () {
     // Verifies that the current token is still "good":  https://getblimp.github.io/django-rest-framework-jwt/#verify-token
     const token = this.getToken()
