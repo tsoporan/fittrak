@@ -16,10 +16,13 @@
 
      <v-spacer></v-spacer>
 
-    <v-toolbar-items>
+    <v-toolbar-items v-if="!authed">
       <v-btn flat @click.prevent="$router.push('login')">Login</v-btn>
       <v-btn flat @click.prevent="$router.push('register')">Register</v-btn>
     </v-toolbar-items>
+    <v-flex align-center v-else class="text-xs-right">
+      Heya, <strong>{{username}}</strong>
+    </v-flex>
 
   </v-toolbar>
 
