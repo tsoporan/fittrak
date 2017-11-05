@@ -17,10 +17,10 @@
       >
     </v-text-field>
     <v-btn 
-      @click.submit=""
+      @click.submit="register"
       color="cyan lighten-1"
       dark
-      >Submit
+      >Register
     </v-btn>
   </v-form>
 </v-flex>
@@ -46,7 +46,7 @@ export default {
   methods: {
     register () {
       auth.register(
-        this.username,
+        this.email, // Username same as email
         this.email,
         this.password
       ).catch(r => {

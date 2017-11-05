@@ -17,10 +17,10 @@
       >
     </v-text-field>
     <v-btn 
-      @click.submit=""
+      @click.submit="login"
       color="cyan lighten-1"
       dark
-      >Submit
+      >Login
     </v-btn>
   </v-form>
 </v-flex>
