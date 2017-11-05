@@ -33,9 +33,6 @@
     </li>
   </ul>
 
-  <div class="sidebar-footer">
-    <p>Made with <span style="color:red;">&#10084;</span> by <a href="https://github.com/tsoporan/fittrack">tsoporan</a></p>
-  </div>
 
 </v-navigation-drawer>
 </template>

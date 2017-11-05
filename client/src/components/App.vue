@@ -32,7 +32,11 @@
       </v-container>
     </v-content>
   </main>
-  <v-footer app></v-footer>
+  <v-footer app class="pa-2">
+    <v-layout justify-center>
+      Made with <span style="color:red;">&#10084;</span> by <a href="https://github.com/tsoporan/fittrack">tsoporan</a>
+    </v-layout>
+  </v-footer>
 </v-app>
 </template>
 
