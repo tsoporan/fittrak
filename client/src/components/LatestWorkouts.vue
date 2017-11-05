@@ -42,7 +42,7 @@ h3 {
 </style>
 
 <script>
-import utils from '../utils'
+import api from '../api'
 import moment from 'moment'
 
 export default {
@@ -72,7 +72,7 @@ export default {
 
     if (!latest.length) {
       console.log('*** created latest workouts')
-      utils.getData('/workouts/').then((res) => {
+      api.get('/workouts/').then((res) => {
         this.loading = false
         this.hasLatest = true
         this.$store.dispatch('setLatestWorkouts', { latest: res.body })

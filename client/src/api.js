@@ -1,17 +1,21 @@
-// Routinely used methods.
+/*
+ * API Helpers
+ */
+
 import Vue from 'vue'
 import auth from './auth'
-
-const API_BASE = 'http://localhost:8000'
+import Config from './config'
 
 export default {
-  getData (path) {
-    let endpoint = API_BASE + path
+  get: (path) => {
     return Vue.http.get(
-      endpoint,
+      `${Config.API_BASE}${path}`,
       {
         headers: { Authorization: 'JWT ' + auth.getToken() }
       }
     )
+  },
+  post: (path, data) => {
+    console.log('*** post', path, data)
   }
 }
