@@ -11,6 +11,7 @@ jobs:
     steps:
       - checkout
 
+      - run: ls
       - run: cd client
 
       # Download and cache dependencies
