@@ -2,10 +2,7 @@ import Vue from 'vue'
 import router from '../router'
 import store from '../store'
 
-const API_BASE = 'http://localhost:8000'
-const LOGIN_URL = API_BASE + '/rest-auth/login/'
-const VERIFY_URL = API_BASE + '/api-token-verify/'
-const REGISTER_URL = API_BASE + '/rest-auth/registration/'
+import Config from '../config'
 
 export default {
   get user () {
@@ -30,7 +27,7 @@ export default {
       password: password
     }
 
-    return Vue.http.post(LOGIN_URL, data).then((res) => {
+    return Vue.http.post(Config.LOGIN_URL, data).then((res) => {
       // Success logging in
       let resData = res.body
 
@@ -54,7 +51,7 @@ export default {
       password2: password
     }
 
-    return Vue.http.post(REGISTER_URL, data).then((res) => {
+    return Vue.http.post(Config.REGISTER_URL, data).then((res) => {
       // Sucessful registration
       let resData = res.body
 
@@ -81,7 +78,7 @@ export default {
     // Verifies that the current token is still "good":  https://getblimp.github.io/django-rest-framework-jwt/#verify-token
     const token = this.getToken()
 
-    return Vue.http.post(VERIFY_URL, { token }).then((res) => {
+    return Vue.http.post(Config.VERIFY_URL, { token }).then((res) => {
       const { user } = res.body
 
       store.dispatch('updateUser', {

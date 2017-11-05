@@ -1,66 +1,69 @@
 <template>
-<div id="app" @click="away">
-  <div class="container">
-    <Topbar></Topbar>
-    <Sidebar></Sidebar>
+<v-app>
+  <Sidebar v-if="authed" v-bind:drawer="drawer"></Sidebar>
 
-    <div class="columns main">
-      <div class="column">
-        <router-view></router-view>
-      </div>
-    </div>
-  </div> <!-- end container -->
-</div>
+  <v-toolbar app clipped-left fixed color="cyan" dark flat>
+    <v-toolbar-side-icon 
+      app 
+      v-if="authed" 
+      @click.stop="drawer = !drawer"
+    >
+    </v-toolbar-side-icon> 
+
+    <v-toolbar-title 
+      color="white"
+      style="font-family: Kaushan Script; font-size: 24px"
+    >
+    FitTrack
+    </v-toolbar-title>
+
+    <v-spacer></v-spacer>
+
+    <v-toolbar-items v-if="!authed">
+      <v-btn flat @click.prevent="$router.push('/login')">Login</v-btn>
+      <v-btn flat @click.prevent="$router.push('/register')">Register</v-btn>
+    </v-toolbar-items>
+    <v-flex align-center v-else class="text-xs-right">
+      Heya, <strong>{{username}}</strong>
+    </v-flex>
+
+  </v-toolbar>
+
+  <main>
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          <router-view></router-view>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </main>
+
+  <Footer></Footer>
+  </v-app>
 </template>
 
-<style lang="scss">
-div.main {
-  margin-top: 3rem;
-}
-
-div.main h2 {
-  margin: 0 1rem;
-  text-align: center;
-  font-size: 2rem;
-}
-
-form {
-  padding: 1rem;
-  margin: 1rem;
-  background: white;
-}
-
-form label {
-  display: block;
-}
-
-form input[type=submit] {
-  display: block;
-}
-</style>
-
-
 <script>
-import Topbar from './Topbar'
 import Sidebar from './Sidebar'
+import Footer from './Footer'
+
+import auth from '../auth'
 
 export default {
-  methods: {
-    away (e) {
-      let clsName = e.target.className
-      let showing = this.$store.getters.showSidebar
-
-      // Close sidebar if clicked outside
-      if (showing) {
-        if (clsName !== 'sidebar active' && clsName !== 'fa fa-bars toggle-icon') {
-          this.$store.dispatch('toggleSidebar')
-        }
-      }
+  data: () => ({
+    drawer: false
+  }),
+  computed: {
+    authed () {
+      return auth.user.authed
+    },
+    username () {
+      return auth.user.username
     }
   },
   components: {
-    Topbar,
-    Sidebar
+    Sidebar,
+    Footer
   }
 }
 </script>
