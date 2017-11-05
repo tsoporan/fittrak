@@ -1,3 +1,7 @@
+/*
+ * Router
+ */
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -18,11 +22,11 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Index },
   { path: '/home', component: Home, meta: { requiresAuth: true } },
-  { path: '/newworkout', component: NewWorkout, meta: { requiresAuth: true } },
+  { path: '/workouts/start', component: NewWorkout, meta: { requiresAuth: true } },
+  { path: '/workouts/:id', name: 'workout-detail', component: WorkoutDetail, meta: { requiresAuth: true } },
   { path: '/progress', component: Progress, meta: { requiresAuth: true } },
   { path: '/settings', component: Settings, meta: { requiresAuth: true } },
   { path: '/history', component: History, meta: { requiresAuth: true } },
-  { path: '/workouts/:workoutSlug', name: 'workout-detail', component: WorkoutDetail, meta: { requiresAuth: true } },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/*', component: Index }

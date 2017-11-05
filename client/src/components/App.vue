@@ -41,8 +41,8 @@ form input[type=submit] {
 
 
 <script>
-import Topbar from './components/Topbar'
-import Sidebar from './components/Sidebar'
+import Topbar from './Topbar'
+import Sidebar from './Sidebar'
 
 export default {
   methods: {
