@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="new-workout">
-    <router-link to="/newworkout" class="button is-large is-primary is-outlined">New Workout</router-link>
+    <router-link to="/workouts/start" class="button is-large is-primary is-outlined">New Workout</router-link>
   </div>
 
   <StartedWorkouts></StartedWorkouts>
