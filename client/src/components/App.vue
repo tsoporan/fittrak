@@ -12,7 +12,10 @@
 
     <v-toolbar-title 
       color="white"
-    >FitTrack</v-toolbar-title>
+      style="font-family: Kaushan Script; font-size: 24px"
+    >
+    FitTrack
+    </v-toolbar-title>
 
      <v-spacer></v-spacer>
 
