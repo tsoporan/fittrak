@@ -17,11 +17,11 @@
     FitTrack
     </v-toolbar-title>
 
-     <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
     <v-toolbar-items v-if="!authed">
-      <v-btn flat @click.prevent="$router.push('login')">Login</v-btn>
-      <v-btn flat @click.prevent="$router.push('register')">Register</v-btn>
+      <v-btn flat @click.prevent="$router.push('/login')">Login</v-btn>
+      <v-btn flat @click.prevent="$router.push('/register')">Register</v-btn>
     </v-toolbar-items>
     <v-flex align-center v-else class="text-xs-right">
       Heya, <strong>{{username}}</strong>
@@ -38,16 +38,14 @@
       </v-container>
     </v-content>
   </main>
-  <v-footer app class="pa-2">
-    <v-layout justify-center>
-      Made with <span style="color:red;">&#10084;</span> by <a href="https://github.com/tsoporan/fittrack">tsoporan</a>
-    </v-layout>
-  </v-footer>
-</v-app>
+
+  <Footer></Footer>
+  </v-app>
 </template>
 
 <script>
 import Sidebar from './Sidebar'
+import Footer from './Footer'
 
 import auth from '../auth'
 
@@ -64,7 +62,8 @@ export default {
     }
   },
   components: {
-    Sidebar
+    Sidebar,
+    Footer
   }
 }
 </script>
