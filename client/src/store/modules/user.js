@@ -6,11 +6,7 @@ const state = {
   email: ''
 }
 
-const getters = {
-  user: state => {
-    return { username: state.username, email: state.email, authed: state.authed }
-  }
-}
+const getters = {}
 
 const actions = {
   loginUser ({ commit, state }, payload) {
@@ -28,17 +24,17 @@ const actions = {
 
 const mutations = {
   [types.LOGIN_USER] (state, payload) {
-    state.authed = payload.authed
+    state.authed = true
     state.username = payload.username
     state.email = payload.email
   },
 
   [types.LOGOUT_USER] (state, payload) {
-    state.authed = payload.authed
+    state.authed = false
   },
 
   [types.UPDATE_USER] (state, payload) {
-    state.authed = payload.authed
+    state.authed = true
     state.username = payload.username
     state.email = payload.email
   }
