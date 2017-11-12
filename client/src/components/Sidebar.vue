@@ -10,7 +10,7 @@
         </v-list-tile-action>
 
         <v-list-tile-content>
-          <v-list-title>{{ item. title }}</v-list-title>
+          <v-list-title>{{ item.title }}</v-list-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-divider></v-divider>

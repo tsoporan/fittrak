@@ -7,13 +7,13 @@ import VueRouter from 'vue-router'
 
 import Index from './components/Index'
 import Home from './components/Home'
-import Login from './components/Login'
+import SignIn from './components/SignIn'
 import Register from './components/Register'
-import NewWorkout from './components/NewWorkout'
+import StartWorkout from './components/workouts/StartWorkout'
+import WorkoutDetail from './components/workouts/WorkoutDetails'
 import Progress from './components/Progress'
 import Settings from './components/Settings'
 import History from './components/History'
-import WorkoutDetail from './components/WorkoutDetail'
 
 import auth from './auth'
 
@@ -22,12 +22,12 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', component: Index },
   { path: '/home', component: Home, meta: { requiresAuth: true } },
-  { path: '/workouts/start', component: NewWorkout, meta: { requiresAuth: true } },
+  { path: '/workouts/start', component: StartWorkout, meta: { requiresAuth: true } },
   { path: '/workouts/:id', name: 'workout-detail', component: WorkoutDetail, meta: { requiresAuth: true } },
   { path: '/progress', component: Progress, meta: { requiresAuth: true } },
   { path: '/settings', component: Settings, meta: { requiresAuth: true } },
   { path: '/history', component: History, meta: { requiresAuth: true } },
-  { path: '/login', component: Login },
+  { path: '/signin', component: SignIn },
   { path: '/register', component: Register },
   { path: '/*', component: Index }
 ]
