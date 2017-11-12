@@ -30,7 +30,7 @@ class ExerciseType(BaseModel, UserBaseModel):
         return self.name
 
 class Exercise(BaseModel, WorkoutBaseModel):
-    workout = models.ForeignKey(Workout, null=True, blank=True)
+    workout = models.ForeignKey(Workout, null=True, related_name="exercises", blank=True)
     type = models.ForeignKey(ExerciseType)
     slug = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for exercise')
 
@@ -47,7 +47,7 @@ MASS_UNITS = [
 ]
 
 class Set(BaseModel, WorkoutBaseModel):
-    exercise = models.ForeignKey(Exercise)
+    exercise = models.ForeignKey(Exercise, related_name="sets")
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     unit = models.CharField(max_length=32, choices=MASS_UNITS)
