@@ -14,6 +14,7 @@ import WorkoutDetail from './components/workouts/WorkoutDetails'
 import Progress from './components/Progress'
 import Settings from './components/Settings'
 import History from './components/History'
+import EmailVerification from './components/EmailVerification'
 
 import auth from './auth'
 
@@ -29,6 +30,7 @@ const routes = [
   { path: '/history', component: History, meta: { requiresAuth: true } },
   { path: '/signin', component: SignIn },
   { path: '/register', component: Register },
+  { path: '/emailVerification', component: EmailVerification },
   { path: '/*', component: Index }
 ]
 
