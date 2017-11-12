@@ -17,9 +17,7 @@ class ExerciseSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
     date_started = serializers.DateTimeField()
     date_ended = serializers.DateTimeField()
-    user = serializers.IntegerField(allow_null=True)
     slug = serializers.CharField(max_length=15)
-    name = serializers.CharField()
 
     def create(self, validated_data):
         """ Create new Exercise based on valid data """
@@ -29,7 +27,6 @@ class SetSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
     started = serializers.DateTimeField()
     ended = serializers.DateTimeField()
-    user = serializers.IntegerField()
 
     def create(self, validated_data):
         """ Create new Set based on valid data """
