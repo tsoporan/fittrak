@@ -1,6 +1,7 @@
 <template>
-<v-flex xs6>
-  <h2>Login</h2>
+<v-layout justify-center align-center>
+<v-flex class="xs10">
+  <h2 class="text-xs-center">Sign In</h2>
   <v-form v-model="valid" ref="form" lazy-validation>
     <v-text-field
       label="Your email"
@@ -20,10 +21,11 @@
       @click.submit="login"
       color="cyan lighten-1"
       dark
-      >Login
+      >Sign In
     </v-btn>
   </v-form>
 </v-flex>
+</v-layout>
 </template>
 
 <script>

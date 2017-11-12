@@ -1,25 +1,21 @@
 import * as types from '../mutation-types'
 
 const state = {
-  latest: [],
-  current: []
+  current: [],
+  recent: []
 }
 
-const getters = {
-  latestWorkouts: state => {
-    return state.latest
-  }
-}
+const getters = {}
 
 const actions = {
-  setLatestWorkouts ({ commit, state }, payload) {
-    commit(types.SET_LATEST_WORKOUTS, payload)
+  setRecentWorkouts ({ commit, state }, payload) {
+    commit(types.SET_RECENT_WORKOUTS, payload)
   }
 }
 
 const mutations = {
-  [types.SET_LATEST_WORKOUTS] (state, payload) {
-    state.latest = state.latest.concat(payload.latest)
+  [types.SET_RECENT_WORKOUTS] (state, payload) {
+    state.recent = state.recent.concat(payload.workouts)
   }
 }
 

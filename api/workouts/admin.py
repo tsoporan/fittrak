@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Workout, Exercise, Set
+from .models import Workout, WorkoutStatus, Exercise, Set, ExerciseType
+
+@admin.register(WorkoutStatus)
+class WorkoutStatusAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_active')
 
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
@@ -7,18 +11,22 @@ class WorkoutAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_started'
     list_display = ('slug', 'user', 'date_started', 'date_ended', 'is_active')
 
+@admin.register(ExerciseType)
+class ExerciseTypeAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+    list_display = ('name', 'is_active')
+
+class SetInline(admin.StackedInline):
+    model = Set
+
 @admin.register(Exercise)
 class ExerciseAdmin(admin.ModelAdmin):
-    search_fields = ('user__email', 'name', 'slug', 'workout__slug')
+    search_fields = ('type__name', 'slug', 'workout__slug')
     date_hierarchy = 'date_started'
-    list_display = ('name', 'slug', 'user', 'workout', 'date_started', 'date_ended', 'is_active')
+    list_display = ('get_type', 'slug', 'workout', 'date_started', 'date_ended', 'is_active')
+    inlines = [SetInline]
 
-@admin.register(Set)
-class SetAdmin(admin.ModelAdmin):
-    search_fields = ('exercise__name', 'user__email', 'exercise__workout__slug')
-    date_hierarchy = 'date_started'
-    list_display = ('exercise', 'get_workout', 'repetitions', 'user', 'date_started', 'date_ended', 'is_active')
+    def get_type(self, obj):
+        return obj.type.name if obj.type else obj.slug
+    get_type.short_description = 'Type'
 
-    def get_workout(self, obj):
-        return obj.exercise.workout
-    get_workout.short_description = 'Workout'

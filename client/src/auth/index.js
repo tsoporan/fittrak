@@ -5,10 +5,6 @@ import store from '../store'
 import Config from '../config'
 
 export default {
-  get user () {
-    return store.getters.user
-  },
-
   getToken () {
     return window.localStorage.getItem('token')
   },
@@ -34,7 +30,6 @@ export default {
       this.setToken(resData.token)
 
       store.dispatch('loginUser', {
-        authed: true,
         username: resData.username,
         email: resData.email
       })
@@ -96,7 +91,6 @@ export default {
       const { user } = res.body
 
       store.dispatch('updateUser', {
-        authed: true,
         username: user.username,
         email: user.email
       })
