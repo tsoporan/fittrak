@@ -1,16 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class BaseModel(models.Model):
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
 class UserBaseModel(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
 
     class Meta:
         abstract = True
 
-class WorkoutBaseModel(UserBaseModel):
+class WorkoutBaseModel(models.Model):
     date_started = models.DateTimeField(null=True, blank=True)
     date_ended = models.DateTimeField(null=True, blank=True)
-    is_active = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
