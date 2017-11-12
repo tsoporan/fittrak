@@ -7,15 +7,13 @@ import auth from './auth'
 import Config from './config'
 
 export default {
-  get: (path) => {
-    return Vue.http.get(
-      `${Config.API_BASE}${path}`,
-      {
-        headers: { Authorization: 'JWT ' + auth.getToken() }
-      }
-    )
+  get authHeaders () {
+    return {
+      headers: { Authorization: 'JWT ' + auth.getToken() }
+    }
   },
-  post: (path, data) => {
-    console.log('*** post', path, data)
+
+  getRecentWorkouts: function () {
+    return Vue.http.get(`${Config.API_BASE}/workouts/`, this.authHeaders)
   }
 }

@@ -57,9 +57,9 @@ router.beforeEach((to, from, next) => {
         query: { redirect: to.fullPath }
       })
     })
+  } else {
+    next() // make sure to always call next()!
   }
-
-  next() // make sure to always call next()!
 })
 
 export default router

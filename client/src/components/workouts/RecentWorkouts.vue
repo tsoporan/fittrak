@@ -1,10 +1,10 @@
 <template>
-<v-flex>
+<v-flex class="xs12 text-xs-center">
   <v-list 
-    v-if="latestWorkouts.length"
+    v-if="recentWorkouts.length"
     two-lines
   >
-    <template v-for="(workout, index) in latestWorkouts"> 
+    <template v-for="(workout, index) in recentWorkouts"> 
       <v-list-tile
         :key="workout.id"
         @click=""
@@ -15,7 +15,7 @@
         </v-list-tile-content>
 
       </v-list-tile>
-      <v-divider v-if="index + 1 < latestWorkouts.length" :key="workout.id"></v-divider>
+      <v-divider v-if="index + 1 < recentWorkouts.length" :key="workout.id"></v-divider>
     </template>
   </v-list>
   <h5 v-else>You currently have no workout history, start a workout first!</h5>
@@ -33,6 +33,7 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
+import api from '../../api'
 
 export default {
   data: () => ({
@@ -48,7 +49,21 @@ export default {
 
   computed: {
     ...mapState({
-      latestWorkouts: state => state.workouts.latest
+      recentWorkouts: state => state.workouts.recent
+    })
+  },
+
+  mounted: function () {
+    this.fetching = true
+
+    return api.getRecentWorkouts().then((res) => {
+      this.fetching = false
+      this.$store.dispatch('setRecentWorkouts', {
+        workouts: res.body
+      })
+    }).catch((err) => {
+      this.fetching = false
+      this.err = err
     })
   }
 }
