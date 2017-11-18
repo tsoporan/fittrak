@@ -1,5 +1,5 @@
 <template>
-<v-navigation-drawer app persistent clipped v-model="drawer">
+<v-navigation-drawer app persistent clipped disable-route-watcher v-model="drawer">
   <v-list style="padding:0">
     <template v-for="item in items">
       <v-list-tile @click="$router.push(item.path)">

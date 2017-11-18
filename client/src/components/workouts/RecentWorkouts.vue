@@ -1,31 +1,43 @@
 <template>
 <v-flex class="xs12 text-xs-center">
+
+  <template v-if="fetching">
+    <v-progress-circular 
+      color="cyan"
+      indeterminate 
+      size=48
+    >
+    </v-progress-circular>
+  </template>
+
+  <template v-else>
+  <h2>Recently</h2>
   <v-list 
     v-if="recentWorkouts.length"
-    two-lines
+    style="padding: 0"
   >
     <template v-for="(workout, index) in recentWorkouts"> 
       <v-list-tile
         :key="workout.id"
         @click=""
       >
-        <v-list-tile-content>
-          <v-list-tile-title>Workout {{ index }}</v-list-tile-title>
-          <v-list-tile-sub-title class="grey--text text--darken-4">{{ workout.started | formatDate }}</v-list-tile-sub-title>
-        </v-list-tile-content>
-
+          <p>{{ workout.started | asDay  }}</p>
+          <p>Started: {{ workout.started | formatDate }}, Ended: {{ workout.ended | formatDate }}</p>
+          <p>Total Exercises: {{ workout.exercises.length }}</p>
+          <p>Status: {{ workout.status.name }}</p>
       </v-list-tile>
       <v-divider v-if="index + 1 < recentWorkouts.length" :key="workout.id"></v-divider>
     </template>
   </v-list>
   <h5 v-else>You currently have no workout history, start a workout first!</h5>
+  </template>
 
-<v-snackbar 
-  v-model="error"
-  color="red"
->
-  {{ error }}
-</v-snackbar>
+  <v-snackbar 
+    v-model="error"
+    color="red"
+  >
+    {{ error }}
+  </v-snackbar>
 
 </v-flex>
 </template>
@@ -43,8 +55,12 @@ export default {
 
   filters: {
     formatDate: function (value) {
-      return moment(value).format('HH:MM on YYYY-MM-DD')
+      return moment(value).format('HH:MM,  YYYY-MM-DD')
+    },
+    asDay: function (value) {
+      return moment(value).format('dddd Do')
     }
+
   },
 
   computed: {
