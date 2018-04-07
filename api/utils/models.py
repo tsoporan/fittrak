@@ -10,7 +10,7 @@ class BaseModel(models.Model):
         abstract = True
 
 class UserBaseModel(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True

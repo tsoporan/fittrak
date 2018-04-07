@@ -15,7 +15,7 @@ class WorkoutStatus(BaseModel):
 
 class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     slug = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for workout')
-    status = models.ForeignKey(WorkoutStatus)
+    status = models.ForeignKey(WorkoutStatus, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('-id',)
@@ -30,8 +30,9 @@ class ExerciseType(BaseModel, UserBaseModel):
         return self.name
 
 class Exercise(BaseModel, WorkoutBaseModel):
-    workout = models.ForeignKey(Workout, null=True, related_name="exercises", blank=True)
-    type = models.ForeignKey(ExerciseType)
+    workout = models.ForeignKey(Workout, null=True, related_name="exercises", blank=True,
+            on_delete=models.CASCADE)
+    type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
     slug = models.CharField(max_length=15, unique=True, null=True, blank=True, help_text='A human easy to read/share name for exercise')
 
     class Meta:
@@ -47,7 +48,7 @@ MASS_UNITS = [
 ]
 
 class Set(BaseModel, WorkoutBaseModel):
-    exercise = models.ForeignKey(Exercise, related_name="sets")
+    exercise = models.ForeignKey(Exercise, related_name="sets", on_delete=models.CASCADE)
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     unit = models.CharField(max_length=32, choices=MASS_UNITS)
