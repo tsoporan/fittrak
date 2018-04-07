@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+Django = "==2.0.4"
 django-allauth = "*"
 django-rest-framework = "*"
 djangorestframework = "*"
@@ -13,9 +13,8 @@ hashids = "*"
 django-cors-headers = "*"
 django-extensions = "*"
 django-filter = "*"
-django-registration = "*"
 djangorestframework-jwt = "*"
-werkzeug = "*"
+Werkzeug = "*"
 graphene = ">=2.0"
 graphene-django = ">=2.0"
 
