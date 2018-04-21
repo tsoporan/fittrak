@@ -61,7 +61,9 @@ ROOT_URLCONF = 'fittrack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [
+            "fittrack/templates"
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
