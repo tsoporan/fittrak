@@ -15,23 +15,32 @@ GraphQL API using Graphene.
 To get it up and running:
 
 1. Install required packages
-  - `cd backend`
-  - `pipenv shell`
-  - `pipenv install`
+```bash
+cd backend
+pipenv shell
+pipenv install
+```
 
 2. Configure a `SECRET_KEY`
-  - `echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py`
+```bash
+echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
+```
 
 3. Initial migration
-  - `./manage.py migrate`
+```bash
+./manage.py migrate
+```
 
 4. Set up the first user and load some fixture data
-  - `./manage.py createsuperuser`
-  - `./manage.py loaddata workout`
+```bash
+./manage.py createsuperuser
+./manage.py loaddata workout
+```
 
 4. Serve
-  - `./manage.py runserver`
-  - Visit `localhost:8000/graphql`
+```bash
+./manage.py runserver
+```
 
 ---
 
