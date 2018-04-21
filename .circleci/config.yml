@@ -2,28 +2,13 @@
 
 version: 2
 jobs:
-  build:
+  build_frontend_app:
     docker:
       - image: circleci/node:latest
 
-    working_directory: ~/fit-track
+    working_directory: ~/fittrak
 
     steps:
       - checkout
-
-      # Download and cache dependencies
-      #- restore_cache:
-      #    keys:
-      #    - v1-dependencies-{{ checksum "package.json" }}
-      #j    # fallback to using the latest cache if no exact match is found
-      #   - v1-dependencies-
-
-      - run: cd client && yarn install
-
-      #- save_cache:
-      #    paths:
-      #      - node_modules
-      #    key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: cd client && yarn test
+      - run: cd frontend && yarn install
+      - run: cd frontend && yarn test
