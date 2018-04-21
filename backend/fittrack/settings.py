@@ -36,12 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_extensions',
-    'allauth',
-    'allauth.account',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
+    'graphene_django',
     'corsheaders',
     'users',
     'workouts',
@@ -136,32 +131,16 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        # Default, allows access to API by traditional login
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-}
-
-JWT_AUTH = {
-    'JWT_ALLOW_REFRESH': False,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=180),
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler'
-}
-
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
 )
 
-REST_USE_JWT = True
-
 SITE_ID = 1
 
-# Temporarily use console backend for activation emails to avoid connection refused
-# issues.
+# Temporarily use console backend for activation emails to avoid connection
+# refused issues.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+GRAPHENE = {
+    'SCHEMA': 'fittrack.schema.schema'
+}
