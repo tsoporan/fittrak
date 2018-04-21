@@ -1,25 +1,17 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
-django = "*"
-django-allauth = "*"
-django-rest-framework = "*"
-djangorestframework = "*"
-django-rest-auth = "*"
+Django = "==2.0.4"
 hashids = "*"
 django-cors-headers = "*"
 django-extensions = "*"
 django-filter = "*"
-django-registration = "*"
-djangorestframework-jwt = "*"
-werkzeug = "*"
-
+Werkzeug = "*"
+graphene = ">=2.0"
+graphene-django = ">=2.0"
+django-graphql-jwt = "*"
 
 [dev-packages]
-
