@@ -1,37 +1,43 @@
 [![CircleCI](https://circleci.com/gh/tsoporan/fittrack/tree/master.svg?style=shield)](https://circleci.com/gh/tsoporan/fittrack/tree/master)
 
-What
-====
+A no-frills fitness tracking tool for the stats inclined.
 
-A no-frills fitness tracking tool for the stats nerd.
+### Requirements
 
-Why
-===
+- `pipenv`
+- `yarn`
 
-Tired of using various fitness tracking apps (mostly fitocracy).
+### Set up
 
-Ideas
-=====
+**Backend**: The backend consists of a Django powered Python application which exposes a 
+GraphQL API using Graphene.
 
-Rough notes on some things to keep in mind:
+To get it up and running:
 
-- UI/UX
-    - Should be mobile and offline first
-    - The main usecase will be in a gym setting
-        - Quick to load / update workout
-        - Consider poor connection
+1. Install required packages
+  - `cd backend`
+  - `pipenv shell`
+  - `pipenv install`
 
-- Workouts
-    - Save as routine
-    - Start new workout from template or custom
-    - Recommend exercises based on previous workouts or most popular
-    - Add exercise, auto complete
+2. Configure a `SECRET_KEY`
+  - `echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py`
 
-- Stats/Progress
-    - How much I've lifted, how close I am to my max, volume differences, etc.
-    - Could even incorporate strength standards type metric (exrx)
-    - Can track based on time as well
+3. Initial migration
+  - `./manage.py migrate`
 
-- Don't be a social network
+4. Set up the first user and load some fixture data
+  - `./manage.py createsuperuser`
+  - `./manage.py loaddata workout`
 
-- Share workouts externally
+4. Serve
+  - `./manage.py runserver`
+  - Visit `localhost:8000/graphql`
+
+---
+
+**Frontend**: The frontend is a Vue powered Javascript application which uses Apollo as its GraphQL
+client.
+
+To get it up and running:
+
+1. TBD
