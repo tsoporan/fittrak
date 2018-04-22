@@ -4,13 +4,14 @@ A no-frills fitness tracking tool for the stats inclined.
 
 ### Requirements
 
-- `pipenv`
-- `yarn`
+- [Python](https://www.python.org/) 3.6
+- [pipenv](https://github.com/pypa/pipenv)
+- [yarn](https://yarnpkg.com/en/)
 
 ### Set up
 
-**Backend**: The backend consists of a Django powered Python application which exposes a 
-GraphQL API using Graphene.
+The backend consists of a [Django](https://www.djangoproject.com/) powered Python application which exposes a 
+[GraphQL](https://graphql.org/learn/) API using [Graphene](http://graphene-python.org/).
 
 To get it up and running:
 
@@ -18,6 +19,7 @@ To get it up and running:
 ```bash
 pipenv install
 pipenv shell
+cd fittrak
 ```
 
 2. Configure a `SECRET_KEY`
@@ -43,7 +45,7 @@ echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
 
 ---
 
-**Frontend**: The frontend is a Vue powered Javascript application which uses Apollo as its GraphQL
+The frontend is a [Vue](https://vuejs.org/) powered Javascript application which uses [Apollo](https://www.apollographql.com/) as its GraphQL
 client.
 
 To get it up and running:
