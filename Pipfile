@@ -13,5 +13,6 @@ Werkzeug = "*"
 graphene = ">=2.0"
 graphene-django = ">=2.0"
 django-graphql-jwt = "*"
+django-webpack-loader = "*"
 
 [dev-packages]
