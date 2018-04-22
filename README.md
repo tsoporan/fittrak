@@ -16,9 +16,8 @@ To get it up and running:
 
 1. Install required packages
 ```bash
-cd backend
-pipenv shell
 pipenv install
+pipenv shell
 ```
 
 2. Configure a `SECRET_KEY`
@@ -39,7 +38,7 @@ echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
 
 4. Serve
 ```bash
-./manage.py runserver
+./manage.py runserver_plus # Werkzeug dev server
 ```
 
 ---
