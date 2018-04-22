@@ -35,9 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # Third party
     'django_extensions',
     'graphene_django',
-    'corsheaders',
+    'webpack_loader',
+    # Ours
     'users',
     'workouts',
     'stats',
@@ -47,7 +49,6 @@ INSTALLED_APPS = [
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,20 +123,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+#STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "assets", "bundles"),
 ]
 
 LOGIN_REDIRECT_URL = '/'
-
-CORS_ORIGIN_WHITELIST = (
-    'localhost:8080',
-)
 
 SITE_ID = 1
 
@@ -145,4 +142,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 GRAPHENE = {
     'SCHEMA': 'fittrak.schema.schema'
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
 }
