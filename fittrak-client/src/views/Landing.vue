@@ -1,11 +1,21 @@
 <template>
   <div class="landing">
-    Boop
+    {{ hello }} with GraphQL
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
-  name: 'Landing'
+  name: 'Landing',
+  apollo: {
+    hello: gql`{hello}`
+  },
+  data () {
+    return {
+      hello: ''
+    }
+  }
 }
 </script>

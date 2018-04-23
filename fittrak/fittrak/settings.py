@@ -141,7 +141,10 @@ SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 GRAPHENE = {
-    'SCHEMA': 'fittrak.schema.schema'
+    'SCHEMA': 'fittrak.schema.schema',
+    'MIDDLEWARE': [
+        'graphene_django.debug.DjangoDebugMiddleware'
+    ]
 }
 
 WEBPACK_LOADER = {

@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 
 // Apollo setup
 const httpLink = new HttpLink({
-  uri: 'http://localhost/graphql'
+  uri: 'http://localhost:8000/graphql'
 });
 
 const apolloClient = new ApolloClient({
