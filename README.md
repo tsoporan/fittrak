@@ -48,6 +48,19 @@ echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
 The frontend is a [Vue](https://vuejs.org/) powered Javascript application which uses [Apollo](https://www.apollographql.com/) as its GraphQL
 client.
 
+For local dev the **backend** must be up and running as that is where the graphql server runs (requests to
+`/graphql` will fail otherwise!) For dev purposes `corsheaders` is being used so frontend dev can
+happen "painlessly" while in production, `yarn build`, will output the files so Django can use them.
+
 To get it up and running:
 
-1. TBD
+1. Installed required packages
+```bash
+cd fittrak-client
+yarn install
+```
+
+2. Serve, hot reloaded
+```bash
+yarn serve
+```
