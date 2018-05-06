@@ -12,7 +12,7 @@ from graphene_django.debug import DjangoDebug
 
 class Viewer(DjangoObjectType):
     class Meta:
-        model = settings.AUTH_USER_MODEL
+        model = get_user_model()
         only_fields = ('id', 'email', 'username', 'date_joined', 'is_active')
 
 class CreateUser(graphene.Mutation):
