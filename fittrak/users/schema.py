@@ -1,18 +1,18 @@
 """ Users GraphQL schema """
 
+from django.conf import settings
 from django.db.models import Q
 
 import graphene
 from graphql import GraphQLError
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from graphene_django.types import DjangoObjectType
 from graphene_django.debug import DjangoDebug
 
-
 class Viewer(DjangoObjectType):
     class Meta:
-        model = User
+        model = settings.AUTH_USER_MODEL
         only_fields = ('id', 'email', 'username', 'date_joined', 'is_active')
 
 class CreateUser(graphene.Mutation):
@@ -25,6 +25,8 @@ class CreateUser(graphene.Mutation):
 
     def mutate(self, info, username, email, password):
         user = info.context.user
+
+        User = get_user_model()
 
         if user.is_authenticated:
             raise GraphQLError("Cannot create a user when logged in.")
