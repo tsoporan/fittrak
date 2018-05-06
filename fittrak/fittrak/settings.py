@@ -157,3 +157,5 @@ WEBPACK_LOADER = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080'
 )
+
+AUTH_USER_MODEL = "users.User"

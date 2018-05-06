@@ -2,7 +2,6 @@
 
 import graphene
 
-from django.contrib.auth.models import User
 from graphene_django.types import DjangoObjectType
 from graphene_django.debug import DjangoDebug
 
