@@ -22,7 +22,7 @@ class SetType(DjangoObjectType):
         model = Set
 
 
-class Query(object):
+class Query:
     all_workouts = graphene.List(WorkoutType)
     all_exercises = graphene.List(ExerciseType)
     all_sets = graphene.List(SetType)
