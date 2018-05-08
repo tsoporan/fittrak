@@ -2,6 +2,10 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
+
+NOT_SET = "NOT_SET"
+VERIFIED = "VERIFIED"
+
 class User(AbstractUser):
     """
     Custom user model that inherits from the default Django user 
@@ -9,9 +13,6 @@ class User(AbstractUser):
     """
     pass
 
-
-NOT_SET = "NOT_SET"
-VERIFIED = "VERIFIED"
 
 class Profile(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
