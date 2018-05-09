@@ -7,15 +7,17 @@ from fittrak.utils.models import WorkoutBaseModel, UserBaseModel, BaseModel
 
 import hashids
 
-
-class WorkoutStatus(BaseModel):
-    name = models.CharField(max_length=250, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
+    IN_PROGRESS = "IN_PROGRESS"
+    CANCELLED = "CANCELLED"
+    COMPLETE = "COMPLETE"
+
+    STATUS_CHOICES = (
+        (IN_PROGRESS, "In progress"),
+        (CANCELLED, "Cancelled"),
+        (COMPLETE, "Complete"),
+    )
+
     slug = models.CharField(
         max_length=15,
         unique=True,
@@ -23,7 +25,8 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         blank=True,
         help_text='A human easy to read/share name for workout'
     )
-    status = models.ForeignKey(WorkoutStatus, on_delete=models.CASCADE)
+
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=IN_PROGRESS)
 
     class Meta:
         ordering = ('-id',)

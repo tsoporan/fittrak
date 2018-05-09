@@ -25,6 +25,7 @@ cd fittrak
 2. Configure a `SECRET_KEY`
 ```bash
 echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
+echo HASHIDS_SALT=\"AndMe\" > fittrak/secrets.py
 ```
 
 3. Initial migration

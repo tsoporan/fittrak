@@ -2,10 +2,13 @@
 
 import graphene
 
+from django.utils import timezone
+
+from graphql import GraphQLError
+
 from graphene_django.types import DjangoObjectType
 
-from workouts.models import Workout, Exercise, Set
-
+from .models import Workout, Exercise, Set
 
 class WorkoutType(DjangoObjectType):
     class Meta:
@@ -35,3 +38,19 @@ class Query:
 
     def resolve_all_sets(self, info, **kwargs):
         return Set.objects.all()
+
+class CreateWorkout(graphene.Mutation):
+    workout = graphene.Field(WorkoutType)
+
+    def mutate(self, info):
+        user = info.context.user
+
+        if user.is_anonymous:
+            raise GraphQLError("Not authenticated.")
+
+        new_workout = Workout.objects.create(
+            user = user,
+            date_started = timezone.now()
+        )
+
+        return CreateWorkout(workout=new_workout)
