@@ -54,3 +54,25 @@ class CreateWorkout(graphene.Mutation):
         )
 
         return CreateWorkout(workout=new_workout)
+
+class RemoveWorkout(graphene.Mutation):
+    workout = graphene.Field(WorkoutType)
+
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+
+    def mutate(self, info, workout_id):
+        user = info.context.user
+
+        try:
+            workout = Workout.objects.get(id=workout_id)
+        except Workout.DoesNotExist:
+            raise GraphQLError("No matching workout.")
+
+        if user != workout.user:
+            raise GraphQLError("Not authorized.")
+
+        workout.is_active = False
+        workout.save()
+
+        return RemoveWorkout(workout=workout)
