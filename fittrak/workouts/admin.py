@@ -1,9 +1,5 @@
 from django.contrib import admin
-from .models import Workout, WorkoutStatus, Exercise, Set, ExerciseType
-
-@admin.register(WorkoutStatus)
-class WorkoutStatusAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_active')
+from .models import Workout, Exercise, Set, ExerciseType
 
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
