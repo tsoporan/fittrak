@@ -1,25 +1,33 @@
 {
-  "name": "fittrak-client",
-  "version": "0.1.0",
+  "name": "fittrack-client",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.1.12",
-    "apollo-client": "^2.2.8",
-    "apollo-link": "^1.2.2",
+    "apollo-cache-inmemory": "^1.2.1",
+    "apollo-client": "^2.3.1",
     "apollo-link-http": "^1.5.4",
+    "bulma": "^0.7.1",
     "graphql": "^0.13.2",
-    "graphql-tag": "^2.9.1",
-    "vue": "^2.5.13",
-    "vue-apollo": "^3.0.0-beta.5",
-    "vue-router": "^3.0.1"
+    "graphql-tag": "^2.9.2",
+    "register-service-worker": "^1.0.0",
+    "vue": "^2.5.16",
+    "vue-apollo": "^3.0.0-beta.10",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
-    "@vue/cli-service": "^3.0.0-beta.6",
+    "@vue/cli-plugin-babel": "^3.0.0-beta.10",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.10",
+    "@vue/cli-plugin-pwa": "^3.0.0-beta.10",
+    "@vue/cli-service": "^3.0.0-beta.10",
+    "@vue/eslint-config-prettier": "^3.0.0-beta.10",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.13",
     "webpack-bundle-tracker": "^0.3.0"
   },
