@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_accounts.html' %}
 
 {% block title %}Login{% endblock %}
 
@@ -7,7 +7,8 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 {% endblock %}
 
-{% block content %}
+{% block form_content %}
+<h2>Sign in</h2>
 <form method="post" action="/accounts/login/">
   {% csrf_token %}
   <div class="field">
@@ -32,7 +33,7 @@
   </div>
 
   <div class="control">
-    <button class="button is-primary">Login</button>
+    <button class="button is-primary">Sign in</button>
   </div>
 </form>
-{% endblock content %}
+{% endblock %}
