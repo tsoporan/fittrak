@@ -2,15 +2,16 @@
 
 {% block content %}
 <div class="container">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://fittrak.ca">
-      FitTrak
-    </a>
-  </div>
-  <div class="columns is-centered">
+   <div class="columns is-centered">
     <div class="column is-half">
-      {% block form_content %}{% endblock %}
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://fittrak.ca">
+          FitTrak
+        </a>
+      </div>
+    </nav>
+    {% block form_content %}{% endblock %}
     </div>
   </div>
 </div>

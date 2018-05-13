@@ -8,32 +8,17 @@
 {% block title %}Register{% endblock %}
 
 {% block form_content %}
-<h2>Register</h2>
+<h2>Sign up for a free account</h2>
 <form method="post" action="/accounts/login/">
   {% csrf_token %}
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input" type="email" placeholder="Your email" name="username">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-    </div>
-  </div>
+  {% for field in form %}
 
-
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input" type="password" placeholder="Your password" name="password">
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </div>
-  </div>
-
+  {{ field.label }}
+  <p>{{ field }}</p>
+  {% endfor %}
+  
   <div class="control">
-    <button class="button is-primary">Go</button>
+    <button class="button is-primary">Sign up</button>
   </div>
 </form>
 {% endblock %}

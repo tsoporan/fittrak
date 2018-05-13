@@ -11,6 +11,7 @@
 <h2>Sign in</h2>
 <form method="post" action="/accounts/login/">
   {% csrf_token %}
+  <!--
   <div class="field">
     <label class="label">Email</label>
     <div class="control has-icons-left has-icons-right">
@@ -31,9 +32,12 @@
       </span>
     </div>
   </div>
+  -->
+  {{ form.as_p }}
 
   <div class="control">
     <button class="button is-primary">Sign in</button>
   </div>
+  {{ form.non_form_errors }}
 </form>
 {% endblock %}
