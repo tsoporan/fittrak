@@ -14,5 +14,6 @@ graphene = ">=2.0"
 graphene-django = ">=2.0"
 django-graphql-jwt = "*"
 django-webpack-loader = "*"
+django-registration-redux = "*"
 
 [dev-packages]
