@@ -9,7 +9,7 @@
 
 {% block form_content %}
 <h2>Sign up for a free account</h2>
-<form method="post" action="/accounts/login/">
+<form method="post" action="/accounts/register/">
   {% csrf_token %}
   {% for field in form %}
 
