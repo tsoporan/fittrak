@@ -13,7 +13,7 @@ if not settings.DEBUG:
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    url(r'^graphql', login_required(csrf_exempt(GraphQLView.as_view(graphiql=settings.DEBUG)))),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', login_required(
         TemplateView.as_view(template_name='index.html'))
