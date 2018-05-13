@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+{% endblock %}
+
+{% block content %}
+<form method="post" action="/accounts/login/">
+  {% csrf_token %}
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Your email" name="username">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" type="password" placeholder="Your password" name="password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="control">
+    <button class="button is-primary">Login</button>
+  </div>
+</form>
+{% endblock content %}
