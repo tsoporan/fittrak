@@ -164,3 +164,5 @@ AUTH_USER_MODEL = "users.User"
 # Registration conf
 ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_AUTO_LOGIN = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
