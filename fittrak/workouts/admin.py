@@ -5,7 +5,7 @@ from .models import Workout, Exercise, Set, ExerciseType
 class WorkoutAdmin(admin.ModelAdmin):
     search_fields = ('user__email', 'slug')
     date_hierarchy = 'date_started'
-    list_display = ('slug', 'user', 'date_started', 'date_ended', 'is_active')
+    list_display = ('slug', 'user', 'status', 'date_started', 'date_ended', 'is_active')
 
 @admin.register(ExerciseType)
 class ExerciseTypeAdmin(admin.ModelAdmin):

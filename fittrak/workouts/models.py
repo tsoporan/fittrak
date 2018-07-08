@@ -13,7 +13,7 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     COMPLETE = "COMPLETE"
 
     STATUS_CHOICES = (
-        (IN_PROGRESS, "In progress"),
+        (IN_PROGRESS, "In Progress"),
         (CANCELLED, "Cancelled"),
         (COMPLETE, "Complete"),
     )
@@ -32,7 +32,13 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         ordering = ('-id',)
 
     def __str__(self):
-        return self.slug
+        format_by= "%Y-%m-%d %H:%m"
+        start = self.date_started.strftime(format_by)
+        end = "N/A"
+        if self.date_ended:
+            end = self.date_ended.strftime(format_by)
+
+        return "{} -- {} to {}".format(self.user, start, end)
 
 
 class ExerciseType(BaseModel, UserBaseModel):
@@ -66,13 +72,15 @@ class Exercise(BaseModel, WorkoutBaseModel):
         return self.type.name
 
 
-MASS_UNITS = [
-    ('KG', 'Kilograms'),
-    ('LB', 'Pounds'),
-]
 
 
 class Set(BaseModel, WorkoutBaseModel):
+
+    UNITS = [
+        ('KG', 'Kilograms'),
+        ('LB', 'Pounds'),
+    ]
+
     exercise = models.ForeignKey(
         Exercise,
         related_name="sets",
@@ -80,7 +88,7 @@ class Set(BaseModel, WorkoutBaseModel):
     )
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
-    unit = models.CharField(max_length=32, choices=MASS_UNITS)
+    unit = models.CharField(max_length=32, choices=UNITS)
 
     class Meta:
         ordering = ('-id',)
