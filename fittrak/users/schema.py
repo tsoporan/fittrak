@@ -8,6 +8,8 @@ from graphene_django.types import DjangoObjectType
 
 from .models import Profile
 
+from workouts.models import Workout
+
 class ProfileType(DjangoObjectType):
     class Meta:
         model = Profile
@@ -15,9 +17,18 @@ class ProfileType(DjangoObjectType):
 
 class Viewer(DjangoObjectType):
     profile = graphene.Field(ProfileType)
+    workouts = graphene.List("workouts.schema.WorkoutType")
 
     class Meta:
         model = get_user_model()
+
+    def resolve_workouts(self, info):
+        user = info.context.user
+
+        return Workout.objects.filter(
+            user = user,
+            is_active = True
+        )
 
 
 class Query:
