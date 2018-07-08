@@ -1,42 +1,17 @@
 {% extends 'base_accounts.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Sign in{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-{% endblock %}
+{% block head %} {% endblock %}
 
 {% block form_content %}
 <h2>Sign in</h2>
 <form method="post" action="/accounts/login/">
   {% csrf_token %}
-  <!--
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input" type="email" placeholder="Your email" name="username">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-    </div>
-  </div>
-
-
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input" type="password" placeholder="Your password" name="password">
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </div>
-  </div>
-  -->
   {{ form.as_p }}
 
   <div class="control">
-    <button class="button is-primary">Sign in</button>
+    <button class="button is-primary">Sign in</button> or <a href="{% url "registration_register" %}">Sign up</a>
   </div>
   {{ form.non_form_errors }}
 </form>
