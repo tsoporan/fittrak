@@ -11,6 +11,10 @@ from graphene_django.views import GraphQLView
 if not settings.DEBUG:
     csrf_exempt = lambda x: x
 
+# Convenience for local dev
+if settings.DEBUG:
+    login_required = lambda x: x
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^graphql', login_required(csrf_exempt(GraphQLView.as_view(graphiql=settings.DEBUG)))),
