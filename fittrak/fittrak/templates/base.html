@@ -2,17 +2,44 @@
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
+        {% block meta %}{% endblock %}
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>FitTrak</title>
+        <title>FitTrak | {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type=text/javascript>
-          (function(r){var n=window["webpackJsonp"];window["webpackJsonp"]=function(t,c,u){for(var i,f,p,a=0,l=[];a<t.length;a++)f=t[a],e[f]&&l.push(e[f][0]),e[f]=0;for(i in c)Object.prototype.hasOwnProperty.call(c,i)&&(r[i]=c[i]);n&&n(t,c,u);while(l.length)l.shift()();if(u)for(a=0;a<u.length;a++)p=o(o.s=u[a]);return p};var t={},e={2:0};function o(n){if(t[n])return t[n].exports;var e=t[n]={i:n,l:!1,exports:{}};return r[n].call(e.exports,e,e.exports,o),e.l=!0,e.exports}o.m=r,o.c=t,o.d=function(r,n,t){o.o(r,n)||Object.defineProperty(r,n,{configurable:!1,enumerable:!0,get:t})},o.n=function(r){var n=r&&r.__esModule?function(){return r["default"]}:function(){return r};return o.d(n,"a",n),n},o.o=function(r,n){return Object.prototype.hasOwnProperty.call(r,n)},o.p="/static/",o.oe=function(r){throw console.error(r),r}})([]);
-        </script>
+        {% block head %}
+        {% if settings.DEBUG %}
+        {% render_bundle 'vendors~app' %}
+        {% endif %}
+        {% endblock %}
     </head>
     <body>
-      <div id="app"></div>
-      {% render_bundle 'vendor' %}
-      {% render_bundle 'app' %}
+      <noscript>
+        <strong>We're sorry but FitTrak doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      </noscript>
+      <div id="wrapper">
+        {% block header %}
+        <header>
+          <h1 id="logo">FitTrak</h1>
+        </header>
+        {% endblock %}
+
+        {% block nav %}
+        <nav>
+          <ul>
+            <li><a href="{% url "index" %}">Home</a></li>
+            <li><a href="{% url "auth_logout" %}">Sign out</a></li>
+          </ul>
+        </nav>
+        {% endblock %}
+
+        {% block content %}{% endblock content %}
+
+        {% block footer %}
+        <footer>
+          {% now "Y" %}
+        </footer>
+        {% endblock %}
+      </div>
     </body>
 </html>

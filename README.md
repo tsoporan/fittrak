@@ -25,7 +25,7 @@ cd fittrak
 2. Configure secrets
 ```bash
 echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
-echo HASHIDS_SALT=\"AndMe\" > fittrak/secrets.py
+echo HASHIDS_SALT=\"AndMe\" >> fittrak/secrets.py
 ```
 
 3. Initial migration
@@ -52,6 +52,9 @@ client.
 For local dev the **backend** must be up and running as that is where the graphql server runs (requests to
 `/graphql` will fail otherwise!) For dev purposes `corsheaders` is being used so frontend dev can
 happen "painlessly" while in production, `yarn build`, will output the files so Django can use them.
+
+**NOTE** `yarn serve` will overwrite the assets from `yarn build` currently which will not work as
+expected.
 
 To get it up and running:
 
