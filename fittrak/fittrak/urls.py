@@ -16,8 +16,7 @@ urlpatterns = [
     url(r'^graphql', login_required(csrf_exempt(GraphQLView.as_view(graphiql=settings.DEBUG)))),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^$', login_required(
-        TemplateView.as_view(template_name='index.html'))
-        ),
+        TemplateView.as_view(template_name='index.html')), name="index"),
     url(r'^.*', login_required(
         TemplateView.as_view(template_name='index.html')
     ))
