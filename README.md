@@ -53,6 +53,9 @@ For local dev the **backend** must be up and running as that is where the graphq
 `/graphql` will fail otherwise!) For dev purposes `corsheaders` is being used so frontend dev can
 happen "painlessly" while in production, `yarn build`, will output the files so Django can use them.
 
+**NOTE** `yarn serve` will overwrite the assets from `yarn build` currently which will not work as
+expected.
+
 To get it up and running:
 
 1. Installed required packages
