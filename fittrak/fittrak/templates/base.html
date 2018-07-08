@@ -8,16 +8,38 @@
         <title>FitTrak | {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block head %}
+        {% if settings.DEBUG %}
         {% render_bundle 'vendors~app' %}
+        {% endif %}
         {% endblock %}
     </head>
     <body>
       <noscript>
         <strong>We're sorry but FitTrak doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
       </noscript>
-      {% block content %}
-      <div id="app"></div>
-      {% render_bundle 'app' %}
-      {% endblock content %}
+      <div id="wrapper">
+        {% block header %}
+        <header>
+          <h1 id="logo">FitTrak</h1>
+        </header>
+        {% endblock %}
+
+        {% block nav %}
+        <nav>
+          <ul>
+            <li><a href="{% url "index" %}">Home</a></li>
+            <li><a href="{% url "auth_logout" %}">Sign out</a></li>
+          </ul>
+        </nav>
+        {% endblock %}
+
+        {% block content %}{% endblock content %}
+
+        {% block footer %}
+        <footer>
+          {% now "Y" %}
+        </footer>
+        {% endblock %}
+      </div>
     </body>
 </html>
