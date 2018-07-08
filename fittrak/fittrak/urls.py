@@ -18,4 +18,7 @@ urlpatterns = [
     url(r'^$', login_required(
         TemplateView.as_view(template_name='index.html'))
         ),
+    url(r'^.*', login_required(
+        TemplateView.as_view(template_name='index.html')
+    ))
 ]
