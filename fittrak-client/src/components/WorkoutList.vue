@@ -1,8 +1,15 @@
 <template>
   <div>
     <h2>Workouts</h2>
-    <p v-if="workouts">
+    <p v-if="workouts.length">
       Workouts
+      <ul>
+        <WorkoutItem
+         v-for="workout in workouts" 
+          :key="workout.id"
+          :workout="workout"
+          />
+      </ul>
     </p>
     <p v-else>
       No workouts!
@@ -12,6 +19,7 @@
 
 <script>
 import gql from "graphql-tag";
+import WorkoutItem from "./WorkoutItem";
 
 export default {
   data() {
@@ -31,6 +39,11 @@ export default {
                 dateStarted
                 dateEnded
                 isActive
+                status
+                slug
+                exercises {
+                  id
+                }
               }
             }
           }
@@ -39,6 +52,10 @@ export default {
 
       update: data => data.viewer.workouts
     }
+  },
+
+  components: {
+    WorkoutItem
   }
 };
 </script>
