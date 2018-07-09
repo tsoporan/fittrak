@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import About from "./views/About.vue";
-import Test from "./views/Test.vue";
+import NewWorkout from "./views/NewWorkout.vue";
+import History from "./views/History.vue";
+import Settings from "./views/Settings.vue";
 
 Vue.use(Router);
 
@@ -15,14 +16,19 @@ export default new Router({
       component: Home
     },
     {
-      path: "/about",
-      name: "about",
-      component: About
+      path: "/history",
+      name: "history",
+      component: History
     },
     {
-      path: "/test",
-      name: "test",
-      component: Test
+      path: "/settings",
+      name: "settings",
+      component: Settings
+    },
+    {
+      path: "/new",
+      name: "new-workout",
+      component: NewWorkout
     }
   ]
 });

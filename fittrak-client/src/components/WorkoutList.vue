@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Workouts</h2>
+    <h2>{{ title }}</h2>
     <p v-if="workouts.length">
       Workouts
       <ul>
@@ -22,6 +22,8 @@ import gql from "graphql-tag";
 import WorkoutItem from "./WorkoutItem";
 
 export default {
+  name: "WorkoutList",
+
   data() {
     return {
       workouts: []
@@ -56,6 +58,10 @@ export default {
 
   components: {
     WorkoutItem
+  },
+
+  props: {
+    title: String
   }
 };
 </script>
