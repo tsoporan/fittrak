@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="World"/>
+  <div>
+    <WorkoutList />
   </div>
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
+import WorkoutList from "@/components/WorkoutList.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    WorkoutList
   }
 };
 </script>

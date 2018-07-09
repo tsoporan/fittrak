@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import datetime
 from .secrets import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -160,6 +159,8 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8080'
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 AUTH_USER_MODEL = "users.User"
 
 # Registration conf
@@ -169,3 +170,6 @@ SIMPLE_BACKEND_REDIRECT_URL = '/'
 REGISTRATION_OPEN = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CSRF_HEADER_NAME = "x-csrftoken"
+CSRF_USE_SESSIONS = False  # Will use cookie

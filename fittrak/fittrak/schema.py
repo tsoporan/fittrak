@@ -11,6 +11,10 @@ from users.schema import Query as UsersQuery
 
 class RootQuery(WorkoutsQuery, UsersQuery, graphene.ObjectType):
     debug = graphene.Field(DjangoDebug, name='__debug')
+    hello = graphene.String()
+
+    def resolve_hello(self, info):
+        return "World"
 
 
 class RootMutation(graphene.ObjectType):
