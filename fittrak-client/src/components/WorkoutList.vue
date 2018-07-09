@@ -14,19 +14,31 @@
 import gql from "graphql-tag";
 
 export default {
+  data() {
+    return {
+      workouts: []
+    };
+  },
+
   apollo: {
-    workouts: gql`
-      {
-        viewer {
-          workouts {
-            id
-            dateStarted
-            dateEnded
-            isActive
+    workouts: {
+      query() {
+        return gql`
+          {
+            viewer {
+              workouts {
+                id
+                dateStarted
+                dateEnded
+                isActive
+              }
+            }
           }
-        }
-      }
-    `
+        `;
+      },
+
+      update: data => data.viewer.workouts
+    }
   }
 };
 </script>
