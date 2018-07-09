@@ -3,19 +3,25 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
+import Cookies from "js-cookie";
 
 // Apollo
 import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
+import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+
 import VueApollo from "vue-apollo";
 
 Vue.config.productionTip = false;
 
 // Apollo setup
 // TODO: Adapt for production URI
-const httpLink = new HttpLink({
-  uri: "http://localhost:8000/graphql"
+const httpLink = createHttpLink({
+  uri: "http://localhost:8000/graphql",
+  credentials: "include", // TODO: same-origin for prod
+  headers: {
+    "x-csrftoken": Cookies.get("csrftoken")
+  }
 });
 
 const apolloClient = new ApolloClient({
