@@ -2,10 +2,9 @@
   <div>
     <h2>{{ title }}</h2>
     <p v-if="workouts.length">
-      Workouts
       <ul>
         <WorkoutItem
-         v-for="workout in workouts" 
+         v-for="workout in workouts"
           :key="workout.id"
           :workout="workout"
           />
