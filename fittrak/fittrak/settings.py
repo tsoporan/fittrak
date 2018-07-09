@@ -172,3 +172,4 @@ REGISTRATION_OPEN = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CSRF_HEADER_NAME = "x-csrftoken"
+CSRF_USE_SESSIONS = False  # Will use cookie

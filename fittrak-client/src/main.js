@@ -14,11 +14,13 @@ import VueApollo from "vue-apollo";
 
 Vue.config.productionTip = false;
 
+const isDebug = process.env.NODE_ENV !== "production";
+
 // Apollo setup
 // TODO: Adapt for production URI
 const httpLink = createHttpLink({
   uri: "http://localhost:8000/graphql",
-  credentials: "include", // TODO: same-origin for prod
+  credentials: isDebug ? "include" : "same-origin",
   headers: {
     "x-csrftoken": Cookies.get("csrftoken")
   }
