@@ -1,6 +1,8 @@
+.DS_Store
+
 # Project
 secrets.py
-dist
+/dist
 build
 webpack-stats.json
 fittrak/assets
@@ -32,3 +34,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+*.sw*
