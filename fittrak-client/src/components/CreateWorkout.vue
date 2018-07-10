@@ -5,9 +5,7 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-
-import CREATE_WORKOUT from "@/graphql/createWorkout.graphql";
+import CREATE_WORKOUT from "@/graphql/mutations/createWorkout.graphql";
 
 export default {
   name: "CreateWorkout",

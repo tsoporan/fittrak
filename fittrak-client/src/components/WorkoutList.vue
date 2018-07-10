@@ -17,8 +17,9 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
 import WorkoutItem from "./WorkoutItem";
+
+import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
 
 export default {
   name: "WorkoutList",
@@ -31,26 +32,7 @@ export default {
 
   apollo: {
     workouts: {
-      query() {
-        return gql`
-          {
-            viewer {
-              workouts {
-                id
-                dateStarted
-                dateEnded
-                isActive
-                status
-                slug
-                exercises {
-                  id
-                }
-              }
-            }
-          }
-        `;
-      },
-
+      query: VIEWER_WORKOUTS,
       update: data => data.viewer.workouts
     }
   },
