@@ -1,6 +1,6 @@
 # Project
 secrets.py
-/dist
+dist
 build
 webpack-stats.json
 fittrak/assets
