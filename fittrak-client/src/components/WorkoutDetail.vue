@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2>Create a new workout</h2>
+    <h2>Workout Detail</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NewWorkout"
+  name: "WorkoutDetail"
 };
 </script>

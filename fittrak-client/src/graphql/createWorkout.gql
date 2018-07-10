@@ -1,0 +1,10 @@
+mutation createWorkout {
+  createWorkout {
+    workout {
+      id
+      slug
+      dateStarted
+      dateEnded
+    }
+  }
+}
