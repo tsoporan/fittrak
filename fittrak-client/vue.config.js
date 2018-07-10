@@ -1,4 +1,11 @@
 module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        vue$: "vue/dist/vue.esm.js"
+      }
+    }
+  },
   chainWebpack: config => {
     // GraphQL Loader
     config.module
