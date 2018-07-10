@@ -1,0 +1,15 @@
+query viewersWorkouts {
+  viewer {
+    workouts {
+      id
+      dateStarted
+      dateEnded
+      isActive
+      status
+      slug
+      exercises {
+        id
+      }
+    }
+  }
+}

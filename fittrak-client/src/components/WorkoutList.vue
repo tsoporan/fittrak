@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h2>Workouts</h2>
+    <h2>{{ title }}</h2>
     <p v-if="workouts.length">
-      Workouts
       <ul>
         <WorkoutItem
-         v-for="workout in workouts" 
+         v-for="workout in workouts"
           :key="workout.id"
           :workout="workout"
           />
@@ -18,10 +17,13 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
 import WorkoutItem from "./WorkoutItem";
 
+import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
+
 export default {
+  name: "WorkoutList",
+
   data() {
     return {
       workouts: []
@@ -30,32 +32,17 @@ export default {
 
   apollo: {
     workouts: {
-      query() {
-        return gql`
-          {
-            viewer {
-              workouts {
-                id
-                dateStarted
-                dateEnded
-                isActive
-                status
-                slug
-                exercises {
-                  id
-                }
-              }
-            }
-          }
-        `;
-      },
-
+      query: VIEWER_WORKOUTS,
       update: data => data.viewer.workouts
     }
   },
 
   components: {
     WorkoutItem
+  },
+
+  props: {
+    title: String
   }
 };
 </script>
