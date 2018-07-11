@@ -48,7 +48,7 @@ class ExerciseType(BaseModel, UserBaseModel):
         return self.name
 
 
-class Exercise(BaseModel, WorkoutBaseModel):
+class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
     workout = models.ForeignKey(
         Workout,
         null=True,
@@ -56,7 +56,7 @@ class Exercise(BaseModel, WorkoutBaseModel):
         blank=True,
         on_delete=models.CASCADE
     )
-    type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
+    exercise_type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
     slug = models.CharField(
         max_length=15,
         unique=True,
@@ -69,7 +69,7 @@ class Exercise(BaseModel, WorkoutBaseModel):
         ordering = ('-id',)
 
     def __str__(self):
-        return self.type.name
+        return self.exercise_type.name
 
 
 
