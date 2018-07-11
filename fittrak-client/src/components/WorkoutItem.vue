@@ -11,10 +11,10 @@
 </template>
 
 <script>
-
+/*
 import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
+*/
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
-
 
 const STATUS_MAP = {
   IN_PROGRESS: "In Progress",
