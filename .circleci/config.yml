@@ -6,12 +6,13 @@ jobs:
     docker:
       - image: circleci/node:8.10
 
-    working_directory: ~/fittrak/fittrak-client
+    working_directory: ~/fittrak
 
     steps:
       - checkout
-      - run: yarn install
-      - run: yarn lint
+      - run: cd fittrak-client && yarn install
+      # TODO: Replace with tests
+      - run: cd fittrak-client && yarn lint
 
   test-back-end:
     docker:
