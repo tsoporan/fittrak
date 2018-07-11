@@ -22,6 +22,9 @@ jobs:
     steps:
       - checkout
       - run: pipenv install
+      # TODO: Swap to env vars and configure in Circle CI
+      - run: echo SECRET_KEY=\"DUMMY\" > fittrak/fittrak/secrets.py
+      - run: echo HASHIDS_SALT=\"DUMMY\" >> fittrak/fittrak/secrets.py
       - run: pipenv run fittrak/manage.py test
 
   build:
@@ -32,6 +35,7 @@ jobs:
 
     steps:
       - checkout
+      - run: cd fittrak-client && yarn install
       - run: cd fittrak-client && yarn build
 
 workflows:
