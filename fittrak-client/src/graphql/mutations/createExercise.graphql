@@ -1,0 +1,11 @@
+mutation createExercise($workoutId: Int!, $exerciseName: String!) {
+  createWorkout(workoutId: $workoutId, exerciseName: $exerciseName) {
+    workout {
+      id
+      exercises {
+        id
+        name
+      }
+    }
+  }
+}
