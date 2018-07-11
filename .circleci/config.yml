@@ -1,10 +1,10 @@
 # Fittrack CircleCI config
 
-version: 2
+version: 2.0
 jobs:
-  test_front_end:
+  test-front-end:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:8.10
 
     working_directory: ~/fittrak/fittrak-client
 
@@ -13,7 +13,7 @@ jobs:
       - run: yarn install
       - run: yarn lint
 
-  test_back_end:
+  test-back-end:
     docker:
       - image: circleci/python:3.6
 
@@ -23,3 +23,21 @@ jobs:
       - checkout
       - run: pipenv install
       - run: pipenv run fittrak/manage.py test
+
+  build:
+    docker:
+      - image: circleci/node:8.10
+
+    working_directory: ~/fittrak
+
+    steps:
+      - checkout
+      - run: cd fittrak-client && yarn build
+
+workflows:
+  version: 2
+  test-backend-and-frontend:
+    jobs:
+      - test-front-end
+      - test-back-back
+      - build
