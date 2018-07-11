@@ -2,13 +2,24 @@
 
 version: 2
 jobs:
-  build_frontend_app:
+  test_front_end:
     docker:
       - image: circleci/node:latest
+
+    working_directory: ~/fittrak/fittrak-client
+
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn lint
+
+  test_back_end:
+    docker:
+      - image: circleci/python:3.6
 
     working_directory: ~/fittrak
 
     steps:
       - checkout
-      - run: cd fittrak-client && yarn install
-      - run: cd fittrak-client && yarn lint
+      - run: pipenv install
+      - run: pipenv run fittrak/manage.py test
