@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <p v-if="workouts.length">
+    <p v-if="activeWorkouts.length">
       <ul>
         <WorkoutItem
          v-for="workout in workouts"
@@ -34,6 +34,12 @@ export default {
     workouts: {
       query: VIEWER_WORKOUTS,
       update: data => data.viewer.workouts
+    }
+  },
+
+  computed: {
+    activeWorkouts() {
+      return this.workouts.filter(workout => workout.isActive);
     }
   },
 
