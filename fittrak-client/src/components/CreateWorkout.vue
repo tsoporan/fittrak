@@ -13,42 +13,48 @@ export default {
 
   methods: {
     createWorkout() {
-      this.$apollo.mutate({
-        mutation: CREATE_WORKOUT,
+      this.$apollo
+        .mutate({
+          mutation: CREATE_WORKOUT,
 
-        update: (store, { data }) => {
-          const newWorkout = data.createWorkout.workout;
-          const res = store.readQuery({ query: VIEWER_WORKOUTS });
+          update: (store, { data }) => {
+            const newWorkout = data.createWorkout.workout;
+            const res = store.readQuery({ query: VIEWER_WORKOUTS });
 
-          res.viewer.workouts.push(newWorkout);
+            // Prepend the latest workout
+            res.viewer.workouts.unshift(newWorkout);
 
-          store.writeQuery({ query: VIEWER_WORKOUTS, data: res });
-        },
+            store.writeQuery({ query: VIEWER_WORKOUTS, data: res });
+          },
 
-        optimisticResponse: {
-          __typename: "Mutation",
-          createWorkout: {
-            __typename: "createWorkout",
-            workout: {
-              __typename: "WorkoutType",
-              id: -1,
-              isActive: true,
-              status: "IN_PROGRESS",
-              exercises: [],
-              dateStarted: null,
-              dateEnded: null,
-              slug: null
+          optimisticResponse: {
+            __typename: "Mutation",
+            createWorkout: {
+              __typename: "createWorkout",
+              workout: {
+                __typename: "WorkoutType",
+                id: -1,
+                isActive: true,
+                status: "IN_PROGRESS",
+                exercises: [],
+                dateStarted: null,
+                dateEnded: null,
+                slug: null
+              }
             }
           }
-        }
-      }).then(resp => {
-        const workout = resp.data.createWorkout.workout;
+        })
+        .then(resp => {
+          const workout = resp.data.createWorkout.workout;
 
-        this.$router.push({ name: "WorkoutDetail", params: { workoutId: workout.id }});
-      }).catch(err => {
-        console.error(err);
-      });
-
+          this.$router.push({
+            name: "WorkoutDetail",
+            params: { workoutId: workout.id }
+          });
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   }
 };

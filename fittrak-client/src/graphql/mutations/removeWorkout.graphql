@@ -1,0 +1,8 @@
+mutation removeWorkout($workoutId: Int!) {
+  removeWorkout(workoutId: $workoutId) {
+    workout {
+      id
+      isActive
+    }
+  }
+}
