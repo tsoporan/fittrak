@@ -1,19 +1,20 @@
 <template>
   <li v-if="workout.isActive">
-    ID: {{ workout.id }}
+    <div>ID: {{ workout.id }}</div>
     Started: {{ workout.dateStarted }}
     Ended: {{ workout.dateEnded }}
+    <div>
     Status: {{ getHumanStatus }}
-    <h3>Exercises: {{ exercises.length }}</h3>
+    </div>
+    <div>Exercises: {{ exercises.length }}</div>
 
+    <div>
     <button v-on:click="removeWorkout">Remove</button>
+    </div>
   </li>
 </template>
 
 <script>
-/*
-import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
-*/
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
 
 const STATUS_MAP = {
@@ -57,3 +58,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+li {
+  padding: 10px;
+}
+</style>

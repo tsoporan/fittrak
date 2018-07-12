@@ -8,7 +8,7 @@ from graphql import GraphQLError
 
 from graphene_django.types import DjangoObjectType
 
-from .models import Workout, Exercise, Set
+from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, Set
 
 class WorkoutType(DjangoObjectType):
     class Meta:
@@ -16,8 +16,13 @@ class WorkoutType(DjangoObjectType):
 
 
 class ExerciseType(DjangoObjectType):
+    name = graphene.String()
+
     class Meta:
         model = Exercise
+
+    def resolve_name(instance, info):
+        return instance.exercise_type.name
 
 
 class SetType(DjangoObjectType):
@@ -39,6 +44,38 @@ class Query:
     def resolve_all_sets(self, info, **kwargs):
         return Set.objects.all()
 
+
+class AddExercise(graphene.Mutation):
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        exercise_name = graphene.String(required=True)
+
+    workout = graphene.Field(WorkoutType)
+    exercise = graphene.Field(ExerciseType)
+
+    def mutate(self, info, workout_id, exercise_name):
+        user = info.context.user
+
+        try:
+            workout = Workout.objects.get(id=workout_id, user=user)
+        except Workout.DoesNotExist:
+            raise GraphQLError("No matching workout.")
+
+        # Allows for users to define their own exercise types based on name
+        exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
+            user=user,
+            name=exercise_name
+        )
+
+        exercise = Exercise.objects.create(
+            user=user,
+            workout=workout,
+            exercise_type=exercise_type
+        )
+
+        return AddExercise(workout=workout, exercise=exercise)
+
+
 class CreateWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 
@@ -55,6 +92,7 @@ class CreateWorkout(graphene.Mutation):
 
         return CreateWorkout(workout=new_workout)
 
+
 class RemoveWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 
@@ -65,12 +103,9 @@ class RemoveWorkout(graphene.Mutation):
         user = info.context.user
 
         try:
-            workout = Workout.objects.get(id=workout_id)
+            workout = Workout.objects.get(id=workout_id, user=user)
         except Workout.DoesNotExist:
             raise GraphQLError("No matching workout.")
-
-        if user != workout.user:
-            raise GraphQLError("Not authorized.")
 
         workout.is_active = False
         workout.save()
