@@ -17,10 +17,24 @@ class ProfileType(DjangoObjectType):
 
 class Viewer(DjangoObjectType):
     profile = graphene.Field(ProfileType)
+    workout = graphene.Field("workouts.schema.WorkoutType", workout_id=graphene.Int())
     workouts = graphene.List("workouts.schema.WorkoutType")
 
     class Meta:
         model = get_user_model()
+
+    def resolve_workout(self, info, workout_id):
+        user  = info.context.user
+
+        try:
+            workout = Workout.objects.get(
+                id=workout_id,
+                user=user
+            )
+        except Workout.DoesNotExist:
+            raise GraphQLError("No workout found.")
+
+        return workout
 
     def resolve_workouts(self, info):
         user = info.context.user
