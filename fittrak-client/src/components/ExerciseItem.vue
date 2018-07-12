@@ -7,6 +7,10 @@
     <div>
     Name: {{ exercise.name }}
     </div>
+
+    <div>
+    Started: {{ exercise.dateStarted }}
+    </div>
   </li>
 </template>
 
