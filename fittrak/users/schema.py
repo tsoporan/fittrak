@@ -17,14 +17,17 @@ class ProfileType(DjangoObjectType):
 
 class Viewer(DjangoObjectType):
     profile = graphene.Field(ProfileType)
-    workout = graphene.Field("workouts.schema.WorkoutType", workout_id=graphene.Int())
+    workout = graphene.Field(
+        "workouts.schema.WorkoutType",
+        workout_id=graphene.Int(required=True)
+    )
     workouts = graphene.List("workouts.schema.WorkoutType")
 
     class Meta:
         model = get_user_model()
 
     def resolve_workout(self, info, workout_id):
-        user  = info.context.user
+        user = info.context.user
 
         try:
             workout = Workout.objects.get(
@@ -40,8 +43,8 @@ class Viewer(DjangoObjectType):
         user = info.context.user
 
         return Workout.objects.filter(
-            user = user,
-            is_active = True
+            user=user,
+            is_active=True
         )
 
 
