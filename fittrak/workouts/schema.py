@@ -45,7 +45,7 @@ class Query:
         return Set.objects.all()
 
 
-class CreateExercise(graphene.Mutation):
+class AddExercise(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
         exercise_name = graphene.String(required=True)
@@ -73,7 +73,7 @@ class CreateExercise(graphene.Mutation):
             exercise_type=exercise_type
         )
 
-        return CreateExercise(workout=workout, exercise=exercise)
+        return AddExercise(workout=workout, exercise=exercise)
 
 
 class CreateWorkout(graphene.Mutation):
