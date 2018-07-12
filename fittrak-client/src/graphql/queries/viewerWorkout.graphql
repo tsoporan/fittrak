@@ -1,0 +1,11 @@
+query workout($workoutId: Int!) {
+  viewer {
+    workout(workoutId: $workoutId) {
+      id
+      exercises {
+        id
+        name
+      }
+    }
+  }
+}
