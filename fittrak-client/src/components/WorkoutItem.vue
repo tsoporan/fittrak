@@ -1,6 +1,11 @@
 <template>
   <li v-if="workout.isActive">
-    <div>ID: {{ workout.id }}</div>
+    <div>
+      ID:
+      <router-link :to="{name: 'WorkoutDetail', params: { workoutId: workout.id }}">
+        {{ workout.id }}
+      </router-link>
+    </div>
     Started: {{ workout.dateStarted }}
     Ended: {{ workout.dateEnded }}
     <div>
