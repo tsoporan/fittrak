@@ -56,7 +56,9 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
         blank=True,
         on_delete=models.CASCADE
     )
+
     exercise_type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
+
     slug = models.CharField(
         max_length=15,
         unique=True,

@@ -4,7 +4,7 @@
     <p v-if="activeWorkouts.length">
       <ul>
         <WorkoutItem
-         v-for="workout in workouts"
+         v-for="workout in activeWorkouts"
           :key="workout.id"
           :workout="workout"
           />
@@ -19,7 +19,7 @@
 <script>
 import WorkoutItem from "./WorkoutItem";
 
-import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
+import WORKOUTS from "@/graphql/queries/workouts.graphql";
 
 export default {
   name: "WorkoutList",
@@ -32,7 +32,7 @@ export default {
 
   apollo: {
     workouts: {
-      query: VIEWER_WORKOUTS,
+      query: WORKOUTS,
       update: data => data.viewer.workouts
     }
   },

@@ -70,7 +70,8 @@ class AddExercise(graphene.Mutation):
         exercise = Exercise.objects.create(
             user=user,
             workout=workout,
-            exercise_type=exercise_type
+            exercise_type=exercise_type,
+            date_started = timezone.now()
         )
 
         return AddExercise(workout=workout, exercise=exercise)

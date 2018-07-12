@@ -5,6 +5,9 @@ mutation addExercise($workoutId: Int!, $exerciseName: String!) {
       exercises {
         id
         name
+        isActive
+        dateStarted
+        dateEnded
       }
     }
   }
