@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import VIEWER_WORKOUTS from "@/graphql/queries/viewerWorkouts.graphql";
+import WORKOUTS from "@/graphql/queries/workouts.graphql";
 import CREATE_WORKOUT from "@/graphql/mutations/createWorkout.graphql";
 
 export default {
@@ -19,12 +19,12 @@ export default {
 
           update: (store, { data }) => {
             const newWorkout = data.createWorkout.workout;
-            const res = store.readQuery({ query: VIEWER_WORKOUTS });
+            const result = store.readQuery({ query: WORKOUTS });
 
             // Prepend the latest workout
-            res.viewer.workouts.unshift(newWorkout);
+            result.viewer.workouts.unshift(newWorkout);
 
-            store.writeQuery({ query: VIEWER_WORKOUTS, data: res });
+            store.writeQuery({ query: WORKOUTS, data: result });
           },
 
           optimisticResponse: {

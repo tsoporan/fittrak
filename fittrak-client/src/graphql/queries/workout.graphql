@@ -5,6 +5,9 @@ query workout($workoutId: Int!) {
       exercises {
         id
         name
+        dateStarted
+        dateEnded
+        isActive
       }
     }
   }

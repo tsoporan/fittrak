@@ -1,4 +1,4 @@
-query viewersWorkouts {
+query workouts {
   viewer {
     workouts {
       id

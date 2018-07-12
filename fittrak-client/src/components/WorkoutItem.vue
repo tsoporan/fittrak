@@ -30,6 +30,7 @@ const STATUS_MAP = {
 
 export default {
   name: "WorkoutItem",
+
   computed: {
     // Human friendly status
     getHumanStatus: data => {
@@ -39,9 +40,7 @@ export default {
       return data.workout.exercises;
     }
   },
-  props: {
-    workout: Object
-  },
+
   methods: {
     removeWorkout() {
       const workoutId = this.$props.workout.id;
@@ -60,6 +59,10 @@ export default {
           console.error("Failed to remove workout", err);
         });
     }
+  },
+
+  props: {
+    workout: Object
   }
 };
 </script>

@@ -24,8 +24,9 @@ export default {
       this.$apollo
         .mutate({
           mutation: ADD_EXERCISE,
+
           variables: {
-            workoutId: workoutId,
+            workoutId,
             exerciseName: this.exerciseName
           }
         })
