@@ -77,7 +77,7 @@ class AddExercise(graphene.Mutation):
         return AddExercise(workout=workout, exercise=exercise)
 
 
-class AddSet(graphen.Mutation):
+class AddSet(graphene.Mutation):
     class Arguments:
         exercise_id = graphene.Int(required=True)
         repetitions = graphene.Int(required=True)
