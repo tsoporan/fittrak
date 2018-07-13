@@ -45,19 +45,12 @@ export default {
     removeWorkout() {
       const workoutId = this.$props.workout.id;
 
-      this.$apollo
-        .mutate({
-          mutation: REMOVE_WORKOUT,
-          variables: {
-            workoutId: workoutId
-          }
-        })
-        .then(resp => {
-          console.log("*** remove resp", resp);
-        })
-        .catch(err => {
-          console.error("Failed to remove workout", err);
-        });
+      this.$apollo.mutate({
+        mutation: REMOVE_WORKOUT,
+        variables: {
+          workoutId: workoutId
+        }
+      });
     }
   },
 

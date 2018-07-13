@@ -21,21 +21,14 @@ export default {
     addExercise() {
       const workoutId = parseInt(this.$route.params.workoutId, 10);
 
-      this.$apollo
-        .mutate({
-          mutation: ADD_EXERCISE,
+      this.$apollo.mutate({
+        mutation: ADD_EXERCISE,
 
-          variables: {
-            workoutId,
-            exerciseName: this.exerciseName
-          }
-        })
-        .then(resp => {
-          console.log("*** resp", resp);
-        })
-        .catch(err => {
-          console.error("** err", err);
-        });
+        variables: {
+          workoutId,
+          exerciseName: this.exerciseName
+        }
+      });
     }
   },
   props: {

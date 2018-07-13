@@ -51,9 +51,6 @@ export default {
             name: "WorkoutDetail",
             params: { workoutId: workout.id }
           });
-        })
-        .catch(err => {
-          console.error(err);
         });
     }
   }
