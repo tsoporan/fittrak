@@ -44,7 +44,7 @@ echo HASHIDS_SALT=\"AndMe\" >> fittrak/secrets.py
 ./manage.py test
 ```
 
-4. Dev
+6. Dev
 ```bash
 ./manage.py runserver_plus # Werkzeug dev server
 ```
