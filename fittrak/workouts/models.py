@@ -77,10 +77,12 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
 
 
 class Set(BaseModel, WorkoutBaseModel):
+    LB = "LB"
+    KG = "KG"
 
     UNITS = [
-        ('KG', 'Kilograms'),
-        ('LB', 'Pounds'),
+        (KG, 'Kilograms'),
+        (LB, 'Pounds'),
     ]
 
     exercise = models.ForeignKey(
@@ -90,7 +92,7 @@ class Set(BaseModel, WorkoutBaseModel):
     )
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
-    unit = models.CharField(max_length=32, choices=UNITS)
+    unit = models.CharField(max_length=32, choices=UNITS, default=LB)
 
     class Meta:
         ordering = ('-id',)
