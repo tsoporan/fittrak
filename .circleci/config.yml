@@ -13,7 +13,7 @@ jobs:
       - run: cd fittrak-client && yarn install
       # TODO: Replace with tests
       - run: cd fittrak-client && yarn lint
-      - run: cd fittrak-client && yarn test
+      - run: cd fittrak-client && yarn test:unit
 
   test-back-end:
     docker:
