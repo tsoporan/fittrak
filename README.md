@@ -58,13 +58,23 @@ expected.
 
 To get it up and running:
 
-1. Installed required packages
+1. Install required packages
 ```bash
 cd fittrak-client
 yarn install
 ```
 
-2. Serve, hot reloaded
+2. Tests
+```bash
+yarn test:unit
+```
+
+3. Dev hot reloaded
 ```bash
 yarn serve
+```
+
+4. Production, note the output path
+```bash
+yarn build
 ```
