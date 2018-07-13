@@ -6,6 +6,7 @@ secrets.py
 build
 webpack-stats.json
 fittrak/assets
+fittrak-client/dist
 
 # Sqlite
 *.db
