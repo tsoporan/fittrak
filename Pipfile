@@ -17,3 +17,4 @@ django-webpack-loader = "*"
 django-registration-redux = "*"
 
 [dev-packages]
+snapshottest = "*"

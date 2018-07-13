@@ -13,6 +13,7 @@ jobs:
       - run: cd fittrak-client && yarn install
       # TODO: Replace with tests
       - run: cd fittrak-client && yarn lint
+      - run: cd fittrak-client && yarn test
 
   test-back-end:
     docker:
@@ -37,7 +38,7 @@ jobs:
     steps:
       - checkout
       - run: cd fittrak-client && yarn install
-      - run: cd fittrak-client && yarn build
+      - run: cd fittrak-client && yarn build --no-babelrc
 
 workflows:
   version: 2
