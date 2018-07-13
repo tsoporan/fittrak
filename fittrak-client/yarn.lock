@@ -3043,8 +3043,8 @@ cssnano-util-same-parent@^4.0.0:
   resolved "https://registry.yarnpkg.com/cssnano-util-same-parent/-/cssnano-util-same-parent-4.0.0.tgz#d2a3de1039aa98bc4ec25001fa050330c2a16dac"
 
 cssnano@^4.0.0-rc.2:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.1.tgz#2c611d3375be46d8908d8e1fb28b8ed875376a10"
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.0.2.tgz#0e79a1829afb6583744ba705fd62516fbfd4fda7"
   dependencies:
     cosmiconfig "^5.0.0"
     cssnano-preset-default "^4.0.0"
@@ -6721,8 +6721,8 @@ postcss-calc@^6.0.0:
     reduce-css-calc "^2.0.0"
 
 postcss-colormin@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-colormin/-/postcss-colormin-4.0.0.tgz#8a21f10b3843590d181eedf2a6a109617b6553ec"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-colormin/-/postcss-colormin-4.0.1.tgz#6f1c18a0155bc69613f2ff13843e2e4ae8ff0bbe"
   dependencies:
     browserslist "^4.0.0"
     color "^3.0.0"
@@ -6778,8 +6778,8 @@ postcss-loader@^2.1.6:
     schema-utils "^0.4.0"
 
 postcss-merge-longhand@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.0.tgz#a4541b668a0a6ac25aa21d930142fd02b41a717c"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-merge-longhand/-/postcss-merge-longhand-4.0.1.tgz#98cdebda7cc1bada4ae03c76ed1c44c97a574019"
   dependencies:
     postcss "^6.0.0"
     postcss-value-parser "^3.0.0"
