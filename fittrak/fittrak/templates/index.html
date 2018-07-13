@@ -6,7 +6,7 @@
 {% block head %}
 
 {% if user.is_authenticated %}
-{% render_bundle 'vendors~app' %}
+{% render_bundle 'chunk-vendors' %}
 {% endif %}
 {% endblock %}
 
