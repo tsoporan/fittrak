@@ -77,6 +77,40 @@ class AddExercise(graphene.Mutation):
         return AddExercise(workout=workout, exercise=exercise)
 
 
+class AddSet(graphene.Mutation):
+    class Arguments:
+        exercise_id = graphene.Int(required=True)
+        repetitions = graphene.Int(required=True)
+        weight = graphene.Int(required=True)
+        unit = graphene.String()
+
+    set = graphene.Field(SetType)
+    exercise = graphene.Field(ExerciseType)
+    workout = graphene.Field(WorkoutType)
+
+    def mutate(self, info, exercise_id, repetitions, weight, unit):
+        user = info.context.user
+
+        try:
+            exercise = ExerciseTypeModel.objects.get(
+                id=exercise_id,
+                user=user
+            )
+        except ExerciseTypeModel.DoesNotExist:
+            raise GraphQLError("No matching exercise.")
+
+        if not exercise.workout:
+            raise GraphQLError("Exercise does not belong to a workout.")
+
+        set = Set.objects.create(
+            user=user,
+            exercise=exercise,
+            repetitions=repetitions,
+            weight=weight
+        )
+
+        return AddSet(set=set, exercise=exercise, workout=exercise.workout)
+
 class CreateWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 

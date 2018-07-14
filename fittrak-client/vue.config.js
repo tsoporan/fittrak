@@ -2,8 +2,10 @@
 
 const BundleTracker = require("webpack-bundle-tracker");
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
-  baseUrl: "/static/",
+  baseUrl: isProd ? "/static/" : "/",
   outputDir: "../fittrak/assets/bundles",
   configureWebpack: {
     plugins: [new BundleTracker({ filename: "../fittrak/webpack-stats.json" })],
