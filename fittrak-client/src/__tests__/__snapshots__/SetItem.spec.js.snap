@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SetItem.vue SetItem renders 1`] = `
+<li>
+  ID: 1 Weight: 1 Reps:
+</li>
+`;
