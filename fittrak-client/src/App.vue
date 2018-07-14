@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <Nav />
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/history">History</router-link> |
+      <router-link to="/settings">Settings</router-link> |
+      <a href="/accounts/logout/">Sign out</a>
+    </nav>
+
     <router-view />
   </div>
 </template>
 
 <script>
-import Nav from "./components/Nav";
-
 export default {
-  name: "App",
-  components: {
-    Nav
-  }
+  name: "App"
 };
 </script>

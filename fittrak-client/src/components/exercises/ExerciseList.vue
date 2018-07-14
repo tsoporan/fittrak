@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ExerciseItem from "./ExerciseItem";
+import ExerciseItem from "@/components/exercises/ExerciseItem";
 import WORKOUT from "@/graphql/queries/workout.graphql";
 
 export default {

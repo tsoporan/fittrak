@@ -12,12 +12,16 @@
     Started: {{ exercise.dateStarted }}
     </div>
 
+    <hr />
+
     <AddSet :exercise=exercise />
+    <SetList :exercise=exercise />
   </li>
 </template>
 
 <script>
-import AddSet from "./AddSet";
+import AddSet from "@/components/sets/AddSet";
+import SetList from "@/components/sets/SetList";
 
 export default {
   name: "ExerciseItem",
@@ -25,7 +29,8 @@ export default {
     exercise: Object
   },
   components: {
-    AddSet
+    AddSet,
+    SetList
   }
 };
 </script>

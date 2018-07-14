@@ -2,7 +2,12 @@
 
 exports[`App.vue App renders 1`] = `
 <div id="app">
-  <navigation-stub></navigation-stub>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/history">History</router-link> |
+    <router-link to="/settings">Settings</router-link> |
+    <a href="/accounts/logout/">Sign out</a>
+  </nav>
   <router-view></router-view>
 </div>
 `;

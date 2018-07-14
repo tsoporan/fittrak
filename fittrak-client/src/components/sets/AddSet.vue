@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ADD_SET from "../graphql/mutations/addSet.graphql";
+import ADD_SET from "@/graphql/mutations/addSet.graphql";
 
 export default {
   name: "AddSet",
@@ -33,6 +33,8 @@ export default {
     addSet() {
       const { exercise } = this.$props;
       const { repetitions, weight, unit } = this;
+
+      if (!(repetitions && weight && unit)) return;
 
       this.$apollo
         .mutate({
