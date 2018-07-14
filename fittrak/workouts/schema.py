@@ -35,6 +35,10 @@ class Query:
     all_exercises = graphene.List(ExerciseType)
     all_sets = graphene.List(SetType)
 
+    exercise = graphene.Field(ExerciseType,
+        exercise_id=graphene.Int(required=True)
+    )
+
     def resolve_all_workouts(self, info, **kwargs):
         return Workout.objects.all()
 
@@ -43,6 +47,19 @@ class Query:
 
     def resolve_all_sets(self, info, **kwargs):
         return Set.objects.all()
+
+    def resolve_exercise(self, info, exercise_id):
+        user = info.context.user
+
+        try:
+            exercise = Exercise.objects.get(
+                id=exercise_id,
+                user=user
+            )
+        except Exercise.DoesNotexist:
+            raise GraphQLError("No matching exercise.")
+
+        return exercise
 
 
 class AddExercise(graphene.Mutation):
