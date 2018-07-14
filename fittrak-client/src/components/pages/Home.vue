@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import CreateWorkout from "@/components/CreateWorkout.vue";
-import WorkoutList from "@/components/WorkoutList.vue";
+import CreateWorkout from "@/components/workouts/CreateWorkout.vue";
+import WorkoutList from "@/components/workouts/WorkoutList.vue";
 
 export default {
   name: "home",

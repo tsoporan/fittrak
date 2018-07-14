@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AddExercise from "./AddExercise";
-import ExerciseList from "./ExerciseList";
+import AddExercise from "@/components/exercises/AddExercise";
+import ExerciseList from "@/components/exercises/ExerciseList";
 
 export default {
   name: "WorkoutDetail",

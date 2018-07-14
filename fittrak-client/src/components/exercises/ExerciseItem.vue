@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import AddSet from "./AddSet";
+import AddSet from "@/components/sets/AddSet";
 
 export default {
   name: "ExerciseItem",
