@@ -34,6 +34,8 @@ export default {
       const { exercise } = this.$props;
       const { repetitions, weight, unit } = this;
 
+      if (!(repetitions && weight && unit)) return;
+
       this.$apollo
         .mutate({
           mutation: ADD_SET,
