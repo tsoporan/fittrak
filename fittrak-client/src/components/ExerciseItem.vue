@@ -11,14 +11,21 @@
     <div>
     Started: {{ exercise.dateStarted }}
     </div>
+
+    <AddSet :exercise=exercise />
   </li>
 </template>
 
 <script>
+import AddSet from "./AddSet";
+
 export default {
   name: "ExerciseItem",
   props: {
     exercise: Object
+  },
+  components: {
+    AddSet
   }
 };
 </script>

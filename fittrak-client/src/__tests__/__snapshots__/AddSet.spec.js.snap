@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddSet.vue AddSet renders 1`] = `
+<div>
+  <form>
+    <input type="text" placeholder="Repetitions">
+    <input type="text" placeholder="Weight">
+    <div>
+      Units:
+      <input type="radio" id="kg" name="unit" value="KG">
+      <label for="kg">KGs</label>
+      <input type="radio" id="lb" name="unit" checked="checked" value="LB">
+      <label for="lb">LBs</label>
+    </div>
+    <button>Add Set</button>
+  </form>
+</div>
+`;

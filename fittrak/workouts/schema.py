@@ -92,11 +92,11 @@ class AddSet(graphene.Mutation):
         user = info.context.user
 
         try:
-            exercise = ExerciseTypeModel.objects.get(
+            exercise = Exercise.objects.get(
                 id=exercise_id,
                 user=user
             )
-        except ExerciseTypeModel.DoesNotExist:
+        except Exercise.DoesNotExist:
             raise GraphQLError("No matching exercise.")
 
         if not exercise.workout:
