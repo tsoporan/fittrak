@@ -75,8 +75,7 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
 
 
 
-
-class Set(BaseModel, WorkoutBaseModel):
+class Set(BaseModel, UserBaseModel, WorkoutBaseModel):
     LB = "LB"
     KG = "KG"
 
