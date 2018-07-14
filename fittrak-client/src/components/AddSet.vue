@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ADD_SET from "../graphql/mutations/addSet.graphql";
+import ADD_SET from "@/graphql/mutations/addSet.graphql";
 
 export default {
   name: "AddSet",
