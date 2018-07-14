@@ -12,14 +12,20 @@ import ADD_EXERCISE from "@/graphql/mutations/addExercise.graphql";
 
 export default {
   name: "AddExercise",
+
   data() {
     return {
       exerciseName: ""
     };
   },
+
   methods: {
     addExercise() {
       const workoutId = parseInt(this.$route.params.workoutId, 10);
+
+      if (!this.exerciseName) {
+        return;
+      }
 
       this.$apollo.mutate({
         mutation: ADD_EXERCISE,
