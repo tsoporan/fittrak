@@ -9,6 +9,7 @@ mutation addSet($exerciseId: Int!, $repetitions: Int!, $weight: Int!, $unit: Str
           repetitions
           weight
           unit
+          isActive
         }
       }
     }
