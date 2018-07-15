@@ -24,7 +24,7 @@ def get_object(Model, options={}):
 
 
 class WorkoutFieldInputType(graphene.InputObjectType):
-    date_ended = graphene.types.datetime.DateTime(required=True)
+    date_ended = graphene.types.datetime.DateTime()
 
 
 class WorkoutType(DjangoObjectType):
