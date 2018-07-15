@@ -1,13 +1,12 @@
 """Workouts GraphQL schema"""
 
-import graphene
-
 from django.utils import timezone
 
+import graphene
 from graphql import GraphQLError
-
 from graphene_django.types import DjangoObjectType
 
+from fittrak.helpers import convert_to_snake
 from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, Set
 
 
@@ -25,9 +24,8 @@ def get_object(Model, options={}):
     return obj
 
 
-class WorkoutFieldType(graphene.ObjectType):
-    name = graphene.String(required=True)
-    value = graphene.String(required=True)
+class WorkoutFieldInputType(graphene.InputObjectType):
+    date_ended = graphene.types.datetime.DateTime(required=True)
 
 
 class WorkoutType(DjangoObjectType):
@@ -164,3 +162,32 @@ class RemoveWorkout(graphene.Mutation):
         workout.save()
 
         return RemoveWorkout(workout=workout)
+
+
+class UpdateWorkout(graphene.Mutation):
+    workout = graphene.Field(WorkoutType)
+
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        workout_fields = graphene.Argument(
+            WorkoutFieldInputType,
+            required=True
+        )
+
+    def mutate(self, info, workout_id, workout_fields):
+        user = info.context.user
+        workout = get_object(Workout, {"id": workout_id, "user": user.id})
+
+        dirty = False
+        # Unpack the fields and update the model
+        for name, value in workout_fields.items():
+            if not hasattr(workout, name):
+                continue
+
+            setattr(workout, name, value)
+            dirty = True
+
+        if dirty:
+            workout.save()
+
+        return UpdateWorkout(workout=workout)
