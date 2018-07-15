@@ -21,7 +21,7 @@ export default {
 
   methods: {
     addExercise() {
-      const workoutId = parseInt(this.$route.params.workoutId, 10);
+      const { workout } = this.$props;
 
       if (!this.exerciseName) {
         return;
@@ -31,14 +31,15 @@ export default {
         mutation: ADD_EXERCISE,
 
         variables: {
-          workoutId,
+          workoutId: workout.id,
           exerciseName: this.exerciseName
         }
       });
     }
   },
+
   props: {
-    workoutId: String
+    workout: Object
   }
 };
 </script>
