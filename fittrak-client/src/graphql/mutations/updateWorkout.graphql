@@ -1,0 +1,9 @@
+mutation updateWorkout($workoutId:Int!, $workoutFields:WorkoutFieldInputType!) {
+  updateWorkout(workoutId: $workoutId, workoutFields: $workoutFields){
+    workout {
+      id
+      dateEnded
+      status
+    }
+  }
+}
