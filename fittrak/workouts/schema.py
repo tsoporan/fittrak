@@ -1,14 +1,31 @@
 """Workouts GraphQL schema"""
 
-import graphene
-
 from django.utils import timezone
 
+import graphene
 from graphql import GraphQLError
-
 from graphene_django.types import DjangoObjectType
 
 from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, Set
+
+
+def get_object(Model, options={}):
+    try:
+        obj = Model.objects.get(
+            is_active=True,
+            **options
+        )
+    except Model.DoesNotExist:
+        raise GraphQLError("No matching {} found.".format(Model.__name__))
+    except Model.MultipleObjectsReturned:
+        raise GraphQLError("Multiple {} found.".format(Model.__name__))
+
+    return obj
+
+
+class WorkoutFieldInputType(graphene.InputObjectType):
+    date_ended = graphene.types.datetime.DateTime(required=True)
+
 
 class WorkoutType(DjangoObjectType):
     class Meta:
@@ -51,13 +68,7 @@ class Query:
     def resolve_exercise(self, info, exercise_id):
         user = info.context.user
 
-        try:
-            exercise = Exercise.objects.get(
-                id=exercise_id,
-                user=user
-            )
-        except Exercise.DoesNotexist:
-            raise GraphQLError("No matching exercise.")
+        exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
 
         return exercise
 
@@ -73,10 +84,7 @@ class AddExercise(graphene.Mutation):
     def mutate(self, info, workout_id, exercise_name):
         user = info.context.user
 
-        try:
-            workout = Workout.objects.get(id=workout_id, user=user)
-        except Workout.DoesNotExist:
-            raise GraphQLError("No matching workout.")
+        workout = get_object(Workout, {"id": workout_id, "user": user.id})
 
         # Allows for users to define their own exercise types based on name
         exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
@@ -108,13 +116,7 @@ class AddSet(graphene.Mutation):
     def mutate(self, info, exercise_id, repetitions, weight, unit):
         user = info.context.user
 
-        try:
-            exercise = Exercise.objects.get(
-                id=exercise_id,
-                user=user
-            )
-        except Exercise.DoesNotExist:
-            raise GraphQLError("No matching exercise.")
+        exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
 
         if not exercise.workout:
             raise GraphQLError("Exercise does not belong to a workout.")
@@ -154,12 +156,37 @@ class RemoveWorkout(graphene.Mutation):
     def mutate(self, info, workout_id):
         user = info.context.user
 
-        try:
-            workout = Workout.objects.get(id=workout_id, user=user)
-        except Workout.DoesNotExist:
-            raise GraphQLError("No matching workout.")
-
+        workout = get_object(Workout, {"id": workout_id, "user": user.id})
         workout.is_active = False
         workout.save()
 
         return RemoveWorkout(workout=workout)
+
+
+class UpdateWorkout(graphene.Mutation):
+    workout = graphene.Field(WorkoutType)
+
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        workout_fields = graphene.Argument(
+            WorkoutFieldInputType,
+            required=True
+        )
+
+    def mutate(self, info, workout_id, workout_fields):
+        user = info.context.user
+        workout = get_object(Workout, {"id": workout_id, "user": user.id})
+
+        dirty = False
+        # Unpack the fields and update the model
+        for name, value in workout_fields.items():
+            if not hasattr(workout, name):
+                continue
+
+            setattr(workout, name, value)
+            dirty = True
+
+        if dirty:
+            workout.save()
+
+        return UpdateWorkout(workout=workout)
