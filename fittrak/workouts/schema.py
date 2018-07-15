@@ -6,7 +6,6 @@ import graphene
 from graphql import GraphQLError
 from graphene_django.types import DjangoObjectType
 
-from fittrak.helpers import convert_to_snake
 from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, Set
 
 
