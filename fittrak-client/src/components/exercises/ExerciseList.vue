@@ -15,39 +15,26 @@
 
 <script>
 import ExerciseItem from "@/components/exercises/ExerciseItem";
-import WORKOUT from "@/graphql/queries/workout.graphql";
 
 export default {
   name: "ExerciseList",
 
-  data() {
-    return {
-      workout: {
-        exercises: []
-      }
-    };
-  },
-
-  apollo: {
-    workout: {
-      query: WORKOUT,
-      variables() {
-        return {
-          workoutId: this.$route.params.workoutId
-        };
-      },
-      update: data => data.viewer.workout
-    }
-  },
-
   computed: {
     activeExercises() {
-      return this.workout.exercises.filter(e => e.isActive);
+      const { workout } = this.$props;
+
+      if (!workout) return [];
+
+      return workout.exercises.filter(e => e.isActive);
     }
   },
 
   components: {
     ExerciseItem
+  },
+
+  props: {
+    workout: Object
   }
 };
 </script>

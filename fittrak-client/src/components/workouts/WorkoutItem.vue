@@ -20,13 +20,8 @@
 </template>
 
 <script>
+import { STATUS_MAP } from "@/components/constants";
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
-
-const STATUS_MAP = {
-  IN_PROGRESS: "In Progress",
-  CANCELLED: "Cancelled",
-  COMPLETE: "Complete"
-};
 
 export default {
   name: "WorkoutItem",

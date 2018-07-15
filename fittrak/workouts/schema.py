@@ -6,7 +6,8 @@ import graphene
 from graphql import GraphQLError
 from graphene_django.types import DjangoObjectType
 
-from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, Set
+from .models import Workout, Exercise, ExerciseType as ExerciseTypeModel, \
+    Set, IN_PROGRESS, CANCELLED, COMPLETE
 
 
 def get_object(Model, options={}):
@@ -23,8 +24,15 @@ def get_object(Model, options={}):
     return obj
 
 
+class WorkoutStatusesEnum(graphene.Enum):
+    IN_PROGRESS = IN_PROGRESS
+    CANCELLED = CANCELLED
+    COMPLETE = COMPLETE
+
+
 class WorkoutFieldInputType(graphene.InputObjectType):
-    date_ended = graphene.types.datetime.DateTime(required=True)
+    date_ended = graphene.types.datetime.DateTime()
+    status = graphene.Field(WorkoutStatusesEnum)
 
 
 class WorkoutType(DjangoObjectType):

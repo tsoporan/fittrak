@@ -7,11 +7,12 @@ from fittrak.utils.models import WorkoutBaseModel, UserBaseModel, BaseModel
 
 import hashids
 
-class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
-    IN_PROGRESS = "IN_PROGRESS"
-    CANCELLED = "CANCELLED"
-    COMPLETE = "COMPLETE"
+IN_PROGRESS = "IN_PROGRESS"
+CANCELLED = "CANCELLED"
+COMPLETE = "COMPLETE"
 
+
+class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     STATUS_CHOICES = (
         (IN_PROGRESS, "In Progress"),
         (CANCELLED, "Cancelled"),
@@ -26,13 +27,17 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         help_text='A human easy to read/share name for workout'
     )
 
-    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=IN_PROGRESS)
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS_CHOICES,
+        default=IN_PROGRESS
+    )
 
     class Meta:
         ordering = ('-id',)
 
     def __str__(self):
-        format_by= "%Y-%m-%d %H:%m"
+        format_by = "%Y-%m-%d %H:%m"
         start = self.date_started.strftime(format_by)
         end = "N/A"
         if self.date_ended:
@@ -72,7 +77,6 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
 
     def __str__(self):
         return self.exercise_type.name
-
 
 
 class Set(BaseModel, UserBaseModel, WorkoutBaseModel):

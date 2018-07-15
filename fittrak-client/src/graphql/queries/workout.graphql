@@ -2,6 +2,7 @@ query workout($workoutId: Int!) {
   viewer {
     workout(workoutId: $workoutId) {
       id
+      status
       exercises {
         id
         name
