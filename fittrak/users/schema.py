@@ -18,10 +18,10 @@ class ProfileType(DjangoObjectType):
 class Viewer(DjangoObjectType):
     profile = graphene.Field(ProfileType)
     workout = graphene.Field(
-        "workouts.schema.WorkoutType",
+        "workouts.graphql.schema.WorkoutType",
         workout_id=graphene.Int(required=True)
     )
-    workouts = graphene.List("workouts.schema.WorkoutType")
+    workouts = graphene.List("workouts.graphql.schema.WorkoutType")
 
     class Meta:
         model = get_user_model()
