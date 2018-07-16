@@ -52,3 +52,20 @@ class AddExercise(graphene.Mutation):
 
         return AddExercise(workout=workout, exercise=exercise)
 
+
+class RemoveExercise(graphene.Mutation):
+    class Arguments:
+        exercise_id = graphene.Int(required=True)
+
+    workout = graphene.Field(WorkoutType)
+    exercise = graphene.Field(ExerciseType)
+
+    def mutate(self, info, exercise_id):
+        user = info.context.user
+
+        exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
+
+        exercise.is_active = False
+        exercise.save()
+
+        return RemoveExercise(exercise=exercise, workout=exercise.workout)
