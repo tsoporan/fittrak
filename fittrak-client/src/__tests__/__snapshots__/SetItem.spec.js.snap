@@ -3,5 +3,7 @@
 exports[`SetItem.vue SetItem renders 1`] = `
 <li>
   ID: 1 Weight: 1 Reps:
+  <hr>
+  <removeset-stub></removeset-stub>
 </li>
 `;
