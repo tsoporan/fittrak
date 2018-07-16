@@ -46,3 +46,21 @@ class AddSet(graphene.Mutation):
         )
 
         return AddSet(set=set, exercise=exercise, workout=exercise.workout)
+
+
+class RemoveSet(graphene.Mutation):
+    class Arguments:
+        set_id = graphene.Int(required=True)
+
+    set = graphene.Field(SetType)
+    exercise = graphene.Field(ExerciseType)
+
+    def mutate(self, info, set_id):
+        user = info.context.user
+
+        set = get_object(Set, {"id": set_id, "user": user.id})
+
+        set.is_active = False
+        set.save()
+
+        return RemoveSet(set=set, exercise=set.exercise)
