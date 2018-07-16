@@ -3,6 +3,7 @@ query workout($workoutId: Int!) {
     workout(workoutId: $workoutId) {
       id
       status
+      isActive
       exercises {
         id
         name
