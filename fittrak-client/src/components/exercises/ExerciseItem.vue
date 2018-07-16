@@ -16,21 +16,28 @@
 
     <AddSet :exercise=exercise />
     <SetList :exercise=exercise />
+
+    <hr />
+    <RemoveExercise :exercise=exercise />
   </li>
 </template>
 
 <script>
 import AddSet from "@/components/sets/AddSet";
 import SetList from "@/components/sets/SetList";
+import RemoveExercise from "@/components/exercises/RemoveExercise";
 
 export default {
   name: "ExerciseItem",
-  props: {
-    exercise: Object
-  },
+
   components: {
     AddSet,
-    SetList
+    SetList,
+    RemoveExercise
+  },
+
+  props: {
+    exercise: Object
   }
 };
 </script>

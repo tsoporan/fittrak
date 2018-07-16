@@ -31,8 +31,9 @@ export default {
     getHumanStatus: data => {
       return STATUS_MAP[data.workout.status];
     },
+
     exercises: data => {
-      return data.workout.exercises;
+      return data.workout.exercises.filter(e => e.isActive);
     }
   },
 

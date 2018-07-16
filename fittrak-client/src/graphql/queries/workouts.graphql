@@ -9,6 +9,7 @@ query workouts {
       slug
       exercises {
         id
+        isActive
       }
     }
   }

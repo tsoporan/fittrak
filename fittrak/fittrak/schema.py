@@ -8,7 +8,7 @@ from workouts.graphql.schema import Query as WorkoutsQuery
 
 from workouts.graphql.workouts import \
     CreateWorkout, RemoveWorkout, UpdateWorkout
-from workouts.graphql.exercises import AddExercise
+from workouts.graphql.exercises import AddExercise, RemoveExercise
 from workouts.graphql.sets import AddSet
 
 from users.schema import Query as UsersQuery
@@ -23,6 +23,7 @@ class RootMutation(graphene.ObjectType):
     remove_workout = RemoveWorkout.Field()
     update_workout = UpdateWorkout.Field()
     add_exercise = AddExercise.Field()
+    remove_exercise = RemoveExercise.Field()
     add_set = AddSet.Field()
 
 
