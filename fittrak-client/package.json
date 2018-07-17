@@ -13,6 +13,7 @@
     "apollo-client": "^2.3.5",
     "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
+    "bulma": "^0.7.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "js-cookie": "^2.2.0",
