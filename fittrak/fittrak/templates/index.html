@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load render_bundle from webpack_loader %}
 
+{% block head %}
+  {{ block.super }}
+  {% render_bundle 'app' 'css' %}
+{% endblock %}
+
 {% block title %}Heya, {{ request.user.username }}{% endblock %}
 
 {% block content %}
@@ -8,7 +13,7 @@
 <div id="app">
   <!-- Vue app loaded -->
 </div>
-{% render_bundle 'chunk-vendors' %}
+{% render_bundle 'chunk-vendors' 'js' %}
 {% render_bundle 'app' 'js' %}
 {% endif %}
 {% endblock %}
