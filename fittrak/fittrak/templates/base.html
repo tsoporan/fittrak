@@ -8,6 +8,7 @@
         <title>FitTrak | {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block head %}
+          {% render_bundle 'app' 'css' %}
         {% endblock %}
     </head>
     <body>

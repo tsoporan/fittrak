@@ -3,18 +3,12 @@
 
 {% block title %}Heya, {{ request.user.username }}{% endblock %}
 
-{% block head %}
-
-{% if user.is_authenticated %}
-{% render_bundle 'chunk-vendors' %}
-{% endif %}
-{% endblock %}
-
 {% block content %}
 {% if user.is_authenticated %}
 <div id="app">
   <!-- Vue app loaded -->
 </div>
-{% render_bundle 'app' %}
+{% render_bundle 'chunk-vendors' %}
+{% render_bundle 'app' 'js' %}
 {% endif %}
 {% endblock %}
