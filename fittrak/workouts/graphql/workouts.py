@@ -9,12 +9,13 @@ from graphene_django.types import DjangoObjectType
 
 from django.utils import timezone
 
-from workouts.models import Workout, IN_PROGRESS, CANCELLED, COMPLETE
+from workouts.models import Workout, PENDING, IN_PROGRESS, CANCELLED, COMPLETE
 
 from .helpers import get_object
 
 
 class WorkoutStatusesEnum(graphene.Enum):
+    PENDING = PENDING
     IN_PROGRESS = IN_PROGRESS
     CANCELLED = CANCELLED
     COMPLETE = COMPLETE
