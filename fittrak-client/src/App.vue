@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import "./../node_modules/bulma/css/bulma.css";
+
 export default {
   name: "App"
 };
