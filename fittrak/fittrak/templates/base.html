@@ -42,11 +42,12 @@
 
         {% block content %}{% endblock content %}
 
-        {% block footer %}
-        <footer>
-          {% now "Y" %}
-        </footer>
-        {% endblock %}
+        <div class="container has-text-centered">
+          <footer>
+            <a href="https://tsoporan.com/fittrak">Made</a> with <span style="color:
+              red">&hearts;</span>. {% now "Y" %}
+          </footer>
+        </div>
       </div>
     </body>
 </html>
