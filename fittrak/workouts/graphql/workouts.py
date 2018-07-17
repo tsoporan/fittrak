@@ -57,6 +57,7 @@ class RemoveWorkout(graphene.Mutation):
         user = info.context.user
 
         workout = get_object(Workout, {"id": workout_id, "user": user.id})
+        workout.updated_at = timezone.now()
         workout.is_active = False
         workout.save()
 
@@ -87,6 +88,7 @@ class UpdateWorkout(graphene.Mutation):
             dirty = True
 
         if dirty:
+            workout.updated_at = timezone.now()
             workout.save()
 
         return UpdateWorkout(workout=workout)
