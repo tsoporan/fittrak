@@ -21,6 +21,7 @@ class WorkoutStatusesEnum(graphene.Enum):
 
 
 class WorkoutFieldInputType(graphene.InputObjectType):
+    date_started = graphene.types.datetime.DateTime()
     date_ended = graphene.types.datetime.DateTime()
     status = graphene.Field(WorkoutStatusesEnum)
 

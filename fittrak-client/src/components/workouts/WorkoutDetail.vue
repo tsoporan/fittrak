@@ -4,6 +4,7 @@
 
     <header id="workout-header">
       <AddExercise :workout=workout />
+      <StartWorkout :workout=workout />
       <FinishWorkout :workout=workout v-if="!complete" />
     </header>
 
@@ -18,6 +19,7 @@ import WORKOUT from "@/graphql/queries/workout.graphql";
 
 import AddExercise from "@/components/exercises/AddExercise";
 import ExerciseList from "@/components/exercises/ExerciseList";
+import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
 
 import { COMPLETE } from "@/components/constants";
@@ -48,6 +50,7 @@ export default {
   components: {
     AddExercise,
     ExerciseList,
+    StartWorkout,
     FinishWorkout
   }
 };
