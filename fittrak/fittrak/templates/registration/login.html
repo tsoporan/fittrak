@@ -2,15 +2,46 @@
 
 {% block title %}Sign in{% endblock %}
 
-{% block form_content %}
-<h2>Sign in</h2>
-<form method="post" action="/accounts/login/">
-  {% csrf_token %}
-  {{ form.as_p }}
+{% block head %}
+{{ block.super }}
+<style>
+div.account-form {
+  margin: 50px 0;
+  background: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+div.account-form h2 {
+  font-size: 30px;
+  text-align: center;
+}
+div.account-form .button-group {
+  justify-content: center;
+}
+</style>
+{% endblock %}
 
-  <div class="control">
-    <button class="button is-primary">Sign in</button> or <a href="{% url "registration_register" %}">Sign up</a>
-  </div>
-  {{ form.non_form_errors }}
-</form>
+{% block form_content %}
+<div class="account-form">
+  <h2>Sign in</h2>
+  <hr />
+  <form method="post" action="/accounts/login/">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <hr />
+
+    <div class="button-group field is-grouped">
+      <div class="control">
+        <input type="submit" class="button is-primary" value="Sign in" />
+      </div>
+      <div class="control">
+        <a class="button is-outlined" href="{% url "registration_register" %}">Sign up</a>
+      </div>
+    </div>
+
+    {{ form.non_form_errors }}
+  </form>
+</div>
 {% endblock %}
