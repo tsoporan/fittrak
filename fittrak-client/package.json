@@ -73,7 +73,8 @@
       "\\.(gql|graphql)$": "jest-transform-graphql"
     },
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "snapshotSerializers": [
       "jest-serializer-vue"
