@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 
+{% block head %}
+{{ block.super }}
+<style>
+div.account-form {
+  margin: 50px 0;
+  background: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+div.account-form h2 {
+  font-size: 30px;
+  text-align: center;
+}
+div.account-form .button-group {
+  justify-content: center;
+}
+
+ul.errorlist {
+  margin: 25px 0 0;
+  font-size: 14px;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-  {% block form_content %}{% endblock %}
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+      {% block form_content %}{% endblock %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

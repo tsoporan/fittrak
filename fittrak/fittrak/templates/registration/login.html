@@ -3,14 +3,42 @@
 {% block title %}Sign in{% endblock %}
 
 {% block form_content %}
-<h2>Sign in</h2>
-<form method="post" action="/accounts/login/">
-  {% csrf_token %}
-  {{ form.as_p }}
+<div class="account-form">
+  <h2>Sign in</h2>
 
-  <div class="control">
-    <button class="button is-primary">Sign in</button> or <a href="{% url "registration_register" %}">Sign up</a>
-  </div>
-  {{ form.non_form_errors }}
-</form>
+  <hr />
+
+  <form method="post" action="/accounts/login/">
+    {% csrf_token %}
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" name="username" autofocus="" maxlength="254" required=""
+        id="id_username" placeholder="Username">
+        {{ form.username.errors }}
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="password" name="password" required="" id="id_password"
+        placeholder="Password">
+        {{ form.password.errors }}
+      </div>
+    </div>
+
+    {{ form.non_field_errors }}
+    <hr />
+
+    <div class="button-group field is-grouped">
+      <div class="control">
+        <input type="submit" class="button is-primary" value="Sign in" />
+      </div>
+      <div class="control">
+        <a class="button is-outlined" href="{% url "registration_register" %}">Sign up</a>
+      </div>
+    </div>
+
+  </form>
+</div>
 {% endblock %}

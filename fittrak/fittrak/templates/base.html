@@ -7,9 +7,27 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>FitTrak | {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         {% block head %}
           {% render_bundle 'chunk-vendors' 'css' %}
         {% endblock %}
+
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+        <style>
+          body, html {
+            height: 100%;
+            width: 100%;
+            background: #e7e7e7;
+          }
+          header {
+            background: #17B890;
+            color: #ffffff;
+            padding: 0 10px;
+            font-size: 36px;
+            font-family: "Kaushan Script", cursive;
+          }
+        </style>
     </head>
     <body>
       <noscript>
@@ -24,11 +42,12 @@
 
         {% block content %}{% endblock content %}
 
-        {% block footer %}
-        <footer>
-          {% now "Y" %}
-        </footer>
-        {% endblock %}
+        <div class="container has-text-centered">
+          <footer>
+            <a href="https://tsoporan.com/fittrak">Made</a> with <span style="color:
+              red">&hearts;</span>. {% now "Y" %}
+          </footer>
+        </div>
       </div>
     </body>
 </html>
