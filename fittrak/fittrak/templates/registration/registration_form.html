@@ -3,14 +3,58 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block form_content %}
-<h2>Sign up for a free account</h2>
-<form method="post" action="/accounts/register/">
-  {% csrf_token %}
-  {{ form.as_p }}
+<div class="account-form">
+  <h2>Sign up for a free account</h2>
 
-  <div class="control">
-    <button class="button is-primary">Sign up</button> or <a href="{% url "auth_login" %}">Sign
-      in</a>
-  </div>
-</form>
+  <hr />
+
+  <form method="post" action="/accounts/register/">
+    {% csrf_token %}
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" name="username" maxlength="150" autofocus="" required=""
+        id="id_username" placeholder="Username">
+        {{ form.username.errors }}
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="email" name="email" required="" id="id_email" placeholder="Email">
+        {{ form.email.errors }}
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="password" name="password" required="" id="id_password"
+        placeholder="Password">
+        {{ form.password }}
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="password" name="password2" required="" id="id_password2"
+        placeholder="Password confirmation">
+        {{ form.password2.errors }}
+      </div>
+    </div>
+
+    {{ form.non_field_errors }}
+    <hr />
+
+
+    <div class="button-group field is-grouped">
+      <div class="control">
+        <input type="submit" class="button is-primary" value="Sign up" />
+      </div>
+      <div class="control">
+        <a class="button is-outlined" href="{% url "auth_login" %}">Sign In</a>
+      </div>
+    </div>
+
+  </form>
+</div>
 {% endblock %}

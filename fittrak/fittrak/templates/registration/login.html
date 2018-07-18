@@ -2,34 +2,32 @@
 
 {% block title %}Sign in{% endblock %}
 
-{% block head %}
-{{ block.super }}
-<style>
-div.account-form {
-  margin: 50px 0;
-  background: #fff;
-  padding: 10px;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-}
-div.account-form h2 {
-  font-size: 30px;
-  text-align: center;
-}
-div.account-form .button-group {
-  justify-content: center;
-}
-</style>
-{% endblock %}
-
 {% block form_content %}
 <div class="account-form">
   <h2>Sign in</h2>
+
   <hr />
+
   <form method="post" action="/accounts/login/">
     {% csrf_token %}
-    {{ form.as_p }}
 
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" name="username" autofocus="" maxlength="254" required=""
+        id="id_username" placeholder="Username">
+        {{ form.username.errors }}
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="password" name="password" required="" id="id_password"
+        placeholder="Password">
+        {{ form.password.errors }}
+      </div>
+    </div>
+
+    {{ form.non_field_errors }}
     <hr />
 
     <div class="button-group field is-grouped">
@@ -41,7 +39,6 @@ div.account-form .button-group {
       </div>
     </div>
 
-    {{ form.non_form_errors }}
   </form>
 </div>
 {% endblock %}
