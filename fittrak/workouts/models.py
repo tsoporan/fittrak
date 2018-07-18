@@ -7,6 +7,7 @@ from fittrak.utils.models import WorkoutBaseModel, UserBaseModel, BaseModel
 
 import hashids
 
+PENDING = "PENDING"
 IN_PROGRESS = "IN_PROGRESS"
 CANCELLED = "CANCELLED"
 COMPLETE = "COMPLETE"
@@ -14,6 +15,7 @@ COMPLETE = "COMPLETE"
 
 class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     STATUS_CHOICES = (
+        (PENDING, "Pending"),
         (IN_PROGRESS, "In Progress"),
         (CANCELLED, "Cancelled"),
         (COMPLETE, "Complete"),
@@ -30,7 +32,7 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     status = models.CharField(
         max_length=32,
         choices=STATUS_CHOICES,
-        default=IN_PROGRESS
+        default=PENDING
     )
 
     class Meta:

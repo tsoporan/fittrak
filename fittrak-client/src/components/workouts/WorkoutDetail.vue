@@ -4,6 +4,7 @@
 
     <header id="workout-header">
       <AddExercise :workout=workout />
+      <StartWorkout :workout=workout v-if="pending" />
       <FinishWorkout :workout=workout v-if="!complete" />
     </header>
 
@@ -18,9 +19,10 @@ import WORKOUT from "@/graphql/queries/workout.graphql";
 
 import AddExercise from "@/components/exercises/AddExercise";
 import ExerciseList from "@/components/exercises/ExerciseList";
+import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
 
-import { COMPLETE } from "@/components/constants";
+import { COMPLETE, PENDING} from "@/components/constants";
 
 export default {
   name: "WorkoutDetail",
@@ -42,12 +44,18 @@ export default {
       if (this.workout) {
         return this.workout.status === COMPLETE;
       }
+    },
+    pending() {
+      if (this.workout) {
+        return this.workout.status === PENDING;
+      }
     }
   },
 
   components: {
     AddExercise,
     ExerciseList,
+    StartWorkout,
     FinishWorkout
   }
 };

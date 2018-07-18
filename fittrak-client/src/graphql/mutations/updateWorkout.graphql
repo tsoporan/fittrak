@@ -3,6 +3,7 @@ mutation updateWorkout($workoutId:Int!, $workoutFields:WorkoutFieldInputType!) {
     workout {
       id
       dateEnded
+      dateStarted
       status
     }
   }
