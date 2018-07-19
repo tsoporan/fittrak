@@ -23,7 +23,7 @@
     <div class="navbar-end">
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
-        <div>Heya, <strong>{{ username }}</strong></div>
+        <div>Heya, <strong>{{ viewer.username }}</strong></div>
       </a>
       <div class="navbar-dropdown">
         <a href="/accounts/logout/" class="navbar-item">
@@ -41,12 +41,23 @@
 </template>
 
 <script>
+import VIEWER from "@/graphql/queries/viewer.graphql";
+
 export default {
   name: "Navigation",
   data() {
     return {
-      username: "tsoporan"
+      viewer: {
+        username: "stranger"
+      }
     };
+  },
+
+  apollo: {
+    viewer: {
+      query: VIEWER,
+      update: data => data.viewer
+    }
   }
 };
 </script>
