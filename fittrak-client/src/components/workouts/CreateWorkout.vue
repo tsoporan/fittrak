@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="createWorkout">Create New Workout</button>
+    <button class="button is-primary is-outlined" v-on:click="createWorkout">Create New Workout</button>
   </div>
 </template>
 

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button v-on:click.prevent="removeSet">Remove Set</button>
-  </div>
+  <button class="button" v-on:click.prevent="removeSet">Remove Set</button>
 </template>
 
 <script>

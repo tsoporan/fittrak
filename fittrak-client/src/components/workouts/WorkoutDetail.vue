@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <h2>Workout Detail</h2>
+  <div class="page-content">
+    <h2 class="page-header">Workout Details</h2>
+    <hr />
 
-    <header id="workout-header">
-      <AddExercise :workout=workout />
-      <StartWorkout :workout=workout v-if="pending" />
-      <FinishWorkout :workout=workout v-if="!complete" />
-    </header>
+    <div class="field is-grouped">
+      <p class="control">
+        <AddExercise :workout=workout />
+      </p>
+      <p class="control">
+        <StartWorkout :workout=workout v-if="pending" />
+      </p>
+      <p class="control">
+        <FinishWorkout :workout=workout v-if="!complete" />
+      </p>
+    </div>
 
     <div id="exercises">
       <ExerciseList :workout=workout />
@@ -22,7 +29,7 @@ import ExerciseList from "@/components/exercises/ExerciseList";
 import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
 
-import { COMPLETE, PENDING} from "@/components/constants";
+import { COMPLETE, PENDING } from "@/components/constants";
 
 export default {
   name: "WorkoutDetail",

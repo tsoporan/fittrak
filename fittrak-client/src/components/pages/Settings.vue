@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h2>Settings</h2>
+  <div class="page-content">
+    <h2 class="page-header">Settings</h2>
+    <hr />
+    <p>Nothing to see here.</p>
   </div>
 </template>
 

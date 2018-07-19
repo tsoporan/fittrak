@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button v-on:click.prevent="removeExercise">Remove</button>
-  </div>
+  <button class="button" v-on:click.prevent="removeExercise">Remove Exercise</button>
 </template>
 
 <script>

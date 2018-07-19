@@ -1,18 +1,30 @@
 <template>
-  <div>
-    <form>
-      <input v-model="repetitions" type="text" placeholder="Repetitions" />
-      <input v-model="weight" type="text" placeholder="Weight" />
-      <div>
-        Units:
-        <input v-model="unit" type="radio" id="kg" name="unit" value="KG" />
-        <label for="kg">KGs</label>
-        <input v-model="unit" type="radio" id="lb" name="unit" checked value="LB" />
-        <label for="lb">LBs</label>
-      </div>
-      <button v-on:click.prevent="addSet">Add Set</Button>
-    </form>
-  </div>
+  <form>
+    <div class="field is-grouped">
+      <p class="control">
+        <input class="input" v-model="repetitions" type="text" placeholder="Repetitions" />
+      </p>
+
+      <p class="control">
+        <input class="input" v-model="weight" type="text" placeholder="Weight" />
+      </p>
+
+      <p class="control">
+        <label class="radio">
+          <input type="radio" name="unit" v-model="unit" checked id="lb" value="LB">
+          LBs
+        </label>
+        <label class="radio">
+          <input type="radio" name="unit" v-model="unit" id="kg" value="KG">
+          KGs
+        </label>
+      </p>
+
+      <p class="control">
+        <button class="button is-primary" v-on:click.prevent="addSet">Add Set</Button>
+      </p>
+    </div>
+  </form>
 </template>
 
 <script>

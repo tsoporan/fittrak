@@ -1,24 +1,50 @@
 <template>
   <li>
-    ID: {{ set.id }}
-    Weight:
-    <input v-if="editing" v-model="weight" type="text" /> <p v-else>{{ set.weight }} {{ unit }}</p>
-    Reps:
-    <input v-if="editing" v-model="repetitions" type="text" /> <p v-else>{{ set.repetitions }}</p>
+    <p>ID: {{ set.id }}</p>
 
     <div v-if="editing">
-      <input v-model="unit" type="radio" id="kg" name="unit" value="KG" />
-      <label for="kg">KGs</label>
-      <input v-model="unit" type="radio" id="lb" name="unit" checked value="LB" />
-      <label for="lb">LBs</label>
+      <div class="field is-grouped">
+        <p class="control">
+          <input class="input" v-if="editing" v-model="weight" type="text" />
+        </p>
+
+        <p class="control">
+          <input class="input" v-if="editing" v-model="repetitions" type="text" />
+        </p>
+
+        <p class="control">
+          <label class="radio">
+            <input type="radio" name="unit" v-model="unit" checked id="lb" value="LB">
+            LBs
+          </label>
+          <label class="radio">
+            <input type="radio" name="unit" v-model="unit" id="kg" value="KG">
+            KGs
+          </label>
+        </p>
+
+        <div class="control">
+          <button class="button is-primary" v-on:click.prevent="updateSet">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div v-else>
+      <p>Weight: {{ set.weight }} {{ set.unit }}</p>
+      <p>Repetitions: {{ set.repetitions }}</p>
     </div>
 
     <hr />
 
-    <RemoveSet :set=set />
+    <div class="field is-grouped">
+      <p class="control">
+        <RemoveSet :set=set />
+      </p>
 
-    <button v-if="!editing" v-on:click.prevent="editSet">Edit</button>
-    <button v-else v-on:click.prevent="updateSet">Save</button>
+      <p class="control">
+        <button class="button" v-if="!editing" v-on:click.prevent="editSet">Edit</button>
+      </p>
+    </div>
   </li>
 </template>
 

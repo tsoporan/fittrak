@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button v-on:click="startWorkout">Start Workout</button>
-  </div>
+  <button class="button is-primary" v-on:click="startWorkout">Start Workout</button>
 </template>
 
 <script>
@@ -20,8 +18,8 @@ export default {
         variables: {
           workoutId: workout.id,
           workoutFields: {
-              dateStarted: new Date(),
-              status: IN_PROGRESS
+            dateStarted: new Date(),
+            status: IN_PROGRESS
           }
         }
       });
@@ -29,7 +27,7 @@ export default {
   },
 
   props: {
-      workout: Object
+    workout: Object
   }
-}
+};
 </script>

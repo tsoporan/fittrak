@@ -1,5 +1,5 @@
 <template>
-  <li v-if="workout.isActive">
+  <li>
     <div>
       ID:
       <router-link :to="{name: 'WorkoutDetail', params: { workoutId: workout.id }}">
@@ -13,8 +13,10 @@
     </div>
     <div>Exercises: {{ exercises.length }}</div>
 
+    <br />
+
     <div>
-    <button v-on:click="removeWorkout">Remove</button>
+      <button class="button is-small is-outlined" v-on:click="removeWorkout">Remove</button>
     </div>
   </li>
 </template>

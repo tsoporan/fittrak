@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h2>History</h2>
+  <div class="page-content">
+    <h2 class="page-header">History</h2>
+    <hr />
+    <p>Nothing to see here.</p>
   </div>
 </template>
 
