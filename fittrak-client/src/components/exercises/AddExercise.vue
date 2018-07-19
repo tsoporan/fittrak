@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <form>
-      <input v-model="exerciseName" type="text" placeholder="Exercise name ...">
-      <button v-on:click.prevent="addExercise">Add Exercise</button>
-    </form>
-  </div>
+  <form>
+    <div class="field has-addons">
+      <p class="control">
+      <input class="input" v-model="exerciseName" type="text" placeholder="Exercise name ...">
+      </p>
+      <p class="control">
+      <button class="button is-primary is-outlined" v-on:click.prevent="addExercise">Add Exercise</button>
+      </p>
+    </div>
+  </form>
 </template>
 
 <script>

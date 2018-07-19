@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <form>
-      <button v-on:click.prevent="finishWorkout">Finish Workout</button>
-    </form>
-  </div>
+   <button class="button is-outlined" v-on:click.prevent="finishWorkout">Finish Workout</button>
 </template>
 
 <script>

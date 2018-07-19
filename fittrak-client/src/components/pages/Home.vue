@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <WorkoutList title="Current Workouts" />
+  <div class="page-content">
+    <h2 class="page-header">Ongoing Workouts</h2>
+    <hr />
     <CreateWorkout />
+    <WorkoutList  />
   </div>
 </template>
 

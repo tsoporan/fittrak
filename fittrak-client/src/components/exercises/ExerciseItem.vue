@@ -1,24 +1,23 @@
 <template>
   <li>
+    <h2>Exercise Details</h2>
     <div>
-    ID: {{ exercise.id }}
-    </div>
-
-    <div>
-    Name: {{ exercise.name }}
-    </div>
-
-    <div>
-    Started: {{ exercise.dateStarted }}
+      <p>ID: #{{ exercise.id }}</p>
+      <p>Name: {{ exercise.name }}</p>
+      <p>Started: {{ exercise.dateStarted }}</p>
+      <br />
+      <RemoveExercise :exercise=exercise />
     </div>
 
     <hr />
 
+    <h2> Add Set </h2>
     <AddSet :exercise=exercise />
-    <SetList :exercise=exercise />
 
     <hr />
-    <RemoveExercise :exercise=exercise />
+
+    <h2>Set List</h2>
+    <SetList :exercise=exercise />
   </li>
 </template>
 
@@ -44,7 +43,7 @@ export default {
 
 <style scoped>
 li {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
   padding: 10px;
 }
 </style>

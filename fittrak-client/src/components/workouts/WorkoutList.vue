@@ -1,15 +1,12 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
-    <p v-if="activeWorkouts.length">
-      <ul>
-        <WorkoutItem
-         v-for="workout in activeWorkouts"
-          :key="workout.id"
-          :workout="workout"
-          />
-      </ul>
-    </p>
+    <ul class="workout-list" v-if="activeWorkouts.length">
+      <WorkoutItem
+        v-for="workout in activeWorkouts"
+        :key="workout.id"
+        :workout="workout"
+        />
+    </ul>
     <p v-else>
       No workouts!
     </p>
@@ -45,10 +42,16 @@ export default {
 
   components: {
     WorkoutItem
-  },
-
-  props: {
-    title: String
   }
 };
 </script>
+
+<style scoped>
+ul.workout-list {
+  margin: 20px 0;
+}
+ul.workout-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+</style>

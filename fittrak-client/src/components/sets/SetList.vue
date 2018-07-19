@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Set List</h3>
     <ul v-if="activeSets.length">
       <SetItem
         v-for="set in activeSets"
@@ -8,7 +7,7 @@
         :set="set"
       />
     </ul>
-    <p v-else> 
+    <p v-else>
       No sets!
     </p>
   </div>
