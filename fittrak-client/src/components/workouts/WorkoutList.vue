@@ -33,7 +33,7 @@ export default {
   apollo: {
     workouts: {
       query: WORKOUTS,
-      update: data => data.viewer.workouts
+      update: data => data.workouts
     }
   },
 

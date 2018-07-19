@@ -22,7 +22,7 @@ export default {
             const result = store.readQuery({ query: WORKOUTS });
 
             // Prepend the latest workout
-            result.viewer.workouts.unshift(newWorkout);
+            result.workouts.unshift(newWorkout);
 
             store.writeQuery({ query: WORKOUTS, data: result });
           },
