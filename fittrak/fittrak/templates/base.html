@@ -20,14 +20,43 @@
             width: 100%;
             background: #e7e7e7;
           }
-          header {
-            background: #17B890;
-            color: #ffffff;
+          nav h1 {
             padding: 0 10px;
-            font-size: 36px;
+            font-size: 28px;
             font-family: "Kaushan Script", cursive;
+            color: #fff;
+          }
+          nav .navbar-burger {
+            height: auto;
           }
         </style>
+
+        <script type="text/javascript">
+          document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+              // Add a click event on each of them
+              $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+
+                  // Get the target from the "data-target" attribute
+                  const target = el.dataset.target;
+                  const $target = document.getElementById(target);
+
+                  // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                  el.classList.toggle('is-active');
+                  $target.classList.toggle('is-active');
+
+                });
+              });
+            }
+          });
+        </script>
     </head>
     <body>
       <noscript>
@@ -35,9 +64,13 @@
       </noscript>
       <div id="wrapper">
         {% block header %}
-        <header>
-          <h1 id="logo">FitTrak</h1>
-        </header>
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://fittrak.ca">
+              <h1 id="logo">FitTrak</h1>
+            </a>
+          </div>
+        </nav>
         {% endblock %}
 
         {% block content %}{% endblock content %}

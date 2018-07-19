@@ -11,23 +11,33 @@ from .helpers import get_object
 
 
 class Query:
-    all_workouts = graphene.List(WorkoutType)
-    all_exercises = graphene.List(ExerciseType)
-    all_sets = graphene.List(SetType)
+    workouts = graphene.List(WorkoutType)
+
+    workout = graphene.Field(
+        WorkoutType,
+        workout_id=graphene.Int(required=True)
+    )
 
     exercise = graphene.Field(
         ExerciseType,
         exercise_id=graphene.Int(required=True)
     )
 
-    def resolve_all_workouts(self, info, **kwargs):
-        return Workout.objects.all()
+    def resolve_workouts(self, info):
+        user = info.context.user
 
-    def resolve_all_exercises(self, info, **kwargs):
-        return Exercise.objects.select_related('workout').all()
+        return Workout.objects.filter(
+            user=user,
+            is_active=True
+        )
 
-    def resolve_all_sets(self, info, **kwargs):
-        return Set.objects.all()
+    def resolve_workout(self, info, workout_id):
+        user = info.context.user
+
+        workout = get_object(Workout, {"id": workout_id, "user": user.id})
+
+        return workout
+
 
     def resolve_exercise(self, info, exercise_id):
         user = info.context.user

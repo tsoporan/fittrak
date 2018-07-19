@@ -6,7 +6,10 @@
   {% render_bundle 'app' 'css' %}
 {% endblock %}
 
+{% block header %}{% endblock %}
+
 {% block title %}Heya, {{ request.user.username }}{% endblock %}
+
 
 {% block content %}
 {% if user.is_authenticated %}

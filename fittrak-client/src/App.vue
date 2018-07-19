@@ -1,20 +1,33 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/history">History</router-link> |
-      <router-link to="/settings">Settings</router-link> |
-      <a href="/accounts/logout/">Sign out</a>
-    </nav>
 
-    <router-view />
+    <Navigation />
+
+    <div class="container">
+      <router-view />
+    </div>
+
   </div>
 </template>
 
 <script>
 import "./../node_modules/bulma/css/bulma.css";
 
+import Navigation from "@/components/Navigation";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    Navigation
+  }
 };
 </script>
+
+<style>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #e7e7e7;
+}
+</style>

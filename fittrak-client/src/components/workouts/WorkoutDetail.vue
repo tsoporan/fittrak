@@ -35,7 +35,7 @@ export default {
           workoutId: this.$route.params.workoutId
         };
       },
-      update: data => data.viewer.workout
+      update: data => data.workout
     }
   },
 

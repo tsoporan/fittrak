@@ -1,16 +1,14 @@
 query workouts {
-  viewer {
-    workouts {
+  workouts {
+    id
+    dateStarted
+    dateEnded
+    isActive
+    status
+    slug
+    exercises {
       id
-      dateStarted
-      dateEnded
       isActive
-      status
-      slug
-      exercises {
-        id
-        isActive
-      }
     }
   }
 }
