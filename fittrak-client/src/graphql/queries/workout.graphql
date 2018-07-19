@@ -1,16 +1,14 @@
 query workout($workoutId: Int!) {
-  viewer {
-    workout(workoutId: $workoutId) {
+  workout(workoutId: $workoutId) {
+    id
+    status
+    isActive
+    exercises {
       id
-      status
+      name
+      dateStarted
+      dateEnded
       isActive
-      exercises {
-        id
-        name
-        dateStarted
-        dateEnded
-        isActive
-      }
     }
   }
 }
