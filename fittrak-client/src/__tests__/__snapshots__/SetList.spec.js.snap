@@ -2,7 +2,6 @@
 
 exports[`SetList.vue SetList renders 1`] = `
 <div>
-  <h3>Set List</h3>
   <p>
     No sets!
   </p>

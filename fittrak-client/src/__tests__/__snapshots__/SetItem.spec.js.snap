@@ -2,13 +2,19 @@
 
 exports[`SetItem.vue SetItem renders 1`] = `
 <li>
-  ID: 1 Weight:
-  <p>1 </p>
-  Reps:
-  <p></p>
-  <!---->
+  <p>ID: 1</p>
+  <div>
+    <p>Weight: 1 </p>
+    <p>Repetitions: </p>
+  </div>
   <hr>
-  <removeset-stub></removeset-stub>
-  <button>Edit</button>
+  <div class="field is-grouped">
+    <p class="control">
+      <removeset-stub></removeset-stub>
+    </p>
+    <p class="control">
+      <button class="button">Edit</button>
+    </p>
+  </div>
 </li>
 `;
