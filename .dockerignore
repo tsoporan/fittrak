@@ -1,0 +1,5 @@
+fittrak-client
+infra
+*.pyc
+*.sqlite3
+*.md
