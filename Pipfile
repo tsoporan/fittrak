@@ -17,6 +17,7 @@ django-webpack-loader = "*"
 django-registration-redux = "*"
 gunicorn = "*"
 django-allow-cidr = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 snapshottest = "*"
