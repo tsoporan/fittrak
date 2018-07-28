@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 HASHIDS_SALT = os.environ.get("DJANGO_HASHIDS_SALT")
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 ALLOW_CIDR_NETS = ['10.0.0.0/24', '10.1.1.0/24']
 
 # Application definition
@@ -91,13 +91,22 @@ WSGI_APPLICATION = 'fittrak.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fittrak',
+        'NAME': os.getenv('PG_DATABASE'),
         'USER': os.getenv('PG_USER'),
         'PASSWORD': os.getenv('PG_PASSWORD'),
         'HOST': os.getenv('PG_HOST'),
         'PORT': os.getenv('PG_PORT'),
     }
 }
+
+# Patch the DB to be sqlite in test env
+if 'test' in sys.argv:
+    defaults = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'fittrak_test'
+    }
+
+    DATABASES['default'] = defaults
 
 
 # Password validation
@@ -184,7 +193,8 @@ CSRF_HEADER_NAME = "x-csrftoken"
 CSRF_USE_SESSIONS = False  # Will use cookie
 
 X_FRAME_OPTIONS = 'DENY'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# Need SSL
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
