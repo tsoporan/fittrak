@@ -24,9 +24,10 @@ jobs:
     steps:
       - checkout
       - run: pipenv install
-      - run: export DJANGO_SECRET_KEY=DUMMY
-      - run: export DJANGO_HASHIDS_SALT=DUMMY
-      - run: pipenv run fittrak/manage.py test
+      - run: |
+          export DJANGO_SECRET_KEY=DUMMY
+          export DJANGO_HASHIDS_SALT=DUMMY
+          pipenv run fittrak/manage.py test
 
   build:
     docker:
