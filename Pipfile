@@ -16,6 +16,7 @@ django-graphql-jwt = "*"
 django-webpack-loader = "*"
 django-registration-redux = "*"
 gunicorn = "*"
+django-allow-cidr = "*"
 
 [dev-packages]
 snapshottest = "*"
