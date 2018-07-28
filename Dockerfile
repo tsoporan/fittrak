@@ -6,9 +6,14 @@ WORKDIR /usr/src/app
 
 COPY Pipfile Pipfile.lock . ./
 
-RUN pip install pipenv
-RUN pipenv install --system --ignore-pipfile
+# Required psql deps
+RUN apk update && \
+ apk add postgresql-libs && \
+ apk add --virtual .build-deps gcc musl-dev postgresql-dev && \
+ pip install pipenv && \
+ pipenv install --system --ignore-pipfile && \
+ apk --purge del .build-deps
 
 EXPOSE 8000
 
-CMD ["sh", "start_gunicorn.sh"]
+CMD ["sh", "start.sh"]
