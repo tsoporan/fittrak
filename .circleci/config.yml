@@ -1,6 +1,7 @@
 # Fittrack CircleCI config
 
 version: 2.0
+
 jobs:
   test-front-end:
     docker:
@@ -11,7 +12,6 @@ jobs:
     steps:
       - checkout
       - run: cd fittrak-client && yarn install
-      # TODO: Replace with tests
       - run: cd fittrak-client && yarn lint
       - run: cd fittrak-client && yarn test:unit
 
@@ -24,9 +24,8 @@ jobs:
     steps:
       - checkout
       - run: pipenv install
-      # TODO: Swap to env vars and configure in Circle CI
-      - run: echo SECRET_KEY=\"DUMMY\" > fittrak/fittrak/secrets.py
-      - run: echo HASHIDS_SALT=\"DUMMY\" >> fittrak/fittrak/secrets.py
+      - run: export DJANGO_SECRET_KEY=DUMMY
+      - run: export DJANGO_HASHIDS_SALT=DUMMY
       - run: pipenv run fittrak/manage.py test
 
   build:
