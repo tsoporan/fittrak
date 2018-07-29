@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: gcr.io/fittrak-201323/fittrak-static:v6
+          image: gcr.io/fittrak-201323/fittrak-static:v7
           ports:
             - containerPort: 80
 ---
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: gcr.io/fittrak-201323/fittrak-app:v2
+          image: gcr.io/fittrak-201323/fittrak-app:v3
           ports:
             - containerPort: 8000
           readinessProbe:
