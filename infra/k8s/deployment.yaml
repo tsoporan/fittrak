@@ -1,0 +1,93 @@
+# Fittrak deployment /w Postgres (Cloud SQL) and static serving
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fittrak-static
+  labels:
+    app: fittrak-static
+spec:
+  template:
+    metadata:
+      labels:
+        app: fittrak-static
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/fittrak-201323/fittrak-static:v6
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fittrak-web
+  labels:
+    app: fittrak-web
+spec:
+  template:
+    metadata:
+      labels:
+        app: fittrak-web
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/fittrak-201323/fittrak-app:v2
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /accounts/login/
+              port: 8000
+            periodSeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          env:
+            - name: PG_HOST
+              value: 127.0.0.1
+
+            - name: PG_PORT
+              value: "5432"
+
+            - name: PG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-credentials
+                  key: username
+
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-credentials
+                  key: password
+
+            - name: PG_DATABASE
+              value: fittrak
+
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secrets
+                  key: secret_key
+
+            - name: DJANGO_HASHIDS_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: django-secrets
+                  key: hashids_salt
+
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          command: ["/cloud_sql_proxy",
+                    "-instances=<SET ME>=tcp:5432",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
