@@ -22,10 +22,10 @@ pipenv shell
 cd fittrak
 ```
 
-2. Configure secrets
+2. Configure required env
 ```bash
-echo SECRET_KEY=\"PlsChangeMe\" > fittrak/secrets.py
-echo HASHIDS_SALT=\"AndMe\" >> fittrak/secrets.py
+export DJANGO_SECRET_KEY=<FOO>
+export DJANGO_HASHIDS_SALT=<BAR>
 ```
 
 3. Initial migration
