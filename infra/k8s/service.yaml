@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fittrak-web-service
+  labels:
+    app: fittrak-web
+spec:
+  selector:
+    app: fittrak-web
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fittrak-static-service
+  labels:
+    app: fittrak-static
+spec:
+  selector:
+    app: fittrak-static
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+  type: NodePort
