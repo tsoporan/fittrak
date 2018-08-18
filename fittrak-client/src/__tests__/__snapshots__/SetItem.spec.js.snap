@@ -10,7 +10,7 @@ exports[`SetItem.vue SetItem renders 1`] = `
   <hr>
   <div class="field is-grouped">
     <p class="control">
-      <removeset-stub></removeset-stub>
+      <removeset-stub set="[object Object]"></removeset-stub>
     </p>
     <p class="control">
       <button class="button">Edit</button>
