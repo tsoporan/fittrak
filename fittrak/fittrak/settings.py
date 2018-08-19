@@ -27,8 +27,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 HASHIDS_SALT = os.getenv("DJANGO_HASHIDS_SALT")
 
 # Allow handling by CIDR middleware
+ALLOWED_HOSTS = ['*']
 if not DEBUG:
-    ALLOWED_HOSTS = ['*']
     ALLOW_CIDR_NETS = ['10.0.0.0/24', '10.1.1.0/24']
 
 # Application definition
@@ -175,11 +175,9 @@ WEBPACK_LOADER = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:8080'
-)
-
-CORS_ALLOW_CREDENTIALS = True
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
+    CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = "users.User"
 
