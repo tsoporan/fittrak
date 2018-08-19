@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=fittrak
+      - POSTGRES_USER=fittrak
+      - POSTGRES_PASSWORD=fittrak
+    volumes:
+      - ./data/fittrak-db:/var/lib/postgresql/data
+
+  api:
+    build:
+      dockerfile: docker/Dockerfile.app
+      context: .
+    command: ["sh", "scripts/start-dev.sh"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./fittrak:/usr/src/app/fittrak"
+    environment:
+      - DJANGO_SECRET_KEY=foo
+      - DJANGO_HASHIDS_SALT=bar
+      - DJANGO_DEBUG=True
+      - DB_NAME=fittrak
+      - DB_USER=fittrak
+      - DB_PASSWORD=fittrak
+      - DB_PORT=5432
+      - DB_HOST=db
+    depends_on:
+      - db
+
+volumes:
+  fittrak:
