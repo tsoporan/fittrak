@@ -9,6 +9,7 @@ fittrak/assets
 fittrak-client/dist
 fittrak/static
 infra/.terraform
+data
 
 # Sqlite
 *.db
