@@ -13,19 +13,15 @@ For local dev you'll only require:
 
 #### Backend
 
-The backend consists of a [Django](https://www.djangoproject.com/) powered Python application which exposes
-a [GraphQL](https://graphql.org/learn/) API using [Graphene](http://graphene-python.org/). Django is being used to deal with
-authentication and as such there are some views which are rendered from Django. Django renders the
-template which houses the frontend SPA.
+The backend consists of a [Django](https://www.djangoproject.com/) powered Python application which exposes a [GraphQL](https://graphql.org/learn/) API using [Graphene](http://graphene-python.org/). Django is being used to deal with
+authentication, and other various functions, and as such there are some views which are rendered from Django. You may think of Django renders the template which houses the frontend SPA.
 
 #### Frontend
 
-The frontend is a [Vue](https://vuejs.org/) powered Javascript application which uses [Apollo](https://www.apollographql.com/) as a GraphQL
-client.
+The frontend is a [Vue](https://vuejs.org/) powered Javascript application which uses [Apollo](https://www.apollographql.com/) as a GraphQL client. When deployed in production this simply makes API calls to `/graphql` and benefits from the rest of the Django machinery.
 
-For local dev the **backend** must be up and running as that is where the API (GraphQL server) runs (requests to
-`/graphql` will fail otherwise!) For dev purposes `corsheaders` is also being used for smoother
-dev'ing.
+**NOTE**: For local dev the **backend** must be up and running as that is where the API (GraphQL server) runs (requests to
+`/graphql` will fail otherwise!) Authentication is based on sessions with IDs stored on cookies, which will be on `localhost` in dev, this works fine as only the ports change between the two servers. Keep an eye out for issues pertaining to authentication as the default behaviour, at the moment, is to return a `302`, rediret to `/login`, which will present an error on the frontend console.
 
 ---
 
@@ -51,9 +47,13 @@ To apply DB migrations we can run a command in the container:
 
 #### Tests
 
-Tests can be run with the usual `./manage.py tests` (though you will be doing this in the container)
+Tests can be run with the usual: 
+
+- `docker-compose run api python fittrak/manage.py test`
 
 #### First time set up
+
+The first time will be slightly different as you'll want to set up the DB and create an initial user.
 
 1. Run migrations (mentioned above)
 
