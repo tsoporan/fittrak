@@ -1,4 +1,5 @@
-fittrak-client
+node_modules
+dist
 docker
 data
 infra

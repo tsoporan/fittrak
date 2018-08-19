@@ -1,4 +1,4 @@
-# Dockerfile for fittrak python
+# Dockerfile for fittrak python app
 
 FROM python:3.7-alpine
 
