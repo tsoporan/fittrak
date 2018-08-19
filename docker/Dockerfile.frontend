@@ -1,0 +1,20 @@
+# Dockerfile for fittrak node development
+
+FROM node:8-alpine
+
+WORKDIR /usr/src/app
+
+ADD fittrak-client/public public
+ADD fittrak-client/__mocks__ __mocks__
+ADD fittrak-client/src src
+
+COPY fittrak-client/babel.config.js \
+     fittrak-client/package.json \
+     fittrak-client/vue.config.js \
+     fittrak-client/yarn.lock ./
+
+RUN yarn install
+
+EXPOSE 8080
+
+CMD ["yarn", "serve"]
