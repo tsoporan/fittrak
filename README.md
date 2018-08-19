@@ -2,6 +2,8 @@
 
 A no-frills fitness tracking tool for the stats inclined.
 
+---
+
 ### Requirements
 
 For local dev you'll only require:
@@ -13,8 +15,8 @@ For local dev you'll only require:
 
 The backend consists of a [Django](https://www.djangoproject.com/) powered Python application which exposes
 a [GraphQL](https://graphql.org/learn/) API using [Graphene](http://graphene-python.org/). Django is being used to deal with
-authentication and as such there are some views which are rendered from Django,
-which can be thought of as the skeleton housing the frontend SPA.
+authentication and as such there are some views which are rendered from Django. Django renders the
+template which houses the frontend SPA.
 
 #### Frontend
 
@@ -30,20 +32,19 @@ dev'ing.
 ### Development
 
 The preferred way to bring up the stack is using `docker-compose`. If you really wanted to you
-could also run everything independent which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
+could also run everything independently, which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
 With docker we can conveniently package these up and not worry about external deps.
 
-
-There are three services that can be brought up, you can bring them all up with `docker-compose up`, 
-which will bring all three: api, db and app or you can bring them up indepdently with the
-respective `docker-compose up <service>` command.
+There are three services that comprise the stack, you can bring them all up with `docker-compose up`,
+which will start all three: `api`, `db` and `app` (you can bring them up indepdently with the
+respective `docker-compose up <service>` command). 
 
 It is also useful to know how to work with `docker` and `docker-compose` as you may need to rebuild 
-and interact with the containers. 
+and interact with containers during dev.
 
 #### Migrations
 
-For the purposes of dev, to easily apply migrations we can run a command in the container:
+To apply DB migrations we can run a command in the container:
 
 - `docker-compose run api python fittrak/manage.py makemigrations`
 - `docker-compose run api python fittrak/manage.py migrate`
