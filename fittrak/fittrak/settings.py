@@ -20,14 +20,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-HASHIDS_SALT = os.environ.get("DJANGO_HASHIDS_SALT")
+HASHIDS_SALT = os.getenv("DJANGO_HASHIDS_SALT")
 
-ALLOWED_HOSTS = ['*']
-ALLOW_CIDR_NETS = ['10.0.0.0/24', '10.1.1.0/24']
+# Allow handling by CIDR middleware
+if not DEBUG:
+    ALLOWED_HOSTS = ['*']
+    ALLOW_CIDR_NETS = ['10.0.0.0/24', '10.1.1.0/24']
 
 # Application definition
 
@@ -90,12 +92,12 @@ WSGI_APPLICATION = 'fittrak.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('PG_DATABASE'),
-        'USER': os.getenv('PG_USER'),
-        'PASSWORD': os.getenv('PG_PASSWORD'),
-        'HOST': os.getenv('PG_HOST'),
-        'PORT': os.getenv('PG_PORT'),
+        'ENGINE': os.getenv('DB_ENGINE') or 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
