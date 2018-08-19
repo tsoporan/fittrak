@@ -1,6 +1,6 @@
 # Dockerfile for fittrak python
 
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 WORKDIR /usr/src/app
 
@@ -16,4 +16,4 @@ RUN apk update && \
 
 EXPOSE 8000
 
-CMD ["sh", "start.sh"]
+CMD ["sh", "scripts/start.sh"]
