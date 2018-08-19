@@ -65,5 +65,6 @@ The first time will be slightly different as you'll want to set up the DB and cr
 
 ### Deployment
 
-The application has been vetted on GCP using Kubernetes, you'll notice that there are some manifest
-files in the `infra` directory though this is still largely a work in progress.
+The application has been vetted on [GCP](https://cloud.google.com/kubernetes-engine/) using [Kubernetes](https://kubernetes.io/) and [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6), you'll notice that there are manifest files in the `infra` directory though this is still largely a work in progress. 
+
+Future plans include creating a Helm chart for the application and implementing proper CI/CD.
