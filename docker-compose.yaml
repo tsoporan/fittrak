@@ -13,7 +13,7 @@ services:
 
   api:
     build:
-      dockerfile: docker/Dockerfile.app
+      dockerfile: docker/Dockerfile.backend
       context: .
     command: ["sh", "scripts/start-dev.sh"]
     ports:
@@ -32,5 +32,20 @@ services:
     depends_on:
       - db
 
+  app:
+    build:
+      dockerfile: docker/Dockerfile.frontend
+      context: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./fittrak-client/src:/usr/src/app/src"
+    environment:
+      - NODE_ENV=development
+      - VUE_APP_API_URL=http://localhost:8000/graphql
+    depends_on:
+      - api
+
 volumes:
   fittrak:
+  fittrak-client:
