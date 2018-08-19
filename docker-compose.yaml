@@ -1,0 +1,51 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=fittrak
+      - POSTGRES_USER=fittrak
+      - POSTGRES_PASSWORD=fittrak
+    volumes:
+      - ./data/fittrak-db:/var/lib/postgresql/data
+
+  api:
+    build:
+      dockerfile: docker/Dockerfile.backend
+      context: .
+    command: ["sh", "scripts/start-dev.sh"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./fittrak:/usr/src/app/fittrak"
+    environment:
+      - DJANGO_SECRET_KEY=foo
+      - DJANGO_HASHIDS_SALT=bar
+      - DJANGO_DEBUG=True
+      - DB_NAME=fittrak
+      - DB_USER=fittrak
+      - DB_PASSWORD=fittrak
+      - DB_PORT=5432
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  app:
+    build:
+      dockerfile: docker/Dockerfile.frontend
+      context: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./fittrak-client/src:/usr/src/app/src"
+    environment:
+      - NODE_ENV=development
+      - VUE_APP_API_URL=http://localhost:8000/graphql
+    depends_on:
+      - api
+
+volumes:
+  fittrak:
+  fittrak-client:

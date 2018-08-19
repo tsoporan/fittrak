@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Start up gunicorn
 
 cd fittrak

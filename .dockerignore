@@ -1,6 +1,11 @@
-fittrak-client
+node_modules
+dist
+docker
+data
 infra
 *.pyc
 *.sqlite3
 *.md
+*.yaml
+*.yml
 LICENSE
