@@ -1,4 +1,6 @@
-// Constants
+/*
+ * Constants
+ */
 
 const PENDING = "PENDING";
 const IN_PROGRESS = "IN_PROGRESS";

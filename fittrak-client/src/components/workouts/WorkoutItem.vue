@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { STATUS_MAP } from "@/components/constants";
+import { STATUS_MAP } from "@/constants";
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
 
 export default {
