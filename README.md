@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/tsoporan/fittrak/tree/master.svg?style=svg)](https://circleci.com/gh/tsoporan/fittrak/tree/master)
 
-A no-frills fitness tracking tool for the stats inclined.
+A no-frills fitness tracking tool for the stats inclined 🤓.
 
 ---
 
