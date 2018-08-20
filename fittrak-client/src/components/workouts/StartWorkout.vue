@@ -4,7 +4,7 @@
 
 <script>
 import UPDATE_WORKOUT from "@/graphql/mutations/updateWorkout.graphql";
-import { IN_PROGRESS } from "@/components/constants";
+import { IN_PROGRESS } from "@/constants";
 
 export default {
   name: "StartWorkout",

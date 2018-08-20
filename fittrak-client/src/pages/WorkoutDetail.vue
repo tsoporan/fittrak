@@ -5,14 +5,19 @@
 
     <div class="field is-grouped">
       <p class="control">
-        <AddExercise :workout=workout />
+        <AddExercise :workout=workout v-if="!complete" />
       </p>
       <p class="control">
         <StartWorkout :workout=workout v-if="pending" />
       </p>
       <p class="control">
-        <FinishWorkout :workout=workout v-if="!complete" />
+        <FinishWorkout :workout=workout v-if="!complete && inProgress" />
       </p>
+      <!--
+      <p class="control">
+        <ReopenWorkout :workout=workout v-if="complete" />
+      </p>
+      -->
     </div>
 
     <div id="exercises">
@@ -29,7 +34,7 @@ import ExerciseList from "@/components/exercises/ExerciseList";
 import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
 
-import { COMPLETE, PENDING } from "@/components/constants";
+import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
 
 export default {
   name: "WorkoutDetail",
@@ -55,6 +60,11 @@ export default {
     pending() {
       if (this.workout) {
         return this.workout.status === PENDING;
+      }
+    },
+    inProgress() {
+      if (this.workout) {
+        return this.workout.status === IN_PROGRESS;
       }
     }
   },
