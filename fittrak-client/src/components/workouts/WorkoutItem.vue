@@ -6,8 +6,13 @@
         {{ workout.id }}
       </router-link>
     </div>
+
+    <div>
     Started: {{ workout.dateStarted }}
-    Ended: {{ workout.dateEnded }}
+    </div>
+
+    <div v-if="workout.date_ended">Ended: {{ workout.dateEnded }}</div>
+
     <div>
     Status: {{ getHumanStatus }}
     </div>
