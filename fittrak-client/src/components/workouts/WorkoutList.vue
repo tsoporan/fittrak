@@ -1,14 +1,14 @@
 <template>
   <div>
-    <ul class="workout-list" v-if="activeWorkouts.length">
+    <ul class="workout-list" v-if="workouts.length">
       <WorkoutItem
-        v-for="workout in activeWorkouts"
+        v-for="workout in workouts"
         :key="workout.id"
         :workout="workout"
         />
     </ul>
     <p v-else>
-      No workouts!
+      No available workouts!
     </p>
   </div>
 </template>
@@ -30,18 +30,23 @@ export default {
   apollo: {
     workouts: {
       query: WORKOUTS,
-      update: data => data.workouts
-    }
-  },
+      variables() {
+        const { status } = this.$props;
 
-  computed: {
-    activeWorkouts() {
-      return this.workouts.filter(workout => workout.isActive);
+        return {
+          status
+        };
+      },
+      update: data => data.workouts
     }
   },
 
   components: {
     WorkoutItem
+  },
+
+  props: {
+    status: String
   }
 };
 </script>
