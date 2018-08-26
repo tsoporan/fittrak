@@ -1,5 +1,5 @@
-query workouts {
-  workouts {
+query workouts($status: WorkoutStatusesEnum) {
+  workouts(status: $status) {
     id
     dateStarted
     dateEnded
