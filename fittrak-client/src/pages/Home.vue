@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <h1 class="title">It's {{ now }}, time to get crackin'!</h1>
+    <h1 class="title">It's {{ now }}! Time to get crackin'!</h1>
 
     <h2 class="page-header">Ongoing Workouts</h2>
 
@@ -16,11 +16,15 @@ import WorkoutList from "@/components/workouts/WorkoutList.vue";
 
 import { PENDING } from "@/constants";
 
+import { format } from "date-fns";
+
 export default {
   name: "home",
   computed: {
     now() {
-      return new Date().toString();
+      const formatted = format(new Date(), "dddd");
+
+      return formatted;
     },
     status() {
       return PENDING;
