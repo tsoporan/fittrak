@@ -11,7 +11,7 @@
     Started: {{ started }}
     </div>
 
-    <div v-if="workout.date_ended">Ended: {{ workout.dateEnded }}</div>
+    <div v-if="workout.date_ended">Ended: {{ ended }}</div>
 
     <div>
     Status: {{ getHumanStatus }}
@@ -47,6 +47,10 @@ export default {
 
     started: data => {
       return format(data.workout.dateStarted, "YYYY-MM-DD [at] HH:MM");
+    },
+
+    ended: data => {
+      return format(data.workout.dateEnded, "YYYY-MM-DD [at] HH:MM");
     }
   },
 
