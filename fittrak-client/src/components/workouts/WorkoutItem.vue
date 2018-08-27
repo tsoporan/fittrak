@@ -8,10 +8,10 @@
     </div>
 
     <div>
-    Started: {{ workout.dateStarted }}
+    Started: {{ started }}
     </div>
 
-    <div v-if="workout.date_ended">Ended: {{ workout.dateEnded }}</div>
+    <div v-if="workout.date_ended">Ended: {{ ended }}</div>
 
     <div>
     Status: {{ getHumanStatus }}
@@ -30,6 +30,8 @@
 import { STATUS_MAP } from "@/constants";
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
 
+import { format } from "date-fns";
+
 export default {
   name: "WorkoutItem",
 
@@ -41,6 +43,14 @@ export default {
 
     exercises: data => {
       return data.workout.exercises.filter(e => e.isActive);
+    },
+
+    started: data => {
+      return format(data.workout.dateStarted, "YYYY-MM-DD [at] HH:MM");
+    },
+
+    ended: data => {
+      return format(data.workout.dateEnded, "YYYY-MM-DD [at] HH:MM");
     }
   },
 

@@ -21,12 +21,19 @@ export default {
 
           update: (store, { data }) => {
             const newWorkout = data.createWorkout.workout;
-            const result = store.readQuery({query: WORKOUTS, variables: { status: PENDING }});
+            const result = store.readQuery({
+              query: WORKOUTS,
+              variables: { status: PENDING }
+            });
 
             // Prepend the latest workout
             result.workouts.unshift(newWorkout);
 
-            store.writeQuery({query: WORKOUTS, variables: { status: PENDING }, data: result });
+            store.writeQuery({
+              query: WORKOUTS,
+              variables: { status: PENDING },
+              data: result
+            });
           }
         })
         .then(resp => {
