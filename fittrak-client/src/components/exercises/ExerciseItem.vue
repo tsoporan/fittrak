@@ -41,9 +41,4 @@ export default {
 };
 </script>
 
-<style scoped>
-li {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-}
-</style>
+<style></style>

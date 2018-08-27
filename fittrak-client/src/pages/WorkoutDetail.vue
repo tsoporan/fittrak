@@ -78,13 +78,4 @@ export default {
 };
 </script>
 
-<style>
-#exercises {
-  margin: 20px;
-}
-
-#workout-header form {
-  padding: 10px;
-  margin: 5px 0;
-}
-</style>
+<style></style>

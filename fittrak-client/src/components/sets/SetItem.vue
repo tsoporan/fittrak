@@ -101,8 +101,4 @@ export default {
 };
 </script>
 
-<style scoped>
-li {
-  margin: 10px;
-}
-</style>
+<style></style>
