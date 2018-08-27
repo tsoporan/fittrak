@@ -1,13 +1,21 @@
 <template>
-  <div class="page-content">
-    <h1 class="title">It's {{ now }}! Time to get crackin'!</h1>
+  <v-container fluid fill-height grid-list-xl>
+    <v-layout row align-center>
+    <v-flex xs12>
+        <h2 class="display-2">
+          It's {{ now.hourMin }} on {{ now.dayPart }} the {{ now.numPart }}.
+          Let's get started!
+        </h2>
 
-    <h2 class="page-header">Ongoing Workouts</h2>
+        <v-flex />
 
-    <hr />
-    <CreateWorkout />
-    <WorkoutList :status="status" />
-  </div>
+        <v-layout row>
+          <v-flex xs6 text-xs-center><CreateWorkout /></v-flex>
+          <v-flex xs6 text-xs-center><CreateWorkout /></v-flex>
+        </v-layout>
+    </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -22,9 +30,17 @@ export default {
   name: "home",
   computed: {
     now() {
-      const formatted = format(new Date(), "dddd");
+      const date = new Date();
 
-      return formatted;
+      const dayPart = format(date, "dddd");
+      const numPart = format(date, "Mo");
+      const hourMin = format(date, "h[:]mmA");
+
+      return {
+        dayPart,
+        numPart,
+        hourMin
+      };
     },
     status() {
       return PENDING;
@@ -36,3 +52,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>

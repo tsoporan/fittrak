@@ -19,13 +19,7 @@
   </v-toolbar>
 
   <v-content>
-    <v-container fluid fill-height>
-      <v-layout row wrap>
-        <v-flex xs12>
-          <router-view />
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <router-view />
   </v-content>
 </v-app>
 </template>
