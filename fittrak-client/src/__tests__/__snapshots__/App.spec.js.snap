@@ -1,12 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue App renders 1`] = `
-<div id="app">
-  <navigation-stub></navigation-stub>
-  <div class="container">
-    <div class="content-wrap">
-      <router-view></router-view>
-    </div>
-  </div>
-</div>
+<v-app id="fittrak">
+  <v-navigation-drawer fixed="" app="" dark="">
+    <sidebarnavigationitems-stub></sidebarnavigationitems-stub>
+  </v-navigation-drawer>
+  <v-toolbar color="primary" dark="" fixed="" app="">
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+      <p class="viewer">Heya, <strong>Stranger</strong></p>
+    </v-toolbar-items>
+  </v-toolbar>
+  <v-content>
+    <v-container fluid="" fill-height="">
+      <v-layout row="" wrap="">
+        <v-flex xs12="">
+          <router-view></router-view>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-content>
+</v-app>
 `;
