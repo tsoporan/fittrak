@@ -1,30 +1,15 @@
 <template>
-  <form>
-    <div class="field is-grouped">
-      <p class="control">
-        <input class="input" v-model="repetitions" type="text" placeholder="Repetitions" />
-      </p>
+  <v-form>
+    <v-text-field v-model="repetitions" placeholder="Repetitions" />
+    <v-text-field v-model="weight" placeholder="Weight" />
 
-      <p class="control">
-        <input class="input" v-model="weight" type="text" placeholder="Weight" />
-      </p>
+    <v-radio-group v-model="unit" row>
+      <v-radio color="primary" label="LB" value="LB" />
+      <v-radio color="primary" label="KG" value="KG" />
+    </v-radio-group>
 
-      <p class="control">
-        <label class="radio">
-          <input type="radio" name="unit" v-model="unit" checked id="lb" value="LB">
-          LBs
-        </label>
-        <label class="radio">
-          <input type="radio" name="unit" v-model="unit" id="kg" value="KG">
-          KGs
-        </label>
-      </p>
-
-      <p class="control">
-        <button class="button is-primary" v-on:click.prevent="addSet">Add Set</Button>
-      </p>
-    </div>
-  </form>
+    <v-btn depressed color="secondary" @click.stop="addSet">Add Set</v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -37,7 +22,7 @@ export default {
     return {
       repetitions: "",
       weight: "",
-      unit: ""
+      unit: "LB"
     };
   },
 
@@ -74,10 +59,4 @@ export default {
 </script>
 
 <style scoped>
-form {
-  padding: 5px;
-}
-input {
-  margin: 5px;
-}
 </style>

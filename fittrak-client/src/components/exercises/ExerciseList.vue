@@ -5,19 +5,25 @@
       :key="exercise.id"
       >
       <div slot="header">
-        {{ exercise.name }}
+        <strong>{{ exercise.name }} </strong>
         <RemoveExercise :exercise=exercise />
       </div>
 
       <v-card>
-        <p>ID: #{{ exercise.id }}</p>
-        <h2> Add Set </h2>
-        <AddSet :exercise=exercise />
+        <v-divider />
 
-        <hr />
+        <v-flex ma-4>
+          <p>ID: #{{ exercise.id }}</p>
+          <h2 class="display-0"> Add Set </h2>
+          <AddSet :exercise=exercise />
+        </v-flex>
 
-        <h2>Set List</h2>
-        <SetList :exercise=exercise />
+          <v-divider />
+        <v-flex ma-4>
+          <p></p>
+          <h2 class="display-0"> Set List </h2>
+          <SetList :exercise=exercise />
+        </v-flex>
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
@@ -55,3 +61,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>
