@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import CreateWorkout from "@/components/workouts/CreateWorkout.vue";
-import WorkoutList from "@/components/workouts/WorkoutList.vue";
+import CreateWorkout from "@/components/workouts/CreateWorkout";
+import WorkoutList from "@/components/workouts/WorkoutList";
 
 import { PENDING } from "@/constants";
 
@@ -36,6 +36,7 @@ import { format } from "date-fns";
 
 export default {
   name: "home",
+
   computed: {
     now() {
       const date = new Date();
@@ -54,6 +55,7 @@ export default {
       return PENDING;
     }
   },
+
   components: {
     CreateWorkout,
     WorkoutList

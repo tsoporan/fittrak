@@ -6,6 +6,7 @@
       :workout="workout"
       />
   </v-list>
+  <p v-else> No workouts =( </p>
 </template>
 
 <script>
