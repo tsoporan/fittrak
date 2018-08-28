@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <ul class="workout-list" v-if="workouts.length">
-      <WorkoutItem
-        v-for="workout in workouts"
-        :key="workout.id"
-        :workout="workout"
-        />
-    </ul>
-    <p v-else>
-      No available workouts!
-    </p>
-  </div>
+  <v-list three-line v-if="workouts.length">
+    <WorkoutItem
+      v-for="workout in workouts"
+      :key="workout.id"
+      :workout="workout"
+      />
+  </v-list>
 </template>
 
 <script>
@@ -52,11 +47,4 @@ export default {
 </script>
 
 <style scoped>
-ul.workout-list {
-  margin: 20px 0;
-}
-ul.workout-list li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
 </style>
