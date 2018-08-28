@@ -38,6 +38,15 @@
 
   <v-divider />
 
+  <v-list-tile @click="toReleaseNotes">
+    <v-list-tile-action>
+      <v-icon>notes</v-icon>
+    </v-list-tile-action>
+    <v-list-tile-content>
+      <v-list-tile-title>Release Notes</v-list-tile-title>
+    </v-list-tile-content>
+  </v-list-tile>
+
   <router-link tag="v-list-tile" to="/logout">
     <v-list-tile-action>
       <v-icon>exit_to_app</v-icon>
@@ -51,6 +60,11 @@
 
 <script>
 export default {
-  name: "SidebarNavigationItems"
+  name: "SidebarNavigationItems",
+  methods: {
+    toReleaseNotes() {
+      location.href = "https://github.com/tsoporan/fittrak/releases";
+    }
+  }
 };
 </script>
