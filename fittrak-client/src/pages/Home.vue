@@ -9,16 +9,19 @@
 
       <v-flex />
 
-      <v-layout row>
+      <v-layout row align-center>
         <v-flex xs6 text-xs-right><CreateWorkout /></v-flex>
-        <v-flex xs1></v-flex>
+        <v-flex xs1 text-xs-center>
+          <v-card>
+            <v-card-text>OR</v-card-text>
+          </v-card>
+        </v-flex>
         <v-flex xs6 text-xs-left><CreateWorkout /></v-flex>
       </v-layout>
 
       <v-layout>
         <v-flex xs-8>
-          <h3 class="display-1">Recently</h3>
-          <WorkoutList :status="status" :limit=5 />
+          <WorkoutList :status="status" :limit=5 title="Recently" />
         </v-flex>
       </v-layout>
     </v-flex>
