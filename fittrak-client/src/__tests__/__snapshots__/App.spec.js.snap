@@ -14,13 +14,7 @@ exports[`App.vue App renders 1`] = `
     </v-toolbar-items>
   </v-toolbar>
   <v-content>
-    <v-container fluid="" fill-height="">
-      <v-layout row="" wrap="">
-        <v-flex xs12="">
-          <router-view></router-view>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <router-view></router-view>
   </v-content>
 </v-app>
 `;
