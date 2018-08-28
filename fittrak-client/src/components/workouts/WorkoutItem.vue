@@ -66,7 +66,7 @@ export default {
     viewWorkout() {
       const workoutId = this.$props.workout.id;
 
-      this.$history.push(`/workouts/${workoutId}`);
+      this.$router.push(`/workouts/${workoutId}`);
     }
   },
 
