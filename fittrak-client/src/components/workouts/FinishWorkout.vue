@@ -1,5 +1,5 @@
 <template>
-   <button class="button is-outlined" v-on:click.prevent="finishWorkout">Finish Workout</button>
+   <v-btn color="info" depressed @click.stop="finishWorkout">Finish Workout</v-btn>
 </template>
 
 <script>

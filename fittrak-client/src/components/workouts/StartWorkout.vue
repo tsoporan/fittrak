@@ -1,5 +1,5 @@
 <template>
-  <button class="button is-primary" v-on:click="startWorkout">Start Workout</button>
+  <v-btn color="success" depressed @click.stop="startWorkout">Start</v-btn>
 </template>
 
 <script>

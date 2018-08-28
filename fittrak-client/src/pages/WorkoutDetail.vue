@@ -1,35 +1,42 @@
 <template>
-  <div class="page-content">
-    <h2 class="page-header">Workout Details</h2>
-    <hr />
+  <v-container>
+    <v-layout row wrap>
 
-    <div class="field is-grouped">
-      <p class="control">
-        <AddExercise :workout=workout v-if="!complete" />
-      </p>
-      <p class="control">
-        <StartWorkout :workout=workout v-if="pending" />
-      </p>
-      <p class="control">
-        <FinishWorkout :workout=workout v-if="!complete && inProgress" />
-      </p>
-      <!--
-      <p class="control">
-        <ReopenWorkout :workout=workout v-if="complete" />
-      </p>
-      -->
-    </div>
+      <v-flex xs12>
+        <v-layout justify-space-between>
+          <v-flex xs2 text-xs-left>
+            <v-btn flat color="secondary" outline>Back</v-btn>
+          </v-flex>
 
-    <div id="exercises">
-      <ExerciseList :workout=workout />
-    </div>
-  </div>
+          <v-flex xs2 text-xs-right>
+            <StartWorkout :workout=workout v-if="pending" />
+          </v-flex>
+          <v-flex xs2 text-xs-right v-if="!complete && inProgress">
+            <FinishWorkout :workout=workout />
+          </v-flex>
+            <!--
+            <p class="control">
+              <ReopenWorkout :workout=workout v-if="complete" />
+            </p>
+            -->
+        </v-layout>
+      </v-flex>
+
+      <v-flex xs12>
+        <AddExerciseForm :workout=workout v-if="!complete" />
+      </v-flex>
+
+      <v-flex xs12>
+        <ExerciseList :workout=workout />
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 import WORKOUT from "@/graphql/queries/workout.graphql";
 
-import AddExercise from "@/components/exercises/AddExercise";
+import AddExerciseForm from "@/components/exercises/AddExercise";
 import ExerciseList from "@/components/exercises/ExerciseList";
 import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
@@ -70,7 +77,7 @@ export default {
   },
 
   components: {
-    AddExercise,
+    AddExerciseForm,
     ExerciseList,
     StartWorkout,
     FinishWorkout
@@ -78,4 +85,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
