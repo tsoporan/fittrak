@@ -1,12 +1,16 @@
 <template>
-  <v-list three-line v-if="workouts.length">
-    <WorkoutItem
-      v-for="workout in workouts"
-      :key="workout.id"
-      :workout="workout"
-      />
-  </v-list>
-  <p v-else> No workouts =( </p>
+  <v-flex v-if="workouts.length">
+    <h3 class="display-1">{{ title }}</h3>
+    <v-divider />
+    <v-list three-line>
+      <WorkoutItem
+        v-for="workout in workouts"
+        :key="workout.id"
+        :workout="workout"
+        />
+    </v-list>
+  </v-flex>
+  <v-flex v-else><p>No recent workouts! Add one above to get started! 💪</p></v-flex>
 </template>
 
 <script>
@@ -42,7 +46,8 @@ export default {
   },
 
   props: {
-    status: String
+    status: String,
+    title: String
   }
 };
 </script>
