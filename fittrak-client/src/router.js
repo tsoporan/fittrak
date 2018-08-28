@@ -17,7 +17,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/workout/:workoutId",
+      path: "/workouts/:workoutId",
       name: "WorkoutDetail",
       component: WorkoutDetail
     },
