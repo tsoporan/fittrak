@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue App renders 1`] = `
-<v-app id="fittrak">
-  <v-navigation-drawer fixed="" app="" dark="">
+<v-app-stub id="fittrak">
+  <v-navigation-drawer-stub height="100%" minivariantwidth="80" mobilebreakpoint="1264" width="300" fixed="" app="" dark="">
     <sidebarnavigationitems-stub></sidebarnavigationitems-stub>
-  </v-navigation-drawer>
-  <v-toolbar color="primary" dark="" fixed="" app="">
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-toolbar-items>
+  </v-navigation-drawer-stub>
+  <v-toolbar-stub scrollthreshold="300" color="primary" dark="" fixed="" app="">
+    <v-toolbar-side-icon-stub></v-toolbar-side-icon-stub>
+    <v-toolbar-title-stub class="logo">FitTrak</v-toolbar-title-stub>
+    <v-spacer-stub></v-spacer-stub>
+    <v-toolbar-items-stub>
       <p class="viewer">Heya, <strong>Stranger</strong></p>
-    </v-toolbar-items>
-  </v-toolbar>
-  <v-content>
-    <router-view></router-view>
-  </v-content>
-</v-app>
+    </v-toolbar-items-stub>
+  </v-toolbar-stub>
+  <v-content-stub tag="main">
+    <router-view-stub name="default"></router-view-stub>
+  </v-content-stub>
+</v-app-stub>
 `;
