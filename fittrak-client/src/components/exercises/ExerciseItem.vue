@@ -1,24 +1,4 @@
 <template>
-  <li>
-    <h2>Exercise Details</h2>
-    <div>
-      <p>ID: #{{ exercise.id }}</p>
-      <p>Name: {{ exercise.name }}</p>
-      <p>Started: {{ exercise.dateStarted }}</p>
-      <br />
-      <RemoveExercise :exercise=exercise />
-    </div>
-
-    <hr />
-
-    <h2> Add Set </h2>
-    <AddSet :exercise=exercise />
-
-    <hr />
-
-    <h2>Set List</h2>
-    <SetList :exercise=exercise />
-  </li>
 </template>
 
 <script>
@@ -41,4 +21,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

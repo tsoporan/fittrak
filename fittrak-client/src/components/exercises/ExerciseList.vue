@@ -1,20 +1,35 @@
 <template>
-  <div>
-    <ul v-if="activeExercises.length">
-      <ExerciseItem
-        v-for="exercise in activeExercises"
-        :key="exercise.id"
-        :exercise="exercise"
-      />
-    </ul>
-    <p v-else>
-      No exercises!
-    </p>
-  </div>
+  <v-expansion-panel v-if="activeExercises.length">
+    <v-expansion-panel-content
+      v-for="exercise in activeExercises"
+      :key="exercise.id"
+      >
+      <div slot="header">
+        {{ exercise.name }}
+        <RemoveExercise :exercise=exercise />
+      </div>
+
+      <v-card>
+        <p>ID: #{{ exercise.id }}</p>
+        <h2> Add Set </h2>
+        <AddSet :exercise=exercise />
+
+        <hr />
+
+        <h2>Set List</h2>
+        <SetList :exercise=exercise />
+      </v-card>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
+  <p v-else>
+    No exercises!
+  </p>
 </template>
 
 <script>
-import ExerciseItem from "@/components/exercises/ExerciseItem";
+import AddSet from "@/components/sets/AddSet";
+import SetList from "@/components/sets/SetList";
+import RemoveExercise from "@/components/exercises/RemoveExercise";
 
 export default {
   name: "ExerciseList",
@@ -30,7 +45,9 @@ export default {
   },
 
   components: {
-    ExerciseItem
+    AddSet,
+    SetList,
+    RemoveExercise
   },
 
   props: {
