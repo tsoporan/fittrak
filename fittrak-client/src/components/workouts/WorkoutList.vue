@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <ul class="workout-list" v-if="workouts.length">
+  <v-flex v-if="workouts.length">
+    <h3 class="display-1">{{ title }}</h3>
+    <v-divider />
+    <v-list three-line>
       <WorkoutItem
         v-for="workout in workouts"
         :key="workout.id"
         :workout="workout"
         />
-    </ul>
-    <p v-else>
-      No available workouts!
-    </p>
-  </div>
+    </v-list>
+  </v-flex>
+  <v-flex v-else><p>No recent workouts! Add one above to get started! 💪</p></v-flex>
 </template>
 
 <script>
@@ -46,17 +46,11 @@ export default {
   },
 
   props: {
-    status: String
+    status: String,
+    title: String
   }
 };
 </script>
 
 <style scoped>
-ul.workout-list {
-  margin: 20px 0;
-}
-ul.workout-list li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
 </style>

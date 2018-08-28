@@ -1,29 +1,26 @@
 <template>
-  <li>
-    <div>
-      ID:
-      <router-link :to="{name: 'WorkoutDetail', params: { workoutId: workout.id }}">
-        {{ workout.id }}
-      </router-link>
-    </div>
+  <v-list-tile @click.stop="viewWorkout">
+    <v-list-tile-content>
+      <v-list-tile-title>#{{ $props.workout.id}}</v-list-tile-title>
+      <v-list-tile-sub-title>
+        Started: {{ started }}
+      </v-list-tile-sub-title>
 
-    <div>
-    Started: {{ started }}
-    </div>
+      <v-list-tile-sub-title>
+        <div v-if="workout.date_ended">Ended: {{ ended }}</div>
+      </v-list-tile-sub-title>
 
-    <div v-if="workout.date_ended">Ended: {{ ended }}</div>
+      <v-chip label color="secondary" text-color="white">{{ getHumanStatus }}</v-chip>
 
-    <div>
-    Status: {{ getHumanStatus }}
-    </div>
-    <div>Exercises: {{ exercises.length }}</div>
+    </v-list-tile-content>
 
-    <br />
+    <v-list-tile-action>
+      <v-btn icon @click.stop="removeWorkout">
+        <v-icon color="error">delete</v-icon>
+      </v-btn>
+    </v-list-tile-action>
 
-    <div>
-      <button class="button is-small is-outlined" v-on:click="removeWorkout">Remove</button>
-    </div>
-  </li>
+  </v-list-tile>
 </template>
 
 <script>
@@ -46,11 +43,11 @@ export default {
     },
 
     started: data => {
-      return format(data.workout.dateStarted, "YYYY-MM-DD [at] HH:MM");
+      return format(data.workout.dateStarted, "YYYY-MM-DD [@] h:MMA");
     },
 
     ended: data => {
-      return format(data.workout.dateEnded, "YYYY-MM-DD [at] HH:MM");
+      return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
     }
   },
 
@@ -64,6 +61,12 @@ export default {
           workoutId: workoutId
         }
       });
+    },
+
+    viewWorkout() {
+      const workoutId = this.$props.workout.id;
+
+      this.$router.push(`/workouts/${workoutId}`);
     }
   },
 
@@ -74,7 +77,4 @@ export default {
 </script>
 
 <style scoped>
-li {
-  padding: 10px;
-}
 </style>

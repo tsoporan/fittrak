@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <button class="button is-primary is-outlined" v-on:click="createWorkout">Create New Workout</button>
-  </div>
+  <v-btn large @click.stop="createWorkout" class="success">
+    Start Custom Workout
+  </v-btn>
 </template>
 
 <script>

@@ -5,6 +5,7 @@ import Home from "@/pages/Home.vue";
 import WorkoutDetail from "@/pages/WorkoutDetail.vue";
 import History from "@/pages/History.vue";
 import Settings from "@/pages/Settings.vue";
+import Progress from "@/pages/Progress.vue";
 
 Vue.use(Router);
 
@@ -17,7 +18,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/workout/:workoutId",
+      path: "/workouts/:workoutId",
       name: "WorkoutDetail",
       component: WorkoutDetail
     },
@@ -30,6 +31,11 @@ export default new Router({
       path: "/settings",
       name: "Settings",
       component: Settings
+    },
+    {
+      path: "/progress",
+      name: "Progress",
+      component: Progress
     }
   ]
 });

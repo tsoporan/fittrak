@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SetList.vue SetList renders 1`] = `
-<div>
-  <p>
-    No sets!
-  </p>
-</div>
+<p>
+  No sets!
+</p>
 `;

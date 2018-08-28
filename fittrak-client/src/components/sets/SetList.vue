@@ -1,16 +1,28 @@
 <template>
-  <div>
-    <ul v-if="activeSets.length">
-      <SetItem
-        v-for="set in activeSets"
-        :key="set.id"
-        :set="set"
-      />
-    </ul>
-    <p v-else>
-      No sets!
-    </p>
-  </div>
+  <v-list v-if="activeSets.length">
+    <v-list-tile
+      v-for="set in activeSets"
+      :key="set.id"
+      :set="set"
+    >
+      <v-list-tile-content>
+        <v-list-tile-title>{{ set.repetitions }} x {{ set.weight }} {{ set.unit }}</v-list-tile-title>
+      </v-list-tile-content>
+
+      <v-list-tile-action>
+        <v-icon>edit</v-icon>
+      </v-list-tile-action>
+
+      <v-list-tile-action>
+        <v-icon>delete</v-icon>
+      </v-list-tile-action>
+
+    </v-list-tile>
+  </v-list>
+
+  <p v-else>
+    No sets!
+  </p>
 </template>
 
 <script>

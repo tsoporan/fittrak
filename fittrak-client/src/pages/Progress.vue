@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12>
-        <h2 class="display-1">Settings</h2>
+        <h2 class="display-1">Progress</h2>
         <v-divider />
         <p>Nothing to see here.</p>
       </v-flex>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Settings"
+  name: "Progress"
 };
 </script>
 

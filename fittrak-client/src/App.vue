@@ -1,51 +1,65 @@
 <template>
-  <div id="app">
+<v-app id="fittrak">
+  <v-navigation-drawer
+    v-model="drawer"
+    fixed
+    app
+    dark
+  >
+    <SidebarNavigationItems  />
+  </v-navigation-drawer>
 
-    <Navigation />
+  <v-toolbar color="primary" dark fixed app>
+    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+      <p class="viewer">Heya, <strong>{{ viewer }}</strong></p>
+    </v-toolbar-items>
+  </v-toolbar>
 
-    <div class="container">
-      <div class="content-wrap">
-        <router-view />
-      </div>
-    </div>
-
-  </div>
+  <v-content>
+    <router-view />
+  </v-content>
+</v-app>
 </template>
 
 <script>
-import "./../node_modules/bulma/css/bulma.css";
+import VIEWER from "@/graphql/queries/viewer.graphql";
 
-import Navigation from "@/components/Navigation";
+import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems";
 
 export default {
   name: "App",
+
+  data: () => ({
+    drawer: null,
+    viewer: "Stranger"
+  }),
+
+  props: {
+    source: String
+  },
+
   components: {
-    Navigation
+    SidebarNavigationItems
+  },
+
+  apollo: {
+    viewer: {
+      query: VIEWER,
+      update: data => data.viewer.username
+    }
   }
 };
 </script>
 
 <style>
-html,
-body {
-  width: 100%;
-  height: 100%;
-  background: #e7e7e7;
+.logo {
+  font-family: "Kaushan Script", "Roboto", "Arial";
+  font-size: 32px;
 }
-div.content-wrap {
-  margin: 10px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-}
-h2 {
-  font-size: 20px;
-}
-div.page-content {
-  padding: 5px;
-}
-h2.page-header {
-  text-align: center;
-  padding: 10px 0 0;
+.viewer {
+  margin-top: 20px;
 }
 </style>

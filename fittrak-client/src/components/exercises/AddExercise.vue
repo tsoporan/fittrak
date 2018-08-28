@@ -1,27 +1,30 @@
 <template>
-  <form>
-    <div class="field has-addons">
-      <p class="control">
-      <input class="input" v-model="exerciseName" type="text" placeholder="Exercise name ...">
-      </p>
-      <p class="control">
-      <button class="button is-primary is-outlined" v-on:click.prevent="addExercise">Add Exercise</button>
-      </p>
-    </div>
-  </form>
+  <v-form class="ma-4">
+    <v-text-field
+      v-model="exerciseName"
+      required
+      placeholder="Exercise name"
+    >
+    </v-text-field>
+
+    <v-btn
+      @click.stop="addExercise"
+      :disabled="!isValidName()"
+    >
+    Add Exercise
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
 import ADD_EXERCISE from "@/graphql/mutations/addExercise.graphql";
 
 export default {
-  name: "AddExercise",
+  name: "AddExerciseForm",
 
-  data() {
-    return {
-      exerciseName: ""
-    };
-  },
+  data: () => ({
+    exerciseName: ""
+  }),
 
   methods: {
     addExercise() {
@@ -39,6 +42,12 @@ export default {
           exerciseName: this.exerciseName
         }
       });
+    },
+
+    isValidName() {
+      const name = this.exerciseName;
+
+      return name.trim().length > 0;
     }
   },
 
