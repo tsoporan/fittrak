@@ -9,7 +9,7 @@
 
       <v-flex />
 
-      <v-layout row align-center>
+      <v-layout v-bind="layout" align-center>
         <v-flex xs6 text-xs-right><CreateWorkout /></v-flex>
         <v-flex xs1 text-xs-center>
           <v-card>
@@ -24,7 +24,8 @@
           <WorkoutList :status="status" :limit=5 title="Recently" />
         </v-flex>
       </v-layout>
-    </v-flex>
+
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -54,8 +55,20 @@ export default {
         hourMin
       };
     },
+
     status() {
       return PENDING;
+    },
+
+    layout() {
+      // Allow dynamic layout opts based on screen size
+      const layout = {};
+
+      if (this.$vuetify.breakpoint.xs) {
+        layout.column = true;
+      }
+
+      return layout;
     }
   },
 

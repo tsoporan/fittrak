@@ -36,6 +36,8 @@
     </v-list-tile-content>
   </router-link>
 
+  <v-divider />
+
   <router-link tag="v-list-tile" to="/logout">
     <v-list-tile-action>
       <v-icon>exit_to_app</v-icon>
