@@ -15,7 +15,7 @@ describe("Home", () => {
     });
 
     // Set computed
-    wrp.vm.now = new Date("2018-08-28");
+    wrp.vm.now = new Date("2018-08-28T18:00:00.00Z");
   });
 
   it("Renders", () => {
