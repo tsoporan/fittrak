@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Renders 1`] = `
+<v-container-stub tag="div" fluid="" fill-height="" grid-list-xl="">
+  <v-layout-stub tag="div" row="" align-center="">
+    <v-flex-stub tag="div" xs12="" text-xs-center="">
+      <h2 class="display-2">
+        It's 8:00PM on Monday the 8th.
+        <br>
+      </h2>
+      <v-flex-stub tag="div"></v-flex-stub>
+      <v-layout-stub tag="div" align-center="">
+        <v-flex-stub tag="div" xs6="" text-xs-right="">
+          <createworkout-stub></createworkout-stub>
+        </v-flex-stub>
+        <v-flex-stub tag="div" xs1="" text-xs-center="">
+          <v-card-stub tag="div">
+            <v-card-text-stub>OR</v-card-text-stub>
+          </v-card-stub>
+        </v-flex-stub>
+        <v-flex-stub tag="div" xs6="" text-xs-left="">
+          <createworkout-stub></createworkout-stub>
+        </v-flex-stub>
+      </v-layout-stub>
+      <v-layout-stub tag="div">
+        <v-flex-stub tag="div" xs-8="">
+          <workoutlist-stub status="PENDING" title="Recently" limit="5"></workoutlist-stub>
+        </v-flex-stub>
+      </v-layout-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>
+`;

@@ -41,19 +41,33 @@ import { format } from "date-fns";
 export default {
   name: "home",
 
+  data() {
+    return {
+      date: new Date()
+    };
+  },
+
   computed: {
-    now() {
-      const date = new Date();
+    now: {
+      get() {
+        const date = this.date;
 
-      const dayPart = format(date, "dddd");
-      const numPart = format(date, "Mo");
-      const hourMin = format(date, "h[:]mmA");
+        if ("dayPart" in date) return date;
 
-      return {
-        dayPart,
-        numPart,
-        hourMin
-      };
+        const dayPart = format(date, "dddd");
+        const numPart = format(date, "Mo");
+        const hourMin = format(date, "h[:]mmA");
+
+        return {
+          dayPart,
+          numPart,
+          hourMin
+        };
+      },
+
+      set(newDate) {
+        this.date = newDate;
+      }
     },
 
     status() {
