@@ -13,9 +13,10 @@
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <p class="viewer">Heya, <strong>{{ viewer }}</strong></p>
-    </v-toolbar-items>
+    <v-flex text-xs-right>
+      <v-progress-circular size="24" :indeterminate="true" v-if="$apollo.loading"></v-progress-circular>
+      <v-card v-else>Heya, <strong>{{ viewer }}</strong></v-card>
+    </v-flex>
   </v-toolbar>
 
   <v-content>
@@ -58,8 +59,5 @@ export default {
 .logo {
   font-family: "Kaushan Script", "Roboto", "Arial";
   font-size: 32px;
-}
-.viewer {
-  margin-top: 20px;
 }
 </style>

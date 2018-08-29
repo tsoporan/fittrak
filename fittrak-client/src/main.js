@@ -20,6 +20,7 @@ import {
   VTextField,
   VExpansionPanel,
   VRadioGroup,
+  VProgressCircular,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -40,6 +41,7 @@ Vue.use(Vuetify, {
     VTextField,
     VExpansionPanel,
     VRadioGroup,
+    VProgressCircular,
     transitions
   },
   theme: {
