@@ -52,6 +52,8 @@ export default {
       get() {
         const date = this.date;
 
+        if ("dayPart" in date) return date;
+
         const dayPart = format(date, "dddd");
         const numPart = format(date, "Mo");
         const hourMin = format(date, "h[:]mmA");
@@ -64,7 +66,7 @@ export default {
       },
 
       set(newDate) {
-        this.date = new Date(newDate);
+        this.date = newDate;
       }
     },
 

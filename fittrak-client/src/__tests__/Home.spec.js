@@ -15,7 +15,11 @@ describe("Home", () => {
     });
 
     // Set computed
-    wrp.vm.now = "2018-08-28T18:00:00.00Z";
+    wrp.vm.now = {
+      dayPart: "Monday",
+      numPart: "8th",
+      hourMin: "8:00PM"
+    };
   });
 
   it("Renders", () => {
