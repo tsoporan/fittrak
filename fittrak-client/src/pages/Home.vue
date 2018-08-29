@@ -64,7 +64,7 @@ export default {
       },
 
       set(newDate) {
-        this.date = newDate;
+        this.date = new Date(newDate);
       }
     },
 
