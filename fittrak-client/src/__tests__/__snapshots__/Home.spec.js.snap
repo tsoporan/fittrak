@@ -5,7 +5,7 @@ exports[`Home Renders 1`] = `
   <v-layout-stub tag="div" row="" align-center="">
     <v-flex-stub tag="div" xs12="" text-xs-center="">
       <h2 class="display-2">
-        It's 7:39PM on Tuesday the 8th.
+        It's 8:00PM on Monday the 8th.
         <br>
       </h2>
       <v-flex-stub tag="div"></v-flex-stub>

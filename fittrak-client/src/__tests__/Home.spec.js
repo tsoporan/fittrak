@@ -13,6 +13,9 @@ describe("Home", () => {
         }
       }
     });
+
+    // Set computed
+    wrp.vm.now = new Date("2018-08-28");
   });
 
   it("Renders", () => {
