@@ -1,11 +1,10 @@
 <template>
   <v-container>
     <v-layout row wrap>
-
       <v-flex xs12>
         <v-layout justify-space-between>
           <v-flex xs2 text-xs-left>
-            <v-btn flat color="secondary" outline>Back</v-btn>
+            <Back />
           </v-flex>
 
           <v-flex xs2 text-xs-right>
@@ -40,6 +39,7 @@ import AddExerciseForm from "@/components/exercises/AddExercise";
 import ExerciseList from "@/components/exercises/ExerciseList";
 import StartWorkout from "@/components/workouts/StartWorkout";
 import FinishWorkout from "@/components/workouts/FinishWorkout";
+import Back from "@/components/app/Back";
 
 import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
 
@@ -80,7 +80,8 @@ export default {
     AddExerciseForm,
     ExerciseList,
     StartWorkout,
-    FinishWorkout
+    FinishWorkout,
+    Back
   }
 };
 </script>
