@@ -12,16 +12,14 @@
       <v-layout v-bind="layout" align-center>
         <v-flex xs6 text-xs-right><CreateWorkout /></v-flex>
         <v-flex xs1 text-xs-center>
-          <v-card>
-            <v-card-text>OR</v-card-text>
-          </v-card>
+          <v-flex>OR</v-flex>
         </v-flex>
         <v-flex xs6 text-xs-left><CreateWorkout /></v-flex>
       </v-layout>
 
       <v-layout>
         <v-flex xs-8>
-          <WorkoutList :status="status" :limit=5 title="Recently" />
+          <WorkoutList :status="status" :limit="5" title="Recently" />
         </v-flex>
       </v-layout>
 

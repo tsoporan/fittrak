@@ -15,7 +15,7 @@
     <v-spacer></v-spacer>
     <v-flex text-xs-right>
       <v-progress-circular size="24" :indeterminate="true" v-if="$apollo.loading"></v-progress-circular>
-      <v-card v-else>Heya, <strong>{{ viewer }}</strong></v-card>
+      <v-flex v-else>Heya, <strong>{{ viewer }}</strong></v-flex>
     </v-flex>
   </v-toolbar>
 
