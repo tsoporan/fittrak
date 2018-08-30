@@ -11,6 +11,7 @@ from graphene_django.views import GraphQLView
 
 from .schema import schema
 
+
 class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
     pass
 
@@ -18,16 +19,14 @@ class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
 if not settings.DEBUG:
     csrf_exempt = lambda x: x
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^graphql', csrf_exempt(
-        PrivateGraphQLView.as_view(graphiql=True, schema=schema))
-        ),
-    url(r'^$', login_required(
-        TemplateView.as_view(template_name='index.html')), name="index"),
-    url(r'^.*', login_required(
-        TemplateView.as_view(template_name='index.html')
-    ))
+    url(r'^graphql',
+        csrf_exempt(PrivateGraphQLView.as_view(graphiql=True, schema=schema))),
+    url(r'^$',
+        login_required(TemplateView.as_view(template_name='index.html')),
+        name="index"),
+    url(r'^.*',
+        login_required(TemplateView.as_view(template_name='index.html')))
 ]

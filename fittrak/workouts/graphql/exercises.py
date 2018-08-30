@@ -39,16 +39,13 @@ class AddExercise(graphene.Mutation):
 
         # Allows for users to define their own exercise types based on name
         exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
-            user=user,
-            name=exercise_name
-        )
+            user=user, name=exercise_name)
 
         exercise = Exercise.objects.create(
             user=user,
             workout=workout,
             exercise_type=exercise_type,
-            date_started=timezone.now()
-        )
+            date_started=timezone.now())
 
         return AddExercise(workout=workout, exercise=exercise)
 

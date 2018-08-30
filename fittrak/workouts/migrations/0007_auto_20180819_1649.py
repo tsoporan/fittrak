@@ -13,6 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='workout',
             name='status',
-            field=models.CharField(choices=[('PENDING', 'Pending'), ('IN_PROGRESS', 'In Progress'), ('CANCELLED', 'Cancelled'), ('COMPLETE', 'Complete')], default='PENDING', max_length=32),
+            field=models.CharField(
+                choices=[('PENDING', 'Pending'), ('IN_PROGRESS',
+                                                  'In Progress'),
+                         ('CANCELLED', 'Cancelled'), ('COMPLETE', 'Complete')],
+                default='PENDING',
+                max_length=32),
         ),
     ]

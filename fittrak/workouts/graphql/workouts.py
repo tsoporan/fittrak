@@ -42,9 +42,7 @@ class CreateWorkout(graphene.Mutation):
             raise GraphQLError("Not authenticated.")
 
         new_workout = Workout.objects.create(
-            user=user,
-            date_started=timezone.now()
-        )
+            user=user, date_started=timezone.now())
 
         return CreateWorkout(workout=new_workout)
 
@@ -72,9 +70,7 @@ class UpdateWorkout(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
         workout_fields = graphene.Argument(
-            WorkoutFieldInputType,
-            required=True
-        )
+            WorkoutFieldInputType, required=True)
 
     def mutate(self, info, workout_id, workout_fields):
         user = info.context.user
