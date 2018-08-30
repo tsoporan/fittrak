@@ -12,31 +12,22 @@
     {% csrf_token %}
 
     <div class="field">
-      <div class="control">
-        <input class="input" type="text" name="username" autofocus="" maxlength="254" required=""
-        id="id_username" placeholder="Username">
-        {{ form.username.errors }}
-      </div>
+      <input type="text" name="username" autofocus="" maxlength="254" required="" id="id_username" placeholder="Username">
+      {{ form.username.errors }}
     </div>
 
-    <div class="field">
-      <div class="control">
-        <input class="input" type="password" name="password" required="" id="id_password"
-        placeholder="Password">
-        {{ form.password.errors }}
-      </div>
+    <div class="field last">
+      <input type="password" name="password" required="" id="id_password" placeholder="Password">
+      {{ form.password.errors }}
     </div>
 
     {{ form.non_field_errors }}
+
     <hr />
 
-    <div class="button-group field is-grouped">
-      <div class="control">
-        <input type="submit" class="button is-primary" value="Sign in" />
-      </div>
-      <div class="control">
-        <a class="button is-outlined" href="{% url "registration_register" %}">Sign up</a>
-      </div>
+    <div class="actions">
+      <input type="submit" class="button is-primary" value="Sign in" /> or
+      <a class="button" href="{% url "registration_register" %}">Sign up</a>
     </div>
 
   </form>

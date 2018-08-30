@@ -4,7 +4,7 @@
 
 {% block form_content %}
 <div class="account-form">
-  <h2>Sign up for a free account</h2>
+  <h2>Sign up for a <span class="primary">free</span> account</h2>
 
   <hr />
 
@@ -12,47 +12,35 @@
     {% csrf_token %}
 
     <div class="field">
-      <div class="control">
-        <input class="input" type="text" name="username" maxlength="150" autofocus="" required=""
-        id="id_username" placeholder="Username">
-        {{ form.username.errors }}
-      </div>
+      <input class="input" type="text" name="username" maxlength="150" autofocus="" required=""
+      id="id_username" placeholder="Username">
+      {{ form.username.errors }}
     </div>
 
     <div class="field">
-      <div class="control">
-        <input class="input" type="email" name="email" required="" id="id_email" placeholder="Email">
-        {{ form.email.errors }}
-      </div>
+      <input class="input" type="email" name="email" required="" id="id_email" placeholder="Email">
+      {{ form.email.errors }}
     </div>
 
     <div class="field">
-      <div class="control">
-        <input class="input" type="password" name="password" required="" id="id_password"
-        placeholder="Password">
-        {{ form.password }}
-      </div>
+      <input class="input" type="password" name="password" required="" id="id_password"
+      placeholder="Password">
+      {{ form.password }}
     </div>
 
-    <div class="field">
-      <div class="control">
-        <input class="input" type="password" name="password2" required="" id="id_password2"
-        placeholder="Password confirmation">
-        {{ form.password2.errors }}
-      </div>
+    <div class="field last">
+      <input class="input" type="password" name="password2" required="" id="id_password2"
+      placeholder="Password confirmation">
+      {{ form.password2.errors }}
     </div>
 
     {{ form.non_field_errors }}
     <hr />
 
 
-    <div class="button-group field is-grouped">
-      <div class="control">
-        <input type="submit" class="button is-primary" value="Sign up" />
-      </div>
-      <div class="control">
-        <a class="button is-outlined" href="{% url "auth_login" %}">Sign In</a>
-      </div>
+    <div class="actions">
+      <input type="submit" class="button is-primary" value="Sign up" /> or
+      <a class="button is-outlined" href="{% url "auth_login" %}">Sign In</a>
     </div>
 
   </form>
