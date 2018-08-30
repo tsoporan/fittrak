@@ -15,7 +15,8 @@
       </v-list>
     </v-flex>
     <v-flex v-else>
-      <v-card>No recent workouts! Add one above to get started! 💪</v-card></v-flex>
+      <v-flex>No recent workouts! Add one above to get started! 💪</v-flex>
+    </v-flex>
   </v-flex>
 </template>
 
@@ -37,10 +38,11 @@ export default {
     workouts: {
       query: WORKOUTS,
       variables() {
-        const { status } = this.$props;
+        const { status, limit } = this.$props;
 
         return {
-          status
+          status,
+          limit
         };
       },
       update: data => data.workouts
@@ -53,7 +55,8 @@ export default {
 
   props: {
     status: String,
-    title: String
+    title: String,
+    limit: Number
   }
 };
 </script>
