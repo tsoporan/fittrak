@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App.vue App renders 1`] = `
+exports[`App.vue Renders 1`] = `
 <v-app-stub id="fittrak">
   <v-navigation-drawer-stub height="100%" minivariantwidth="80" mobilebreakpoint="1264" width="300" fixed="" app="" dark="">
     <sidebarnavigationitems-stub></sidebarnavigationitems-stub>
@@ -9,9 +9,9 @@ exports[`App.vue App renders 1`] = `
     <v-toolbar-side-icon-stub></v-toolbar-side-icon-stub>
     <v-toolbar-title-stub class="logo">FitTrak</v-toolbar-title-stub>
     <v-spacer-stub></v-spacer-stub>
-    <v-toolbar-items-stub>
-      <p class="viewer">Heya, <strong>Stranger</strong></p>
-    </v-toolbar-items-stub>
+    <v-flex-stub tag="div" text-xs-right="">
+      <v-progress-circular-stub indeterminate="true" rotate="0" size="24" width="4" value="0"></v-progress-circular-stub>
+    </v-flex-stub>
   </v-toolbar-stub>
   <v-content-stub tag="main">
     <router-view-stub name="default"></router-view-stub>
