@@ -1,36 +1,68 @@
 {% extends 'base.html' %}
 
-{% block head %}
+{% block extra_head %}
 {{ block.super }}
 <style>
 div.account-form {
-  margin: 50px 0;
+  margin: 30px auto;
   background: #fff;
-  padding: 10px;
+  padding: 15px;
   border-radius: 3px;
   border: 1px solid #ddd;
+  width: 80%;
+  max-width: 600px;
 }
 div.account-form h2 {
-  font-size: 30px;
+  font-size: 24px;
   text-align: center;
+  margin: 15px 0;
 }
-div.account-form .button-group {
-  justify-content: center;
+div.account-form form {
+  margin: 20px 0;
 }
-
+div.field {
+  margin: 20px 0 0;
+}
+div.field.last {
+  padding-bottom:15px;
+}
+div.field input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
 ul.errorlist {
   margin: 25px 0 0;
   font-size: 14px;
+}
+div.actions {
+  text-align: center;
+  padding: 15px 0 0;
+}
+div.actions button, div.actions input {
+  padding: 10px;
+}
+div.actions input:hover {
+  background: #444;
+}
+button, input[type="submit"] {
+  background: #222;
+  border-radius: 3px;
+  color: #fff;
+  padding: 5px;
+  border: 1px solid #111;
+  cursor: pointer;
+}
+hr {
+  border: 1px dotted #ddd;
 }
 </style>
 {% endblock %}
 
 {% block content %}
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-half">
-      {% block form_content %}{% endblock %}
-      </div>
-    </div>
+    {% block form_content %}{% endblock %}
   </div>
 {% endblock %}
