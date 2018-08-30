@@ -50,8 +50,7 @@ class AddSet(graphene.Mutation):
             user=user,
             exercise=exercise,
             repetitions=repetitions,
-            weight=weight
-        )
+            weight=weight)
 
         return AddSet(set=set, exercise=exercise, workout=exercise.workout)
 
@@ -59,10 +58,7 @@ class AddSet(graphene.Mutation):
 class UpdateSet(graphene.Mutation):
     class Arguments:
         set_id = graphene.Int(required=True)
-        set_fields = graphene.Argument(
-            SetFieldInputType,
-            required=True
-        )
+        set_fields = graphene.Argument(SetFieldInputType, required=True)
 
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)

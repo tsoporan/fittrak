@@ -21,6 +21,7 @@ import {
   VExpansionPanel,
   VRadioGroup,
   VProgressCircular,
+  VCard,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -42,6 +43,7 @@ Vue.use(Vuetify, {
     VExpansionPanel,
     VRadioGroup,
     VProgressCircular,
+    VCard,
     transitions
   },
   theme: {

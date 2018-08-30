@@ -12,7 +12,9 @@ from .helpers import get_object
 
 class Query:
     workouts = graphene.List(
-        WorkoutType, status=graphene.Argument(WorkoutStatusesEnum))
+        WorkoutType,
+        status=graphene.Argument(WorkoutStatusesEnum),
+        limit=graphene.Int(required=False))
 
     workout = graphene.Field(
         WorkoutType, workout_id=graphene.Int(required=True))
@@ -20,7 +22,7 @@ class Query:
     exercise = graphene.Field(
         ExerciseType, exercise_id=graphene.Int(required=True))
 
-    def resolve_workouts(self, info, status=None):
+    def resolve_workouts(self, info, status=None, limit=None):
         user = info.context.user
 
         filter_args = {
@@ -31,7 +33,12 @@ class Query:
         if status:
             filter_args["status"] = status
 
-        return Workout.objects.filter(**filter_args)
+        qs = Workout.objects.filter(**filter_args)
+
+        if limit and limit > 0:
+            qs = qs[:limit]
+
+        return qs
 
     def resolve_workout(self, info, workout_id):
         user = info.context.user

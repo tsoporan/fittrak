@@ -16,11 +16,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='exercise',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='workout',
             name='status',
-            field=models.CharField(choices=[('IN_PROGRESS', 'In Progress'), ('CANCELLED', 'Cancelled'), ('COMPLETE', 'Complete')], default='IN_PROGRESS', max_length=32),
+            field=models.CharField(
+                choices=[('IN_PROGRESS', 'In Progress'),
+                         ('CANCELLED', 'Cancelled'), ('COMPLETE', 'Complete')],
+                default='IN_PROGRESS',
+                max_length=32),
         ),
     ]
