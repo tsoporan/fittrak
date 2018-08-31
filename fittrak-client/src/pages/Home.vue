@@ -19,7 +19,7 @@
 
       <v-layout>
         <v-flex xs-8>
-          <WorkoutList :status="status" :limit="5" title="Recently" />
+          <WorkoutList :status="status" :limit="limit" title="Recently" />
         </v-flex>
       </v-layout>
 
@@ -32,7 +32,7 @@
 import CreateWorkout from "@/components/workouts/CreateWorkout";
 import WorkoutList from "@/components/workouts/WorkoutList";
 
-import { PENDING } from "@/constants";
+import { PENDING, DEFAULT_LIMIT } from "@/constants";
 
 import { format } from "date-fns";
 
@@ -41,7 +41,8 @@ export default {
 
   data() {
     return {
-      date: new Date()
+      date: new Date(),
+      limit: DEFAULT_LIMIT
     };
   },
 
