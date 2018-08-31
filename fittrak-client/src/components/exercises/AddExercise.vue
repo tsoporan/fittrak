@@ -2,7 +2,7 @@
   <v-form class="ma-4">
     <v-autocomplete
       v-model="newExercises"
-      :items="exercises"
+      :items="exerciseTypes"
       placeholder="Select exercises ..."
       browser-autcomplete
       clearable
@@ -25,14 +25,22 @@
 
 <script>
 import ADD_EXERCISE from "@/graphql/mutations/addExercises.graphql";
+import EXERCISE_TYPES from "@/graphql/queries/exerciseTypes.graphql";
 
 export default {
   name: "AddExerciseForm",
 
   data: () => ({
     newExercises: [],
-    exercises: ["Squat", "Bench Press"]
+    exerciseTypes: []
   }),
+
+  apollo: {
+    exerciseTypes: {
+      query: EXERCISE_TYPES,
+      update: data => data.exerciseTypes.map(exerciseType => exerciseType.name)
+    }
+  },
 
   methods: {
     addExercises() {
