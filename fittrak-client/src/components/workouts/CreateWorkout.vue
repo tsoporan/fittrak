@@ -8,7 +8,7 @@
 import WORKOUTS from "@/graphql/queries/workouts.graphql";
 import CREATE_WORKOUT from "@/graphql/mutations/createWorkout.graphql";
 
-import { PENDING } from "@/constants";
+import { PENDING, DEFAULT_LIMIT } from "@/constants";
 
 export default {
   name: "CreateWorkout",
@@ -23,7 +23,10 @@ export default {
             const newWorkout = data.createWorkout.workout;
             const result = store.readQuery({
               query: WORKOUTS,
-              variables: { status: PENDING }
+              variables: {
+                status: PENDING,
+                limit: DEFAULT_LIMIT
+              }
             });
 
             // Prepend the latest workout
