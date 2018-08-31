@@ -24,6 +24,7 @@ import {
   VRadioGroup,
   VProgressCircular,
   VCard,
+  VAutocomplete,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -48,6 +49,7 @@ Vue.use(Vuetify, {
     VRadioGroup,
     VProgressCircular,
     VCard,
+    VAutocomplete,
     transitions
   },
   theme: {
