@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 
 
 class BaseModel(models.Model):
@@ -32,7 +32,7 @@ class WorkoutBaseModel(models.Model):
     def is_finished(self):
         return True if self.date_ended else False
 
-    def delete(self):
+    def delete(self, *args, **kwargs):
         """ Overriden delete method to mark as inactive """
         self.is_active = False
         self.save()
