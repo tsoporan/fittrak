@@ -1,4 +1,4 @@
-mutation addExercises($workoutId: Int!, $exercises: ExercisesInputType!) {
+mutation addExercises($workoutId: Int!, $exercises: [ExerciseInputType!]!) {
   addExercises(workoutId: $workoutId, exercises: $exercises) {
     workout {
       id

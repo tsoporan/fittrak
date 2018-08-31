@@ -24,17 +24,18 @@ class ExerciseType(DjangoObjectType):
     class Meta:
         model = Exercise
 
-    def resolve_name(self, instance, _):
+    @staticmethod
+    def resolve_name(instance, info):
         return instance.exercise_type.name
 
 
 class AddExercises(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
-        exercises = graphene.Argument(ExerciseInputType, required=True)
+        exercises = graphene.List(ExerciseInputType, required=True)
 
     workout = graphene.Field(WorkoutType)
-    exercise = graphene.Field(ExerciseType)
+    exercises = graphene.Field(ExerciseType)
 
     def mutate(self, info, workout_id, exercises):
         user = info.context.user
