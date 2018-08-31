@@ -27,15 +27,36 @@ The frontend is a [Vue](https://vuejs.org/) powered Javascript application which
 
 ### Development
 
-The preferred way to bring up the stack is using `docker-compose`. If you really wanted to you
-could also run everything independently, which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
+The preferred way to bring up the stack is using `docker-compose`.
+
+First time:
+```bash
+git clone git@github.com:tsoporan/fittrak.git && cd fittrak
+
+# Bring up only the API to run migrations
+docker-compose up api
+docker-compose run api python fittrak/manage.py migrate
+
+# Create the first user (admin)
+docker-compose run api python fittrak/manage.py createsuperuser
+
+# Bring up everything
+docker-compose down && docker-compose up
+```
+
+Otherwise:
+```
+docker-compose up
+```
+
+You can also run everything independently, which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
 With docker we can conveniently package these up and not worry about external deps.
 
-There are three services that comprise the stack, you can bring them all up with `docker-compose up`,
-which will start all three: `api`, `db` and `app` (you can bring them up indepdently with the
-respective `docker-compose up <service>` command). 
+There are three services that comprise the stack: `api`, `app`, and `db`. `docker-compose up` brings
+them all up though you may start each one with their respective `docker-compose up <serivce>`
+command.
 
-It is also useful to know how to work with `docker` and `docker-compose` as you may need to rebuild 
+It is also useful to know how to work with `docker` and `docker-compose` as you may need to rebuild
 and interact with containers during dev.
 
 #### Migrations
@@ -47,24 +68,14 @@ To apply DB migrations we can run a command in the container:
 
 #### Tests
 
-Tests can be run with the usual: 
+Tests can be run with the usual:
 
 - `docker-compose run api python fittrak/manage.py test`
-
-#### First time set up
-
-The first time will be slightly different as you'll want to set up the DB and create an initial user.
-
-1. Run migrations (mentioned above)
-
-2. Create a super user: `docker-compose run api python fittrak/manage.py createsuperuser`
-
-3. Load up fixture data: `docker-compose run api python fittrak/manage.py loaddata workout`
 
 ---
 
 ### Deployment
 
-The application has been vetted on [GCP](https://cloud.google.com/kubernetes-engine/) using [Kubernetes](https://kubernetes.io/) and [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6), you'll notice that there are manifest files in the `infra` directory though this is still largely a work in progress. 
+The application has been vetted on [GCP](https://cloud.google.com/kubernetes-engine/) using [Kubernetes](https://kubernetes.io/) and [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6), you'll notice that there are manifest files in the `infra` directory though this is still largely a work in progress.
 
 Future plans include creating a Helm chart for the application and implementing proper CI/CD.
