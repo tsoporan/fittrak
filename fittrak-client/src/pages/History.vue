@@ -4,15 +4,23 @@
       <v-flex xs12>
         <h2 class="display-1">History</h2>
         <v-divider />
-        <p>Nothing to see here.</p>
+        <WorkoutHistoryToolbar />
+        <WorkoutList />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import WorkoutList from "@/components/workouts/WorkoutList";
+import WorkoutHistoryToolbar from "@/components/workouts/WorkoutHistoryToolbar";
+
 export default {
-  name: "History"
+  name: "History",
+  components: {
+    WorkoutList,
+    WorkoutHistoryToolbar
+  }
 };
 </script>
 

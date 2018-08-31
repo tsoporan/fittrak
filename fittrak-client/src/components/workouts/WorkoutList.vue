@@ -1,12 +1,13 @@
 <template>
-  <v-flex mt-5 v-if="$apollo.loading">
+  <v-flex mt-5 v-if="$apollo.loading" text-xs-center>
     <v-progress-circular color="primary" :indeterminate="true" size="48"></v-progress-circular>
   </v-flex>
   <v-flex v-else>
     <v-flex v-if="workouts.length">
-      <h3 class="display-1">{{ title }}</h3>
-      <v-divider />
-      <v-list three-line>
+      <v-flex v-if="title">
+        <h3 class="headline">{{ title }}</h3>
+      </v-flex>
+      <v-list three-line class="mt-2">
         <WorkoutItem
           v-for="workout in workouts"
           :key="workout.id"
@@ -15,12 +16,14 @@
       </v-list>
     </v-flex>
     <v-flex v-else>
-      <v-flex>No recent workouts! Add one above to get started! 💪</v-flex>
+      <v-flex text-xs-center>No workouts available! 😞</v-flex>
     </v-flex>
   </v-flex>
 </template>
 
 <script>
+import { getStatusBySlug } from "@/helpers";
+
 import WorkoutItem from "@/components/workouts/WorkoutItem";
 
 import WORKOUTS from "@/graphql/queries/workouts.graphql";
@@ -30,8 +33,28 @@ export default {
 
   data() {
     return {
-      workouts: []
+      workouts: [],
+      selectedStatus: null
     };
+  },
+
+  created() {
+    // Set the status if we're currently in view
+    const { status } = this.$route.params;
+
+    if (status) {
+      this.selectedStatus = getStatusBySlug(status);
+    }
+  },
+
+  watch: {
+    $route(to) {
+      const { status } = to.params;
+
+      if (status) {
+        this.selectedStatus = getStatusBySlug(status);
+      }
+    }
   },
 
   apollo: {
@@ -40,10 +63,16 @@ export default {
       variables() {
         const { status, limit } = this.$props;
 
-        return {
+        const vars = {
           status,
           limit
         };
+
+        if (this.selectedStatus) {
+          vars.status = this.selectedStatus;
+        }
+
+        return vars;
       },
       update: data => data.workouts
     }

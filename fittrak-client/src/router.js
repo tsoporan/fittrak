@@ -23,7 +23,7 @@ export default new Router({
       component: WorkoutDetail
     },
     {
-      path: "/history",
+      path: "/history/:status?",
       name: "History",
       component: History
     },

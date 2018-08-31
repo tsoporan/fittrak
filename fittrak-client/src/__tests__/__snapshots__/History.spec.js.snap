@@ -6,7 +6,8 @@ exports[`History History page renders 1`] = `
     <v-flex-stub tag="div" xs12="">
       <h2 class="display-1">History</h2>
       <v-divider-stub></v-divider-stub>
-      <p>Nothing to see here.</p>
+      <workouthistorytoolbar-stub></workouthistorytoolbar-stub>
+      <workoutlist-stub></workoutlist-stub>
     </v-flex-stub>
   </v-layout-stub>
 </v-container-stub>
