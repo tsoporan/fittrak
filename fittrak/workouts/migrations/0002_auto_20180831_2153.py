@@ -25,7 +25,7 @@ def load_exercises(apps, schema_editor):
                 name=muscle_name)
 
             for name in exercises:
-                exercise_type, _ = ExerciseType.objects.get_or_create(
+                ExerciseType.objects.get_or_create(
                     name=name, muscle_group=muscle_group)
 
 
