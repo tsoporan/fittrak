@@ -16,9 +16,9 @@ describe("Home", () => {
 
     // Set computed
     wrp.vm.now = {
-      dayPart: "Monday",
-      numPart: "8th",
-      hourMin: "8:00PM"
+      dayName: "Monday",
+      dayNum: "8th",
+      dayTime: "8:00PM"
     };
   });
 

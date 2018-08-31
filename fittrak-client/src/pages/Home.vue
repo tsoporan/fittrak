@@ -3,7 +3,7 @@
     <v-layout row align-center>
       <v-flex xs12 text-xs-center>
       <h2 class="display-2">
-        It's {{ now.hourMin }} on {{ now.dayPart }} the {{ now.numPart }}.
+        It's {{ now.dayTime }} on {{ now.dayName }} the {{ now.dayNum }}.
         <br />
       </h2>
 
@@ -52,14 +52,14 @@ export default {
 
         if ("dayPart" in date) return date;
 
-        const dayPart = format(date, "dddd");
-        const numPart = format(date, "Mo");
-        const hourMin = format(date, "h[:]mmA");
+        const dayName = format(date, "dddd");
+        const dayNum = format(date, "Do");
+        const dayTime = format(date, "h[:]mmA");
 
         return {
-          dayPart,
-          numPart,
-          hourMin
+          dayName,
+          dayNum,
+          dayTime
         };
       },
 
