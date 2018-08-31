@@ -26,13 +26,13 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         unique=True,
         null=True,
         blank=True,
-        help_text='A human easy to read/share name for workout')
+        help_text="A human easy to read/share name for workout",
+    )
 
-    status = models.CharField(
-        max_length=32, choices=STATUS_CHOICES, default=PENDING)
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=PENDING)
 
     class Meta:
-        ordering = ('-id', )
+        ordering = ("-id",)
 
     def __str__(self):
         format_by = "%Y-%m-%d %H:%m"
@@ -54,7 +54,8 @@ class MuscleGroup(BaseModel):
 class ExerciseType(BaseModel, UserBaseModel):
     name = models.CharField(max_length=250, unique=True)
     muscle_group = models.ForeignKey(
-        MuscleGroup, null=True, blank=True, on_delete=models.CASCADE)
+        MuscleGroup, null=True, blank=True, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
@@ -66,7 +67,8 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
         null=True,
         related_name="exercises",
         blank=True,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+    )
 
     exercise_type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
 
@@ -75,10 +77,11 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
         unique=True,
         null=True,
         blank=True,
-        help_text='A human easy to read/share name for exercise')
+        help_text="A human easy to read/share name for exercise",
+    )
 
     class Meta:
-        ordering = ('-id', )
+        ordering = ("-id",)
 
     def __str__(self):
         return self.exercise_type.name
@@ -88,19 +91,17 @@ class Set(BaseModel, UserBaseModel, WorkoutBaseModel):
     LB = "LB"
     KG = "KG"
 
-    UNITS = [
-        (KG, 'Kilograms'),
-        (LB, 'Pounds'),
-    ]
+    UNITS = [(KG, "Kilograms"), (LB, "Pounds")]
 
     exercise = models.ForeignKey(
-        Exercise, related_name="sets", on_delete=models.CASCADE)
+        Exercise, related_name="sets", on_delete=models.CASCADE
+    )
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     unit = models.CharField(max_length=32, choices=UNITS, default=LB)
 
     class Meta:
-        ordering = ('-id', )
+        ordering = ("-id",)
 
     def __str__(self):
         return str(self.id)

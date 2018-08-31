@@ -13,10 +13,8 @@ class BaseModel(models.Model):
 
 class UserBaseModel(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE
+    )
 
     class Meta:
         abstract = True

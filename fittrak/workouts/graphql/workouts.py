@@ -2,14 +2,11 @@
 GraphQL Workout types
 """
 
-from graphql import GraphQLError
-
 import graphene
-from graphene_django.types import DjangoObjectType
-
 from django.utils import timezone
-
-from workouts.models import Workout, PENDING, IN_PROGRESS, CANCELLED, COMPLETE
+from graphene_django.types import DjangoObjectType
+from graphql import GraphQLError
+from workouts.models import CANCELLED, COMPLETE, IN_PROGRESS, PENDING, Workout
 
 from .helpers import get_object
 
@@ -35,14 +32,14 @@ class WorkoutType(DjangoObjectType):
 class CreateWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 
-    def mutate(self, info):
+    @staticmethod
+    def mutate(_, info):
         user = info.context.user
 
         if user.is_anonymous:
             raise GraphQLError("Not authenticated.")
 
-        new_workout = Workout.objects.create(
-            user=user, date_started=timezone.now())
+        new_workout = Workout.objects.create(user=user, date_started=timezone.now())
 
         return CreateWorkout(workout=new_workout)
 
@@ -53,7 +50,8 @@ class RemoveWorkout(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
 
-    def mutate(self, info, workout_id):
+    @staticmethod
+    def mutate(_, info, workout_id):
         user = info.context.user
 
         workout = get_object(Workout, {"id": workout_id, "user": user.id})
@@ -69,10 +67,10 @@ class UpdateWorkout(graphene.Mutation):
 
     class Arguments:
         workout_id = graphene.Int(required=True)
-        workout_fields = graphene.Argument(
-            WorkoutFieldInputType, required=True)
+        workout_fields = graphene.Argument(WorkoutFieldInputType, required=True)
 
-    def mutate(self, info, workout_id, workout_fields):
+    @staticmethod
+    def mutate(_, info, workout_id, workout_fields):
         user = info.context.user
         workout = get_object(Workout, {"id": workout_id, "user": user.id})
 

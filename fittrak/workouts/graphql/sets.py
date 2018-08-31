@@ -2,18 +2,15 @@
 GraphQL Set types
 """
 
-from django.utils import timezone
-
-from graphql import GraphQLError
-
 import graphene
+from django.utils import timezone
 from graphene_django.types import DjangoObjectType
-
+from graphql import GraphQLError
 from workouts.models import Exercise, Set
 
-from .workouts import WorkoutType
 from .exercises import ExerciseType
 from .helpers import get_object
+from .workouts import WorkoutType
 
 
 class SetType(DjangoObjectType):
@@ -38,7 +35,8 @@ class AddSet(graphene.Mutation):
     exercise = graphene.Field(ExerciseType)
     workout = graphene.Field(WorkoutType)
 
-    def mutate(self, info, exercise_id, repetitions, weight, unit):
+    @staticmethod
+    def mutate(_, info, exercise_id, repetitions, weight, unit):
         user = info.context.user
 
         exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
@@ -46,13 +44,11 @@ class AddSet(graphene.Mutation):
         if not exercise.workout:
             raise GraphQLError("Exercise does not belong to a workout.")
 
-        set = Set.objects.create(
-            user=user,
-            exercise=exercise,
-            repetitions=repetitions,
-            weight=weight)
+        _set = Set.objects.create(
+            user=user, exercise=exercise, repetitions=repetitions, weight=weight
+        )
 
-        return AddSet(set=set, exercise=exercise, workout=exercise.workout)
+        return AddSet(set=_set, exercise=exercise, workout=exercise.workout)
 
 
 class UpdateSet(graphene.Mutation):
@@ -63,25 +59,26 @@ class UpdateSet(graphene.Mutation):
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
 
-    def mutate(self, info, set_id, set_fields):
+    @staticmethod
+    def mutate(_, info, set_id, set_fields):
         user = info.context.user
 
-        set = get_object(Set, {"id": set_id, "user": user.id})
+        _set = get_object(Set, {"id": set_id, "user": user.id})
 
         dirty = False
         for name, value in set_fields.items():
-            if not hasattr(set, name):
+            if not hasattr(_set, name):
                 continue
 
-            setattr(set, name, value)
+            setattr(_set, name, value)
 
             dirty = True
 
         if dirty:
-            set.updated_at = timezone.now()
-            set.save()
+            _set.updated_at = timezone.now()
+            _set.save()
 
-        return UpdateSet(set=set, exercise=set.exercise)
+        return UpdateSet(set=_set, exercise=_set.exercise)
 
 
 class RemoveSet(graphene.Mutation):
@@ -91,13 +88,14 @@ class RemoveSet(graphene.Mutation):
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
 
-    def mutate(self, info, set_id):
+    @staticmethod
+    def mutate(_, info, set_id):
         user = info.context.user
 
-        set = get_object(Set, {"id": set_id, "user": user.id})
+        _set = get_object(Set, {"id": set_id, "user": user.id})
 
-        set.is_active = False
-        set.updated_at = timezone.now()
-        set.save()
+        _set.is_active = False
+        _set.updated_at = timezone.now()
+        _set.save()
 
-        return RemoveSet(set=set, exercise=set.exercise)
+        return RemoveSet(set=_set, exercise=_set.exercise)

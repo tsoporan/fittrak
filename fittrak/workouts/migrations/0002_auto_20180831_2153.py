@@ -13,26 +13,21 @@ def load_exercises(apps, schema_editor):
     ExerciseType = apps.get_model("workouts", "ExerciseType")
     MuscleGroup = apps.get_model("workouts", "MuscleGroup")
 
-    with open(os.path.join(WORKOUT_SEEDS_PATH, "exercises.json"),
-              "r") as read_file:
+    with open(os.path.join(WORKOUT_SEEDS_PATH, "exercises.json"), "r") as read_file:
         data = json.load(read_file)
 
         for item in data:
             muscle_name = item["name"]
             exercises = item["exercises"]
 
-            muscle_group, _ = MuscleGroup.objects.get_or_create(
-                name=muscle_name)
+            muscle_group, _ = MuscleGroup.objects.get_or_create(name=muscle_name)
 
             for name in exercises:
-                ExerciseType.objects.get_or_create(
-                    name=name, muscle_group=muscle_group)
+                ExerciseType.objects.get_or_create(name=name, muscle_group=muscle_group)
 
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('workouts', '0001_squashed_0008_auto_20180831_1959'),
-    ]
+    dependencies = [("workouts", "0001_squashed_0008_auto_20180831_1959")]
 
     operations = [migrations.RunPython(load_exercises)]

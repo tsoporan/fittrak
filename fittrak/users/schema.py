@@ -1,10 +1,9 @@
 """ Users GraphQL schema """
 
-from django.contrib.auth import get_user_model
-
 import graphene
-from graphql import GraphQLError
+from django.contrib.auth import get_user_model
 from graphene_django.types import DjangoObjectType
+from graphql import GraphQLError
 
 from .models import Profile
 
@@ -25,7 +24,8 @@ class Viewer(DjangoObjectType):
 class Query:
     viewer = graphene.Field(Viewer)
 
-    def resolve_viewer(self, info):
+    @staticmethod
+    def resolve_viewer(_, info):
         user = info.context.user
 
         if not user.is_authenticated:
