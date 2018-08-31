@@ -18,6 +18,13 @@ class ExerciseInputType(graphene.InputObjectType):
     name = graphene.String(required=True)
 
 
+class ExerciseTypeType(DjangoObjectType):
+    name = graphene.String()
+
+    class Meta:
+        model = ExerciseTypeModel
+
+
 class ExerciseType(DjangoObjectType):
     name = graphene.String()
 
