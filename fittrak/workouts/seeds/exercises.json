@@ -1,0 +1,296 @@
+[
+{
+    "name": "Traps (trapezius)",
+    "exercises": [
+        "Smith Machine Shrug",
+        "Leverage Shrug",
+        "Standing Dumbbell Upright Row",
+        "Kettlebell Sumo High Pull",
+        "Dumbbell Shrug",
+        "Calf-Machine Shoulder Shrug",
+        "Barbell Shrug",
+        "Barbell Shrug Behind The Back",
+        "Upright Cable Row",
+        "Cable Shrugs",
+        "Upright Row - With Bands",
+        "Smith Machine Behind the Back Shrug",
+        "Smith Machine Upright Row",
+        "Clean Shrug",
+        "Scapular Pull-Up"
+    ]
+},
+{
+    "name": "Neck",
+    "exercises": [
+        "Lying Face Down Plate Neck Resistance",
+        "Lying Face Up Plate Neck Resistance",
+        "Seated Head Harness Neck Resistance",
+        "Isometric Neck Exercise - Sides",
+        "Isometric Neck Exercise - Front And Back",
+        "Neck Bridge Prone",
+        "Side Neck Stretch",
+        "Chin To Chest Stretch",
+        "Neck-SMR"
+    ]
+},
+{
+    "name": "Hamstrings (biceps femoris)",
+    "exercises": [
+        "Romanian Deadlift With Dumbbells",
+        "Clean Deadlift",
+        "Barbell Deadlift",
+        "Sumo Deadlift",
+        "Power Snatch",
+        "Romanian Deadlift from Deficit",
+        "Power Clean from Blocks",
+        "Floor Glute-Ham Raise",
+        "Natural Glute Ham Raise",
+        "Lying Leg Curls",
+        "Snatch Deadlift",
+        "Ball Leg Curl",
+        "Stiff-Legged Dumbbell Deadlift",
+        "Power Clean",
+        "Hang Snatch"
+    ]
+},
+{
+    "name": "Triceps (triceps brachii)",
+    "exercises": [
+        "Dips - Triceps Version",
+        "Decline EZ Bar Triceps Extension",
+        "Dumbbell Floor Press",
+        "Close-Grip Barbell Bench Press",
+        "Triceps Pushdown - V-Bar Attachment",
+        "Weighted Bench Dip",
+        "Kneeling Cable Triceps Extension",
+        "Reverse Grip Triceps Pushdown",
+        "Standing Dumbbell Triceps Extension",
+        "Push-Ups - Close Triceps Position",
+        "EZ-Bar Skullcrusher",
+        "Triceps Pushdown - Rope Attachment",
+        "Cable One Arm Tricep Extension",
+        "Decline Close-Grip Bench To Skull Crusher",
+        "Seated Triceps Press"
+    ]
+},
+{
+    "name": "Glutes",
+    "exercises": [
+        "Barbell Glute Bridge",
+        "Barbell Hip Thrust",
+        "One-Legged Cable Kickback",
+        "Butt Lift (Bridge)",
+        "Single Leg Glute Bridge",
+        "Step-up with Knee Raise",
+        "Kneeling Squat",
+        "Glute Kickback",
+        "Flutter Kicks",
+        "Physioball Hip Bridge",
+        "Kneeling Jump Squat",
+        "Pull Through",
+        "Hip Extension with Bands",
+        "Piriformis-SMR",
+        "Leg Lift"
+    ]
+},
+{
+    "name": "Quads (quadriceps)",
+    "exercises": [
+        "Single-Leg Press",
+        "Clean from Blocks",
+        "Barbell Full Squat",
+        "Tire Flip",
+        "Snatch",
+        "Hang Clean",
+        "Box Squat",
+        "Reverse Band Box Squat",
+        "Front Squats With Two Kettlebells",
+        "Single Leg Push-off",
+        "Rope Jumping",
+        "Barbell Walking Lunge",
+        "Olympic Squat",
+        "Kettlebell Pistol Squat",
+        "Step Mill"
+    ]
+},
+{
+    "name": "Calves (gastrocnemius)",
+    "exercises": [
+        "Smith Machine Calf Raise",
+        "Standing Calf Raises",
+        "Standing Dumbbell Calf Raise",
+        "Seated Calf Raise",
+        "Rocking Standing Calf Raise",
+        "Calf Press On The Leg Press Machine",
+        "Calf Press",
+        "Standing Barbell Calf Raise",
+        "Barbell Seated Calf Raise",
+        "Balance Board",
+        "Donkey Calf Raises",
+        "Smith Machine Reverse Calf Raises",
+        "Dumbbell Seated One-Leg Calf Raise",
+        "Ankle Circles",
+        "Peroneals-SMR"
+    ]
+},
+{
+    "name": "Lats (latissimus dorsi)",
+    "exercises": [
+        "Weighted Pull Ups",
+        "Pullups",
+        "Chin-Up",
+        "Rocky Pull-Ups/Pulldowns",
+        "V-Bar Pulldown",
+        "Muscle Up",
+        "Shotgun Row",
+        "Wide-Grip Pull-Up",
+        "Close-Grip Front Lat Pulldown",
+        "V-Bar Pullup",
+        "Wide-Grip Rear Pull-Up",
+        "Rope Straight-Arm Pulldown",
+        "Rope Climb",
+        "Wide-Grip Lat Pulldown",
+        "Underhand Cable Pulldowns"
+    ]
+},
+{
+    "name": "Abs (rectus abdominis)",
+    "exercises": [
+        "One-Arm Medicine Ball Slam",
+        "Landmine 180's",
+        "Suspended Fallout",
+        "Plank",
+        "Standing Cable Lift",
+        "Bottoms Up",
+        "Spell Caster",
+        "Dumbbell V-Sit Cross Jab",
+        "Decline Reverse Crunch",
+        "Spider Crawl",
+        "Cross-Body Crunch",
+        "One-Arm High-Pulley Cable Side Bends",
+        "Elbow to Knee",
+        "Cocoons",
+        "Plate Twist"
+    ]
+},
+{
+    "name": "Forearm (brachioradialis)",
+    "exercises": [
+        "Rickshaw Carry",
+        "Wrist Rotations with Straight Bar",
+        "Palms-Down Wrist Curl Over A Bench",
+        "Palms-Up Barbell Wrist Curl Over A Bench",
+        "Farmer's Walk",
+        "Standing Palms-Up Barbell Behind The Back Wrist Curl",
+        "Finger Curls",
+        "Seated Two-Arm Palms-Up Low-Pulley Wrist Curl",
+        "Wrist Roller",
+        "Seated One-Arm Dumbbell Palms-Up Wrist Curl",
+        "Seated Palms-Down Barbell Wrist Curl",
+        "Dumbbell Lying Supination",
+        "Dumbbell Lying Pronation",
+        "Seated Palm-Up Barbell Wrist Curl",
+        "Palms-Up Dumbbell Wrist Curl Over A Bench"
+    ]
+},
+{
+    "name": "Biceps (biceps brachii)",
+    "exercises": [
+        "Incline Hammer Curls",
+        "Wide-Grip Standing Barbell Curl",
+        "Spider Curl",
+        "EZ-Bar Curl",
+        "Hammer Curls",
+        "Zottman Curl",
+        "Biceps Curl To Shoulder Press",
+        "Concentration Curls",
+        "Barbell Curl",
+        "Overhead Cable Curl",
+        "Flexor Incline Dumbbell Curls",
+        "Machine Bicep Curl",
+        "Dumbbell Bicep Curl",
+        "Cross Body Hammer Curl",
+        "Close-Grip EZ Bar Curl"
+    ]
+},
+{
+    "name": "Chest (pectoralis)",
+    "exercises": [
+        "Dumbbell Bench Press",
+        "Pushups",
+        "Dumbbell Flyes",
+        "Incline Dumbbell Press",
+        "Low Cable Crossover",
+        "Decline Dumbbell Flyes",
+        "Dips - Chest Version",
+        "Barbell Bench Press - Medium Grip",
+        "Bodyweight Flyes",
+        "Incline Cable Flye",
+        "Wide-Grip Decline Barbell Bench Press",
+        "Incline Dumbbell Press Reverse-Grip",
+        "Wide-Grip Barbell Bench Press",
+        "Decline Barbell Bench Press",
+        "Incline Push-Up"
+    ]
+},
+{
+    "name": "Middle Back (rhomboids)",
+    "exercises": [
+        "T-Bar Row with Handle",
+        "Reverse Grip Bent-Over Rows",
+        "One-Arm Long Bar Row",
+        "One-Arm Dumbbell Row",
+        "Bent Over One-Arm Long Bar Row",
+        "T-Bar Row",
+        "Bent Over Two-Arm Long Bar Row",
+        "Dumbbell Incline Row",
+        "Bodyweight Mid Row",
+        "Bent Over Two-Dumbbell Row With Palms In",
+        "Seated Cable Rows",
+        "Bent Over Barbell Row",
+        "Alternating Renegade Row",
+        "Seated One-arm Cable Pulley Rows",
+        "Man Maker"
+    ]
+},
+{
+    "name": "Lower Back",
+    "exercises": [
+        "Atlas Stones",
+        "Deficit Deadlift",
+        "Axle Deadlift",
+        "Hyperextensions (Back Extensions)",
+        "Hyperextensions With No Hyperextension Bench",
+        "Deadlift with Bands",
+        "Deadlift with Chains",
+        "Rack Pull with Bands",
+        "Rack Pulls",
+        "Superman",
+        "Weighted Ball Hyperextension",
+        "Seated Back Extension",
+        "Stiff Leg Barbell Good Morning",
+        "Seated Good Mornings",
+        "Atlas Stone Trainer"
+    ]
+},
+{
+    "name": "Shoulders (deltoids)",
+    "exercises": [
+        "Single-Arm Linear Jammer",
+        "Side Laterals to Front Raise",
+        "Standing Palm-In One-Arm Dumbbell Press",
+        "Clean and Press",
+        "Push Press",
+        "Clean and Jerk",
+        "Standing Palms-In Dumbbell Press",
+        "Standing Military Press",
+        "One-Arm Kettlebell Push Press",
+        "Seated Barbell Military Press",
+        "One-Arm Side Laterals",
+        "Power Partials",
+        "Seated Dumbbell Press",
+        "Standing Dumbbell Straight-Arm Front Delt Raise Above Head",
+        "Reverse Flyes"
+    ]
+}
+]

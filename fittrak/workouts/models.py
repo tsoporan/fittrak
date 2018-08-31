@@ -44,8 +44,17 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         return "{} -- {} to {}".format(self.user, start, end)
 
 
+class MuscleGroup(BaseModel):
+    name = models.CharField(max_length=250, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class ExerciseType(BaseModel, UserBaseModel):
     name = models.CharField(max_length=250, unique=True)
+    muscle_group = models.ForeignKey(
+        MuscleGroup, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
