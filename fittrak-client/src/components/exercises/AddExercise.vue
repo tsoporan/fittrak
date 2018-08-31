@@ -1,17 +1,24 @@
 <template>
   <v-form class="ma-4">
-    <v-text-field
-      v-model="exerciseName"
-      required
-      placeholder="Exercise name"
+    <v-autocomplete
+      v-model="newExercises"
+      :items="exercises"
+      placeholder="Select exercises ..."
+      browser-autcomplete
+      clearable
+      chips
+      deletable-chips
+      hint
+      multiple
+      small-chips
     >
-    </v-text-field>
+    </v-autocomplete>
 
     <v-btn
       @click.stop="addExercise"
-      :disabled="!isValidName()"
+      :disabled="!newExercises.length"
     >
-    Add Exercise
+    Add Exercises
     </v-btn>
   </v-form>
 </template>
@@ -23,31 +30,30 @@ export default {
   name: "AddExerciseForm",
 
   data: () => ({
-    exerciseName: ""
+    newExercises: [],
+    exercises: ["Squat", "Bench Press"]
   }),
 
   methods: {
     addExercise() {
       const { workout } = this.$props;
 
-      if (!this.exerciseName) {
+      if (!this.newExercises.length) {
         return;
       }
 
-      this.$apollo.mutate({
-        mutation: ADD_EXERCISE,
+      this.$apollo
+        .mutate({
+          mutation: ADD_EXERCISE,
 
-        variables: {
-          workoutId: workout.id,
-          exerciseName: this.exerciseName
-        }
-      });
-    },
-
-    isValidName() {
-      const name = this.exerciseName;
-
-      return name.trim().length > 0;
+          variables: {
+            workoutId: workout.id,
+            exerciseName: this.exerciseName
+          }
+        })
+        .then(() => {
+          this.newExercises = [];
+        });
     }
   },
 
