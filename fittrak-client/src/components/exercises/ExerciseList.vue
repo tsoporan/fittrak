@@ -1,7 +1,7 @@
 <template>
-  <v-expansion-panel v-if="activeExercises.length">
+  <v-expansion-panel v-if="workout.exercises.length">
     <v-expansion-panel-content
-      v-for="exercise in activeExercises"
+      v-for="exercise in workout.exercises"
       :key="exercise.id"
       >
       <div slot="header">
@@ -40,16 +40,6 @@ import RemoveExercise from "@/components/exercises/RemoveExercise";
 export default {
   name: "ExerciseList",
 
-  computed: {
-    activeExercises() {
-      const { workout } = this.$props;
-
-      if (!workout) return [];
-
-      return workout.exercises.filter(e => e.isActive);
-    }
-  },
-
   components: {
     AddSet,
     SetList,
@@ -61,6 +51,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

@@ -14,4 +14,7 @@ const STATUS_MAP = Object.freeze({
   [COMPLETE]: "Complete"
 });
 
-export { STATUS_MAP, PENDING, IN_PROGRESS, CANCELLED, COMPLETE };
+// List limit
+const DEFAULT_LIMIT = 5;
+
+export { STATUS_MAP, PENDING, IN_PROGRESS, CANCELLED, COMPLETE, DEFAULT_LIMIT };
