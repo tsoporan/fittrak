@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/tsoporan/fittrak/tree/master.svg?style=svg)](https://circleci.com/gh/tsoporan/fittrak/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cacf93b3fc73458c8f51b02b177e07d4)](https://www.codacy.com/app/titus/fittrak?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tsoporan/fittrak&amp;utm_campaign=Badge_Grade)
 
 A no-frills fitness tracking tool for the stats inclined 🤓.
 
