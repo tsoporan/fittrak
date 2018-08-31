@@ -15,7 +15,7 @@
     </v-autocomplete>
 
     <v-btn
-      @click.stop="addExercise"
+      @click.stop="addExercises"
       :disabled="!newExercises.length"
     >
     Add Exercises
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ADD_EXERCISE from "@/graphql/mutations/addExercise.graphql";
+import ADD_EXERCISE from "@/graphql/mutations/addExercises.graphql";
 
 export default {
   name: "AddExerciseForm",
@@ -35,7 +35,7 @@ export default {
   }),
 
   methods: {
-    addExercise() {
+    addExercises() {
       const { workout } = this.$props;
 
       if (!this.newExercises.length) {
@@ -48,7 +48,7 @@ export default {
 
           variables: {
             workoutId: workout.id,
-            exerciseName: this.exerciseName
+            exercises: this.newExercises.map(exercise => ({ name: exercise }))
           }
         })
         .then(() => {
