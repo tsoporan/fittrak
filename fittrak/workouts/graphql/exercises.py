@@ -2,16 +2,15 @@
 GraphQL Exercise types
 """
 
-from django.utils import timezone
-
 import graphene
+from django.utils import timezone
 from graphene_django.types import DjangoObjectType
+from workouts.models import Exercise
+from workouts.models import ExerciseType as ExerciseTypeModel
+from workouts.models import Workout
 
-from workouts.models import Workout, \
-    Exercise, ExerciseType as ExerciseTypeModel
-
-from .workouts import WorkoutType
 from .helpers import get_object
+from .workouts import WorkoutType
 
 
 class ExerciseInputType(graphene.InputObjectType):
@@ -32,7 +31,7 @@ class ExerciseType(DjangoObjectType):
         model = Exercise
 
     @staticmethod
-    def resolve_name(instance, info):
+    def resolve_name(_, instance, info):
         return instance.exercise_type.name
 
 
@@ -44,7 +43,8 @@ class AddExercises(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
     exercises = graphene.Field(ExerciseType)
 
-    def mutate(self, info, workout_id, exercises):
+    @staticmethod
+    def mutate(_, info, workout_id, exercises):
         user = info.context.user
 
         workout = get_object(Workout, {"id": workout_id, "user": user.id})
@@ -52,17 +52,19 @@ class AddExercises(graphene.Mutation):
         added = []
 
         for exercise in exercises:
-            name = exercise['name']
+            name = exercise["name"]
 
             # Allows for users to define their own exercise types based on name
             exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
-                user=user, name=name)
+                user=user, name=name
+            )
 
             exercise = Exercise.objects.create(
                 user=user,
                 workout=workout,
                 exercise_type=exercise_type,
-                date_started=timezone.now())
+                date_started=timezone.now(),
+            )
 
             added.append(exercise)
 
@@ -76,7 +78,8 @@ class RemoveExercise(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
     exercise = graphene.Field(ExerciseType)
 
-    def mutate(self, info, exercise_id):
+    @staticmethod
+    def mutate(_, info, exercise_id):
         user = info.context.user
 
         exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})

@@ -6,8 +6,7 @@ from graphene_django.debug import DjangoDebug
 
 from workouts.graphql.schema import Query as WorkoutsQuery
 
-from workouts.graphql.workouts import \
-    CreateWorkout, RemoveWorkout, UpdateWorkout
+from workouts.graphql.workouts import CreateWorkout, RemoveWorkout, UpdateWorkout
 from workouts.graphql.exercises import AddExercises, RemoveExercise
 from workouts.graphql.sets import AddSet, RemoveSet, UpdateSet
 
@@ -15,7 +14,7 @@ from users.schema import Query as UsersQuery
 
 
 class RootQuery(WorkoutsQuery, UsersQuery, graphene.ObjectType):
-    debug = graphene.Field(DjangoDebug, name='__debug')
+    debug = graphene.Field(DjangoDebug, name="__debug")
 
 
 class RootMutation(graphene.ObjectType):
