@@ -2,11 +2,10 @@
 
 import graphene
 
-from workouts.models import Workout, Exercise, Set, IN_PROGRESS, ExerciseType as ExerciseTypeModel
+from workouts.models import Workout, Exercise, ExerciseType as ExerciseTypeModel
 
 from .workouts import WorkoutType, WorkoutStatusesEnum
 from .exercises import ExerciseType, ExerciseTypeType
-from .sets import SetType
 from .helpers import get_object
 
 
