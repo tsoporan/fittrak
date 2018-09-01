@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "==2.0.7"
+Django = "==2.1.1"
 hashids = "*"
 django-cors-headers = "*"
 django-extensions = "*"
@@ -14,10 +14,10 @@ graphene = ">=2.0"
 graphene-django = ">=2.0"
 django-graphql-jwt = "*"
 django-webpack-loader = "*"
-django-registration-redux = "*"
 gunicorn = "*"
 django-allow-cidr = "*"
 "psycopg2-binary" = "*"
+django-allauth = "*"
 
 [dev-packages]
 snapshottest = "*"

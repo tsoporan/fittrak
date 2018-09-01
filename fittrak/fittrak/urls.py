@@ -20,7 +20,7 @@ if not settings.DEBUG:
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
-    url(r"^accounts/", include("registration.backends.simple.urls")),
+    url(r"^accounts/", include("allauth.urls")),
     url(
         r"^graphql",
         csrf_exempt(PrivateGraphQLView.as_view(graphiql=True, schema=schema)),

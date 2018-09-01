@@ -1,0 +1,50 @@
+{% extends 'base_accounts.html' %}
+
+{% block title %}Sign in{% endblock %}
+
+{% load account socialaccount %}
+
+{% block form_content %}
+<div class="account-form">
+  <h2>Sign in</h2>
+
+  <hr />
+
+  <form method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <div class="field">
+      <input type="email" name="login" autofocus="autofocus" id="id_login" placeholder="Your email" required>
+      {{ form.email.errors }}
+    </div>
+
+    <div class="field last">
+      <input type="password" name="password" id="id_password" placeholder="Your password" required>
+      {{ form.password.errors }}
+    </div>
+
+    {{ form.non_field_errors }}
+
+    <hr />
+
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+    <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
+    {% endif %}
+
+    <div class="actions">
+      <input type="submit" value="Sign in" /> or
+      <a href="{% url 'account_signup' %}">Sign up</a>
+    </div>
+
+    <div class="footer">
+      <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+    </div>
+
+  </form>
+</div>
+{% endblock %}

@@ -4,4 +4,6 @@
 cd fittrak
 
 echo "Starting dev server ..."
+./manage.py migrate
 ./manage.py runserver 0.0.0.0:8000 --settings=fittrak.settings
+echo "Serving ..."
