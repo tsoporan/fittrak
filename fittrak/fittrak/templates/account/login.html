@@ -31,8 +31,9 @@
     <hr />
 
     {% get_providers as socialaccount_providers %}
+
     {% if socialaccount_providers %}
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
     {% endif %}
 
     <div class="actions">
