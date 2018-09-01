@@ -13,6 +13,5 @@ def index(request, template_name="index.html"):
     """
 
     return render(
-        request,
-        template_name=template_name,
-        context={"DEBUG": settings.DEBUG})
+        request, template_name=template_name, context={"DEBUG": settings.DEBUG}
+    )
