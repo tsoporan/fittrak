@@ -1,15 +1,14 @@
 """fittrak URL Configuration """
-from django.conf.urls import url, include
 from django.conf import settings
+from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 from graphene_django.views import GraphQLView
 
 from .schema import schema
+from .views import index
 
 
 class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
@@ -26,10 +25,6 @@ urlpatterns = [
         r"^graphql",
         csrf_exempt(PrivateGraphQLView.as_view(graphiql=True, schema=schema)),
     ),
-    url(
-        r"^$",
-        login_required(TemplateView.as_view(template_name="index.html")),
-        name="index",
-    ),
-    url(r"^.*", login_required(TemplateView.as_view(template_name="index.html"))),
+    url(r"^$", index, name="index"),
+    url(r"^.*", index),
 ]
