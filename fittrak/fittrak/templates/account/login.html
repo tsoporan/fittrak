@@ -17,12 +17,12 @@
     {% endif %}
 
     <div class="field">
-      <input type="text" name="username" autofocus="" maxlength="254" required="" id="id_username" placeholder="Username">
-      {{ form.username.errors }}
+      <input type="email" name="login" autofocus="autofocus" id="id_login" placeholder="Your email" required>
+      {{ form.email.errors }}
     </div>
 
     <div class="field last">
-      <input type="password" name="password" required="" id="id_password" placeholder="Password">
+      <input type="password" name="password" id="id_password" placeholder="Your password" required>
       {{ form.password.errors }}
     </div>
 
