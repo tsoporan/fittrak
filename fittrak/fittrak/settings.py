@@ -18,10 +18,15 @@ HASHIDS_SALT = os.getenv("DJANGO_HASHIDS_SALT")
 # Allow handling by CIDR middleware
 ALLOWED_HOSTS = ["*"]
 
-# Application definition
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
+# Application definition
 INSTALLED_APPS = [
-    "registration",  # Must appear before admin for templates
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -33,6 +38,10 @@ INSTALLED_APPS = [
     "graphene_django",
     "webpack_loader",
     "corsheaders",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     # Ours
     "users",
     "workouts",
@@ -147,12 +156,6 @@ WEBPACK_LOADER = {
 }
 
 AUTH_USER_MODEL = "users.User"
-
-# Registration conf
-ACCOUNT_ACTIVATION_DAYS = 3
-REGISTRATION_AUTO_LOGIN = True
-SIMPLE_BACKEND_REDIRECT_URL = "/"
-REGISTRATION_OPEN = True
 
 CSRF_HEADER_NAME = "x-csrftoken"
 CSRF_USE_SESSIONS = False  # Will use cookie
