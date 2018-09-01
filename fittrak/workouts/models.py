@@ -1,11 +1,9 @@
-from django.db import models
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-from django.conf import settings
-
-from fittrak.utils.models import WorkoutBaseModel, UserBaseModel, BaseModel
-
 import hashids
+from django.conf import settings
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from fittrak.utils.models import BaseModel, UserBaseModel, WorkoutBaseModel
 
 PENDING = "PENDING"
 IN_PROGRESS = "IN_PROGRESS"
@@ -52,10 +50,13 @@ class MuscleGroup(BaseModel):
 
 
 class ExerciseType(BaseModel, UserBaseModel):
-    name = models.CharField(max_length=250, unique=True)
+    name = models.CharField(max_length=250)
     muscle_group = models.ForeignKey(
         MuscleGroup, null=True, blank=True, on_delete=models.CASCADE
     )
+
+    class Meta:
+        unique_together = ("user", "name")
 
     def __str__(self):
         return self.name

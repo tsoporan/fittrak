@@ -31,7 +31,7 @@ class ExerciseType(DjangoObjectType):
         model = Exercise
 
     @staticmethod
-    def resolve_name(_, instance, info):
+    def resolve_name(instance, info):
         return instance.exercise_type.name
 
 

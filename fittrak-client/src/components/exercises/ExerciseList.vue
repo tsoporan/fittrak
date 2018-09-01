@@ -27,9 +27,9 @@
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
-  <p v-else>
-    No exercises!
-  </p>
+  <v-flex v-else text-xs-center>
+    No exercises! 😞
+  </v-flex>
 </template>
 
 <script>
