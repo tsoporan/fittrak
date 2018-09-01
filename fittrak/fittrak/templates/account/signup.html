@@ -1,0 +1,49 @@
+{% extends 'base_accounts.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block form_content %}
+<div class="account-form">
+  <h2>Sign up for a <span class="primary">free</span> account</h2>
+
+  <hr />
+
+  <form method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <div class="field">
+      <input type="text" name="username" maxlength="150" autofocus="" required id="id_username" placeholder="Username">
+      {{ form.username.errors }}
+    </div>
+
+    <div class="field">
+      <input type="email" name="email" id="id_email" placeholder="Email" required>
+      {{ form.email.errors }}
+    </div>
+
+    <div class="field">
+      <input type="password" name="password1" placeholder="Password" required>
+      {{ form.password1.errors }}
+    </div>
+
+    <div class="field last">
+      <input type="password" name="password2" id="id_password2" placeholder="Password (again)"
+      required>
+      {{ form.password2.errors }}
+    </div>
+
+    {{ form.non_field_errors }}
+
+    <hr />
+
+    <div class="actions">
+      <input type="submit" value="Sign up" /> or
+      <a href="{{ login_url }}">Sign In</a>
+    </div>
+
+  </form>
+</div>
+{% endblock %}
