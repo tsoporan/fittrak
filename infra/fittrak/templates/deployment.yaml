@@ -70,6 +70,30 @@ spec:
                   name: {{ .Release.Name }}-django-secrets
                   key: hashids_salt
 
+            - name: EMAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-secrets
+                  key: email_host
+
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-secrets
+                  key: email_port
+
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-secrets
+                  key: email_host_user
+
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-secrets
+                  key: email_host_password
+
         - name: {{ .Values.containers.cloudsqlProxy.name }}
           image: {{ .Values.containers.cloudsqlProxy.image }}
           command: ["/cloud_sql_proxy",
