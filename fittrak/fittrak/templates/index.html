@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 {% load render_bundle from webpack_loader %}
 
-{% block header %}{% endblock %}
+{% block header %}{% endblock header %}
 
-{% block title %}Heya, {{ request.user.username }}{% endblock %}
+{% block extra_head %}{% endblock extra_head %}
+
+{% block title %}Heya, {{ request.user.username }}{% endblock title %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-<div id="app">
-  <!-- Vue app loaded -->
-</div>
-{% if not DEBUG %}
+
+{% if DEBUG == "False" %}
+  <div id="app">
+    <!-- Vue app loaded -->
+  </div>
+
   {# These bundles are only available as a result of the build process, in dev we do not need them #}
-  {% render_bundle 'chunk-vendors' 'js' %}
-  {% render_bundle 'app' 'js' %}
+  {% render_bundle 'chunk-vendors' %}
+  {% render_bundle 'app' %}
+
 {% else %}
+
 <p style="text-align: center">Debug is set to <strong>{{ DEBUG }}</strong>. Not much to see here.
   <ul style="width: 300px; margin: 30px auto">
     <li>Admin is on <a href="/admin/">/admin/</a></li>
@@ -25,4 +32,6 @@
 {% endif %}
 
 {% endif %}
-{% endblock %}
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

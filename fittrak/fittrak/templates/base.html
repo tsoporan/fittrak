@@ -7,9 +7,9 @@
         <title>FitTrak | {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% block extra_head %}
-        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
 
+        {% block extra_head %}
         <style>
           body, html {
             background: #e9e9e9;
@@ -58,11 +58,13 @@
 
         {% block content %}{% endblock content %}
 
+        {% block footer %}
         <div class="container">
           <footer>
             {% now "Y" %} &ndash;
             Made with <span style="color:red">&hearts;</span> by <a href="https://github.com/tsoporan/fittrak">tsoporan</a>
           </footer>
+        {% endblock %}
         </div>
       </div>
     </body>
