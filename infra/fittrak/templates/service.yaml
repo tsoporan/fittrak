@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+  labels:
+    app: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+spec:
+  selector:
+    app: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+  ports:
+  - protocol: {{ .Values.services.webapp.ports.protocol }}
+    port: {{ .Values.services.webapp.ports.port }}
+    targetPort: {{ .Values.services.webapp.ports.targetPort }}
+  type: {{ .Values.services.webapp.type }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.services.static.name }}
+  labels:
+    app: {{ .Release.Name}}-{{ .Values.services.static.name }}
+spec:
+  selector:
+    app: {{ .Release.Name }}-{{ .Values.services.static.name }}
+  ports:
+  - protocol: {{ .Values.services.static.ports.protocol }}
+    port: {{ .Values.services.static.ports.port }}
+    targetPort: {{ .Values.services.static.ports.targetPort }}
+  type: {{ .Values.services.static.type}}

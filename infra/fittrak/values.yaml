@@ -22,9 +22,24 @@ containers:
       pg_port: 5432
       pg_database: fittrak
 
-service:
-  type: ClusterIP
-  port: 80
+services:
+  webapp:
+    name: webapp-service
+    type: NodePort
+    ports:
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+
+  static:
+    name: static-service
+    type: NodePort
+    ports:
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+
+
 
 ingress:
   enabled: false
