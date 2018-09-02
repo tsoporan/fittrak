@@ -1,13 +1,26 @@
 # Default values for fittrak.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
-replicaCount: 1
-
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+containers:
+  static:
+    name: fittrak-static
+    image:
+    containerPort: 80
+  app:
+    name: webapp
+    image:
+    containerPort: 8000
+    readinessProbe:
+      httpGet:
+        path: /accounts/login/
+        port: 8000
+      periodSeconds: 30
+      timeoutSeconds: 5
+      successThreshold: 1
+      failureThreshold: 5
+    env:
+      pg_host: 127.0.0.1
+      pg_port: 5432
+      pg_database: fittrak
 
 service:
   type: ClusterIP
@@ -25,18 +38,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
 
 nodeSelector: {}
 
