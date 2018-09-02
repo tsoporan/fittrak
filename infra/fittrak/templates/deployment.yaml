@@ -35,14 +35,7 @@ spec:
           image: {{ .Values.containers.app.image }}
           ports:
             - containerPort: {{ .Values.containers.app.containerPort }}
-          readinessProbe:
-            httpGet:
-              path: {{ .Values.containers.app.readinessProbe.httpGet.path }}
-              port: {{ .Values.containers.app.readinessProbe.httpGet.port }}
-            periodSeconds: {{ .Values.containers.app.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.containers.app.readinessProbe.timeoutSeconds }}
-            successThreshold: {{ .Values.containers.app.readinessProbe.successThreshold }}
-            failureThreshold: {{ .Values.containers.app.readinessProbe.failureThreshold }}
+          readinessProbe: {{ .Values.containers.app.readinessProbe }}
           env:
             - name: PG_HOST
               value: {{ quote .Values.containers.app.env.pg_host }}
@@ -77,10 +70,10 @@ spec:
                   name: {{ .Release.Name }}-django-secrets
                   key: hashids_salt
 
-        - name: cloudsql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+        - name: {{ .Values.containers.cloudsqlProxy.name }}
+          image: {{ .Values.containers.cloudsqlProxy.image }}
           command: ["/cloud_sql_proxy",
-                    "-instances=<SET ME>=tcp:5432",
+                    "{{ printf "-instances=%s=tcp:5432" .Values.containers.cloudsqlProxy.instanceName }}",
                     "-credential_file=/secrets/cloudsql/credentials.json"]
           volumeMounts:
             - name: cloudsql-instance-credentials
