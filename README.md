@@ -77,6 +77,25 @@ Tests can be run with the usual:
 
 ### Deployment
 
+Firstly check how the app behaves in production mode:
+
+```bash
+
+# Build production bundle
+
+cd fittrak-client
+NODE_ENV=production yarn build
+
+# This will dump the assets in ../fittrak/assets which will be picked up
+# by the "render_bundle" template tag in Django
+
+# Set DEBUG to "False" in docker-compose
+docker-compose up
+
+# Visit http://localhost:8000
+```
+
+
 The application has been vetted on [GCP](https://cloud.google.com/kubernetes-engine/) using [Kubernetes](https://kubernetes.io/) and [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6), you'll notice that there are manifest files in the `infra` directory though this is still largely a work in progress.
 
 Future plans include creating a Helm chart for the application and implementing proper CI/CD.
