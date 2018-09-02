@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.containers.static.name }}
-          image: {{ .Values.containers.static.image }}
+          image: {{ .Values.containers.static.image }}:{{ .Values.containers.static.imageTag }}
           ports:
             - containerPort: {{ .Values.containers.static.containerPort }}
 ---
@@ -32,70 +32,15 @@ spec:
     spec:
       containers:
         - name: {{ .Values.containers.app.name }}
-          image: {{ .Values.containers.app.image }}
+          image: {{ .Values.containers.app.image }}:{{ .Values.containers.static.imageTag }}
           ports:
             - containerPort: {{ .Values.containers.app.containerPort }}
           readinessProbe: {{ .Values.containers.app.readinessProbe }}
-          env:
-            - name: PG_HOST
-              value: {{ quote .Values.containers.app.env.pg_host }}
-
-            - name: PG_PORT
-              value: {{ quote .Values.containers.app.env.pg_port }}
-
-            - name: PG_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-cloudsql-db-credentials
-                  key: username
-
-            - name: PG_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-cloudsql-db-credentials
-                  key: password
-
-            - name: PG_DATABASE
-              value: {{ quote .Values.containers.app.env.pg_database }}
-
-            - name: DJANGO_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: secret_key
-
-            - name: DJANGO_HASHIDS_SALT
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: hashids_salt
-
-            - name: EMAIL_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: email_host
-
-            - name: EMAIL_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: email_port
-
-            - name: EMAIL_HOST_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: email_host_user
-
-            - name: EMAIL_HOST_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-django-secrets
-                  key: email_host_password
-
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-webapp-env
         - name: {{ .Values.containers.cloudsqlProxy.name }}
-          image: {{ .Values.containers.cloudsqlProxy.image }}
+          image: {{ .Values.containers.cloudsqlProxy.image }}:{{ .Values.containers.cloudsqlProxy.imageTag }}
           command: ["/cloud_sql_proxy",
                     "{{ printf "-instances=%s=tcp:5432" .Values.containers.cloudsqlProxy.instanceName }}",
                     "-credential_file=/secrets/cloudsql/credentials.json"]

@@ -3,11 +3,13 @@
 containers:
   static:
     name: fittrak-static
-    image:
+    image: gcr.io/fittrak-212120/fittrak-static
+    imageTag: v1
     containerPort: 80
   app:
     name: webapp
-    image:
+    image: gcr.io/fittrak-212120/fittrak-app
+    imageTag: v1
     containerPort: 8000
     readinessProbe:
       httpGet:
@@ -23,7 +25,8 @@ containers:
       pg_database: fittrak
   cloudsqlProxy:
     name: cloudsql-proxy
-    image: gcr.io/cloudsql-docker/gce-proxy:1.11
+    image: gcr.io/cloudsql-docker/gce-proxy
+    imageTag: 1.11
     instanceName:
 
 services:

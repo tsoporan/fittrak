@@ -7,25 +7,16 @@ spec:
   tls: {{ .Values.ingress.tls }}
   rules:
     - host: fittrak.ca
-      http:
+      http: &http
         paths:
         - path: {{ .Values.ingress.paths.webapp }}
           backend:
             serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
-            servicePort: {{ .Release.name }}-{{ .Values.services.webapp.ports.port }}
+            servicePort: {{ .Values.services.webapp.ports.port }}
         - path: {{ .Values.ingress.paths.static }}
           backend:
             serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
-            servicePort: {{ .Release.name }}-{{ .Values.services.static.ports.port }}
+            servicePort: {{ .Values.services.static.ports.port }}
 
     - host: www.fittrak.ca
-      http:
-        paths:
-        - path: {{ .Values.ingress.paths.webapp }}
-          backend:
-            serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
-            servicePort: {{ .Release.name }}-{{ .Values.services.webapp.ports.port }}
-        - path: {{ .Values.ingress.paths.static }}
-          backend:
-            serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
-            servicePort: {{ .Release.name }}-{{ .Values.services.static.ports.port }}
+      <<: *http
