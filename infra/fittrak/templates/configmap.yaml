@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-webapp-env
+data:
+  PG_HOST: {{ quote .Values.containers.app.env.pg_host }}
+  PG_PORT: {{ quote .Values.containers.app.env.pg_port }}
+  PG_USER:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-cloudsql-db-credentials
+        key: username
+  PG_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-cloudsql-db-credentials
+        key: password
+  PG_DATABASE: {{ quote .Values.containers.app.env.pg_database }}
+  DJANGO_SECRET_KEY:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: secret_key
+  DJANGO_HASHIDS_SALT:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: hashids_salt
+  EMAIL_HOST:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: email_host
+  EMAIL_PORT:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: email_port
+  EMAIL_HOST_USER:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: email_host_user
+  EMAIL_HOST_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-django-secrets
+        key: email_host_password
