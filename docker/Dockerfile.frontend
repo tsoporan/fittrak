@@ -1,6 +1,6 @@
 # Dockerfile for fittrak node development
 
-FROM node:8-alpine
+FROM node:carbon-alpine
 
 WORKDIR /usr/src/app
 
