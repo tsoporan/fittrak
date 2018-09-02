@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-fittrak-ingress
+  annotations: {{ .Values.ingress.annotations }}
+spec:
+  tls: {{ .Values.ingress.tls }}
+  rules:
+    - host: fittrak.ca
+      http:
+        paths:
+        - path: {{ .Values.ingress.paths.webapp }}
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+            servicePort: {{ .Release.name }}-{{ .Values.services.webapp.ports.port }}
+        - path: {{ .Values.ingress.paths.static }}
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
+            servicePort: {{ .Release.name }}-{{ .Values.services.static.ports.port }}
+
+    - host: www.fittrak.ca
+      http:
+        paths:
+        - path: {{ .Values.ingress.paths.webapp }}
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+            servicePort: {{ .Release.name }}-{{ .Values.services.webapp.ports.port }}
+        - path: {{ .Values.ingress.paths.static }}
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
+            servicePort: {{ .Release.name }}-{{ .Values.services.static.ports.port }}
