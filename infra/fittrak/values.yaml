@@ -11,14 +11,7 @@ containers:
     image: gcr.io/fittrak-212120/fittrak-app
     imageTag: v1
     containerPort: 8000
-    readinessProbe:
-      httpGet:
-        path: /accounts/login/
-        port: 8000
-      periodSeconds: 30
-      timeoutSeconds: 5
-      successThreshold: 1
-      failureThreshold: 5
+    readinessPath: /accounts/login/
   cloudsqlProxy:
     name: cloudsql-proxy
     image: gcr.io/cloudsql-docker/gce-proxy
@@ -46,9 +39,9 @@ services:
 # it is not a major concern.
 sensitive:
   django_secret_key:
-  djangO_hashids_salt:
+  django_hashids_salt:
   django_email_host:
-  django_email_port:
   django_email_host_user:
   django_email_host_password:
+  django_email_port:
   cloudsql_instance:

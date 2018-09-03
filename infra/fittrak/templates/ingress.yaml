@@ -15,7 +15,7 @@ spec:
           backend:
             serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
             servicePort: {{ .Values.services.webapp.ports.port }}
-        - path:
+        - path: /static/*
           backend:
             serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
             servicePort: {{ .Values.services.static.ports.port }}

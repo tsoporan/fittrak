@@ -35,10 +35,58 @@ spec:
           image: {{ .Values.containers.app.image }}:{{ .Values.containers.static.imageTag }}
           ports:
             - containerPort: {{ .Values.containers.app.containerPort }}
-          readinessProbe: {{ .Values.containers.app.readinessProbe }}
-          envFrom:
-            - configMapRef:
-                name: {{ .Release.Name }}-webapp-env
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.containers.app.readinessPath }}
+              port: {{ .Values.containers.app.containerPort }}
+            periodSeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          env:
+            - name: DB_HOST
+              value: "127.0.0.1"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "fittrak"
+            - name: EMAIL_PORT
+              value: "587"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-credentials
+                  key: password
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-sensitive
+                  key: secret_key
+            - name: DJANGO_HASHIDS_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-sensitive
+                  key: hashids_salt
+            - name: EMAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-sensitive
+                  key: email_host
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-sensitive
+                  key: email_host_user
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-django-sensitive
+                  key: email_host_password
         - name: {{ .Values.containers.cloudsqlProxy.name }}
           image: {{ .Values.containers.cloudsqlProxy.image }}:{{ .Values.containers.cloudsqlProxy.imageTag }}
           command: ["/cloud_sql_proxy",
