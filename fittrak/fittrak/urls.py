@@ -15,15 +15,12 @@ class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
     pass
 
 
-if not settings.DEBUG:
-    csrf_exempt = lambda x: x
-
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
     url(r"^accounts/", include("allauth.urls")),
     url(
         r"^graphql",
-        csrf_exempt(PrivateGraphQLView.as_view(graphiql=True, schema=schema)),
+        csrf_exempt(PrivateGraphQLView.as_view(graphiql=settings.DEBUG, schema=schema)),
     ),
     url(r"^$", index, name="index"),
     url(r"^.*", index),

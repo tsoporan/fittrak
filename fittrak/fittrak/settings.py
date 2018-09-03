@@ -15,9 +15,6 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 HASHIDS_SALT = os.getenv("DJANGO_HASHIDS_SALT")
 
-# Allow handling by CIDR middleware
-ALLOWED_HOSTS = ["*"]
-
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
@@ -139,9 +136,6 @@ LOGOUT_REDIRECT_URL = "/"
 
 SITE_ID = 1
 
-# Temporarily use console backend for activation emails to avoid connection
-# refused issues.
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 GRAPHENE = {
     "SCHEMA": "fittrak.schema.schema",
@@ -188,14 +182,16 @@ SOCIALACCOUNT_PROVIDERS = {
     "google": {"SCOPE": ["profile", "email"], "AUTH_PARAMS": {"access_type": "online"}}
 }
 
-# Dev cors
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ["fittrak.ca"]
 
 # Production override
 # TODO: should really be separate settings files
-if not DEBUG:
-    ALLOWED_HOSTS = []
-    ALLOW_CIDR_NETS = ["10.0.0.0/24", "10.1.1.0/24"]
-    CORS_ORIGIN_ALLOW_ALL = False
-    CORS_ALLOW_CREDENTIALS = False
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+
+    # Dev cors
+    CORS_ORIGIN_ALLOW_ALL = True
+    CORS_ALLOW_CREDENTIALS = True
+
+    # Dump emails to stdout
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
