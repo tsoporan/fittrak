@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-webapp-env
 data:
   PG_HOST: {{ quote .Values.sensitive.pg_host }}
-  PG_PORT: {{ quote .Values.sensitive.pg_port }}
+  PG_PORT: {{ .Values.sensitive.pg_port }}
   PG_USER:
     valueFrom:
       secretKeyRef:
