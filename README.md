@@ -97,6 +97,6 @@ docker-compose up
 ```
 
 
-The application has been vetted on [GCP](https://cloud.google.com/kubernetes-engine/) using [Kubernetes](https://kubernetes.io/) and [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6), you'll notice that there are manifest files in the `infra` directory though this is still largely a work in progress.
+The application currently sits on a [GCP VM](https://cloud.google.com/compute) and uses [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6). SSL is through [LetsEncrypt](https://letsencrypt.org/) and the Nginx [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx.html)
 
-Future plans include creating a Helm chart for the application and implementing proper CI/CD.
+Future plans may include IaC, and moving to a more robust container solution, such as k8s, though it's fairly overkill at the moment. 
