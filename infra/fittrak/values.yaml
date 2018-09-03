@@ -19,15 +19,10 @@ containers:
       timeoutSeconds: 5
       successThreshold: 1
       failureThreshold: 5
-    env:
-      pg_host: 127.0.0.1
-      pg_port: 5432
-      pg_database: fittrak
   cloudsqlProxy:
     name: cloudsql-proxy
     image: gcr.io/cloudsql-docker/gce-proxy
     imageTag: 1.11
-    instanceName:
 
 services:
   webapp:
@@ -46,6 +41,19 @@ services:
       port: 8080
       targetPort: 80
 
-tls:
-  crt:
-  key:
+
+# TODO: There should be a better way to do this though at the moment
+# it is not a major concern.
+sensitive:
+  pg_host: 127.0.0.1
+  pg_port: 5432
+  pg_database: fittrak
+  django_secret_key:
+  djangO_hashids_salt:
+  django_email_host:
+  django_email_port:
+  django_email_host_user:
+  django_email_host_password:
+  cloudsql_db_username:
+  cloudsql_db_password:
+  cloudsql_instance:

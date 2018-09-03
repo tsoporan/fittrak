@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-webapp-env
 data:
-  PG_HOST: {{ quote .Values.containers.app.env.pg_host }}
-  PG_PORT: {{ quote .Values.containers.app.env.pg_port }}
+  PG_HOST: {{ quote .Values.sensitive.pg_host }}
+  PG_PORT: {{ quote .Values.sensitive.pg_port }}
   PG_USER:
     valueFrom:
       secretKeyRef:
@@ -15,7 +15,7 @@ data:
       secretKeyRef:
         name: {{ .Release.Name }}-cloudsql-db-credentials
         key: password
-  PG_DATABASE: {{ quote .Values.containers.app.env.pg_database }}
+  PG_DATABASE: {{ quote .Values.sensitive.pg_database }}
   DJANGO_SECRET_KEY:
     valueFrom:
       secretKeyRef:

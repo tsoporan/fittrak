@@ -42,7 +42,7 @@ spec:
         - name: {{ .Values.containers.cloudsqlProxy.name }}
           image: {{ .Values.containers.cloudsqlProxy.image }}:{{ .Values.containers.cloudsqlProxy.imageTag }}
           command: ["/cloud_sql_proxy",
-                    "{{ printf "-instances=%s=tcp:5432" .Values.containers.cloudsqlProxy.instanceName }}",
+                    "{{ printf "-instances=%s=tcp:5432" .Values.sensitive.cloudsql_instance }}",
                     "-credential_file=/secrets/cloudsql/credentials.json"]
           volumeMounts:
             - name: cloudsql-instance-credentials
