@@ -46,11 +46,6 @@ services:
       port: 8080
       targetPort: 80
 
-ingress:
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: "fittrak-ip"
-  paths:
-    webapp: /*
-    static: /static/*
-  tls:
-    secretName: fittrak-tls
+tls:
+  crt:
+  key:
