@@ -13,7 +13,7 @@ services:
 
   api:
     build:
-      dockerfile: docker/Dockerfile.backend
+      dockerfile: docker/Dockerfile.webapp
       context: .
     command: ["sh", "scripts/start-dev.sh"]
     ports:
@@ -23,7 +23,7 @@ services:
     environment:
       - DJANGO_SECRET_KEY=foo
       - DJANGO_HASHIDS_SALT=bar
-      - DJANGO_DEBUG=True
+      - DJANGO_DEBUG=False
       - DB_NAME=fittrak
       - DB_USER=fittrak
       - DB_PASSWORD=fittrak
