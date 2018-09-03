@@ -3,19 +3,19 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-webapp-env
 data:
-  PG_HOST: {{ quote .Values.sensitive.pg_host }}
-  PG_PORT: {{ .Values.sensitive.pg_port }}
+  PG_HOST: 127.0.0.1
+  PG_PORT: 5432
+  PG_DATABASE: fittrak
   PG_USER:
     valueFrom:
       secretKeyRef:
-        name: {{ .Release.Name }}-cloudsql-db-credentials
+        name: cloudsql-db-credentials
         key: username
   PG_PASSWORD:
     valueFrom:
       secretKeyRef:
-        name: {{ .Release.Name }}-cloudsql-db-credentials
+        name: cloudsql-db-credentials
         key: password
-  PG_DATABASE: {{ quote .Values.sensitive.pg_database }}
   DJANGO_SECRET_KEY:
     valueFrom:
       secretKeyRef:

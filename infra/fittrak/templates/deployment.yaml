@@ -44,6 +44,9 @@ spec:
           command: ["/cloud_sql_proxy",
                     "{{ printf "-instances=%s=tcp:5432" .Values.sensitive.cloudsql_instance }}",
                     "-credential_file=/secrets/cloudsql/credentials.json"]
+          securityContext:
+            runAsUser: 2 #non root
+            allowPrivilegeEscalation: false
           volumeMounts:
             - name: cloudsql-instance-credentials
               mountPath: /secrets/cloudsql

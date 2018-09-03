@@ -45,15 +45,10 @@ services:
 # TODO: There should be a better way to do this though at the moment
 # it is not a major concern.
 sensitive:
-  pg_host: 127.0.0.1
-  pg_port: 5432
-  pg_database: fittrak
   django_secret_key:
   djangO_hashids_salt:
   django_email_host:
   django_email_port:
   django_email_host_user:
   django_email_host_password:
-  cloudsql_db_username:
-  cloudsql_db_password:
   cloudsql_instance:
