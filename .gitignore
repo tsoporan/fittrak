@@ -1,7 +1,7 @@
 .DS_Store
 
 # Project
-secrets.py
+helm-install.sh
 /dist
 build
 webpack-stats.json

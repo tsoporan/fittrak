@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-fittrak-tls-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "fittrak-ip"
+spec:
+  tls:
+    - secretName: fittrak-tls
+  rules:
+    - host: fittrak.ca
+      http: &http
+        paths:
+        - path: /*
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.webapp.name }}
+            servicePort: {{ .Values.services.webapp.ports.port }}
+        - path: /static/*
+          backend:
+            serviceName: {{ .Release.Name }}-{{ .Values.services.static.name }}
+            servicePort: {{ .Values.services.static.ports.port }}
+
+    - host: www.fittrak.ca
+      <<: *http

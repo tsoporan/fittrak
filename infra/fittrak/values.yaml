@@ -1,0 +1,47 @@
+# Default values for fittrak.
+
+containers:
+  static:
+    name: fittrak-static
+    image: gcr.io/fittrak-212120/fittrak-static
+    imageTag: v1
+    containerPort: 80
+  app:
+    name: webapp
+    image: gcr.io/fittrak-212120/fittrak-app
+    imageTag: v1
+    containerPort: 8000
+    readinessPath: /accounts/login/
+  cloudsqlProxy:
+    name: cloudsql-proxy
+    image: gcr.io/cloudsql-docker/gce-proxy
+    imageTag: 1.11
+
+services:
+  webapp:
+    name: webapp-service
+    type: NodePort
+    ports:
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+
+  static:
+    name: static-service
+    type: NodePort
+    ports:
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+
+
+# TODO: There should be a better way to do this though at the moment
+# it is not a major concern.
+sensitive:
+  django_secret_key:
+  django_hashids_salt:
+  django_email_host:
+  django_email_host_user:
+  django_email_host_password:
+  django_email_port:
+  cloudsql_instance:
