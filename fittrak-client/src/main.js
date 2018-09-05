@@ -25,6 +25,7 @@ import {
   VProgressCircular,
   VCard,
   VAutocomplete,
+  VSubheader,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -50,6 +51,7 @@ Vue.use(Vuetify, {
     VProgressCircular,
     VCard,
     VAutocomplete,
+    VSubheader,
     transitions
   },
   theme: {
