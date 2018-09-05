@@ -69,7 +69,10 @@ import Cookies from "js-cookie";
 
 // Apollo
 import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
+import { ApolloLink } from "apollo-link";
+import { RetryLink } from "apollo-link-retry";
+import { HttpLink } from "apollo-link-http";
+import { onError } from "apollo-link-error";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 import VueApollo from "vue-apollo";
@@ -80,18 +83,50 @@ const DEBUG = process.env.NODE_ENV === "development";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
 
 // Apollo setup
-const httpLink = createHttpLink({
-  uri: API_URL,
-  credentials: DEBUG ? "include" : "same-origin",
-  headers: {
-    "x-csrftoken": Cookies.get("csrftoken")
-  }
+
+/* Compose multiple links together:
+ * - Retry (attempt retries for poor connections)
+ * - Error (handle network errors gracefully)
+ * - Http (default network request behaviour)
+ */
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      // eslint-disable-next-line
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  // eslint-disable-next-line
+  if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
+const link = ApolloLink.from([
+  new RetryLink({
+    delay: {
+      initial: 300,
+      max: Infinity,
+      jitter: true
+    },
+    attempts: {
+      max: 5,
+      retryIf: error => !!error
+    }
+  }),
+  errorLink,
+  new HttpLink({
+    uri: API_URL,
+    credentials: DEBUG ? "include" : "same-origin",
+    headers: {
+      "x-csrftoken": Cookies.get("csrftoken")
+    }
+  })
+]);
+
 const apolloClient = new ApolloClient({
-  link: httpLink,
+  link,
   cache: new InMemoryCache(),
-  connectToDevTools: true
+  connectToDevTools: !DEBUG
 });
 
 const apolloProvider = new VueApollo({
