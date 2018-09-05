@@ -17,4 +17,15 @@ const STATUS_MAP = Object.freeze({
 // List limit
 const DEFAULT_LIMIT = 5;
 
-export { STATUS_MAP, PENDING, IN_PROGRESS, CANCELLED, COMPLETE, DEFAULT_LIMIT };
+// This is a server-side handled logout
+const SIGNOUT_URL = "/accounts/logout/";
+
+export {
+  STATUS_MAP,
+  PENDING,
+  IN_PROGRESS,
+  CANCELLED,
+  COMPLETE,
+  DEFAULT_LIMIT,
+  SIGNOUT_URL
+};

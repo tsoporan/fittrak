@@ -12,7 +12,8 @@ from .views import index
 
 
 class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
-    pass
+    # Leads to a 403 instead of redirect to login
+    raise_exception = True
 
 
 urlpatterns = [
