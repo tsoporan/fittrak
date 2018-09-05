@@ -1,5 +1,5 @@
 <template>
-<v-app id="fittrak">
+<v-app id="fittrak" v-if="!$apollo.loading && !error">
   <v-navigation-drawer
     v-model="drawer"
     fixed
@@ -14,14 +14,28 @@
     <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-flex text-xs-right>
-      <v-progress-circular size="24" :indeterminate="true" v-if="$apollo.loading"></v-progress-circular>
-      <v-flex v-else>Heya, <strong>{{ viewer }}</strong></v-flex>
+      <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
     </v-flex>
   </v-toolbar>
 
   <v-content>
     <router-view />
   </v-content>
+</v-app>
+<v-app v-else>
+  <v-layout justify-center align-center fill-height>
+    <v-flex text-xs-center>
+      <v-progress-circular color="primary" size="64" :indeterminate="true"></v-progress-circular>
+      <v-flex mt-2>Firing up ... 💪</v-flex>
+      <v-flex v-if="error" mt-2>
+        <p>
+          Hmm, looks like there was an issue making the connection. Please try again!
+          If this persists please contact: <a href="mailto:help@fittrak.ca">help@fittrak.ca</a>
+        </p>
+        <v-btn @click="signOut" depressed color="secondary">Sign out</v-btn>
+      </v-flex>
+    </v-flex>
+  </v-layout>
 </v-app>
 </template>
 
@@ -30,13 +44,22 @@ import VIEWER from "@/graphql/queries/viewer.graphql";
 
 import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems";
 
+import { SIGNOUT_URL } from "@/constants";
+
 export default {
   name: "App",
 
   data: () => ({
     drawer: null,
-    viewer: "Stranger"
+    viewer: "Stranger",
+    error: false
   }),
+
+  methods: {
+    signOut() {
+      this.$router.replace(SIGNOUT_URL);
+    }
+  },
 
   props: {
     source: String
@@ -49,7 +72,12 @@ export default {
   apollo: {
     viewer: {
       query: VIEWER,
-      update: data => data.viewer.username
+      update: data => data.viewer.username,
+      error(error) {
+        // TODO: Send error up
+        console.log(`Error: ${error}`); // eslint-disable-line
+        this.error = true;
+      }
     }
   }
 };
