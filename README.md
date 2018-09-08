@@ -54,6 +54,18 @@ docker-compose up
 You can also run everything independently, which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
 With docker we can conveniently package these up and not worry about external deps.
 
+**NOTE:** When running independently make sure you're aware of the env variables required, i.e:
+```bash
+# Backend
+DJANGO_SECRET_KEY=
+DJANGO_HASHIDS_SALT=
+DJANGO_DEBUG=True
+./manage.py runserve_plus
+
+# Frontend
+VUE_API_URL=http://localhost:8000/graphql yarn serve
+```
+
 There are three services that comprise the stack: `api`, `app`, and `db`. `docker-compose up` brings
 them all up though you may start each one with their respective `docker-compose up <serivce>`
 command.
@@ -99,4 +111,4 @@ docker-compose up
 
 The application currently sits on a [GCP VM](https://cloud.google.com/compute) and uses [Cloud SQL](https://cloud.google.com/sql/) (PostgreSQL 9.6). SSL is through [LetsEncrypt](https://letsencrypt.org/) and the Nginx [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-nginx.html)
 
-Future plans may include IaC, and moving to a more robust container solution, such as k8s, though it's fairly overkill at the moment. 
+Future plans may include IaC, and moving to a more robust container solution, such as k8s, though it's fairly overkill at the moment.
