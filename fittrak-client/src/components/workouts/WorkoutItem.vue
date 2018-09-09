@@ -1,22 +1,20 @@
 <template>
   <v-list-tile @click.stop="viewWorkout">
+
     <v-list-tile-content>
-      <v-list-tile-title>#{{ $props.workout.id}}</v-list-tile-title>
+      <v-list-tile-title>
+        {{ $props.workout.id }}. Workout started <span>{{ started }}</span>
+      </v-list-tile-title>
       <v-list-tile-sub-title>
-        Started: {{ started }}
+        ID: #{{ $props.workout.slug}},
+        Status: {{ getHumanStatus}}
+        <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
       </v-list-tile-sub-title>
-
-      <v-list-tile-sub-title>
-        <div v-if="workout.date_ended">Ended: {{ ended }}</div>
-      </v-list-tile-sub-title>
-
-      <v-chip label color="secondary" text-color="white">{{ getHumanStatus }}</v-chip>
-
     </v-list-tile-content>
 
     <v-list-tile-action>
       <v-btn icon @click.stop="removeWorkout">
-        <v-icon color="error">delete</v-icon>
+        <v-icon>delete</v-icon>
       </v-btn>
     </v-list-tile-action>
 
@@ -26,8 +24,10 @@
 <script>
 import { STATUS_MAP } from "@/constants";
 import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
+import WORKOUTS from "@/graphql/queries/workouts.graphql";
 
 import { format } from "date-fns";
+import distanceInWords from "date-fns/distance_in_words";
 
 export default {
   name: "WorkoutItem",
@@ -43,7 +43,9 @@ export default {
     },
 
     started: data => {
-      return format(data.workout.dateStarted, "YYYY-MM-DD [@] h:MMA");
+      return distanceInWords(new Date(), data.workout.dateStarted, {
+        addSuffix: true
+      });
     },
 
     ended: data => {
@@ -57,8 +59,15 @@ export default {
 
       this.$apollo.mutate({
         mutation: REMOVE_WORKOUT,
+
         variables: {
           workoutId: workoutId
+        },
+
+        update(store) {
+          const data = store.readQuery({ query: WORKOUTS });
+
+          console.log("data --", data);
         }
       });
     },
