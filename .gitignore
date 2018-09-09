@@ -1,6 +1,7 @@
 .DS_Store
 
 # Project
+fittrak_dev
 helm-install.sh
 /dist
 build

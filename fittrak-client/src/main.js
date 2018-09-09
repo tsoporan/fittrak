@@ -81,7 +81,7 @@ import VueApollo from "vue-apollo";
 
 Vue.config.productionTip = false;
 
-const DEBUG = process.env.NODE_ENV === "development";
+const DEBUG = process.env.NODE_ENV !== "production";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
 
 // Apollo setup
