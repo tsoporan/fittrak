@@ -3,10 +3,11 @@
 import graphene
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
-from workouts.models import Workout
+from workouts.models import Set, Workout
 
 from .exercises import ExerciseType, ExerciseTypeType
 from .helpers import get_object
+from .sets import SetType
 from .workouts import WorkoutStatusesEnum, WorkoutType
 
 
@@ -17,11 +18,15 @@ class Query:
         limit=graphene.Int(required=False),
     )
 
+    exercise_types = graphene.List(ExerciseTypeType)
+
+    exercises = graphene.List(ExerciseType, workout_id=graphene.Int(required=True))
+
+    sets = graphene.List(SetType, exercise_id=graphene.Int(required=True))
+
     workout = graphene.Field(WorkoutType, workout_id=graphene.Int(required=True))
 
     exercise = graphene.Field(ExerciseType, exercise_id=graphene.Int(required=True))
-
-    exercise_types = graphene.List(ExerciseTypeType)
 
     @staticmethod
     def resolve_workouts(_, info, status=None, limit=None):
@@ -49,17 +54,25 @@ class Query:
         return user_types | all_types
 
     @staticmethod
+    def resolve_exercises(_, info, workout_id):
+        user = info.context.user
+
+        return Exercise.objects.filter(is_active=True, workout_id=workout_id, user=user)
+
+    @staticmethod
+    def resolve_sets(_, info, exercise_id):
+        user = info.context.user
+
+        return Set.objects.filter(user=user, is_active=True, exercise_id=exercise_id)
+
+    @staticmethod
     def resolve_workout(_, info, workout_id):
         user = info.context.user
 
-        workout = get_object(Workout, {"id": workout_id, "user": user.id})
-
-        return workout
+        return get_object(Workout, {"id": workout_id, "user": user.id})
 
     @staticmethod
     def resolve_exercise(_, info, exercise_id):
         user = info.context.user
 
-        exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
-
-        return exercise
+        return get_object(Exercise, {"id": exercise_id, "user": user.id})
