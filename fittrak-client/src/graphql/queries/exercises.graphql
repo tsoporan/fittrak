@@ -1,0 +1,11 @@
+query exercises($workoutId: Int!) {
+  exercises(workoutId: $workoutId) {
+    id
+    sets {
+      id
+      weight
+      repetitions
+      unit
+    }
+  }
+}
