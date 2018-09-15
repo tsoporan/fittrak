@@ -1,7 +1,7 @@
 <template>
-  <v-list v-if="activeSets.length">
+  <v-list v-if="sets.length">
     <v-list-tile
-      v-for="set in activeSets"
+      v-for="set in sets"
       :key="set.id"
       :set="set"
     >
@@ -27,43 +27,16 @@
 
 <script>
 import SetItem from "@/components/sets/SetItem.vue";
-import EXERCISE from "@/graphql/queries/exercise.graphql";
 
 export default {
   name: "SetList",
-  data() {
-    return {
-      sets: [],
-      exerciseId: this.$props.exercise.id
-    };
-  },
-
-  apollo: {
-    sets: {
-      query: EXERCISE,
-
-      variables() {
-        return {
-          exerciseId: this.$props.exercise.id
-        };
-      },
-
-      update: data => data.exercise.sets
-    }
-  },
-
-  computed: {
-    activeSets() {
-      return this.sets.filter(set => set.isActive);
-    }
-  },
 
   components: {
     SetItem
   },
 
   props: {
-    exercise: Object
+    sets: Array
   }
 };
 </script>

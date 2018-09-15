@@ -13,9 +13,14 @@
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-flex text-xs-right>
-      <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
-    </v-flex>
+    <v-layout align-end justify-end>
+      <v-flex text-xs-right xs2>
+        <Loader />
+      </v-flex>
+      <v-flex text-xs-right xs3>
+        <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
+      </v-flex>
+    </v-layout>
   </v-toolbar>
 
   <v-content>
@@ -43,6 +48,7 @@
 import VIEWER from "@/graphql/queries/viewer.graphql";
 
 import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems";
+import Loader from "@/components/app/Loader";
 
 import { SIGNOUT_URL } from "@/constants";
 
@@ -66,7 +72,8 @@ export default {
   },
 
   components: {
-    SidebarNavigationItems
+    SidebarNavigationItems,
+    Loader
   },
 
   apollo: {

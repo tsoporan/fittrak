@@ -19,7 +19,7 @@
 
       <v-layout>
         <v-flex xs-8>
-          <WorkoutList :status="status" :limit="limit" title="Recently" />
+          <WorkoutList :limit="limit" title="Recently" />
         </v-flex>
       </v-layout>
 

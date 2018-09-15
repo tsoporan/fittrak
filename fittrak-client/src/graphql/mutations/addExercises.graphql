@@ -4,10 +4,16 @@ mutation addExercises($workoutId: Int!, $exercises: [ExerciseInputType!]!) {
       id
       exercises {
         id
+        slug
         name
-        isActive
         dateStarted
         dateEnded
+        sets {
+          id
+          weight
+          repetitions
+          unit
+        }
       }
     }
   }

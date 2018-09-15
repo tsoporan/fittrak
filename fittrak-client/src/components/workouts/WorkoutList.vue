@@ -4,10 +4,10 @@
   </v-flex>
   <v-flex v-else>
     <v-flex v-if="workouts.length">
-      <v-flex v-if="title">
-        <h3 class="headline">{{ title }}</h3>
-      </v-flex>
-      <v-list three-line class="mt-2">
+      <v-list two-line subheader class="mt-2">
+        <v-subheader v-if="title">
+          {{ title }}
+        </v-subheader>
         <WorkoutItem
           v-for="workout in workouts"
           :key="workout.id"
@@ -61,11 +61,10 @@ export default {
     workouts: {
       query: WORKOUTS,
       variables() {
-        const { status, limit } = this.$props;
+        const { status } = this.$props;
 
         const vars = {
-          status,
-          limit
+          status
         };
 
         if (this.selectedStatus) {
@@ -74,7 +73,13 @@ export default {
 
         return vars;
       },
-      update: data => data.workouts
+      update(data) {
+        const { limit } = this.$props;
+
+        if (limit) return data.workouts.slice(0, limit);
+
+        return data.workouts;
+      }
     }
   },
 

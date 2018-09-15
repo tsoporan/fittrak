@@ -2,13 +2,20 @@ query workout($workoutId: Int!) {
   workout(workoutId: $workoutId) {
     id
     status
-    isActive
+    dateStarted
+    dateEnded
     exercises {
       id
+      slug
       name
       dateStarted
       dateEnded
-      isActive
+      sets {
+        id
+        weight
+        repetitions
+        unit
+      }
     }
   }
 }

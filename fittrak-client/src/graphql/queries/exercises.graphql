@@ -1,5 +1,5 @@
-query exercise($exerciseId: Int!) {
-  exercise(exerciseId: $exerciseId) {
+query exercises($workoutId: Int!) {
+  exercises(workoutId: $workoutId) {
     id
     sets {
       id

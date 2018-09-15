@@ -3,12 +3,7 @@ query workouts($status: WorkoutStatusesEnum, $limit: Int) {
     id
     dateStarted
     dateEnded
-    isActive
     status
     slug
-    exercises {
-      id
-      isActive
-    }
   }
 }
