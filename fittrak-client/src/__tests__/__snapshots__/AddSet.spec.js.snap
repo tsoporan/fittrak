@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddSet.vue AddSet renders 1`] = `
-<v-form-stub>
-  <v-text-field-stub placeholder="Repetitions"></v-text-field-stub>
-  <v-text-field-stub placeholder="Weight"></v-text-field-stub>
-  <v-radio-group-stub column="true" height="auto" mandatory="true" row="true" value="LB">
-    <v-radio-stub color="primary" label="LB" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="LB"></v-radio-stub>
-    <v-radio-stub color="primary" label="KG" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="KG"></v-radio-stub>
-  </v-radio-group-stub>
-  <v-btn-stub activeclass="v-btn--active" depressed="true" ripple="true" tag="button" type="button" color="secondary">Add Set</v-btn-stub>
-</v-form-stub>
+<vform-stub>
+  <vtextfield-stub placeholder="Repetitions"></vtextfield-stub>
+  <vtextfield-stub placeholder="Weight"></vtextfield-stub>
+  <vradiogroup-stub column="true" height="auto" mandatory="true" row="true" value="LB">
+    <vradio-stub color="primary" label="LB" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="LB"></vradio-stub>
+    <vradio-stub color="primary" label="KG" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="KG"></vradio-stub>
+  </vradiogroup-stub>
+  <vbtn-stub activeclass="v-btn--active" depressed="true" ripple="true" tag="button" type="button" color="secondary">Add Set</vbtn-stub>
+</vform-stub>
 `;
