@@ -6,9 +6,14 @@ describe("SetList.vue", () => {
   test("SetList renders", () => {
     const component = shallowMount(SetList, {
       propsData: {
-        exercise: {
-          id: 1
-        }
+        sets: [
+          {
+            id: 1,
+            repetitions: 10,
+            weight: 100,
+            unit: "LB"
+          }
+        ]
       }
     });
     expect(component.html()).toMatchSnapshot();

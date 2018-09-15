@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkoutList.vue WorkoutList renders 1`] = `
+<v-flex-stub tag="div">
+  <v-flex-stub tag="div">
+    <v-flex-stub tag="div" text-xs-center="">No workouts available! 😞</v-flex-stub>
+  </v-flex-stub>
+</v-flex-stub>
+`;

@@ -22,7 +22,7 @@ exports[`Home Renders 1`] = `
       </v-layout-stub>
       <v-layout-stub tag="div">
         <v-flex-stub tag="div" xs-8="">
-          <workoutlist-stub status="PENDING" title="Recently" limit="5"></workoutlist-stub>
+          <workoutlist-stub title="Recently" limit="5"></workoutlist-stub>
         </v-flex-stub>
       </v-layout-stub>
     </v-flex-stub>
