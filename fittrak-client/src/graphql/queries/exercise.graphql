@@ -6,7 +6,6 @@ query exercise($exerciseId: Int!) {
       weight
       repetitions
       unit
-      isActive
     }
   }
 }
