@@ -1,87 +1,27 @@
 <template>
-  <v-container>
-    <v-layout row wrap>
-      <v-flex xs12>
-        <v-layout justify-space-between>
-          <v-flex xs2 text-xs-left>
-            <Back />
-          </v-flex>
-
-          <v-flex xs2 text-xs-right>
-            <StartWorkout :workout=workout v-if="pending" />
-          </v-flex>
-          <v-flex xs2 text-xs-right v-if="!complete && inProgress">
-            <FinishWorkout :workout=workout />
-          </v-flex>
-            <!--
-            <p class="control">
-              <ReopenWorkout :workout=workout v-if="complete" />
-            </p>
-            -->
-        </v-layout>
-      </v-flex>
-
-      <v-flex xs12>
-        <AddExerciseForm :workout=workout v-if="!complete" />
-      </v-flex>
-
-      <v-flex xs12>
-        <ExerciseList :workout=workout />
-      </v-flex>
-    </v-layout>
-  </v-container>
+<v-container>
+  <WorkoutDataContainer :workoutId="$route.params.workoutId">
+    <WorkoutDetailHeader slot="header" slot-scope="workout" :status="workout.status" />
+    <AddExercise slot="form" slot-scope="workout" :workout="workout.workout" />
+    <ExerciseList slot="list" slot-scope="workout" :exercises="workout.exercises" />
+  </WorkoutDataContainer>
+</v-container>
 </template>
 
 <script>
-import WORKOUT from "@/graphql/queries/workout.graphql";
-
-import AddExerciseForm from "@/components/exercises/AddExercise";
+import WorkoutDataContainer from "@/components/workouts/WorkoutDataContainer";
+import WorkoutDetailHeader from "@/components/workouts/WorkoutDetailHeader";
+import AddExercise from "@/components/exercises/AddExercise";
 import ExerciseList from "@/components/exercises/ExerciseList";
-import StartWorkout from "@/components/workouts/StartWorkout";
-import FinishWorkout from "@/components/workouts/FinishWorkout";
-import Back from "@/components/app/Back";
-
-import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
 
 export default {
   name: "WorkoutDetail",
 
-  apollo: {
-    workout: {
-      query: WORKOUT,
-      variables() {
-        return {
-          workoutId: this.$route.params.workoutId
-        };
-      },
-      update: data => data.workout
-    }
-  },
-
-  computed: {
-    complete() {
-      if (this.workout) {
-        return this.workout.status === COMPLETE;
-      }
-    },
-    pending() {
-      if (this.workout) {
-        return this.workout.status === PENDING;
-      }
-    },
-    inProgress() {
-      if (this.workout) {
-        return this.workout.status === IN_PROGRESS;
-      }
-    }
-  },
-
   components: {
-    AddExerciseForm,
-    ExerciseList,
-    StartWorkout,
-    FinishWorkout,
-    Back
+    WorkoutDataContainer,
+    WorkoutDetailHeader,
+    AddExercise,
+    ExerciseList
   }
 };
 </script>

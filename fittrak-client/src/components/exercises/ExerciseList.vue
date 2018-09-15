@@ -1,12 +1,13 @@
 <template>
-  <v-expansion-panel v-if="workout.exercises.length">
+<v-flex xs12>
+  <v-expansion-panel v-if="exercises && exercises.length">
     <v-expansion-panel-content
-      v-for="exercise in workout.exercises"
+      v-for="exercise in exercises"
       :key="exercise.id"
       >
       <div slot="header">
         <strong>{{ exercise.name }} </strong>
-        <RemoveExercise :exercise=exercise />
+        <RemoveExercise :exercise="exercise" />
       </div>
 
       <v-card>
@@ -15,14 +16,14 @@
         <v-flex ma-4>
           <p>ID: #{{ exercise.id }}</p>
           <h2 class="display-0"> Add Set </h2>
-          <AddSet :exercise=exercise />
+          <AddSet :exercise="exercise" />
         </v-flex>
 
           <v-divider />
         <v-flex ma-4>
           <p></p>
           <h2 class="display-0"> Set List </h2>
-          <SetList :exercise=exercise />
+          <SetList :sets="exercise.sets" />
         </v-flex>
       </v-card>
     </v-expansion-panel-content>
@@ -30,6 +31,7 @@
   <v-flex v-else text-xs-center>
     No exercises! 😞
   </v-flex>
+</v-flex>
 </template>
 
 <script>
@@ -47,7 +49,7 @@ export default {
   },
 
   props: {
-    workout: Object
+    exercises: Array
   }
 };
 </script>

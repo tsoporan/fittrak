@@ -3,11 +3,10 @@
 
     <v-list-tile-content>
       <v-list-tile-title>
-        {{ $props.workout.id }}. Workout started <span>{{ started }}</span>
+        #{{ $props.workout.slug }}
       </v-list-tile-title>
       <v-list-tile-sub-title>
-        ID: #{{ $props.workout.slug}},
-        Status: {{ getHumanStatus}}
+        Status: {{ getHumanStatus}}, Started: <span>{{ started }}</span>
         <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
       </v-list-tile-sub-title>
     </v-list-tile-content>
@@ -65,9 +64,20 @@ export default {
         },
 
         update(store) {
-          const data = store.readQuery({ query: WORKOUTS });
+          const data = store.readQuery({
+            query: WORKOUTS
+          });
 
-          console.log("data --", data);
+          const filteredWorkouts = data.workouts.filter(
+            wrk => wrk.id !== workoutId
+          );
+
+          data.workouts = filteredWorkouts;
+
+          store.writeQuery({
+            query: WORKOUTS,
+            data
+          });
         }
       });
     },

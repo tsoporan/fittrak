@@ -61,11 +61,10 @@ export default {
     workouts: {
       query: WORKOUTS,
       variables() {
-        const { status, limit } = this.$props;
+        const { status } = this.$props;
 
         const vars = {
-          status,
-          limit
+          status
         };
 
         if (this.selectedStatus) {
@@ -74,7 +73,13 @@ export default {
 
         return vars;
       },
-      update: data => data.workouts
+      update(data) {
+        const { limit } = this.$props;
+
+        if (limit) return data.workouts.slice(0, limit);
+
+        return data.workouts;
+      }
     }
   },
 

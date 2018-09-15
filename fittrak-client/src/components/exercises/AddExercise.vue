@@ -1,4 +1,5 @@
 <template>
+<v-flex xs12>
   <v-form class="ma-4">
     <v-autocomplete
       v-model="newExercises"
@@ -21,6 +22,7 @@
     Add Exercises
     </v-btn>
   </v-form>
+</v-flex>
 </template>
 
 <script>
