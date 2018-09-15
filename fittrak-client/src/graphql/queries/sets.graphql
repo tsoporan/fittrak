@@ -1,0 +1,8 @@
+query sets($exerciseId: Int!) {
+  sets(exerciseId: $exerciseId) {
+    id
+    weight
+    repetitions
+    unit
+  }
+}
