@@ -5,24 +5,26 @@
       <Back />
     </v-flex>
 
-    <v-flex xs2 text-xs-right>
-      <StartWorkout v-if="pending" />
+    <v-flex xs2 text-xs-right v-if="!complete && !inProgress">
+      <v-btn color="success" depressed @click.stop="startWorkout">Start</v-btn>
     </v-flex>
+
     <v-flex xs2 text-xs-right v-if="!complete && inProgress">
-      <FinishWorkout />
+      <v-btn color="info" depressed @click.stop="finishWorkout">Finish Workout</v-btn>
     </v-flex>
-      <!--
-      <p class="control">
-        <ReopenWorkout :workout=workout v-if="complete" />
-      </p>
-      -->
+
+    <!--
+    <v-flex xs2 text-xs-right v-if="complete">
+      <v-btn color="info" depressed @click.stop="finishWorkout">Finish Workout</v-btn>
+    </v-flex>
+    -->
   </v-layout>
 </v-flex>
 </template>
 
 <script>
-import StartWorkout from "@/components/workouts/StartWorkout";
-import FinishWorkout from "@/components/workouts/FinishWorkout";
+import UPDATE_WORKOUT from "@/graphql/mutations/updateWorkout.graphql";
+
 import Back from "@/components/app/Back";
 
 import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
@@ -31,31 +33,69 @@ export default {
   name: "WorkoutDetailHeader",
 
   components: {
-    StartWorkout,
-    FinishWorkout,
     Back
+  },
+
+  methods: {
+    startWorkout() {
+      const { workout } = this.$props;
+
+      this.$apollo.mutate({
+        mutation: UPDATE_WORKOUT,
+
+        variables: {
+          workoutId: workout.id,
+          workoutFields: {
+            dateStarted: new Date(),
+            status: IN_PROGRESS
+          }
+        }
+      });
+    },
+
+    finishWorkout() {
+      const { workout } = this.$props;
+
+      this.$apollo
+        .mutate({
+          mutation: UPDATE_WORKOUT,
+
+          variables: {
+            workoutId: workout.id,
+            workoutFields: {
+              dateEnded: new Date(),
+              status: COMPLETE
+            }
+          }
+        })
+        .then(() => {
+          this.$router.push({
+            name: "Home"
+          });
+        });
+    }
   },
 
   computed: {
     complete() {
-      const { status } = this.$props;
+      const { status } = this.$props.workout;
 
       return Boolean(status && status === COMPLETE);
     },
     pending() {
-      const { status } = this.$props;
+      const { status } = this.$props.workout;
 
       return Boolean(status && status === PENDING);
     },
     inProgress() {
-      const { status } = this.$props;
+      const { status } = this.$props.workout;
 
       return Boolean(status && status === IN_PROGRESS);
     }
   },
 
   props: {
-    status: String
+    workout: Object
   }
 };
 </script>

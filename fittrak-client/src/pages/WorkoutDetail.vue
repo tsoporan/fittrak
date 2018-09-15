@@ -1,7 +1,7 @@
 <template>
 <v-container>
   <WorkoutDataContainer :workoutId="$route.params.workoutId">
-    <WorkoutDetailHeader slot="header" slot-scope="workout" :status="workout.status" />
+    <WorkoutDetailHeader slot="header" slot-scope="workout" :workout="workout.workout" />
     <AddExercise slot="form" slot-scope="workout" :workout="workout.workout" />
     <ExerciseList slot="list" slot-scope="workout" :exercises="workout.exercises" />
   </WorkoutDataContainer>

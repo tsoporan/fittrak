@@ -1,6 +1,6 @@
 <template>
 <v-layout row wrap>
-  <slot name="header" :status="workout.status"></slot>
+  <slot name="header" :workout="workout"></slot>
   <slot name="form" :workout="workout"></slot>
   <slot name="list" :exercises="workout.exercises"></slot>
 </v-layout>
