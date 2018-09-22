@@ -41,7 +41,7 @@ class AddExercises(graphene.Mutation):
         exercises = graphene.List(ExerciseInputType, required=True)
 
     workout = graphene.Field(WorkoutType)
-    exercises = graphene.Field(ExerciseType)
+    exercises = graphene.List(ExerciseType)
 
     @staticmethod
     def mutate(_, info, workout_id, exercises):

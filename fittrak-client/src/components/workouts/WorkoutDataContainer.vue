@@ -2,19 +2,21 @@
 <v-layout row wrap>
   <slot name="header" :workout="workout"></slot>
   <slot name="form" :workout="workout"></slot>
-  <slot name="list" :exercises="workout.exercises"></slot>
+  <slot name="list" :exercises="exercises"></slot>
 </v-layout>
 </template>
 
 <script>
 import WorkoutQuery from "@/graphql/queries/workout.graphql";
+import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 
 export default {
   name: "WorkoutDataContainer",
 
   data() {
     return {
-      workout: {}
+      workout: {},
+      exercises: []
     };
   },
 
@@ -26,9 +28,16 @@ export default {
           workoutId: this.$props.workoutId
         };
       },
-      update: data => {
-        return data.workout;
-      }
+      update: data => data.workout
+    },
+    exercises: {
+      query: ExercisesQuery,
+      variables() {
+        return {
+          workoutId: this.$props.workoutId
+        };
+      },
+      update: data => data.exercises
     }
   },
 

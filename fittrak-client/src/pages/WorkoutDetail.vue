@@ -1,9 +1,9 @@
 <template>
 <v-container>
   <WorkoutDataContainer :workoutId="$route.params.workoutId">
-    <WorkoutDetailHeader slot="header" slot-scope="workout" :workout="workout.workout" />
-    <AddExercise slot="form" slot-scope="workout" :workout="workout.workout" />
-    <ExerciseList slot="list" slot-scope="workout" :exercises="workout.exercises" />
+    <WorkoutDetailHeader slot="header" slot-scope="data" :workout="data.workout" />
+    <AddExercise slot="form" slot-scope="data" :workout="data.workout" />
+    <ExerciseList slot="list" slot-scope="data" :exercises="data.exercises" />
   </WorkoutDataContainer>
 </v-container>
 </template>

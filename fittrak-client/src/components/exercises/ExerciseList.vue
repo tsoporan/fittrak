@@ -5,10 +5,13 @@
       v-for="exercise in exercises"
       :key="exercise.id"
       >
-      <div slot="header">
+      <v-flex slot="header">
         <strong>{{ exercise.name }} </strong>
-        <RemoveExercise :exercise="exercise" />
-      </div>
+
+        <v-btn small flat color="info" icon @click.stop="removeExercise(exercise)">
+          <v-icon>delete</v-icon>
+        </v-btn>
+      </v-flex>
 
       <v-card>
         <v-divider />
@@ -19,7 +22,8 @@
           <AddSet :exercise="exercise" />
         </v-flex>
 
-          <v-divider />
+        <v-divider />
+
         <v-flex ma-4>
           <p></p>
           <h2 class="display-0"> Set List </h2>
@@ -35,12 +39,46 @@
 </template>
 
 <script>
+import RemoveExerciseMutation from "@/graphql/mutations/removeExercise.graphql";
+import ExercisesQuery from "@/graphql/queries/exercises.graphql";
+
 import AddSet from "@/components/sets/AddSet";
 import SetList from "@/components/sets/SetList";
 import RemoveExercise from "@/components/exercises/RemoveExercise";
 
 export default {
   name: "ExerciseList",
+
+  methods: {
+    removeExercise(exercise) {
+      this.$apollo.mutate({
+        mutation: RemoveExerciseMutation,
+        variables: {
+          exerciseId: exercise.id
+        },
+        update(store) {
+          const result = store.readQuery({
+            query: ExercisesQuery,
+            variables: {
+              workoutId: exercise.workout.id
+            }
+          });
+
+          result.exercises = result.exercises.filter(
+            current => exercise.id !== current.id
+          );
+
+          store.writeQuery({
+            query: ExercisesQuery,
+            variables: {
+              workoutId: exercise.workout.id
+            },
+            data: result
+          });
+        }
+      });
+    }
+  },
 
   components: {
     AddSet,
