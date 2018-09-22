@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import REMOVE_EXERCISE from "@/graphql/mutations/removeExercise.graphql";
+import RemoveExerciseQuery from "@/graphql/mutations/removeExercise.graphql";
+import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 
 export default {
   name: "RemoveExercise",
@@ -13,7 +14,7 @@ export default {
       const { exercise } = this.$props;
 
       this.$apollo.mutate({
-        mutation: REMOVE_EXERCISE,
+        mutation: RemoveExerciseQuery,
         variables: {
           exerciseId: exercise.id
         }

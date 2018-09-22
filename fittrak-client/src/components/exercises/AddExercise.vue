@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import ADD_EXERCISE from "@/graphql/mutations/addExercises.graphql";
+import AddExerciseMutation from "@/graphql/mutations/addExercises.graphql";
+import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 import EXERCISE_TYPES from "@/graphql/queries/exerciseTypes.graphql";
 
 export default {
@@ -54,11 +55,32 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: ADD_EXERCISE,
+          mutation: AddExerciseMutation,
 
           variables: {
             workoutId: workout.id,
             exercises: this.newExercises.map(exercise => ({ name: exercise }))
+          },
+
+          update(store, { data }) {
+            const newExercises = data.addExercises.exercises;
+
+            const result = store.readQuery({
+              query: ExercisesQuery,
+              variables: {
+                workoutId: workout.id
+              }
+            });
+
+            result.exercises = [...newExercises, ...result.exercises];
+
+            store.writeQuery({
+              query: ExercisesQuery,
+              variables: {
+                workoutId: workout.id
+              },
+              data: result
+            });
           }
         })
         .then(() => {
