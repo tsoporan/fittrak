@@ -1,11 +1,18 @@
 query exercises($workoutId: Int!) {
   exercises(workoutId: $workoutId) {
     id
+    slug
+    name
+    dateStarted
+    dateEnded
     sets {
       id
       weight
       repetitions
       unit
+    }
+    workout {
+      id
     }
   }
 }

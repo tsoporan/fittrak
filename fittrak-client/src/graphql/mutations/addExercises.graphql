@@ -1,19 +1,16 @@
 mutation addExercises($workoutId: Int!, $exercises: [ExerciseInputType!]!) {
   addExercises(workoutId: $workoutId, exercises: $exercises) {
-    workout {
+    exercises {
       id
-      exercises {
+      slug
+      name
+      dateStarted
+      dateEnded
+      sets {
         id
-        slug
-        name
-        dateStarted
-        dateEnded
-        sets {
-          id
-          weight
-          repetitions
-          unit
-        }
+        weight
+        repetitions
+        unit
       }
     }
   }
