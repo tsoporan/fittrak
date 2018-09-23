@@ -44,7 +44,6 @@ import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 
 import AddSet from "@/components/sets/AddSet";
 import SetList from "@/components/sets/SetList";
-import RemoveExercise from "@/components/exercises/RemoveExercise";
 
 export default {
   name: "ExerciseList",
@@ -82,8 +81,7 @@ export default {
 
   components: {
     AddSet,
-    SetList,
-    RemoveExercise
+    SetList
   },
 
   props: {
