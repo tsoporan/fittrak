@@ -33,7 +33,6 @@ class AddSet(graphene.Mutation):
 
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
-    workout = graphene.Field(WorkoutType)
 
     @staticmethod
     def mutate(_, info, exercise_id, repetitions, weight, unit):
@@ -48,7 +47,7 @@ class AddSet(graphene.Mutation):
             user=user, exercise=exercise, repetitions=repetitions, weight=weight
         )
 
-        return AddSet(set=_set, exercise=exercise, workout=exercise.workout)
+        return AddSet(set=_set, exercise=exercise)
 
 
 class UpdateSet(graphene.Mutation):
