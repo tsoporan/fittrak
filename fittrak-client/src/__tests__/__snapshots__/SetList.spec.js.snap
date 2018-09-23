@@ -1,17 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SetList.vue SetList renders 1`] = `
-<vlist-stub>
-  <vlisttile-stub activeclass="primary--text" set="[object Object]">
-    <vlisttilecontent-stub>
-      <vlisttiletitle-stub>10 x 100 LB</vlisttiletitle-stub>
-    </vlisttilecontent-stub>
-    <vlisttileaction-stub>
-      <vicon-stub>edit</vicon-stub>
-    </vlisttileaction-stub>
-    <vlisttileaction-stub>
-      <vicon-stub>delete</vicon-stub>
-    </vlisttileaction-stub>
-  </vlisttile-stub>
-</vlist-stub>
+<p sets="[object Object]">
+  No sets!
+</p>
 `;
