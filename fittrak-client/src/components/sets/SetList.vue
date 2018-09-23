@@ -10,11 +10,15 @@
       </v-list-tile-content>
 
       <v-list-tile-action>
-        <v-icon>edit</v-icon>
+        <v-btn small flat color="info" icon @click.stop="editSet(set)">
+          <v-icon>edit</v-icon>
+        </v-btn>
       </v-list-tile-action>
 
       <v-list-tile-action>
-        <v-icon>delete</v-icon>
+        <v-btn small flat color="info" icon @click.stop="removeSet(set)">
+          <v-icon>delete</v-icon>
+        </v-btn>
       </v-list-tile-action>
 
     </v-list-tile>
@@ -27,6 +31,7 @@
 
 <script>
 import SetsQuery from "@/graphql/queries/sets.graphql";
+import RemoveSetMutation from "@/graphql/mutations/removeSet.graphql";
 
 import SetItem from "@/components/sets/SetItem.vue";
 
@@ -50,6 +55,41 @@ export default {
         };
       }
     }
+  },
+
+  methods: {
+    removeSet(set) {
+      const { exercise } = this.$props;
+
+      this.$apollo.mutate({
+        mutation: RemoveSetMutation,
+        variables: {
+          setId: set.id
+        },
+        update(store, { data }) {
+          const set = data.removeSet.set;
+
+          const result = store.readQuery({
+            query: SetsQuery,
+            variables: {
+              exerciseId: exercise.id
+            }
+          });
+
+          result.sets = result.sets.filter(s => s.id !== set.id);
+
+          store.writeQuery({
+            query: SetsQuery,
+            variables: {
+              exerciseId: exercise.id
+            },
+            data: result
+          });
+        }
+      });
+    },
+
+    editSet(set) {}
   },
 
   components: {
