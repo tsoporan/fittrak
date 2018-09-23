@@ -16,7 +16,9 @@ exports[`Home Renders 1`] = `
           <vflex-stub tag="div">OR</vflex-stub>
         </vflex-stub>
         <vflex-stub tag="div" xs6="" text-xs-left="">
-          <createworkout-stub></createworkout-stub>
+          <vbtn-stub activeclass="v-btn--active" large="true" ripple="true" tag="button" type="button" disabled="" class="success">
+            Start Routine
+          </vbtn-stub>
         </vflex-stub>
       </vlayout-stub>
       <vlayout-stub tag="div">
