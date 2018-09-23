@@ -2,6 +2,9 @@ mutation removeSet($setId: Int!) {
   removeSet(setId: $setId) {
     set {
       id
+      exercise {
+        id
+      }
     }
   }
 }

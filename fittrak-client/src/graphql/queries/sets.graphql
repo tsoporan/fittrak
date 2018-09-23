@@ -4,5 +4,8 @@ query sets($exerciseId: Int!) {
     weight
     repetitions
     unit
+    exercise {
+      id
+    }
   }
 }
