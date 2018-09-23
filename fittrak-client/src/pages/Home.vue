@@ -10,11 +10,17 @@
       <v-flex />
 
       <v-layout v-bind="layout" align-center>
-        <v-flex xs6 text-xs-right><CreateWorkout /></v-flex>
+        <v-flex xs6 text-xs-right>
+          <CreateWorkout />
+        </v-flex>
         <v-flex xs1 text-xs-center>
           <v-flex>OR</v-flex>
         </v-flex>
-        <v-flex xs6 text-xs-left><CreateWorkout /></v-flex>
+        <v-flex xs6 text-xs-left>
+          <v-btn large disabled @click.stop="" class="success">
+            Start Routine
+          </v-btn>
+        </v-flex>
       </v-layout>
 
       <v-layout>

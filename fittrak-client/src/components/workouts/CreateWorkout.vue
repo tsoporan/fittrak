@@ -1,6 +1,6 @@
 <template>
   <v-btn large @click.stop="createWorkout" class="success">
-    Start Custom Workout
+    Create Workout
   </v-btn>
 </template>
 
