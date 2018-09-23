@@ -1,6 +1,6 @@
 <template>
 <v-flex xs12>
-  <v-expansion-panel v-if="exercises && exercises.length">
+  <v-expansion-panel v-if="exercises && exercises.length" expand v-model="panel">
     <v-expansion-panel-content
       v-for="exercise in exercises"
       :key="exercise.id"
@@ -27,7 +27,7 @@
         <v-flex ma-4>
           <p></p>
           <h2 class="display-0"> Set List </h2>
-          <SetList :sets="exercise.sets" />
+          <SetList :exercise="exercise" />
         </v-flex>
       </v-card>
     </v-expansion-panel-content>
@@ -47,6 +47,12 @@ import SetList from "@/components/sets/SetList";
 
 export default {
   name: "ExerciseList",
+
+  data() {
+    return {
+      panel: [true]
+    };
+  },
 
   methods: {
     removeExercise(exercise) {

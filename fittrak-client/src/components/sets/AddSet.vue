@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import ADD_SET from "@/graphql/mutations/addSet.graphql";
+import AddSetMutation from "@/graphql/mutations/addSet.graphql";
+import SetsQuery from "@/graphql/queries/sets.graphql";
 
 export default {
   name: "AddSet",
@@ -35,13 +36,34 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: ADD_SET,
+          mutation: AddSetMutation,
 
           variables: {
             exerciseId: exercise.id,
             repetitions,
             weight,
             unit
+          },
+
+          update(store, { data }) {
+            const set = data.addSet.set;
+
+            const result = store.readQuery({
+              query: SetsQuery,
+              variables: {
+                exerciseId: exercise.id
+              }
+            });
+
+            result.sets = [set, ...result.sets];
+
+            store.writeQuery({
+              query: SetsQuery,
+              variables: {
+                exerciseId: exercise.id
+              },
+              data: result
+            });
           }
         })
         .then(() => {
@@ -57,6 +79,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

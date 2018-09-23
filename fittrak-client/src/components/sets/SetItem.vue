@@ -1,57 +1,49 @@
 <template>
-  <li>
-    <p>ID: {{ set.id }}</p>
+<v-list-tile v-if="!editing">
+    <v-list-tile-content>
+      <v-list-tile-title>{{ set.repetitions }} x {{ set.weight }} {{ set.unit }}</v-list-tile-title>
+    </v-list-tile-content>
 
-    <div v-if="editing">
-      <div class="field is-grouped">
-        <p class="control">
-          <input class="input" v-if="editing" v-model="weight" type="text" />
-        </p>
+    <v-list-tile-action>
+      <v-btn small flat color="info" icon @click.stop="editSet">
+        <v-icon>edit</v-icon>
+      </v-btn>
+    </v-list-tile-action>
 
-        <p class="control">
-          <input class="input" v-if="editing" v-model="repetitions" type="text" />
-        </p>
+    <v-list-tile-action>
+      <v-btn small flat color="info" icon @click.stop="removeSet">
+        <v-icon>delete</v-icon>
+      </v-btn>
+    </v-list-tile-action>
+</v-list-tile>
+<v-list-tile v-else>
+  <v-list-tile-content>
+    <v-layout row wrap justify-space-between>
+      <v-flex xs2>
+        <v-text-field v-model="repetitions" placeholder="Reps" />
+      </v-flex>
+      <v-flex xs2>
+        <v-text-field v-model="weight" placeholder="Weight" />
+      </v-flex>
+      <v-flex xs3 align-baseline align-center>
+        <v-radio-group v-model="unit" row class="mt-3">
+          <v-radio color="primary" label="LB" value="LB" />
+          <v-radio color="primary" label="KG" value="KG" />
+        </v-radio-group>
+      </v-flex>
+    </v-layout>
+  </v-list-tile-content>
 
-        <p class="control">
-          <label class="radio">
-            <input type="radio" name="unit" v-model="unit" checked id="lb" value="LB">
-            LBs
-          </label>
-          <label class="radio">
-            <input type="radio" name="unit" v-model="unit" id="kg" value="KG">
-            KGs
-          </label>
-        </p>
-
-        <div class="control">
-          <button class="button is-primary" v-on:click.prevent="updateSet">Save</button>
-        </div>
-      </div>
-    </div>
-
-    <div v-else>
-      <p>Weight: {{ set.weight }} {{ set.unit }}</p>
-      <p>Repetitions: {{ set.repetitions }}</p>
-    </div>
-
-    <hr />
-
-    <div class="field is-grouped">
-      <p class="control">
-        <RemoveSet :set=set />
-      </p>
-
-      <p class="control">
-        <button class="button" v-if="!editing" v-on:click.prevent="editSet">Edit</button>
-      </p>
-    </div>
-  </li>
+  <v-list-tile-action>
+    <v-btn small depressed outline color="success" @click.stop="updateSet">Save</v-btn>
+  </v-list-tile-action>
+</v-list-tile>
 </template>
 
 <script>
-import RemoveSet from "@/components/sets/RemoveSet";
-
-import UPDATE_SET from "@/graphql/mutations/updateSet.graphql";
+import SetsQuery from "@/graphql/queries/sets.graphql";
+import UpdateSetMutation from "@/graphql/mutations/updateSet.graphql";
+import RemoveSetMutation from "@/graphql/mutations/removeSet.graphql";
 
 export default {
   name: "SetItem",
@@ -70,12 +62,43 @@ export default {
       this.editing = true;
     },
 
+    removeSet() {
+      const { set } = this.$props;
+
+      this.$apollo.mutate({
+        mutation: RemoveSetMutation,
+        variables: {
+          setId: set.id
+        },
+        update(store, { data }) {
+          const set = data.removeSet.set;
+
+          const result = store.readQuery({
+            query: SetsQuery,
+            variables: {
+              exerciseId: set.exercise.id
+            }
+          });
+
+          result.sets = result.sets.filter(s => s.id !== set.id);
+
+          store.writeQuery({
+            query: SetsQuery,
+            variables: {
+              exerciseId: set.exercise.id
+            },
+            data: result
+          });
+        }
+      });
+    },
+
     updateSet() {
       const { set } = this.$props;
 
       this.$apollo
         .mutate({
-          mutation: UPDATE_SET,
+          mutation: UpdateSetMutation,
           variables: {
             setId: set.id,
             setFields: {
@@ -89,10 +112,6 @@ export default {
           this.editing = false;
         });
     }
-  },
-
-  components: {
-    RemoveSet
   },
 
   props: {
