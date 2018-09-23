@@ -1,17 +1,10 @@
 mutation addSet($exerciseId: Int!, $repetitions: Int!, $weight: Int!, $unit: String!) {
   addSet(exerciseId: $exerciseId, repetitions: $repetitions, weight: $weight, unit: $unit) {
-    workout {
+    set {
       id
-      exercises {
-        id
-        sets {
-          id
-          repetitions
-          weight
-          unit
-          isActive
-        }
-      }
+      repetitions
+      weight
+      unit
     }
   }
 }

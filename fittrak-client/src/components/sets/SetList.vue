@@ -26,17 +26,38 @@
 </template>
 
 <script>
+import SetsQuery from "@/graphql/queries/sets.graphql";
+
 import SetItem from "@/components/sets/SetItem.vue";
 
 export default {
   name: "SetList",
+
+  data() {
+    return {
+      sets: []
+    };
+  },
+
+  apollo: {
+    sets: {
+      query: SetsQuery,
+      variables() {
+        const { exercise } = this.$props;
+
+        return {
+          exerciseId: exercise.id
+        };
+      }
+    }
+  },
 
   components: {
     SetItem
   },
 
   props: {
-    sets: Array
+    exercise: Object
   }
 };
 </script>
