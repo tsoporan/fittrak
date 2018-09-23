@@ -29,7 +29,7 @@ class AddSet(graphene.Mutation):
         exercise_id = graphene.Int(required=True)
         repetitions = graphene.Int(required=True)
         weight = graphene.Int(required=True)
-        unit = graphene.String()
+        unit = graphene.String(required=True)
 
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
@@ -44,7 +44,11 @@ class AddSet(graphene.Mutation):
             raise GraphQLError("Exercise does not belong to a workout.")
 
         _set = Set.objects.create(
-            user=user, exercise=exercise, repetitions=repetitions, weight=weight
+            user=user,
+            exercise=exercise,
+            repetitions=repetitions,
+            weight=weight,
+            unit=unit
         )
 
         return AddSet(set=_set, exercise=exercise)
