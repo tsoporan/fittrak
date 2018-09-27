@@ -28,7 +28,7 @@
 <script>
 import AddExerciseMutation from "@/graphql/mutations/addExercises.graphql";
 import ExercisesQuery from "@/graphql/queries/exercises.graphql";
-import EXERCISE_TYPES from "@/graphql/queries/exerciseTypes.graphql";
+import ExerciseTypesQuery from "@/graphql/queries/exerciseTypes.graphql";
 
 export default {
   name: "AddExerciseForm",
@@ -40,7 +40,7 @@ export default {
 
   apollo: {
     exerciseTypes: {
-      query: EXERCISE_TYPES,
+      query: ExerciseTypesQuery,
       update: data => data.exerciseTypes.map(exerciseType => exerciseType.name)
     }
   },
