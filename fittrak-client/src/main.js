@@ -78,6 +78,7 @@ import { onError } from "apollo-link-error";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 import VueApollo from "vue-apollo";
+import './registerServiceWorker'
 
 Vue.config.productionTip = false;
 

@@ -29,6 +29,9 @@ module.exports = {
 
   pwa: {
     name: "FitTrak",
-    themeColor: "#4DBDB4"
+    themeColor: "#4DBDB4",
+    msTileColor: "#444444",
+    workboxPluginMode: "GenerateSW",
+    manifestPath: "manifest.json"
   }
 };
