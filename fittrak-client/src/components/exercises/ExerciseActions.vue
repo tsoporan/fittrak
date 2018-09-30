@@ -21,6 +21,11 @@
     >
     Add Exercises
     </v-btn>
+
+    <v-btn
+      @click.stop="createExercise"
+    >Custom Exercise
+    </v-btn>
   </v-form>
 </v-flex>
 </template>
