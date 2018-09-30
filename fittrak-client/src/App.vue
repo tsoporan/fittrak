@@ -13,11 +13,11 @@
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-layout align-end justify-end>
-      <v-flex text-xs-right xs2>
+    <v-layout>
+      <v-flex text-xs-right>
         <Loader />
       </v-flex>
-      <v-flex text-xs-right xs3>
+      <v-flex text-xs-right>
         <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
       </v-flex>
     </v-layout>

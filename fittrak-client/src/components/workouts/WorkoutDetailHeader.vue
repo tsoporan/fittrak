@@ -1,16 +1,16 @@
 <template>
 <v-flex xs12>
-  <v-layout justify-space-between>
-    <v-flex xs2 text-xs-left>
+  <v-layout justify-center row wrap>
+    <v-flex xs4>
       <Back />
     </v-flex>
 
-    <v-flex xs2 text-xs-right v-if="!complete && !inProgress">
+    <v-flex xs4 v-if="!complete && !inProgress">
       <v-btn color="success" depressed @click.stop="startWorkout">Start</v-btn>
     </v-flex>
 
-    <v-flex xs2 text-xs-right v-if="!complete && inProgress">
-      <v-btn color="info" depressed @click.stop="finishWorkout">Finish Workout</v-btn>
+    <v-flex xs4 text-xs-center v-if="!complete && inProgress">
+      <v-btn color="info" depressed @click.stop="finishWorkout">Finish</v-btn>
     </v-flex>
 
     <!--
