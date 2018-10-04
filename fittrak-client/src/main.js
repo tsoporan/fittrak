@@ -26,6 +26,7 @@ import {
   VCard,
   VAutocomplete,
   VSubheader,
+  VDialog,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -52,6 +53,7 @@ Vue.use(Vuetify, {
     VCard,
     VAutocomplete,
     VSubheader,
+    VDialog,
     transitions
   },
   theme: {
@@ -78,7 +80,7 @@ import { onError } from "apollo-link-error";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 import VueApollo from "vue-apollo";
-import './registerServiceWorker'
+import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
