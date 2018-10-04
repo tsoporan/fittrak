@@ -15,6 +15,7 @@
     >
     </v-autocomplete>
 
+
     <v-btn
       @click.stop="addExercises"
       :disabled="!newExercises.length"
@@ -22,10 +23,22 @@
     Add Exercises
     </v-btn>
 
-    <v-btn
-      @click.stop="createExercise"
-    >Custom Exercise
-    </v-btn>
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-btn slot="activator" color="primary" dark>Add Custom</v-btn>
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click.native="dialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click.native="dialog = false">Save</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+      </v-card>
+    </v-dialog>
+
   </v-form>
 </v-flex>
 </template>
@@ -39,6 +52,7 @@ export default {
   name: "AddExerciseForm",
 
   data: () => ({
+    dialog: false,
     newExercises: [],
     exerciseTypes: []
   }),

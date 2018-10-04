@@ -7,17 +7,20 @@
       >
       <v-flex slot="header">
         <strong>{{ exercise.name }} </strong>
-
-        <v-btn small flat color="info" icon @click.stop="removeExercise(exercise)">
-          <v-icon>delete</v-icon>
-        </v-btn>
       </v-flex>
 
       <v-card>
         <v-divider />
 
         <v-flex ma-4>
-          <p>ID: #{{ exercise.id }}</p>
+          <v-layout row wrap>
+            <v-flex text-xs-right>
+              <v-btn small flat color="info" icon @click.stop="removeExercise(exercise)">
+                <v-icon>delete</v-icon>
+              </v-btn>
+            </v-flex>
+          </v-layout>
+
           <h2 class="display-0"> Add Set </h2>
           <AddSet :exercise="exercise" />
         </v-flex>
