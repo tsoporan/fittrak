@@ -6,9 +6,16 @@ import graphene
 from django.utils import timezone
 from graphene_django.types import DjangoObjectType
 from graphql import GraphQLError
-from workouts.models import CANCELLED, COMPLETE, IN_PROGRESS, PENDING, Workout
+
+from workouts.models import (CANCELLED, COMPLETE, IN_PROGRESS, PENDING,
+                             MuscleGroup, Workout)
 
 from .helpers import get_object
+
+
+class MuscleGroupType(DjangoObjectType):
+    class Meta:
+        model = MuscleGroup
 
 
 class WorkoutStatusesEnum(graphene.Enum):
