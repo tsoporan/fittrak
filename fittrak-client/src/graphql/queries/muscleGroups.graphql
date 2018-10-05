@@ -1,0 +1,6 @@
+query muscleGroups {
+  muscleGroups {
+    id
+    name
+  }
+}
