@@ -30,12 +30,32 @@
           <v-btn icon dark @click.native="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Add Custom Exercise</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click.native="dialog = false">Save</v-btn>
+            <v-btn dark flat @click.native="saveCustom">Save</v-btn>
           </v-toolbar-items>
         </v-toolbar>
+
+        <v-card-text>
+          <v-layout wrap>
+            <v-flex>
+              <v-text-field placeholder="Exercise name" v-model="customExerciseName" />
+            </v-flex>
+
+            <v-flex>
+              <v-autocomplete
+                v-model="customMuscleGroup"
+                :items="muscleGroups"
+                placeholder="Select muscle group"
+                browser-autocomplete
+                clearable
+              />
+            </v-flex>
+
+          </v-layout>
+        </v-card-text>
+
       </v-card>
     </v-dialog>
 
@@ -47,6 +67,7 @@
 import AddExerciseMutation from "@/graphql/mutations/addExercises.graphql";
 import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 import ExerciseTypesQuery from "@/graphql/queries/exerciseTypes.graphql";
+import MuscleGroupsQuery from "@/graphql/queries/muscleGroups.graphql";
 
 export default {
   name: "AddExerciseForm",
@@ -54,17 +75,30 @@ export default {
   data: () => ({
     dialog: false,
     newExercises: [],
-    exerciseTypes: []
+    exerciseTypes: [],
+    muscleGroups: [],
+    customMuscleGroup: "",
+    customExerciseName: ""
   }),
 
   apollo: {
     exerciseTypes: {
       query: ExerciseTypesQuery,
       update: data => data.exerciseTypes.map(exerciseType => exerciseType.name)
+    },
+    muscleGroups: {
+      query: MuscleGroupsQuery,
+      update: data => data.muscleGroups.map(group => group.name)
     }
   },
 
   methods: {
+    saveCustom() {
+      this.dialog = false;
+      this.customMuscleGroup = "";
+      this.customExerciseName = "";
+    },
+
     addExercises() {
       const { workout } = this.$props;
 
