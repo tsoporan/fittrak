@@ -4,6 +4,8 @@
 
 A no-frills fitness tracking tool for the stats inclined 🤓.
 
+![FitTrak Screen](https://user-images.githubusercontent.com/130991/46576510-5a7b2800-c999-11e8-8052-1298a53852bb.png)
+
 ---
 
 ### Requirements
