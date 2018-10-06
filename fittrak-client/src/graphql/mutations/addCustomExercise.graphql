@@ -1,7 +1,8 @@
-mutation addCustomExercise($exerciseName: String!, $muscleGroupName: String!) {
-  addCustomExercise(exerciseName: $exerciseName, muscleGroupName: $muscleGroupName) {
+mutation addCustomExercise($workoutId: Int!, $exerciseName: String!, $muscleGroupName: String!) {
+  addCustomExercise(workoutId: $workoutId, exerciseName: $exerciseName, muscleGroupName: $muscleGroupName) {
     exercise {
       id
+      name
     }
   }
 }
