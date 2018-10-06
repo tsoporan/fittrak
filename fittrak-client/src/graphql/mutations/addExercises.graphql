@@ -12,6 +12,9 @@ mutation addExercises($workoutId: Int!, $exercises: [ExerciseInputType!]!) {
         repetitions
         unit
       }
+      workout {
+        id
+      }
     }
   }
 }

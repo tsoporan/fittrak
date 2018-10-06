@@ -16,28 +16,30 @@
       </v-btn>
     </v-list-tile-action>
 </v-list-tile>
-<v-list-tile v-else>
-  <v-list-tile-content>
-    <v-layout row wrap justify-space-between>
-      <v-flex xs2>
-        <v-text-field v-model="repetitions" placeholder="Reps" />
-      </v-flex>
-      <v-flex xs2>
-        <v-text-field v-model="weight" placeholder="Weight" />
-      </v-flex>
-      <v-flex xs3 align-baseline align-center>
-        <v-radio-group v-model="unit" row class="mt-3">
-          <v-radio color="primary" label="LB" value="LB" />
-          <v-radio color="primary" label="KG" value="KG" />
-        </v-radio-group>
-      </v-flex>
-    </v-layout>
-  </v-list-tile-content>
+<v-flex v-else>
+  <v-layout row wrap>
+    <v-flex>
+      <v-text-field v-model="repetitions" placeholder="Reps" type="number" />
+    </v-flex>
 
-  <v-list-tile-action>
-    <v-btn small depressed outline color="success" @click.stop="updateSet">Save</v-btn>
-  </v-list-tile-action>
-</v-list-tile>
+    <v-flex>
+      <v-text-field v-model="weight" placeholder="Weight" type="number" />
+    </v-flex>
+
+    <v-flex mt-2>
+      <v-radio-group v-model="unit" row class="mt-3">
+        <v-radio color="primary" label="LB" value="LB" />
+        <v-radio color="primary" label="KG" value="KG" />
+      </v-radio-group>
+    </v-flex>
+
+    <v-flex xs12 text-xs-right>
+      <v-btn small depressed color="gray" @click.stop="editing = false">Cancel</v-btn>
+      <v-btn small depressed color="success" @click.stop="updateSet">Save</v-btn>
+    </v-flex>
+  </v-layout>
+
+</v-flex>
 </template>
 
 <script>

@@ -2,8 +2,8 @@
 
 exports[`AddSet.vue AddSet renders 1`] = `
 <vform-stub>
-  <vtextfield-stub placeholder="Repetitions"></vtextfield-stub>
-  <vtextfield-stub placeholder="Weight"></vtextfield-stub>
+  <vtextfield-stub placeholder="Repetitions" type="number"></vtextfield-stub>
+  <vtextfield-stub placeholder="Weight" type="number"></vtextfield-stub>
   <vradiogroup-stub column="true" height="auto" mandatory="true" row="true" value="LB">
     <vradio-stub color="primary" label="LB" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="LB"></vradio-stub>
     <vradio-stub color="primary" label="KG" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="KG"></vradio-stub>

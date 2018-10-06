@@ -7,7 +7,7 @@ from django.utils import timezone
 from graphene_django.types import DjangoObjectType
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
-from workouts.models import Workout
+from workouts.models import MuscleGroup, Workout
 
 from .helpers import get_object
 from .workouts import WorkoutType
@@ -33,6 +33,39 @@ class ExerciseType(DjangoObjectType):
     @staticmethod
     def resolve_name(instance, info):
         return instance.exercise_type.name
+
+
+class AddCustomExercise(graphene.Mutation):
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        exercise_name = graphene.String(required=True)
+        muscle_group_name = graphene.String(required=True)
+
+    exercise = graphene.Field(ExerciseType)
+
+    @staticmethod
+    def mutate(_, info, workout_id, exercise_name, muscle_group_name):
+        user = info.context.user
+
+        muscle_group = MuscleGroup.objects.get(
+            name=muscle_group_name
+        )
+
+        exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
+            user=user,
+            name=exercise_name,
+            muscle_group=muscle_group
+        )
+
+        workout = Workout.objects.get(id=workout_id)
+
+        exercise = Exercise.objects.create(
+            user=user,
+            workout=workout,
+            exercise_type=exercise_type
+        )
+
+        return AddCustomExercise(exercise=exercise)
 
 
 class AddExercises(graphene.Mutation):

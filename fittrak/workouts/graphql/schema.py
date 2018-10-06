@@ -1,14 +1,15 @@
 """Workouts GraphQL schema"""
 
 import graphene
+
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
-from workouts.models import Set, Workout
+from workouts.models import MuscleGroup, Set, Workout
 
 from .exercises import ExerciseType, ExerciseTypeType
 from .helpers import get_object
 from .sets import SetType
-from .workouts import WorkoutStatusesEnum, WorkoutType
+from .workouts import MuscleGroupType, WorkoutStatusesEnum, WorkoutType
 
 
 class Query:
@@ -27,6 +28,12 @@ class Query:
     workout = graphene.Field(WorkoutType, workout_id=graphene.Int(required=True))
 
     exercise = graphene.Field(ExerciseType, exercise_id=graphene.Int(required=True))
+
+    muscle_groups = graphene.List(MuscleGroupType)
+
+    @staticmethod
+    def resolve_muscle_groups(_, info):
+        return MuscleGroup.objects.filter(is_active=True)
 
     @staticmethod
     def resolve_workouts(_, info, status=None, limit=None):

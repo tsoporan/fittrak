@@ -1,7 +1,7 @@
 <template>
   <v-form>
-    <v-text-field v-model="repetitions" placeholder="Repetitions" />
-    <v-text-field v-model="weight" placeholder="Weight" />
+    <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
+    <v-text-field v-model="weight" placeholder="Weight" type="number" />
 
     <v-radio-group v-model="unit" row>
       <v-radio color="primary" label="LB" value="LB" />
