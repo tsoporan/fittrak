@@ -27,6 +27,7 @@ import {
   VAutocomplete,
   VSubheader,
   VDialog,
+  VSnackbar,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -54,6 +55,7 @@ Vue.use(Vuetify, {
     VAutocomplete,
     VSubheader,
     VDialog,
+    VSnackbar,
     transitions
   },
   theme: {
@@ -89,6 +91,7 @@ Vue.config.productionTip = false;
 const DEBUG = process.env.NODE_ENV !== "production";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
 const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || "";
+const MAX_RETRIES = 3;
 
 // Apollo setup
 
@@ -114,7 +117,7 @@ const link = ApolloLink.from([
       jitter: true
     },
     attempts: {
-      max: 5,
+      max: MAX_RETRIES,
       retryIf: error => !!error
     }
   }),
