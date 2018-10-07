@@ -4,61 +4,47 @@
       Create Workout
     </v-btn>
 
-    <v-snackbar
-      v-model="snackbar.open"
-      :timeout="snackbar.timeout"
-      :bottom="true"
-      :color="snackbar.color"
-    >
-      {{ snackbar.text }}
-      <v-btn
-        flat
-        @click="snackbar.open = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
+    <ErrorSnackbar v-if="error" :text="errorText" />
   </v-flex>
 </template>
 
 <script>
-import WORKOUTS from "@/graphql/queries/workouts.graphql";
-import CREATE_WORKOUT from "@/graphql/mutations/createWorkout.graphql";
+import WorkoutsQuery from "@/graphql/queries/workouts.graphql";
+import CreateWorkoutMutation from "@/graphql/mutations/createWorkout.graphql";
+
+import ErrorSnackbar from "@/components/app/ErrorSnackbar";
 
 export default {
   name: "CreateWorkout",
 
   data() {
     return {
-      snackbar: {
-        open: false,
-        text: "",
-        timeout: 7000,
-        color: "error"
-      },
+      error: false,
+      errorText: "",
       loading: false
     };
   },
 
   methods: {
     createWorkout() {
+      this.error = false;
       this.loading = true;
 
       this.$apollo
         .mutate({
-          mutation: CREATE_WORKOUT,
+          mutation: CreateWorkoutMutation,
 
           update: (store, { data }) => {
             const newWorkout = data.createWorkout.workout;
             const result = store.readQuery({
-              query: WORKOUTS
+              query: WorkoutsQuery
             });
 
             // Prepend the latest workout
             result.workouts.unshift(newWorkout);
 
             store.writeQuery({
-              query: WORKOUTS,
+              query: WorkoutsQuery,
               data: result
             });
           }
@@ -74,11 +60,15 @@ export default {
         })
         .catch(() => {
           this.loading = false;
-          this.snackbar.open = true;
-          this.snackbar.text =
+          this.error = true;
+          this.errorText =
             "Oops, there seems to be a problem, support has been notified.";
         });
     }
+  },
+
+  components: {
+    ErrorSnackbar
   }
 };
 </script>

@@ -1,9 +1,7 @@
 <template>
 <v-flex xs12>
   <v-layout justify-space-between row wrap>
-    <v-flex>
-      <Back />
-    </v-flex>
+    <BackButton />
 
     <v-flex v-if="!complete && !inProgress" text-xs-right>
       <v-btn color="success" depressed @click.stop="startWorkout">Start</v-btn>
@@ -23,9 +21,9 @@
 </template>
 
 <script>
-import UPDATE_WORKOUT from "@/graphql/mutations/updateWorkout.graphql";
+import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
 
-import Back from "@/components/app/Back";
+import BackButton from "@/components/app/BackButton";
 
 import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
 
@@ -33,7 +31,7 @@ export default {
   name: "WorkoutDetailHeader",
 
   components: {
-    Back
+    BackButton
   },
 
   methods: {
@@ -41,7 +39,7 @@ export default {
       const { workout } = this.$props;
 
       this.$apollo.mutate({
-        mutation: UPDATE_WORKOUT,
+        mutation: UpdateWorkoutMutation,
 
         variables: {
           workoutId: workout.id,
@@ -58,7 +56,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: UPDATE_WORKOUT,
+          mutation: UpdateWorkoutMutation,
 
           variables: {
             workoutId: workout.id,
