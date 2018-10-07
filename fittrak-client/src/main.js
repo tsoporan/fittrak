@@ -82,10 +82,13 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import VueApollo from "vue-apollo";
 import "./registerServiceWorker";
 
+import * as Sentry from "@sentry/browser";
+
 Vue.config.productionTip = false;
 
 const DEBUG = process.env.NODE_ENV !== "production";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
+const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || "";
 
 // Apollo setup
 
@@ -144,7 +147,13 @@ Vue.use(VueApollo);
 new Vue({
   el: "#app",
   router,
-  provide: apolloProvider.provide(),
+  apolloProvider,
   components: { App },
   template: "<App/>"
+});
+
+// Init Sentry
+Sentry.init({
+  dsn: SENTRY_DSN,
+  integrations: [new Sentry.Integrations.Vue({ Vue })]
 });
