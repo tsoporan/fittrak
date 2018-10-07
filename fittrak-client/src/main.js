@@ -98,15 +98,12 @@ const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || "";
  * - Http (default network request behaviour)
  */
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      // eslint-disable-next-line
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  // eslint-disable-next-line
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (graphQLErrors) {
+    Sentry.captureException(graphQLErrors);
+  }
+  if (networkError) {
+    Sentry.captureException(networkError);
+  }
 });
 
 const link = ApolloLink.from([
