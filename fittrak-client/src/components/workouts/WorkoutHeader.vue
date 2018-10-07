@@ -2,28 +2,16 @@
 <v-flex xs12>
   <v-layout justify-space-between row wrap>
     <BackButton />
-
-    <v-flex v-if="!complete && !inProgress" text-xs-right>
-      <v-btn color="success" depressed @click.stop="startWorkout">Start</v-btn>
-    </v-flex>
-
-    <v-flex v-if="!complete && inProgress" text-xs-right>
-      <v-btn color="info" depressed @click.stop="finishWorkout">Finish</v-btn>
-    </v-flex>
-
-    <!--
-    <v-flex xs2 text-xs-right v-if="complete">
-      <v-btn color="info" depressed @click.stop="finishWorkout">Finish Workout</v-btn>
-    </v-flex>
-    -->
+    <WorkoutStartButton v-if="!complete && !inProgress" :workout="workout" />
+    <WorkoutFinishButton v-if="!complete && inProgress" :workout="workout" />
   </v-layout>
 </v-flex>
 </template>
 
 <script>
-import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
-
 import BackButton from "@/components/app/BackButton";
+import WorkoutStartButton from "@/components/workouts/WorkoutStartButton";
+import WorkoutFinishButton from "@/components/workouts/WorkoutFinishButton";
 
 import { COMPLETE, PENDING, IN_PROGRESS } from "@/constants";
 
@@ -31,47 +19,9 @@ export default {
   name: "WorkoutDetailHeader",
 
   components: {
-    BackButton
-  },
-
-  methods: {
-    startWorkout() {
-      const { workout } = this.$props;
-
-      this.$apollo.mutate({
-        mutation: UpdateWorkoutMutation,
-
-        variables: {
-          workoutId: workout.id,
-          workoutFields: {
-            dateStarted: new Date(),
-            status: IN_PROGRESS
-          }
-        }
-      });
-    },
-
-    finishWorkout() {
-      const { workout } = this.$props;
-
-      this.$apollo
-        .mutate({
-          mutation: UpdateWorkoutMutation,
-
-          variables: {
-            workoutId: workout.id,
-            workoutFields: {
-              dateEnded: new Date(),
-              status: COMPLETE
-            }
-          }
-        })
-        .then(() => {
-          this.$router.push({
-            name: "Home"
-          });
-        });
-    }
+    BackButton,
+    WorkoutStartButton,
+    WorkoutFinishButton
   },
 
   computed: {
