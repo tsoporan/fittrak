@@ -20,9 +20,10 @@ class SetType(DjangoObjectType):
 
 
 class SetFieldInputType(graphene.InputObjectType):
-    weight = graphene.Int()
-    repetitions = graphene.Int()
-    unit = graphene.String()
+    weight = graphene.Int(required=True)
+    repetitions = graphene.Int(required=True)
+    unit = graphene.String(required=True)
+    bodyweight = graphene.Boolean(required=False)
 
 
 class AddSet(graphene.Mutation):
