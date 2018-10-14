@@ -10,9 +10,7 @@
       <v-flex />
 
       <v-layout v-bind="layout" align-center>
-        <v-flex xs6 text-xs-right>
-          <CreateWorkout />
-        </v-flex>
+        <CreateWorkout />
         <v-flex xs1 text-xs-center>
           <v-flex>OR</v-flex>
         </v-flex>

@@ -1,10 +1,12 @@
 <template>
-  <v-btn @click.stop="goBack" flat color="secondary" outline>Back</v-btn>
+  <v-flex>
+    <v-btn @click.stop="goBack" flat color="secondary" outline>Back</v-btn>
+  </v-flex>
 </template>
 
 <script>
 export default {
-  name: "Back",
+  name: "BackButton",
   methods: {
     goBack() {
       return this.$router.go(-1);

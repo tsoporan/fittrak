@@ -27,6 +27,7 @@ import {
   VAutocomplete,
   VSubheader,
   VDialog,
+  VSnackbar,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -54,6 +55,7 @@ Vue.use(Vuetify, {
     VAutocomplete,
     VSubheader,
     VDialog,
+    VSnackbar,
     transitions
   },
   theme: {
@@ -82,10 +84,14 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import VueApollo from "vue-apollo";
 import "./registerServiceWorker";
 
+import * as Sentry from "@sentry/browser";
+
 Vue.config.productionTip = false;
 
 const DEBUG = process.env.NODE_ENV !== "production";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
+const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || "";
+const MAX_RETRIES = 3;
 
 // Apollo setup
 
@@ -95,15 +101,12 @@ const API_URL = process.env.VUE_APP_API_URL || "/graphql";
  * - Http (default network request behaviour)
  */
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      // eslint-disable-next-line
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  // eslint-disable-next-line
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (graphQLErrors) {
+    Sentry.captureException(graphQLErrors);
+  }
+  if (networkError) {
+    Sentry.captureException(networkError);
+  }
 });
 
 const link = ApolloLink.from([
@@ -114,7 +117,7 @@ const link = ApolloLink.from([
       jitter: true
     },
     attempts: {
-      max: 5,
+      max: MAX_RETRIES,
       retryIf: error => !!error
     }
   }),
@@ -144,7 +147,13 @@ Vue.use(VueApollo);
 new Vue({
   el: "#app",
   router,
-  provide: apolloProvider.provide(),
+  apolloProvider,
   components: { App },
   template: "<App/>"
+});
+
+// Init Sentry
+Sentry.init({
+  dsn: SENTRY_DSN,
+  integrations: [new Sentry.Integrations.Vue({ Vue })]
 });

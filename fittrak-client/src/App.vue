@@ -26,6 +26,8 @@
   <v-content>
     <router-view />
   </v-content>
+
+  <AppSnackbar />
 </v-app>
 <v-app v-else>
   <v-layout justify-center align-center fill-height>
@@ -48,6 +50,7 @@
 import VIEWER from "@/graphql/queries/viewer.graphql";
 
 import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems";
+import AppSnackbar from "@/components/app/AppSnackbar";
 import Loader from "@/components/app/Loader";
 
 import { SIGNOUT_URL } from "@/constants";
@@ -73,6 +76,7 @@ export default {
 
   components: {
     SidebarNavigationItems,
+    AppSnackbar,
     Loader
   },
 

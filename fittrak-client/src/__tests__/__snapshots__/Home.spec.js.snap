@@ -9,9 +9,7 @@ exports[`Home Renders 1`] = `
         <br></h2>
       <vflex-stub tag="div"></vflex-stub>
       <vlayout-stub tag="div" align-center="">
-        <vflex-stub tag="div" xs6="" text-xs-right="">
-          <createworkout-stub></createworkout-stub>
-        </vflex-stub>
+        <createworkout-stub></createworkout-stub>
         <vflex-stub tag="div" xs1="" text-xs-center="">
           <vflex-stub tag="div">OR</vflex-stub>
         </vflex-stub>

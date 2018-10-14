@@ -2,6 +2,8 @@
  * Helpers
  */
 
+import Vue from "vue";
+
 import { STATUS_MAP } from "@/constants";
 
 function getStatusBySlug(slug) {
@@ -18,4 +20,6 @@ function statusToSlug(name) {
   return name.toLowerCase().replace(" ", "-");
 }
 
-export { getStatusBySlug, statusToSlug };
+const EventBus = new Vue();
+
+export { getStatusBySlug, statusToSlug, EventBus };
