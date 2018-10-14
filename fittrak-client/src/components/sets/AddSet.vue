@@ -1,20 +1,35 @@
 <template>
   <v-form>
-    <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
-    <v-text-field v-model="weight" placeholder="Weight" type="number" />
+    <v-flex>
+      <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
+    </v-flex>
 
-    <v-radio-group v-model="unit" row>
-      <v-radio color="primary" label="LB" value="LB" />
-      <v-radio color="primary" label="KG" value="KG" />
-    </v-radio-group>
+    <v-flex>
+      <v-text-field v-model="weight" placeholder="Weight" type="number" />
+    </v-flex>
 
-    <v-btn depressed color="secondary" @click.stop="addSet">Add Set</v-btn>
+    <v-flex xs12>
+      <v-radio-group v-model="unit" row>
+        <v-radio color="primary" label="LB" value="LB" />
+        <v-radio color="primary" label="KG" value="KG" />
+      </v-radio-group>
+    </v-flex>
+
+    <v-flex xs12>
+      <v-checkbox v-model="bodyweight" label="Using bodyweight"></v-checkbox>
+    </v-flex>
+
+    <v-flex xs12 text-xs-right>
+      <v-btn depressed color="secondary" @click.stop="addSet">Add</v-btn>
+    </v-flex>
   </v-form>
 </template>
 
 <script>
 import AddSetMutation from "@/graphql/mutations/addSet.graphql";
 import SetsQuery from "@/graphql/queries/sets.graphql";
+
+import { EventBus } from "@/helpers";
 
 export default {
   name: "AddSet",
@@ -23,14 +38,15 @@ export default {
     return {
       repetitions: "",
       weight: "",
-      unit: "LB"
+      unit: "LB",
+      bodyweight: false
     };
   },
 
   methods: {
     addSet() {
       const { exercise } = this.$props;
-      const { repetitions, weight, unit } = this;
+      const { repetitions, weight, unit, bodyweight } = this;
 
       if (!(repetitions && weight && unit)) return;
 
@@ -42,7 +58,8 @@ export default {
             exerciseId: exercise.id,
             repetitions,
             weight,
-            unit
+            unit,
+            bodyweight
           },
 
           update(store, { data }) {
@@ -70,6 +87,18 @@ export default {
           // Clear out for next entry
           this.repetitions = "";
           this.weight = "";
+          this.bodyweight = false;
+
+          EventBus.$emit("show-snackbar", {
+            type: "success",
+            text: "Set added."
+          });
+        })
+        .catch(() => {
+          EventBus.$emit("show-snackbar", {
+            type: "error",
+            text: "Could not add set. Support has been notified."
+          });
         });
     }
   },

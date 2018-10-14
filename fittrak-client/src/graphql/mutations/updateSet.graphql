@@ -6,6 +6,7 @@ mutation updateSet($setId:Int!, $setFields: SetFieldInputType!) {
       repetitions
       unit
       isActive
+      bodyweight
     }
   }
 }
