@@ -2,12 +2,23 @@
 
 exports[`AddSet.vue AddSet renders 1`] = `
 <vform-stub>
-  <vtextfield-stub placeholder="Repetitions" type="number"></vtextfield-stub>
-  <vtextfield-stub placeholder="Weight" type="number"></vtextfield-stub>
-  <vradiogroup-stub column="true" height="auto" mandatory="true" row="true" value="LB">
-    <vradio-stub color="primary" label="LB" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="LB"></vradio-stub>
-    <vradio-stub color="primary" label="KG" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="KG"></vradio-stub>
-  </vradiogroup-stub>
-  <vbtn-stub activeclass="v-btn--active" depressed="true" ripple="true" tag="button" type="button" color="secondary">Add Set</vbtn-stub>
+  <vflex-stub tag="div">
+    <vtextfield-stub placeholder="Repetitions" type="number"></vtextfield-stub>
+  </vflex-stub>
+  <vflex-stub tag="div">
+    <vtextfield-stub placeholder="Weight" type="number"></vtextfield-stub>
+  </vflex-stub>
+  <vflex-stub tag="div" xs12="">
+    <vradiogroup-stub column="true" height="auto" mandatory="true" row="true" value="LB">
+      <vradio-stub color="primary" label="LB" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="LB"></vradio-stub>
+      <vradio-stub color="primary" label="KG" onicon="$vuetify.icons.radioOn" officon="$vuetify.icons.radioOff" value="KG"></vradio-stub>
+    </vradiogroup-stub>
+  </vflex-stub>
+  <vflex-stub tag="div" xs12="">
+    <vcheckbox-stub indeterminateicon="$vuetify.icons.checkboxIndeterminate" onicon="$vuetify.icons.checkboxOn" officon="$vuetify.icons.checkboxOff" label="Using bodyweight"></vcheckbox-stub>
+  </vflex-stub>
+  <vflex-stub tag="div" xs12="" text-xs-right="">
+    <vbtn-stub activeclass="v-btn--active" depressed="true" ripple="true" tag="button" type="button" color="secondary">Add</vbtn-stub>
+  </vflex-stub>
 </vform-stub>
 `;
