@@ -19,11 +19,11 @@
 </v-list-tile>
 <v-flex v-else>
   <v-layout row wrap>
-    <v-flex>
+    <v-flex xs12>
       <v-text-field v-model="repetitions" placeholder="Reps" type="number" />
     </v-flex>
 
-    <v-flex>
+    <v-flex xs12>
       <v-text-field v-model="weight" placeholder="Weight" type="number" />
     </v-flex>
 

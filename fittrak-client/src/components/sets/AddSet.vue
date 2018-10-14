@@ -1,16 +1,27 @@
 <template>
   <v-form>
-    <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
-    <v-text-field v-model="weight" placeholder="Weight" type="number" />
+    <v-flex>
+      <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
+    </v-flex>
 
-    <v-radio-group v-model="unit" row>
-      <v-radio color="primary" label="LB" value="LB" />
-      <v-radio color="primary" label="KG" value="KG" />
-    </v-radio-group>
+    <v-flex>
+      <v-text-field v-model="weight" placeholder="Weight" type="number" />
+    </v-flex>
 
-    <v-checkbox v-model="bodyweight" label="Using bodyweight"></v-checkbox>
+    <v-flex xs12>
+      <v-radio-group v-model="unit" row>
+        <v-radio color="primary" label="LB" value="LB" />
+        <v-radio color="primary" label="KG" value="KG" />
+      </v-radio-group>
+    </v-flex>
 
-    <v-btn depressed color="secondary" @click.stop="addSet">Add</v-btn>
+    <v-flex xs12>
+      <v-checkbox v-model="bodyweight" label="Using bodyweight"></v-checkbox>
+    </v-flex>
+
+    <v-flex xs12 text-xs-right>
+      <v-btn depressed color="secondary" @click.stop="addSet">Add</v-btn>
+    </v-flex>
   </v-form>
 </template>
 
