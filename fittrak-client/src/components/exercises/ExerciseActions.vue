@@ -191,7 +191,19 @@ export default {
           }
         })
         .then(() => {
+          EventBus.$emit("show-snackbar", {
+            type: "success",
+            text: "Added exercises."
+          });
+
           this.newExercises = [];
+        })
+        .catch(() => {
+          this.newExercises = [];
+          EventBus.$emit("show-snackbar", {
+            type: "error",
+            text: "Could not add exercises. Support has been notified."
+          });
         });
     }
   },
