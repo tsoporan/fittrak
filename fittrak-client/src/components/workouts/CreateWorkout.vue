@@ -3,31 +3,26 @@
     <v-btn :loading="loading" large @click.stop="createWorkout" class="success">
       Create Workout
     </v-btn>
-
-    <ErrorSnackbar v-if="error" :text="errorText" />
-  </v-flex>
+  </v-flex> 
 </template>
 
 <script>
 import WorkoutsQuery from "@/graphql/queries/workouts.graphql";
 import CreateWorkoutMutation from "@/graphql/mutations/createWorkout.graphql";
 
-import ErrorSnackbar from "@/components/app/ErrorSnackbar";
+import { EventBus } from "@/helpers";
 
 export default {
   name: "CreateWorkout",
 
   data() {
     return {
-      error: false,
-      errorText: "",
       loading: false
     };
   },
 
   methods: {
     createWorkout() {
-      this.error = false;
       this.loading = true;
 
       this.$apollo
@@ -53,6 +48,12 @@ export default {
           const workout = resp.data.createWorkout.workout;
 
           this.loading = false;
+
+          EventBus.$emit("show-snackbar", {
+            text: "New workout created.",
+            type: "success"
+          });
+
           this.$router.push({
             name: "WorkoutDetail",
             params: { workoutId: workout.id }
@@ -60,15 +61,14 @@ export default {
         })
         .catch(() => {
           this.loading = false;
-          this.error = true;
-          this.errorText =
-            "Oops, there seems to be a problem, support has been notified.";
+
+          EventBus.$emit("show-snackbar", {
+            text:
+              "Oops, there seems to be a problem, support has been notified.",
+            type: "error"
+          });
         });
     }
-  },
-
-  components: {
-    ErrorSnackbar
   }
 };
 </script>

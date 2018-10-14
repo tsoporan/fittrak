@@ -1,26 +1,21 @@
 <template>
   <v-flex text-xs-right>
     <v-btn :loading="loading" color="info" depressed @click.stop="finishWorkout">Finish</v-btn>
-
-    <ErrorSnackbar v-if="error" :text="errorText" />
   </v-flex>
 </template>
 
 <script>
 import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
 
-import ErrorSnackbar from "@/components/app/ErrorSnackbar";
-
 import { COMPLETE } from "@/constants";
+import { EventBus } from "@/helpers";
 
 export default {
   name: "WorkoutFinishButton",
 
   data() {
     return {
-      loading: false,
-      error: false,
-      errorText: ""
+      loading: false
     };
   },
 
@@ -29,7 +24,6 @@ export default {
       const { workout } = this.$props;
 
       this.loading = true;
-      this.error = false;
 
       this.$apollo
         .mutate({
@@ -49,22 +43,25 @@ export default {
           this.$router.push({
             name: "Home"
           });
+
+          EventBus.$emit("show-snackbar", {
+            text: "Workout finished.",
+            type: "success"
+          });
         })
         .catch(() => {
           this.loading = false;
-          this.error = true;
-          this.errorText =
-            "Oops, could not finish workout. SUpport has been notified.";
+
+          EventBus.$emit("show-snackbar", {
+            text: "Oops, could not finish workout. Support has been notified.",
+            type: "error"
+          });
         });
     }
   },
 
   props: {
     workout: Object
-  },
-
-  components: {
-    ErrorSnackbar
   }
 };
 </script>
