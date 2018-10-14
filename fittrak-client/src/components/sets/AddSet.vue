@@ -8,13 +8,17 @@
       <v-radio color="primary" label="KG" value="KG" />
     </v-radio-group>
 
-    <v-btn depressed color="secondary" @click.stop="addSet">Add Set</v-btn>
+    <v-checkbox v-model="bodyweight" label="Using bodyweight"></v-checkbox>
+
+    <v-btn depressed color="secondary" @click.stop="addSet">Add</v-btn>
   </v-form>
 </template>
 
 <script>
 import AddSetMutation from "@/graphql/mutations/addSet.graphql";
 import SetsQuery from "@/graphql/queries/sets.graphql";
+
+import { EventBus } from "@/helpers";
 
 export default {
   name: "AddSet",
@@ -23,14 +27,15 @@ export default {
     return {
       repetitions: "",
       weight: "",
-      unit: "LB"
+      unit: "LB",
+      bodyweight: false
     };
   },
 
   methods: {
     addSet() {
       const { exercise } = this.$props;
-      const { repetitions, weight, unit } = this;
+      const { repetitions, weight, unit, bodyweight } = this;
 
       if (!(repetitions && weight && unit)) return;
 
@@ -42,7 +47,8 @@ export default {
             exerciseId: exercise.id,
             repetitions,
             weight,
-            unit
+            unit,
+            bodyweight
           },
 
           update(store, { data }) {
@@ -70,6 +76,18 @@ export default {
           // Clear out for next entry
           this.repetitions = "";
           this.weight = "";
+          this.bodyweight = false;
+
+          EventBus.$emit("show-snackbar", {
+            type: "success",
+            text: "Set added."
+          });
+        })
+        .catch(() => {
+          EventBus.$emit("show-snackbar", {
+            type: "error",
+            text: "Could not add set. Support has been notified."
+          });
         });
     }
   },

@@ -20,6 +20,7 @@ function statusToSlug(name) {
   return name.toLowerCase().replace(" ", "-");
 }
 
+// Vue instance used as a global event bus
 const EventBus = new Vue();
 
 export { getStatusBySlug, statusToSlug, EventBus };
