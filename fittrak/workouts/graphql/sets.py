@@ -31,7 +31,7 @@ class AddSet(graphene.Mutation):
         repetitions = graphene.Int(required=True)
         weight = graphene.Int(required=True)
         unit = graphene.String(required=True)
-        bodyweight = graphene.Boolean(default=False)
+        bodyweight = graphene.Boolean(default_value=False)
 
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
