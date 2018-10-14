@@ -70,6 +70,8 @@ import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 import ExerciseTypesQuery from "@/graphql/queries/exerciseTypes.graphql";
 import MuscleGroupsQuery from "@/graphql/queries/muscleGroups.graphql";
 
+import { EventBus } from "@/helpers";
+
 export default {
   name: "AddExerciseForm",
 
@@ -134,9 +136,20 @@ export default {
           }
         })
         .then(() => {
+          EventBus.$emit("show-snackbar", {
+            type: "success",
+            text: `Added exercise "${this.customExerciseName}".`
+          });
+
           this.dialog = false;
           this.customMuscleGroupName = "";
           this.customExerciseName = "";
+        })
+        .catch(() => {
+          EventBus.$emit("show-snackbar", {
+            type: "error",
+            text: "Could not add custom exercise. Support has been notified."
+          });
         });
     },
 
