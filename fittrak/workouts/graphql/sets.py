@@ -6,6 +6,7 @@ import graphene
 from django.utils import timezone
 from graphene_django.types import DjangoObjectType
 from graphql import GraphQLError
+
 from workouts.models import Exercise, Set
 
 from .exercises import ExerciseType
@@ -30,12 +31,13 @@ class AddSet(graphene.Mutation):
         repetitions = graphene.Int(required=True)
         weight = graphene.Int(required=True)
         unit = graphene.String(required=True)
+        bodyweight = graphene.Boolean(default=False)
 
     set = graphene.Field(SetType)
     exercise = graphene.Field(ExerciseType)
 
     @staticmethod
-    def mutate(_, info, exercise_id, repetitions, weight, unit):
+    def mutate(_, info, exercise_id, repetitions, weight, unit, bodyweight):
         user = info.context.user
 
         exercise = get_object(Exercise, {"id": exercise_id, "user": user.id})
@@ -48,7 +50,8 @@ class AddSet(graphene.Mutation):
             exercise=exercise,
             repetitions=repetitions,
             weight=weight,
-            unit=unit
+            unit=unit,
+            bodyweight=bodyweight
         )
 
         return AddSet(set=_set, exercise=exercise)
