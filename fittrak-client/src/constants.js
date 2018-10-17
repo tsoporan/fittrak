@@ -2,6 +2,8 @@
  * Constants
  */
 
+const APP_NAME = "FitTrak";
+
 const PENDING = "PENDING";
 const IN_PROGRESS = "IN_PROGRESS";
 const CANCELLED = "CANCELLED";
@@ -27,5 +29,6 @@ export {
   CANCELLED,
   COMPLETE,
   DEFAULT_LIMIT,
-  SIGNOUT_URL
+  SIGNOUT_URL,
+  APP_NAME
 };
