@@ -11,7 +11,7 @@
 
   <v-toolbar color="primary" dark fixed app>
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title class="logo">FitTrak</v-toolbar-title>
+    <v-toolbar-title class="logo" :class="{ main: $route.name === APP_NAME }">{{ $route.name }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-layout>
       <v-flex text-xs-right>
@@ -24,7 +24,9 @@
   </v-toolbar>
 
   <v-content>
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </v-content>
 
   <AppSnackbar />
@@ -53,16 +55,19 @@ import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems"
 import AppSnackbar from "@/components/app/AppSnackbar";
 import Loader from "@/components/app/Loader";
 
-import { SIGNOUT_URL } from "@/constants";
+import { APP_NAME, SIGNOUT_URL } from "@/constants";
 
 export default {
   name: "App",
 
-  data: () => ({
-    drawer: null,
-    viewer: "Stranger",
-    error: false
-  }),
+  data() {
+    return {
+      APP_NAME,
+      drawer: null,
+      viewer: "Stranger",
+      error: false
+    };
+  },
 
   methods: {
     signOut() {
@@ -95,8 +100,12 @@ export default {
 </script>
 
 <style>
-.logo {
+.logo.main {
   font-family: "Kaushan Script", "Roboto", "Arial";
   font-size: 32px;
+}
+.logo {
+  font-family: "Roboto", "Arial";
+  font-size: 24px;
 }
 </style>
