@@ -41,7 +41,7 @@ export default {
           this.loading = false;
 
           this.$router.push({
-            name: "Home"
+            name: "FitTrak"
           });
 
           EventBus.$emit("show-snackbar", {

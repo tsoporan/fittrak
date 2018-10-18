@@ -55,7 +55,7 @@ export default {
           });
 
           this.$router.push({
-            name: "WorkoutDetail",
+            name: "Workout",
             params: { workoutId: workout.id }
           });
         })
