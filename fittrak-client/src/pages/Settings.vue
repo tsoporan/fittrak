@@ -1,18 +1,24 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12>
-        <p>Nothing to see here.</p>
-      </v-flex>
-    </v-layout>
+    <SettingsDataContainer>
+      <template slot-scope="slotProps">
+        <v-flex xs12>
+          {{ slotProps.settings.id }}
+          {{ slotProps.settings.username }}
+        </v-flex>
+      </template>
+    </SettingsDataContainer>
   </v-container>
 </template>
 
 <script>
+import SettingsDataContainer from "@/components/settings/SettingsDataContainer";
+
 export default {
-  name: "Settings"
+  name: "SettingsPage",
+
+  components: {
+    SettingsDataContainer
+  }
 };
 </script>
-
-<style scoped>
-</style>

@@ -1,0 +1,6 @@
+query settings {
+  viewer {
+    id
+    username
+  }
+}
