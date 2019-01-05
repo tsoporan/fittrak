@@ -12,7 +12,7 @@
 import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
 
 import { COMPLETE } from "@/constants";
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "WorkoutFinishButton",
@@ -48,18 +48,15 @@ export default {
             name: "FitTrak"
           });
 
-          EventBus.$emit("show-snackbar", {
-            text: "Workout finished.",
-            type: "success"
-          });
+          showSnackbar("success", "Workout finished.");
         })
         .catch(() => {
           this.loading = false;
 
-          EventBus.$emit("show-snackbar", {
-            text: "Oops, could not finish workout. Support has been notified.",
-            type: "error"
-          });
+          showSnackbar(
+            "error",
+            "Oops, could not finish workout. Support has been notified."
+          );
         });
     }
   },
