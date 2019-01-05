@@ -50,7 +50,7 @@
 import AddSetMutation from "@/graphql/mutations/addSet.graphql";
 import SetsQuery from "@/graphql/queries/sets.graphql";
 
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "AddSet",
@@ -110,16 +110,13 @@ export default {
           this.weight = "";
           this.bodyweight = false;
 
-          EventBus.$emit("show-snackbar", {
-            type: "success",
-            text: "Set added."
-          });
+          showSnackbar("success", "Set added.");
         })
         .catch(() => {
-          EventBus.$emit("show-snackbar", {
-            type: "error",
-            text: "Could not add set. Support has been notified."
-          });
+          showSnackbar(
+            "error",
+            "Could not add set. Support has been notified."
+          );
         });
     }
   },

@@ -94,7 +94,7 @@ import SetsQuery from "@/graphql/queries/sets.graphql";
 import UpdateSetMutation from "@/graphql/mutations/updateSet.graphql";
 import RemoveSetMutation from "@/graphql/mutations/removeSet.graphql";
 
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "SetItem",
@@ -147,16 +147,13 @@ export default {
           }
         })
         .then(() => {
-          EventBus.$emit("show-snackbar", {
-            type: "success",
-            text: "Set removed"
-          });
+          showSnackbar("success", "Set removed");
         })
         .catch(() => {
-          EventBus.$emit("show-snackbar", {
-            type: "error",
-            text: "Could not remove Set. Support has been notified."
-          });
+          showSnackbar(
+            "error",
+            "Could not remove Set. Support has been notified."
+          );
         });
     },
 
@@ -179,16 +176,13 @@ export default {
         .then(() => {
           this.editing = false;
 
-          EventBus.$emit("show-snackbar", {
-            type: "success",
-            text: "Set updated"
-          });
+          showSnackbar("success", "Set updated.");
         })
         .catch(() => {
-          EventBus.$emit("show-snackbar", {
-            type: "error",
-            text: "Could not update Set. Support has been notified."
-          });
+          showSnackbar(
+            "error",
+            "Could not update Set. Support has been notified."
+          );
         });
     }
   },
