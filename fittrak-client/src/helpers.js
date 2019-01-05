@@ -23,7 +23,7 @@ function statusToSlug(name) {
 // Vue instance used as a global event bus
 const EventBus = new Vue();
 
-function showSnackbar(bus = EventBus, type, text) {
+function showSnackbar(type, text, bus = EventBus) {
   bus.$emit("show-snackbar", {
     type,
     text
