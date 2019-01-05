@@ -23,4 +23,11 @@ function statusToSlug(name) {
 // Vue instance used as a global event bus
 const EventBus = new Vue();
 
-export { getStatusBySlug, statusToSlug, EventBus };
+function showSnackbar(bus = EventBus, type, text) {
+  bus.$emit("show-snackbar", {
+    type,
+    text
+  });
+}
+
+export { getStatusBySlug, statusToSlug, showSnackbar, EventBus };
