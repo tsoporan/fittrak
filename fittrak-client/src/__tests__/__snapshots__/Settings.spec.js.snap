@@ -4,8 +4,6 @@ exports[`Settings Settings page renders 1`] = `
 <vcontainer-stub tag="div">
   <vlayout-stub tag="div" row="" wrap="">
     <vflex-stub tag="div" xs12="">
-      <h2 class="display-1">Settings</h2>
-      <vdivider-stub></vdivider-stub>
       <p>Nothing to see here.</p>
     </vflex-stub>
   </vlayout-stub>

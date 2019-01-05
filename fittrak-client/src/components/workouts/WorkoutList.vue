@@ -1,10 +1,19 @@
 <template>
-  <v-flex mt-5 v-if="$apollo.loading" text-xs-center>
-    <v-progress-circular color="primary" :indeterminate="true" size="48"></v-progress-circular>
+  <v-flex 
+    mt-5 
+    v-if="$apollo.loading" 
+    text-xs-center>
+    <v-progress-circular 
+      color="primary" 
+      :indeterminate="true" 
+      size="48"/>
   </v-flex>
   <v-flex v-else>
     <v-flex v-if="workouts.length">
-      <v-list two-line subheader class="mt-2">
+      <v-list 
+        two-line 
+        subheader 
+        class="mt-2">
         <v-subheader v-if="title">
           {{ title }}
         </v-subheader>
@@ -12,7 +21,7 @@
           v-for="workout in workouts"
           :key="workout.id"
           :workout="workout"
-          />
+        />
       </v-list>
     </v-flex>
     <v-flex v-else>

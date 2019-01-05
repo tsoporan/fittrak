@@ -1,5 +1,31 @@
 # Change Log
 
+## [v1.3](https://github.com/tsoporan/fittrak/tree/v1.3) (2018-10-14)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.2...v1.3)
+
+**Implemented enhancements:**
+
+- Ability to indicate body weight [\#146](https://github.com/tsoporan/fittrak/issues/146)
+- Support bodyweight [\#153](https://github.com/tsoporan/fittrak/pull/153) ([tsoporan](https://github.com/tsoporan))
+- Sentry error logging [\#151](https://github.com/tsoporan/fittrak/pull/151) ([tsoporan](https://github.com/tsoporan))
+- Fix alignment issues on mobile [\#148](https://github.com/tsoporan/fittrak/pull/148) ([tsoporan](https://github.com/tsoporan))
+
+**Fixed bugs:**
+
+- Buttons overflowing on mobile [\#131](https://github.com/tsoporan/fittrak/issues/131)
+- Fix alignment issues on mobile [\#148](https://github.com/tsoporan/fittrak/pull/148) ([tsoporan](https://github.com/tsoporan))
+
+**Closed issues:**
+
+- Create custom exercise [\#145](https://github.com/tsoporan/fittrak/issues/145)
+- Error logging [\#135](https://github.com/tsoporan/fittrak/issues/135)
+
+**Merged pull requests:**
+
+- Create custom exercise [\#150](https://github.com/tsoporan/fittrak/pull/150) ([tsoporan](https://github.com/tsoporan))
+- Upgrade to Django 2.1.2 for CVE-2018-16984 [\#149](https://github.com/tsoporan/fittrak/pull/149) ([tsoporan](https://github.com/tsoporan))
+- Update default pwa config [\#147](https://github.com/tsoporan/fittrak/pull/147) ([tsoporan](https://github.com/tsoporan))
+
 ## [v1.2](https://github.com/tsoporan/fittrak/tree/v1.2) (2018-09-23)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.1...v1.2)
 

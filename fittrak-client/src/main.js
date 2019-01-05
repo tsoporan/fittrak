@@ -28,6 +28,7 @@ import {
   VSubheader,
   VDialog,
   VSnackbar,
+  VCheckbox,
   transitions
 } from "vuetify";
 import "vuetify/src/stylus/app.styl";
@@ -56,6 +57,7 @@ Vue.use(Vuetify, {
     VSubheader,
     VDialog,
     VSnackbar,
+    VCheckbox,
     transitions
   },
   theme: {
@@ -91,6 +93,9 @@ Vue.config.productionTip = false;
 const DEBUG = process.env.NODE_ENV !== "production";
 const API_URL = process.env.VUE_APP_API_URL || "/graphql";
 const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || "";
+const SENTRY_ENV = process.env.VUE_APP_SENTRY_ENV || "development";
+const SENTRY_RELEASE = process.env.VUE_APP_SENTRY_RELEASE || "";
+
 const MAX_RETRIES = 3;
 
 // Apollo setup
@@ -155,5 +160,7 @@ new Vue({
 // Init Sentry
 Sentry.init({
   dsn: SENTRY_DSN,
-  integrations: [new Sentry.Integrations.Vue({ Vue })]
+  integrations: [new Sentry.Integrations.Vue({ Vue })],
+  environment: SENTRY_ENV,
+  release: SENTRY_RELEASE
 });

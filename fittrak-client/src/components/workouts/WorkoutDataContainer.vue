@@ -1,9 +1,17 @@
 <template>
-<v-layout row wrap>
-  <slot name="header" :workout="workout"></slot>
-  <slot name="actions" :workout="workout"></slot>
-  <slot name="list" :exercises="exercises"></slot>
-</v-layout>
+  <v-layout 
+    row 
+    wrap>
+    <slot 
+      name="header" 
+      :workout="workout"/>
+    <slot 
+      name="actions" 
+      :workout="workout"/>
+    <slot 
+      name="list" 
+      :exercises="exercises"/>
+  </v-layout>
 </template>
 
 <script>

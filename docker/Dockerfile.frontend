@@ -11,10 +11,10 @@ ADD fittrak-client/src src
 COPY fittrak-client/babel.config.js \
      fittrak-client/package.json \
      fittrak-client/vue.config.js \
-     fittrak-client/yarn.lock ./
+     fittrak-client/package-lock.json ./
 
-RUN yarn install
+RUN npm install
 
 EXPOSE 8080
 
-CMD ["yarn", "serve"]
+CMD ["npm", "run", "serve"]

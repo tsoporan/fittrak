@@ -100,6 +100,7 @@ class Set(BaseModel, UserBaseModel, WorkoutBaseModel):
     repetitions = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     unit = models.CharField(max_length=32, choices=UNITS, default=LB)
+    bodyweight = models.BooleanField(default=False)
 
     class Meta:
         ordering = ("-id",)

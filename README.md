@@ -5,6 +5,7 @@
 A no-frills fitness tracking tool for the stats inclined 🤓.
 
 ![FitTrak Screen](https://user-images.githubusercontent.com/130991/46576510-5a7b2800-c999-11e8-8052-1298a53852bb.png)
+![FitTrak Mobile](https://user-images.githubusercontent.com/130991/46928342-17a7f880-d008-11e8-9b94-49221ebb9761.png)
 
 ---
 
@@ -53,7 +54,7 @@ Otherwise:
 docker-compose up
 ```
 
-You can also run everything independently, which would require: `postgresql`, `yarn`, `python3.7` and `pipenv`.
+You can also run everything independently, which would require: `postgresql`, `npm`, `python3.7` and `pipenv`.
 With docker we can conveniently package these up and not worry about external deps.
 
 **NOTE:** When running independently make sure you're aware of the env variables required, i.e:
@@ -65,7 +66,7 @@ DJANGO_DEBUG=True
 ./manage.py runserve_plus
 
 # Frontend
-VUE_API_URL=http://localhost:8000/graphql yarn serve
+VUE_API_URL=http://localhost:8000/graphql npm run serve
 ```
 
 There are three services that comprise the stack: `api`, `app`, and `db`. `docker-compose up` brings
@@ -99,7 +100,7 @@ Firstly check how the app behaves in production mode:
 # Build production bundle
 
 cd fittrak-client
-NODE_ENV=production yarn build
+NODE_ENV=production npm run build
 
 # This will dump the assets in ../fittrak/assets which will be picked up
 # by the "render_bundle" template tag in Django

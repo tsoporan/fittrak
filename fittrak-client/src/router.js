@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Home from "@/pages/Home.vue";
-import WorkoutDetail from "@/pages/WorkoutDetail.vue";
-import History from "@/pages/History.vue";
-import Settings from "@/pages/Settings.vue";
-import Progress from "@/pages/Progress.vue";
+import HomePage from "@/pages/Home.vue";
+import WorkoutPage from "@/pages/Workout.vue";
+import HistoryPage from "@/pages/History.vue";
+import SettingsPage from "@/pages/Settings.vue";
+import ProgressPage from "@/pages/Progress.vue";
 
 Vue.use(Router);
 
@@ -14,28 +14,28 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Home",
-      component: Home
+      name: "FitTrak",
+      component: HomePage
     },
     {
       path: "/workouts/:workoutId",
-      name: "WorkoutDetail",
-      component: WorkoutDetail
+      name: "Workout",
+      component: WorkoutPage
     },
     {
       path: "/history/:status?",
       name: "History",
-      component: History
+      component: HistoryPage
     },
     {
       path: "/settings",
       name: "Settings",
-      component: Settings
+      component: SettingsPage
     },
     {
       path: "/progress",
       name: "Progress",
-      component: Progress
+      component: ProgressPage
     }
   ]
 });

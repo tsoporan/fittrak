@@ -1,6 +1,12 @@
 <template>
-  <v-flex xs6 text-xs-right>
-    <v-btn :loading="loading" large @click.stop="createWorkout" class="success">
+  <v-flex 
+    xs6 
+    text-xs-right>
+    <v-btn 
+      :loading="loading" 
+      large 
+      @click.stop="createWorkout" 
+      class="success">
       Create Workout
     </v-btn>
   </v-flex> 
@@ -55,7 +61,7 @@ export default {
           });
 
           this.$router.push({
-            name: "WorkoutDetail",
+            name: "Workout",
             params: { workoutId: workout.id }
           });
         })

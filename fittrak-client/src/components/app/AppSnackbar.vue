@@ -1,18 +1,18 @@
 <template>
-<v-snackbar
-  v-model="open"
-  :timeout="timeout"
-  :bottom="bottom"
-  :color="color"
->
-  {{ text }}
-  <v-btn
-    flat
-    @click="open = false"
+  <v-snackbar
+    v-model="open"
+    :timeout="timeout"
+    :bottom="bottom"
+    :color="color"
   >
-  Close
-  </v-btn>
-</v-snackbar>
+    {{ text }}
+    <v-btn
+      flat
+      @click="open = false"
+    >
+      Close
+    </v-btn>
+  </v-snackbar>
 </template>
 
 <script>

@@ -1,6 +1,10 @@
 <template>
   <v-flex text-xs-right>
-    <v-btn :loading="loading" color="info" depressed @click.stop="finishWorkout">Finish</v-btn>
+    <v-btn 
+      :loading="loading" 
+      color="info" 
+      depressed 
+      @click.stop="finishWorkout">Finish</v-btn>
   </v-flex>
 </template>
 
@@ -41,7 +45,7 @@ export default {
           this.loading = false;
 
           this.$router.push({
-            name: "Home"
+            name: "FitTrak"
           });
 
           EventBus.$emit("show-snackbar", {
