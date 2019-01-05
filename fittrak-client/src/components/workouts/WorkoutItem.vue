@@ -6,13 +6,15 @@
         #{{ $props.workout.slug }}
       </v-list-tile-title>
       <v-list-tile-sub-title>
-        Status: {{ getHumanStatus}}, Started: <span>{{ started }}</span>
+        Status: {{ getHumanStatus }}, Started: <span>{{ started }}</span>
         <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
       </v-list-tile-sub-title>
     </v-list-tile-content>
 
     <v-list-tile-action>
-      <v-btn icon @click.stop="removeWorkout">
+      <v-btn 
+        icon 
+        @click.stop="removeWorkout">
         <v-icon>delete</v-icon>
       </v-btn>
     </v-list-tile-action>

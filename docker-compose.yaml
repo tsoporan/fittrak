@@ -24,6 +24,7 @@ services:
       - DJANGO_SECRET_KEY=foo
       - DJANGO_HASHIDS_SALT=bar
       - DJANGO_DEBUG=False
+      - DB_ENGINE=django.db.backends.postgresql
       - DB_NAME=fittrak
       - DB_USER=fittrak
       - DB_PASSWORD=fittrak

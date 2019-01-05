@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <WorkoutDataContainer :workoutId="$route.params.workoutId">
+    <WorkoutDataContainer :workout-id="$route.params.workoutId">
       <template slot-scope="slotProps">
         <WorkoutHeader :workout="slotProps.workout" />
         <ExerciseActions :workout="slotProps.workout" />

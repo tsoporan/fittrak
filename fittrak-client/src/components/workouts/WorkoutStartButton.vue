@@ -1,6 +1,12 @@
 <template>
-  <v-flex xs6 text-xs-right>
-    <v-btn :loading="loading" color="success" depressed @click.stop="startWorkout">Start</v-btn>
+  <v-flex 
+    xs6 
+    text-xs-right>
+    <v-btn 
+      :loading="loading" 
+      color="success" 
+      depressed 
+      @click.stop="startWorkout">Start</v-btn>
   </v-flex>
 </template>
 
@@ -8,7 +14,7 @@
 import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
 
 import { IN_PROGRESS } from "@/constants";
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "WorkoutStartButton",
@@ -40,18 +46,15 @@ export default {
         .then(() => {
           this.loading = false;
 
-          EventBus.$emit("show-snackbar", {
-            type: "success",
-            text: "Workout started!"
-          });
+          showSnackbar("success", "Workout started!");
         })
         .catch(() => {
           this.loading = false;
 
-          EventBus.$emit("show-snackbar", {
-            type: "error",
-            text: "Oops, could not start workout. Support has been notified."
-          });
+          showSnackbar(
+            "error",
+            "Oops, could not start workout. Support has been notified."
+          );
         });
     }
   },

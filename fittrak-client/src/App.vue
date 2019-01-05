@@ -1,51 +1,72 @@
 <template>
-<v-app id="fittrak" v-if="!$apollo.loading && !error">
-  <v-navigation-drawer
-    v-model="drawer"
-    fixed
-    app
-    dark
-  >
-    <SidebarNavigationItems  />
-  </v-navigation-drawer>
+  <v-app 
+    id="fittrak" 
+    v-if="!$apollo.loading && !error">
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+      dark
+    >
+      <SidebarNavigationItems />
+    </v-navigation-drawer>
 
-  <v-toolbar color="primary" dark fixed app>
-    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title class="logo" :class="{ main: $route.name === APP_NAME }">{{ $route.name }}</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-layout>
-      <v-flex text-xs-right>
-        <Loader />
-      </v-flex>
-      <v-flex text-xs-right>
-        <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
+    <v-toolbar 
+      color="primary" 
+      dark 
+      fixed 
+      app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
+      <v-toolbar-title 
+        class="logo" 
+        :class="{ main: $route.name === APP_NAME }">{{ $route.name }}</v-toolbar-title>
+      <v-spacer/>
+      <v-layout>
+        <v-flex text-xs-right>
+          <Loader />
+        </v-flex>
+        <v-flex text-xs-right>
+          <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
+        </v-flex>
+      </v-layout>
+    </v-toolbar>
+
+    <v-content>
+      <transition 
+        name="fade" 
+        mode="out-in">
+        <router-view />
+      </transition>
+    </v-content>
+
+    <AppSnackbar />
+  </v-app>
+  <v-app v-else>
+    <v-layout 
+      justify-center 
+      align-center 
+      fill-height>
+      <v-flex text-xs-center>
+        <v-progress-circular 
+          color="primary" 
+          size="64" 
+          :indeterminate="true"/>
+        <v-flex mt-2>Firing up ... 💪</v-flex>
+        <v-flex 
+          v-if="error" 
+          mt-2>
+          <p>
+            Hmm, looks like there was an issue making the connection. Please try again!
+            If this persists please contact: <a href="mailto:help@fittrak.ca">help@fittrak.ca</a>
+          </p>
+          <v-btn 
+            @click="signOut" 
+            depressed 
+            color="secondary">Sign out</v-btn>
+        </v-flex>
       </v-flex>
     </v-layout>
-  </v-toolbar>
-
-  <v-content>
-    <transition name="fade" mode="out-in">
-      <router-view />
-    </transition>
-  </v-content>
-
-  <AppSnackbar />
-</v-app>
-<v-app v-else>
-  <v-layout justify-center align-center fill-height>
-    <v-flex text-xs-center>
-      <v-progress-circular color="primary" size="64" :indeterminate="true"></v-progress-circular>
-      <v-flex mt-2>Firing up ... 💪</v-flex>
-      <v-flex v-if="error" mt-2>
-        <p>
-          Hmm, looks like there was an issue making the connection. Please try again!
-          If this persists please contact: <a href="mailto:help@fittrak.ca">help@fittrak.ca</a>
-        </p>
-        <v-btn @click="signOut" depressed color="secondary">Sign out</v-btn>
-      </v-flex>
-    </v-flex>
-  </v-layout>
-</v-app>
+  </v-app>
 </template>
 
 <script>

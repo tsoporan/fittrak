@@ -1,6 +1,12 @@
 <template>
-  <v-flex xs6 text-xs-right>
-    <v-btn :loading="loading" large @click.stop="createWorkout" class="success">
+  <v-flex 
+    xs6 
+    text-xs-right>
+    <v-btn 
+      :loading="loading" 
+      large 
+      @click.stop="createWorkout" 
+      class="success">
       Create Workout
     </v-btn>
   </v-flex> 
@@ -10,7 +16,7 @@
 import WorkoutsQuery from "@/graphql/queries/workouts.graphql";
 import CreateWorkoutMutation from "@/graphql/mutations/createWorkout.graphql";
 
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "CreateWorkout",
@@ -49,10 +55,7 @@ export default {
 
           this.loading = false;
 
-          EventBus.$emit("show-snackbar", {
-            text: "New workout created.",
-            type: "success"
-          });
+          showSnackbar("success", "New workout created.");
 
           this.$router.push({
             name: "Workout",
@@ -62,11 +65,10 @@ export default {
         .catch(() => {
           this.loading = false;
 
-          EventBus.$emit("show-snackbar", {
-            text:
-              "Oops, there seems to be a problem, support has been notified.",
-            type: "error"
-          });
+          showSnackbar(
+            "error",
+            "Oops, there seems to be a problem, support has been notified."
+          );
         });
     }
   }

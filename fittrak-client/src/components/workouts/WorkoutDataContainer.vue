@@ -1,6 +1,10 @@
 <template>
-  <v-layout row wrap>
-    <slot :workout="workout" :exercises="exercises"></slot>
+  <v-layout
+    row
+    wrap>
+    <slot
+      :workout="workout"
+      :exercises="exercises"/>
   </v-layout>
 </template>
 

@@ -1,26 +1,47 @@
 <template>
   <v-form>
     <v-flex>
-      <v-text-field v-model="repetitions" placeholder="Repetitions" type="number" />
+      <v-text-field 
+        v-model="repetitions" 
+        placeholder="Repetitions" 
+        type="number" />
     </v-flex>
 
     <v-flex>
-      <v-text-field v-model="weight" placeholder="Weight" type="number" />
+      <v-text-field 
+        v-model="weight" 
+        placeholder="Weight" 
+        type="number" />
     </v-flex>
 
     <v-flex xs12>
-      <v-radio-group v-model="unit" row>
-        <v-radio color="primary" label="LB" value="LB" />
-        <v-radio color="primary" label="KG" value="KG" />
+      <v-radio-group 
+        v-model="unit" 
+        row>
+        <v-radio 
+          color="primary" 
+          label="LB" 
+          value="LB" />
+        <v-radio 
+          color="primary" 
+          label="KG" 
+          value="KG" />
       </v-radio-group>
     </v-flex>
 
     <v-flex xs12>
-      <v-checkbox v-model="bodyweight" label="Using bodyweight"></v-checkbox>
+      <v-checkbox 
+        v-model="bodyweight" 
+        label="Using bodyweight"/>
     </v-flex>
 
-    <v-flex xs12 text-xs-right>
-      <v-btn depressed color="secondary" @click.stop="addSet">Add</v-btn>
+    <v-flex 
+      xs12 
+      text-xs-right>
+      <v-btn 
+        depressed 
+        color="secondary" 
+        @click.stop="addSet">Add</v-btn>
     </v-flex>
   </v-form>
 </template>
@@ -29,7 +50,7 @@
 import AddSetMutation from "@/graphql/mutations/addSet.graphql";
 import SetsQuery from "@/graphql/queries/sets.graphql";
 
-import { EventBus } from "@/helpers";
+import { showSnackbar } from "@/helpers";
 
 export default {
   name: "AddSet",
@@ -89,16 +110,13 @@ export default {
           this.weight = "";
           this.bodyweight = false;
 
-          EventBus.$emit("show-snackbar", {
-            type: "success",
-            text: "Set added."
-          });
+          showSnackbar("success", "Set added.");
         })
         .catch(() => {
-          EventBus.$emit("show-snackbar", {
-            type: "error",
-            text: "Could not add set. Support has been notified."
-          });
+          showSnackbar(
+            "error",
+            "Could not add set. Support has been notified."
+          );
         });
     }
   },
