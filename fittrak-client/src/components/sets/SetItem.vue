@@ -176,7 +176,7 @@ export default {
         .then(() => {
           this.editing = false;
 
-          showSnackbar("success", "Set updated");
+          showSnackbar("success", "Set updated.");
         })
         .catch(() => {
           showSnackbar(

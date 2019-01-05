@@ -60,6 +60,8 @@ import ExercisesQuery from "@/graphql/queries/exercises.graphql";
 import AddSet from "@/components/sets/AddSet";
 import SetList from "@/components/sets/SetList";
 
+import { showSnackbar } from "@/helpers";
+
 export default {
   name: "ExerciseList",
 
@@ -71,32 +73,42 @@ export default {
 
   methods: {
     removeExercise(exercise) {
-      this.$apollo.mutate({
-        mutation: RemoveExerciseMutation,
-        variables: {
-          exerciseId: exercise.id
-        },
-        update(store) {
-          const result = store.readQuery({
-            query: ExercisesQuery,
-            variables: {
-              workoutId: exercise.workout.id
-            }
-          });
+      this.$apollo
+        .mutate({
+          mutation: RemoveExerciseMutation,
+          variables: {
+            exerciseId: exercise.id
+          },
+          update(store) {
+            const result = store.readQuery({
+              query: ExercisesQuery,
+              variables: {
+                workoutId: exercise.workout.id
+              }
+            });
 
-          result.exercises = result.exercises.filter(
-            current => exercise.id !== current.id
+            result.exercises = result.exercises.filter(
+              current => exercise.id !== current.id
+            );
+
+            store.writeQuery({
+              query: ExercisesQuery,
+              variables: {
+                workoutId: exercise.workout.id
+              },
+              data: result
+            });
+          }
+        })
+        .then(() => {
+          showSnackbar("success", "Exercise removed.");
+        })
+        .error(() => {
+          showSnackbar(
+            "success",
+            "Oops, could not remove exercise. Support has been notified."
           );
-
-          store.writeQuery({
-            query: ExercisesQuery,
-            variables: {
-              workoutId: exercise.workout.id
-            },
-            data: result
-          });
-        }
-      });
+        });
     }
   },
 
