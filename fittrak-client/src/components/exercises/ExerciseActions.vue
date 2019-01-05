@@ -1,66 +1,82 @@
 <template>
-<v-flex xs12>
-  <v-form class="ma-4">
-    <v-autocomplete
-      v-model="newExercises"
-      :items="exerciseTypes"
-      placeholder="Select exercises ..."
-      browser-autcomplete
-      clearable
-      chips
-      deletable-chips
-      hint
-      multiple
-      small-chips
-    >
-    </v-autocomplete>
+  <v-flex xs12>
+    <v-form class="ma-4">
+      <v-autocomplete
+        v-model="newExercises"
+        :items="exerciseTypes"
+        placeholder="Select exercises ..."
+        browser-autcomplete
+        clearable
+        chips
+        deletable-chips
+        hint
+        multiple
+        small-chips
+      />
 
 
-    <v-btn
-      @click.stop="addExercises"
-      :disabled="!newExercises.length"
-    >
-    Add Exercises
-    </v-btn>
+      <v-btn
+        @click.stop="addExercises"
+        :disabled="!newExercises.length"
+      >
+        Add Exercises
+      </v-btn>
 
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-btn slot="activator" color="primary" dark>Add Custom</v-btn>
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click.native="dialog = false">
-            <v-icon>close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Add Custom Exercise</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark flat @click.native="addCustomExercise">Save</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
+      <v-dialog 
+        v-model="dialog" 
+        fullscreen 
+        hide-overlay 
+        transition="dialog-bottom-transition">
+        <v-btn 
+          slot="activator" 
+          color="primary" 
+          dark>Add Custom</v-btn>
+        <v-card>
+          <v-toolbar 
+            dark 
+            color="primary">
+            <v-btn 
+              icon 
+              dark 
+              @click.native="dialog = false">
+              <v-icon>close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Add Custom Exercise</v-toolbar-title>
+            <v-spacer/>
+            <v-toolbar-items>
+              <v-btn 
+                dark 
+                flat 
+                @click.native="addCustomExercise">Save</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
 
-        <v-card-text>
-          <v-layout wrap>
-            <v-flex xs12>
-              <v-text-field placeholder="Exercise name" v-model="customExerciseName" />
-            </v-flex>
+          <v-card-text>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field 
+                  placeholder="Exercise name" 
+                  v-model="customExerciseName" />
+              </v-flex>
 
-            <v-flex xs12>
-              <v-autocomplete
-                v-model="customMuscleGroupName"
-                :items="muscleGroups"
-                placeholder="Select muscle group"
-                browser-autocomplete
-                clearable
-              />
-            </v-flex>
+              <v-flex xs12>
+                <v-autocomplete
+                  v-model="customMuscleGroupName"
+                  :items="muscleGroups"
+                  placeholder="Select muscle group"
+                  browser-autocomplete
+                  clearable
+                />
+              </v-flex>
 
-          </v-layout>
-        </v-card-text>
+            </v-layout>
+          </v-card-text>
 
-      </v-card>
-    </v-dialog>
+        </v-card>
+      </v-dialog>
 
-  </v-form>
-</v-flex>
+    </v-form>
+  </v-flex>
 </template>
 
 <script>

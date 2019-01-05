@@ -1,11 +1,20 @@
 <template>
-<v-container>
-  <WorkoutDataContainer :workoutId="$route.params.workoutId">
-    <WorkoutHeader slot="header" slot-scope="data" :workout="data.workout" />
-    <ExerciseActions slot="actions" slot-scope="data" :workout="data.workout" />
-    <ExerciseList slot="list" slot-scope="data" :exercises="data.exercises" />
-  </WorkoutDataContainer>
-</v-container>
+  <v-container>
+    <WorkoutDataContainer :workout-id="$route.params.workoutId">
+      <WorkoutHeader 
+        slot="header" 
+        slot-scope="data" 
+        :workout="data.workout" />
+      <ExerciseActions 
+        slot="actions" 
+        slot-scope="data" 
+        :workout="data.workout" />
+      <ExerciseList 
+        slot="list" 
+        slot-scope="data" 
+        :exercises="data.exercises" />
+    </WorkoutDataContainer>
+  </v-container>
 </template>
 
 <script>

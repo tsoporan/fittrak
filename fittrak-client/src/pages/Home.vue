@@ -1,31 +1,50 @@
 <template>
-  <v-container fluid fill-height grid-list-xl>
-    <v-layout row align-center>
-      <v-flex xs12 text-xs-center>
-      <h2 class="display-2">
-        It's {{ now.dayTime }} on {{ now.dayName }} the {{ now.dayNum }}.
-        <br />
-      </h2>
+  <v-container 
+    fluid 
+    fill-height 
+    grid-list-xl>
+    <v-layout 
+      row 
+      align-center>
+      <v-flex 
+        xs12 
+        text-xs-center>
+        <h2 class="display-2">
+          It's {{ now.dayTime }} on {{ now.dayName }} the {{ now.dayNum }}.
+          <br >
+        </h2>
 
-      <v-flex />
+        <v-flex />
 
-      <v-layout v-bind="layout" align-center>
-        <CreateWorkout />
-        <v-flex xs1 text-xs-center>
-          <v-flex>OR</v-flex>
-        </v-flex>
-        <v-flex xs6 text-xs-left>
-          <v-btn large disabled @click.stop="" class="success">
-            Start Routine
-          </v-btn>
-        </v-flex>
-      </v-layout>
+        <v-layout 
+          v-bind="layout" 
+          align-center>
+          <CreateWorkout />
+          <v-flex 
+            xs1 
+            text-xs-center>
+            <v-flex>OR</v-flex>
+          </v-flex>
+          <v-flex 
+            xs6 
+            text-xs-left>
+            <v-btn 
+              large 
+              disabled 
+              @click.stop="" 
+              class="success">
+              Start Routine
+            </v-btn>
+          </v-flex>
+        </v-layout>
 
-      <v-layout>
-        <v-flex xs-8>
-          <WorkoutList :limit="limit" title="Recently" />
-        </v-flex>
-      </v-layout>
+        <v-layout>
+          <v-flex xs-8>
+            <WorkoutList 
+              :limit="limit" 
+              title="Recently" />
+          </v-flex>
+        </v-layout>
 
       </v-flex>
     </v-layout>
@@ -41,7 +60,7 @@ import { PENDING, DEFAULT_LIMIT } from "@/constants";
 import { format } from "date-fns";
 
 export default {
-  name: "home",
+  name: "Home",
 
   data() {
     return {
