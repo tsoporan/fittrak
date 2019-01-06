@@ -2,5 +2,10 @@ query settings {
   viewer {
     id
     username
+    profile {
+      height
+      weight
+      preferredUnit
+    }
   }
 }
