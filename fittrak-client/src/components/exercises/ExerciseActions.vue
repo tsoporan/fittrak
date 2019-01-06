@@ -222,7 +222,10 @@ export default {
   },
 
   props: {
-    workout: Object
+    workout: {
+      type: Object,
+      required: true
+    }
   }
 };
 </script>

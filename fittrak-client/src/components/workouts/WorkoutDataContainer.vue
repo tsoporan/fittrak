@@ -44,7 +44,10 @@ export default {
   },
 
   props: {
-    workoutId: String
+    workoutId: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>

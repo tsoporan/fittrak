@@ -1,6 +1,8 @@
 <template>
-  <v-layout row wrap>
-    <slot :settings="settings"></slot>
+  <v-layout 
+    row 
+    wrap>
+    <slot :settings="settings"/>
   </v-layout>
 </template>
 

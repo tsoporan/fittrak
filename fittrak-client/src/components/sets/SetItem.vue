@@ -188,7 +188,10 @@ export default {
   },
 
   props: {
-    set: Object
+    set: {
+      type: Object,
+      required: true
+    }
   }
 };
 </script>

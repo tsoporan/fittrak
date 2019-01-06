@@ -4,8 +4,7 @@ import "@babel/polyfill";
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 
-import {
-  Vuetify,
+import Vuetify, {
   VApp,
   VNavigationDrawer,
   VMenu,
@@ -14,7 +13,6 @@ import {
   VBtn,
   VBtnToggle,
   VIcon,
-  VGrid,
   VDivider,
   VToolbar,
   VChip,
@@ -29,8 +27,11 @@ import {
   VDialog,
   VSnackbar,
   VCheckbox,
+  VGrid,
   transitions
 } from "vuetify";
+
+// Required styles
 import "vuetify/src/stylus/app.styl";
 
 Vue.use(Vuetify, {
