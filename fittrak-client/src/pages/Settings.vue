@@ -1,11 +1,8 @@
 <template>
   <v-container>
     <SettingsDataContainer>
-      <template slot-scope="slotProps">
-        <v-flex xs12>
-          {{ slotProps.settings.id }}
-          {{ slotProps.settings.username }}
-        </v-flex>
+      <template slot-scope="slotProps"> 
+        <UserSettings :user="slotProps.user" />
       </template>
     </SettingsDataContainer>
   </v-container>
@@ -13,12 +10,14 @@
 
 <script>
 import SettingsDataContainer from "@/components/settings/SettingsDataContainer";
+import UserSettings from "@/components/settings/UserSettings";
 
 export default {
   name: "SettingsPage",
 
   components: {
-    SettingsDataContainer
+    SettingsDataContainer,
+    UserSettings
   }
 };
 </script>

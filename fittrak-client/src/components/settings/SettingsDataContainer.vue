@@ -2,7 +2,7 @@
   <v-layout 
     row 
     wrap>
-    <slot :settings="settings"/>
+    <slot :user="user"/>
   </v-layout>
 </template>
 
