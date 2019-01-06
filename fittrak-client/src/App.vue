@@ -96,12 +96,14 @@ export default {
     }
   },
 
+  /*
   props: {
     source: {
       type: String,
       required: true
     }
   },
+  */
 
   components: {
     SidebarNavigationItems,

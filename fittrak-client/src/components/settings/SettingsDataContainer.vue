@@ -14,12 +14,12 @@ export default {
 
   data() {
     return {
-      settings: {}
+      user: {}
     };
   },
 
   apollo: {
-    settings: {
+    user: {
       query: SettingsQuery,
       update: data => data.viewer
     }

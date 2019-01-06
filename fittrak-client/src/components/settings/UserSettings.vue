@@ -1,7 +1,9 @@
 <template>
   <v-flex xs12>
-    Test
     {{ user.id }}
+    {{ user.email }}
+    {{ user.username }}
+    {{ user.profile.preferredUnit }}
   </v-flex>
 </template>
 
