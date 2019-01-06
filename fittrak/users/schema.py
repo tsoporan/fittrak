@@ -8,7 +8,14 @@ from graphql import GraphQLError
 from .models import Profile
 
 
+class UnitEnumType(graphene.Enum):
+    LBS = Profile.LBS
+    KGS = Profile.KGS
+
+
 class ProfileType(DjangoObjectType):
+    preferred_unit = graphene.Field(UnitEnumType)
+
     class Meta:
         model = Profile
 
