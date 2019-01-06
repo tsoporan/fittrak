@@ -7,8 +7,7 @@ from django.utils import timezone
 from graphene_django.types import DjangoObjectType
 from graphql import GraphQLError
 
-from workouts.models import (CANCELLED, COMPLETE, IN_PROGRESS, PENDING,
-                             MuscleGroup, Workout)
+from workouts.models import MuscleGroup, Workout
 
 from .helpers import get_object
 
@@ -19,10 +18,10 @@ class MuscleGroupType(DjangoObjectType):
 
 
 class WorkoutStatusesEnum(graphene.Enum):
-    PENDING = PENDING
-    IN_PROGRESS = IN_PROGRESS
-    CANCELLED = CANCELLED
-    COMPLETE = COMPLETE
+    PENDING = Workout.PENDING
+    IN_PROGRESS = Workout.IN_PROGRESS
+    CANCELLED = Workout.CANCELLED
+    COMPLETE = Workout.COMPLETE
 
 
 class WorkoutFieldInputType(graphene.InputObjectType):
@@ -46,7 +45,10 @@ class CreateWorkout(graphene.Mutation):
         if user.is_anonymous:
             raise GraphQLError("Not authenticated.")
 
-        new_workout = Workout.objects.create(user=user, date_started=timezone.now())
+        new_workout = Workout.objects.create(
+            user=user,
+            date_started=timezone.now()
+        )
 
         return CreateWorkout(workout=new_workout)
 
@@ -74,7 +76,10 @@ class UpdateWorkout(graphene.Mutation):
 
     class Arguments:
         workout_id = graphene.Int(required=True)
-        workout_fields = graphene.Argument(WorkoutFieldInputType, required=True)
+        workout_fields = graphene.Argument(
+            WorkoutFieldInputType,
+            required=True
+        )
 
     @staticmethod
     def mutate(_, info, workout_id, workout_fields):
