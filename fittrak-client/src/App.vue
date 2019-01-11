@@ -96,9 +96,14 @@ export default {
     }
   },
 
+  /*
   props: {
-    source: String
+    source: {
+      type: String,
+      required: true
+    }
   },
+  */
 
   components: {
     SidebarNavigationItems,

@@ -1,18 +1,11 @@
 <template>
   <v-container>
     <WorkoutDataContainer :workout-id="$route.params.workoutId">
-      <WorkoutHeader 
-        slot="header" 
-        slot-scope="data" 
-        :workout="data.workout" />
-      <ExerciseActions 
-        slot="actions" 
-        slot-scope="data" 
-        :workout="data.workout" />
-      <ExerciseList 
-        slot="list" 
-        slot-scope="data" 
-        :exercises="data.exercises" />
+      <template slot-scope="slotProps">
+        <WorkoutHeader :workout="slotProps.workout" />
+        <ExerciseActions :workout="slotProps.workout" />
+        <ExerciseList :exercises="slotProps.exercises" />
+      </template>
     </WorkoutDataContainer>
   </v-container>
 </template>
@@ -24,7 +17,7 @@ import ExerciseActions from "@/components/exercises/ExerciseActions";
 import ExerciseList from "@/components/exercises/ExerciseList";
 
 export default {
-  name: "WorkoutDetail",
+  name: "Workout",
 
   components: {
     WorkoutDataContainer,

@@ -1,20 +1,23 @@
 <template>
   <v-container>
-    <v-layout 
-      row 
-      wrap>
-      <v-flex xs12>
-        <p>Nothing to see here.</p>
-      </v-flex>
-    </v-layout>
+    <SettingsDataContainer>
+      <template slot-scope="slotProps"> 
+        <UserSettings :user="slotProps.user" />
+      </template>
+    </SettingsDataContainer>
   </v-container>
 </template>
 
 <script>
+import SettingsDataContainer from "@/components/settings/SettingsDataContainer";
+import UserSettings from "@/components/settings/UserSettings";
+
 export default {
-  name: "Settings"
+  name: "SettingsPage",
+
+  components: {
+    SettingsDataContainer,
+    UserSettings
+  }
 };
 </script>
-
-<style scoped>
-</style>

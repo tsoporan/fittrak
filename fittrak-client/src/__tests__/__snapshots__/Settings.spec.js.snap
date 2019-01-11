@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Settings Settings page renders 1`] = `
-<vcontainer-stub tag="div">
-  <vlayout-stub tag="div" row="" wrap="">
-    <vflex-stub tag="div" xs12="">
-      <p>Nothing to see here.</p>
-    </vflex-stub>
-  </vlayout-stub>
-</vcontainer-stub>
+<v-container-stub tag="div">
+  <settingsdatacontainer-stub></settingsdatacontainer-stub>
+</v-container-stub>
 `;

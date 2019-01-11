@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Progress Progress page renders 1`] = `
-<vcontainer-stub tag="div">
-  <vlayout-stub tag="div" row="" wrap="">
-    <vflex-stub tag="div" xs12="">
+<v-container-stub tag="div">
+  <v-layout-stub tag="div" row="" wrap="">
+    <v-flex-stub tag="div" xs12="">
       <p>Nothing to see here.</p>
-    </vflex-stub>
-  </vlayout-stub>
-</vcontainer-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>
 `;

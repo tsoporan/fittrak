@@ -2,13 +2,12 @@
 
 import graphene
 from graphene_django.debug import DjangoDebug
-from users.schema import Query as UsersQuery
-from workouts.graphql.exercises import (AddCustomExercise, AddExercises,
-                                        RemoveExercise)
-from workouts.graphql.schema import Query as WorkoutsQuery
+from users.graphql.query import Query as UsersQuery
+from users.graphql.settings import UpdateSettings
+from workouts.graphql.exercises import AddCustomExercise, AddExercises, RemoveExercise
+from workouts.graphql.query import Query as WorkoutsQuery
 from workouts.graphql.sets import AddSet, RemoveSet, UpdateSet
-from workouts.graphql.workouts import (CreateWorkout, RemoveWorkout,
-                                       UpdateWorkout)
+from workouts.graphql.workouts import CreateWorkout, RemoveWorkout, UpdateWorkout
 
 
 class RootQuery(WorkoutsQuery, UsersQuery, graphene.ObjectType):
@@ -25,6 +24,7 @@ class RootMutation(graphene.ObjectType):
     add_set = AddSet.Field()
     remove_set = RemoveSet.Field()
     update_set = UpdateSet.Field()
+    update_settings = UpdateSettings.Field()
 
 
 schema = graphene.Schema(query=RootQuery, mutation=RootMutation)

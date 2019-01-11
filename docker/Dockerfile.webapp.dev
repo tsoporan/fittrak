@@ -1,8 +1,9 @@
-# Dockerfile for fittrak python app
+# Dockerfile for fittrak python app (development)
 
 FROM python:3.7-alpine
 
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /usr/src/app
 
@@ -13,7 +14,7 @@ RUN apk update && \
  apk add postgresql-libs && \
  apk add --virtual .build-deps gcc musl-dev postgresql-dev && \
  pip install pipenv && \
- pipenv install --system --ignore-pipfile && \
+ pipenv install --system --ignore-pipfile --dev && \
  apk --purge del .build-deps
 
 EXPOSE 8000

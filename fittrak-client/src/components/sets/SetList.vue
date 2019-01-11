@@ -44,7 +44,10 @@ export default {
   },
 
   props: {
-    exercise: Object
+    exercise: {
+      type: Object,
+      required: true
+    }
   }
 };
 </script>

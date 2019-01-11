@@ -97,9 +97,21 @@ export default {
   },
 
   props: {
-    status: String,
-    title: String,
-    limit: Number
+    status: {
+      type: String,
+      required: false,
+      default: ""
+    },
+
+    title: {
+      type: String,
+      required: true
+    },
+
+    limit: {
+      type: Number,
+      required: true
+    }
   }
 };
 </script>

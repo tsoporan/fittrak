@@ -11,9 +11,9 @@ jobs:
 
     steps:
       - checkout
-      - run: cd fittrak-client && yarn install
-      - run: cd fittrak-client && yarn lint
-      - run: cd fittrak-client && yarn test:unit
+      - run: cd fittrak-client && npm install
+      - run: cd fittrak-client && npm run lint
+      - run: cd fittrak-client && npm run test:unit
 
   test-back-end:
     docker:
@@ -37,8 +37,8 @@ jobs:
 
     steps:
       - checkout
-      - run: cd fittrak-client && yarn install
-      - run: cd fittrak-client && yarn build --no-babelrc
+      - run: cd fittrak-client && npm install
+      - run: cd fittrak-client && npm run build --no-babelrc
 
 workflows:
   version: 2

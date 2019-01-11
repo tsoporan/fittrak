@@ -13,13 +13,14 @@ services:
 
   api:
     build:
-      dockerfile: docker/Dockerfile.webapp
+      dockerfile: docker/Dockerfile.webapp.dev
       context: .
     command: ["sh", "scripts/start-dev.sh"]
     ports:
       - "8000:8000"
     volumes:
       - "./fittrak:/usr/src/app/fittrak"
+      - "./ipython-data:/root/.ipython/profile_default"
     environment:
       - DJANGO_SECRET_KEY=foo
       - DJANGO_HASHIDS_SALT=bar
@@ -50,3 +51,4 @@ services:
 volumes:
   fittrak:
   fittrak-client:
+  ipython-data:

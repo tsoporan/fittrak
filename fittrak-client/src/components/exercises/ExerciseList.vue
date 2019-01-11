@@ -118,7 +118,10 @@ export default {
   },
 
   props: {
-    exercises: Array
+    exercises: {
+      type: Array,
+      required: true
+    }
   }
 };
 </script>

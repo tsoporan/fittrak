@@ -1,15 +1,9 @@
 <template>
-  <v-layout 
-    row 
+  <v-layout
+    row
     wrap>
-    <slot 
-      name="header" 
-      :workout="workout"/>
-    <slot 
-      name="actions" 
-      :workout="workout"/>
-    <slot 
-      name="list" 
+    <slot
+      :workout="workout"
       :exercises="exercises"/>
   </v-layout>
 </template>
@@ -50,7 +44,10 @@ export default {
   },
 
   props: {
-    workoutId: String
+    workoutId: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>

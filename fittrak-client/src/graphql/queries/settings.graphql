@@ -1,0 +1,12 @@
+query settings {
+  viewer {
+    id
+    username
+    email
+    profile {
+      height
+      weight
+      preferredUnit
+    }
+  }
+}

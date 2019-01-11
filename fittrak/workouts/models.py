@@ -5,13 +5,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from fittrak.utils.models import BaseModel, UserBaseModel, WorkoutBaseModel
 
-PENDING = "PENDING"
-IN_PROGRESS = "IN_PROGRESS"
-CANCELLED = "CANCELLED"
-COMPLETE = "COMPLETE"
-
 
 class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
+    PENDING = "PENDING"
+    IN_PROGRESS = "IN_PROGRESS"
+    CANCELLED = "CANCELLED"
+    COMPLETE = "COMPLETE"
+
     STATUS_CHOICES = (
         (PENDING, "Pending"),
         (IN_PROGRESS, "In Progress"),
@@ -27,7 +27,11 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         help_text="A human easy to read/share name for workout",
     )
 
-    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=PENDING)
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS_CHOICES,
+        default=PENDING
+    )
 
     class Meta:
         ordering = ("-id",)

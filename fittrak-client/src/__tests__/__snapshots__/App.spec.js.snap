@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue Renders 1`] = `
-<vapp-stub id="app">
-  <vlayout-stub tag="div" justify-center="" align-center="" fill-height="">
-    <vflex-stub tag="div" text-xs-center="">
-      <vprogresscircular-stub indeterminate="true" rotate="0" size="64" width="4" value="0" color="primary"></vprogresscircular-stub>
-      <vflex-stub tag="div" mt-2="">Firing up ... 💪</vflex-stub>
+<v-app-stub id="app">
+  <v-layout-stub tag="div" justify-center="" align-center="" fill-height="">
+    <v-flex-stub tag="div" text-xs-center="">
+      <v-progress-circular-stub indeterminate="true" rotate="0" size="64" width="4" value="0" color="primary"></v-progress-circular-stub>
+      <v-flex-stub tag="div" mt-2="">Firing up ... 💪</v-flex-stub>
       <!---->
-    </vflex-stub>
-  </vlayout-stub>
-</vapp-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-app-stub>
 `;
