@@ -74,7 +74,16 @@ export default {
   methods: {
     updateSettings() {
       const { profile } = this.user;
-      const { height, weight, preferredUnit } = profile;
+      let { height, weight, preferredUnit } = profile;
+
+      // Should be treating these as null
+      if (height === "") {
+        height = null;
+      }
+
+      if (weight === "") {
+        weight = null;
+      }
 
       this.$apollo
         .mutate({
@@ -88,7 +97,7 @@ export default {
         .then(() => {
           showSnackbar("success", "Settings saved.");
         })
-        .error(() => {
+        .catch(() => {
           showSnackbar("error", "Could not save settings.");
         });
     }

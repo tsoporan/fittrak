@@ -2,9 +2,11 @@ mutation updateSettings($height: Float, $weight: Float, $preferredUnit: UnitEnum
   updateSettings(height: $height, weight: $weight, preferredUnit: $preferredUnit) {
     viewer {
       id
-      height
-      weight
-      preferredUnit
+      profile {
+        height
+        weight
+        preferredUnit
+      }
     }
   }
 }
