@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getStatusBySlug } from "@/helpers";
+import { getStatusBySlug, showSnackbar } from "@/helpers";
 
 import WorkoutItem from "@/components/workouts/WorkoutItem";
 
@@ -85,9 +85,16 @@ export default {
       update(data) {
         const { limit } = this.$props;
 
-        if (limit) return data.workouts.slice(0, limit);
+        if (data.workouts) {
+          if (limit) return data.workouts.slice(0, limit);
 
-        return data.workouts;
+          return data.workouts;
+        }
+
+        return [];
+      },
+      error() {
+        showSnackbar("error", "Could not load latest workouts.");
       }
     }
   },
