@@ -9,6 +9,13 @@
       <v-text-field
         v-model="user.username"
         label="Username"
+        disabled
+      />
+
+      <v-text-field
+        v-model="user.email"
+        label="Email"
+        disabled
       />
 
       <v-text-field
@@ -37,17 +44,24 @@
 
       <v-divider />
 
-      <v-flex text-xs-right>
+      <v-flex 
+        text-xs-right 
+        mt-3>
         <v-btn 
           flat
           outline
-        >Submit</v-btn>
+          @click.stop="updateSettings"
+        >Save</v-btn>
       </v-flex>
     </v-form>
   </v-flex>
 </template>
 
 <script>
+import UpdateSettingsMutation from "@/graphql/mutations/updateSettings.graphql";
+
+import { showSnackbar } from "@/helpers";
+
 export default {
   name: "UserSettings",
 
@@ -57,7 +71,28 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    updateSettings() {
+      const { profile } = this.user;
+      const { height, weight, preferredUnit } = profile;
+
+      this.$apollo
+        .mutate({
+          mutation: UpdateSettingsMutation,
+          variables: {
+            height,
+            weight,
+            preferredUnit
+          }
+        })
+        .then(() => {
+          showSnackbar("success", "Settings saved.");
+        })
+        .error(() => {
+          showSnackbar("error", "Could not save settings.");
+        });
+    }
+  },
 
   props: {
     user: {
