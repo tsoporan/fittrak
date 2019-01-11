@@ -22,3 +22,4 @@ requests = "==2.20"
 
 [dev-packages]
 snapshottest = "*"
+ipython = "*"
