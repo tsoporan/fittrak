@@ -47,22 +47,16 @@ class AddCustomExercise(graphene.Mutation):
     def mutate(_, info, workout_id, exercise_name, muscle_group_name):
         user = info.context.user
 
-        muscle_group = MuscleGroup.objects.get(
-            name=muscle_group_name
-        )
+        muscle_group = MuscleGroup.objects.get(name=muscle_group_name)
 
         exercise_type, _ = ExerciseTypeModel.objects.get_or_create(
-            user=user,
-            name=exercise_name,
-            muscle_group=muscle_group
+            user=user, name=exercise_name, muscle_group=muscle_group
         )
 
         workout = Workout.objects.get(id=workout_id)
 
         exercise = Exercise.objects.create(
-            user=user,
-            workout=workout,
-            exercise_type=exercise_type
+            user=user, workout=workout, exercise_type=exercise_type
         )
 
         return AddCustomExercise(exercise=exercise)

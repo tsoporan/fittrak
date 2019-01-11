@@ -27,11 +27,7 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         help_text="A human easy to read/share name for workout",
     )
 
-    status = models.CharField(
-        max_length=32,
-        choices=STATUS_CHOICES,
-        default=PENDING
-    )
+    status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=PENDING)
 
     class Meta:
         ordering = ("-id",)

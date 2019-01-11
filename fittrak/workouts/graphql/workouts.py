@@ -45,10 +45,7 @@ class CreateWorkout(graphene.Mutation):
         if user.is_anonymous:
             raise GraphQLError("Not authenticated.")
 
-        new_workout = Workout.objects.create(
-            user=user,
-            date_started=timezone.now()
-        )
+        new_workout = Workout.objects.create(user=user, date_started=timezone.now())
 
         return CreateWorkout(workout=new_workout)
 
@@ -76,10 +73,7 @@ class UpdateWorkout(graphene.Mutation):
 
     class Arguments:
         workout_id = graphene.Int(required=True)
-        workout_fields = graphene.Argument(
-            WorkoutFieldInputType,
-            required=True
-        )
+        workout_fields = graphene.Argument(WorkoutFieldInputType, required=True)
 
     @staticmethod
     def mutate(_, info, workout_id, workout_fields):

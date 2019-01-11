@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('workouts', '0003_auto_20180901_0121'),
-    ]
+    dependencies = [("workouts", "0003_auto_20180901_0121")]
 
     operations = [
         migrations.AddField(
-            model_name='set',
-            name='bodyweight',
+            model_name="set",
+            name="bodyweight",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

@@ -52,7 +52,7 @@ class AddSet(graphene.Mutation):
             repetitions=repetitions,
             weight=weight,
             unit=unit,
-            bodyweight=bodyweight
+            bodyweight=bodyweight,
         )
 
         return AddSet(set=_set, exercise=exercise)

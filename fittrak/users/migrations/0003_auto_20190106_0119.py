@@ -5,24 +5,28 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0002_profile_verification_token'),
-    ]
+    dependencies = [("users", "0002_profile_verification_token")]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='height',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True),
+            model_name="profile",
+            name="height",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=5, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='profile',
-            name='preferred_unit',
-            field=models.CharField(choices=[('LBS', 'LBS'), ('KGS', 'KGS')], default='LBS', max_length=3),
+            model_name="profile",
+            name="preferred_unit",
+            field=models.CharField(
+                choices=[("LBS", "LBS"), ("KGS", "KGS")], default="LBS", max_length=3
+            ),
         ),
         migrations.AddField(
-            model_name='profile',
-            name='weight',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True),
+            model_name="profile",
+            name="weight",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=5, null=True
+            ),
         ),
     ]
