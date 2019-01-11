@@ -1,4 +1,4 @@
-"""Workouts GraphQL schema"""
+"""Workouts GraphQL Query"""
 
 import graphene
 
