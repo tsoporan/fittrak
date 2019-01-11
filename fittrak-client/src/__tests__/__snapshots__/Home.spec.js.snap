@@ -1,30 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Renders 1`] = `
-<vcontainer-stub tag="div" fluid="" fill-height="" grid-list-xl="">
-  <vlayout-stub tag="div" row="" align-center="">
-    <vflex-stub tag="div" xs12="" text-xs-center="">
+<v-container-stub tag="div" fluid="" fill-height="" grid-list-xl="">
+  <v-layout-stub tag="div" row="" align-center="">
+    <v-flex-stub tag="div" xs12="" text-xs-center="">
       <h2 class="display-2">
         It's Invalid Date on Invalid Date the Invalid Date.
         <br></h2>
-      <vflex-stub tag="div"></vflex-stub>
-      <vlayout-stub tag="div" align-center="">
+      <v-flex-stub tag="div"></v-flex-stub>
+      <v-layout-stub tag="div" align-center="">
         <createworkout-stub></createworkout-stub>
-        <vflex-stub tag="div" xs1="" text-xs-center="">
-          <vflex-stub tag="div">OR</vflex-stub>
-        </vflex-stub>
-        <vflex-stub tag="div" xs6="" text-xs-left="">
-          <vbtn-stub activeclass="v-btn--active" large="true" ripple="true" tag="button" type="button" disabled="" class="success">
+        <v-flex-stub tag="div" xs1="" text-xs-center="">
+          <v-flex-stub tag="div">OR</v-flex-stub>
+        </v-flex-stub>
+        <v-flex-stub tag="div" xs6="" text-xs-left="">
+          <v-btn-stub activeclass="v-btn--active" large="true" tag="button" type="button" disabled="" class="success">
             Start Routine
-          </vbtn-stub>
-        </vflex-stub>
-      </vlayout-stub>
-      <vlayout-stub tag="div">
-        <vflex-stub tag="div" xs-8="">
-          <workoutlist-stub title="Recently" limit="5"></workoutlist-stub>
-        </vflex-stub>
-      </vlayout-stub>
-    </vflex-stub>
-  </vlayout-stub>
-</vcontainer-stub>
+          </v-btn-stub>
+        </v-flex-stub>
+      </v-layout-stub>
+      <v-layout-stub tag="div">
+        <v-flex-stub tag="div" xs-8="">
+          <workoutlist-stub status="" title="Recently" limit="5"></workoutlist-stub>
+        </v-flex-stub>
+      </v-layout-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>
 `;
