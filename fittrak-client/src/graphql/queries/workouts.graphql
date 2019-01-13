@@ -1,9 +1,0 @@
-query workouts($status: WorkoutStatusesEnum, $limit: Int) {
-  workouts(status: $status, limit: $limit) {
-    id
-    dateStarted
-    dateEnded
-    status
-    slug
-  }
-}
