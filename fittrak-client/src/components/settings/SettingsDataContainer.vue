@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import SettingsQuery from "@/graphql/queries/settings.graphql";
+import ViewerQuery from "@/graphql/queries/viewer.graphql";
 
 export default {
   name: "SettingsDataContainer",
@@ -20,7 +20,7 @@ export default {
 
   apollo: {
     user: {
-      query: SettingsQuery,
+      query: ViewerQuery,
       update: data => data.viewer
     }
   }

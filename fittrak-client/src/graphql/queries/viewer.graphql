@@ -2,5 +2,11 @@ query viewer {
   viewer {
     id
     username
+    email
+    profile {
+      height
+      weight
+      preferredUnit
+    }
   }
 }
