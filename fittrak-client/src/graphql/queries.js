@@ -3,15 +3,16 @@ import gql from "graphql-tag";
 const viewerQuery = gql`
   query viewer {
     viewer {
-        id
-        username
-        email
-        profile {
-          height
-          weight
-          preferredUnit
-        }
+      id
+      username
+      email
+      profile {
+        height
+        weight
+        preferredUnit
+      }
     }
+  }
 `;
 
 const workoutsQuery = gql`
