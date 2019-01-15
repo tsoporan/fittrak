@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import UpdateWorkoutMutation from "@/graphql/mutations/updateWorkout.graphql";
+import { mutations } from "@/graphql";
 
 import { IN_PROGRESS } from "@/constants";
 import { showSnackbar } from "@/helpers";
@@ -33,7 +33,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: UpdateWorkoutMutation,
+          mutation: mutations.updateWorkoutMutation,
 
           variables: {
             workoutId: workout.id,
