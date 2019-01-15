@@ -1,22 +1,36 @@
 <template>
   <v-container>
-    <SettingsDataContainer>
-      <template slot-scope="slotProps"> 
-        <UserSettings :user="slotProps.user" />
-      </template>
-    </SettingsDataContainer>
+    <v-layout row>
+      <UserSettings :viewer="viewer" />
+    </v-layout>
   </v-container>
 </template>
 
 <script>
-import SettingsDataContainer from "@/components/settings/SettingsDataContainer";
+import { queries } from "@/graphql";
+
 import UserSettings from "@/components/settings/UserSettings";
 
 export default {
   name: "SettingsPage",
 
+  data() {
+    return {
+      viewer: null
+    };
+  },
+
+  apollo: {
+    viewer: {
+      query: queries.viewerQuery
+    },
+
+    update(data) {
+      return data.viewer;
+    }
+  },
+
   components: {
-    SettingsDataContainer,
     UserSettings
   }
 };
