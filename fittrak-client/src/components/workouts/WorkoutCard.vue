@@ -5,7 +5,17 @@
     @click.stop="viewWorkout"
   >
     <v-card-title> 
-      {{ workout.id }}
+      <v-flex>#{{ workout.id }}</v-flex>
+      <v-spacer />
+      <v-flex>
+        <v-chip 
+          label 
+          v-bind="{[`color`]: `${workout.color} darken-2`}"
+        >
+          <v-icon left>label</v-icon>
+          {{ getHumanStatus }}
+        </v-chip>
+      </v-flex>
     </v-card-title>
 
     <v-card-text class="headline">
