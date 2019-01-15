@@ -1,5 +1,14 @@
 <template>
   <v-list dark>
+    <v-list-tile>
+      <v-list-tile-content>
+        <v-list-tile-title class="title">
+          Heya, <span class="primary--text text--lighten-1">{{ viewer.username }}</span>
+        </v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
+    <v-divider />
+
     <router-link 
       tag="v-list-tile" 
       to="/">
@@ -69,6 +78,7 @@
 <script>
 export default {
   name: "SidebarNavigationItems",
+
   methods: {
     toReleaseNotes() {
       window.location.href = "https://github.com/tsoporan/fittrak/releases";
@@ -76,6 +86,13 @@ export default {
     logout() {
       // Allow server side routing to kick in and logout session
       window.location.replace("/accounts/logout/");
+    }
+  },
+
+  props: {
+    viewer: {
+      type: Object,
+      required: true
     }
   }
 };
