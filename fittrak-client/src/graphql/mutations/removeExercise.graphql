@@ -1,7 +1,0 @@
-mutation removeExercise($exerciseId: Int!) {
-  removeExercise(exerciseId: $exerciseId) {
-    exercise {
-      id
-    }
-  }
-}

@@ -7,31 +7,31 @@
     >
 
       <v-text-field
-        v-model="user.username"
+        v-model="viewer.username"
         label="Username"
         disabled
       />
 
       <v-text-field
-        v-model="user.email"
+        v-model="viewer.email"
         label="Email"
         disabled
       />
 
       <v-text-field
-        v-model="user.profile.height"
+        v-model="viewer.profile.height"
         label="Height"
         type="number"
       />
 
       <v-text-field
-        v-model="user.profile.weight"
+        v-model="viewer.profile.weight"
         label="Weight"
         type="number"
       />
 
       <v-radio-group
-        v-model="user.profile.preferredUnit"
+        v-model="viewer.profile.preferredUnit"
         label="Preferred Unit"
       >
         <v-radio 
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import UpdateSettingsMutation from "@/graphql/mutations/updateSettings.graphql";
+import { mutations } from "@/graphql";
 
 import { showSnackbar } from "@/helpers";
 
@@ -73,7 +73,7 @@ export default {
 
   methods: {
     updateSettings() {
-      const { profile } = this.user;
+      const { profile } = this.viewer;
       let { height, weight, preferredUnit } = profile;
 
       // Should be treating these as null
@@ -87,7 +87,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: UpdateSettingsMutation,
+          mutation: mutations.updateViewerMutation,
           variables: {
             height,
             weight,
@@ -104,7 +104,7 @@ export default {
   },
 
   props: {
-    user: {
+    viewer: {
       type: Object,
       required: true
     }

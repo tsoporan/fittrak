@@ -54,8 +54,7 @@
 </template>
 
 <script>
-import RemoveExerciseMutation from "@/graphql/mutations/removeExercise.graphql";
-import ExercisesQuery from "@/graphql/queries/exercises.graphql";
+import { queries, mutations } from "@/graphql";
 
 import AddSet from "@/components/sets/AddSet";
 import SetList from "@/components/sets/SetList";
@@ -75,13 +74,13 @@ export default {
     removeExercise(exercise) {
       this.$apollo
         .mutate({
-          mutation: RemoveExerciseMutation,
+          mutation: mutations.RemoveExerciseMutation,
           variables: {
             exerciseId: exercise.id
           },
           update(store) {
             const result = store.readQuery({
-              query: ExercisesQuery,
+              query: queries.ExercisesQuery,
               variables: {
                 workoutId: exercise.workout.id
               }
@@ -92,7 +91,7 @@ export default {
             );
 
             store.writeQuery({
-              query: ExercisesQuery,
+              query: queries.ExercisesQuery,
               variables: {
                 workoutId: exercise.workout.id
               },

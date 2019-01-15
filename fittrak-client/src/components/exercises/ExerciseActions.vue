@@ -80,11 +80,7 @@
 </template>
 
 <script>
-import AddExercisesMutation from "@/graphql/mutations/addExercises.graphql";
-import AddCustomExerciseMutation from "@/graphql/mutations/addCustomExercise.graphql";
-import ExercisesQuery from "@/graphql/queries/exercises.graphql";
-import ExerciseTypesQuery from "@/graphql/queries/exerciseTypes.graphql";
-import MuscleGroupsQuery from "@/graphql/queries/muscleGroups.graphql";
+import { queries, mutations } from "@/graphql";
 
 import { showSnackbar } from "@/helpers";
 
@@ -102,11 +98,12 @@ export default {
 
   apollo: {
     exerciseTypes: {
-      query: ExerciseTypesQuery,
+      query: queries.exerciseTypesQuery,
       update: data => data.exerciseTypes.map(exerciseType => exerciseType.name)
     },
+
     muscleGroups: {
-      query: MuscleGroupsQuery,
+      query: queries.muscleGroupsQuery,
       update: data => data.muscleGroups.map(group => group.name)
     }
   },
@@ -122,7 +119,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: AddCustomExerciseMutation,
+          mutation: mutations.addCustomExerciseMutation,
 
           variables: {
             workoutId: workout.id,
@@ -134,7 +131,7 @@ export default {
             const customExercise = data.addCustomExercise.exercise;
 
             const result = store.readQuery({
-              query: ExercisesQuery,
+              query: queries.exercisesQuery,
               variables: {
                 workoutId: workout.id
               }
@@ -143,7 +140,7 @@ export default {
             result.exercises = [customExercise, ...result.exercises];
 
             store.writeQuery({
-              query: ExercisesQuery,
+              query: queries.exercisesQuery,
               variables: {
                 workoutId: workout.id
               },
@@ -170,7 +167,9 @@ export default {
     },
 
     addExercises() {
-      const { workout } = this.$props;
+      const workout = this.workout;
+
+      console.log("WORKOUT", workout.id);
 
       if (!this.newExercises.length) {
         return;
@@ -178,7 +177,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: AddExercisesMutation,
+          mutation: mutations.addExercisesMutation,
 
           variables: {
             workoutId: workout.id,
@@ -189,7 +188,7 @@ export default {
             const newExercises = data.addExercises.exercises;
 
             const result = store.readQuery({
-              query: ExercisesQuery,
+              query: queries.exercisesQuery,
               variables: {
                 workoutId: workout.id
               }
@@ -198,7 +197,7 @@ export default {
             result.exercises = [...newExercises, ...result.exercises];
 
             store.writeQuery({
-              query: ExercisesQuery,
+              query: queries.exercisesQuery,
               variables: {
                 workoutId: workout.id
               },
