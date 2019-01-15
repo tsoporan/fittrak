@@ -47,8 +47,7 @@
 </template>
 
 <script>
-import AddSetMutation from "@/graphql/mutations/addSet.graphql";
-import SetsQuery from "@/graphql/queries/sets.graphql";
+import { queries, mutations } from "@/graphql";
 
 import { showSnackbar } from "@/helpers";
 
@@ -73,7 +72,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: AddSetMutation,
+          mutation: mutations.addSetMutation,
 
           variables: {
             exerciseId: exercise.id,
@@ -87,7 +86,7 @@ export default {
             const set = data.addSet.set;
 
             const result = store.readQuery({
-              query: SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: exercise.id
               }
@@ -96,7 +95,7 @@ export default {
             result.sets = [set, ...result.sets];
 
             store.writeQuery({
-              query: SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: exercise.id
               },

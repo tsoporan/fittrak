@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import SetsQuery from "@/graphql/queries/sets.graphql";
+import { queries } from "@/graphql";
 
 import SetItem from "@/components/sets/SetItem.vue";
 
@@ -28,9 +28,9 @@ export default {
 
   apollo: {
     sets: {
-      query: SetsQuery,
+      query: queries.setsQuery,
       variables() {
-        const { exercise } = this.$props;
+        const exercise = this.exercise;
 
         return {
           exerciseId: exercise.id

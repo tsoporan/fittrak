@@ -90,9 +90,7 @@
 </template>
 
 <script>
-import SetsQuery from "@/graphql/queries/sets.graphql";
-import UpdateSetMutation from "@/graphql/mutations/updateSet.graphql";
-import RemoveSetMutation from "@/graphql/mutations/removeSet.graphql";
+import { queries, mutations } from "@/graphql";
 
 import { showSnackbar } from "@/helpers";
 
@@ -117,11 +115,11 @@ export default {
     },
 
     removeSet() {
-      const { set } = this.$props;
+      const set = this.set;
 
       this.$apollo
         .mutate({
-          mutation: RemoveSetMutation,
+          mutation: queries.RemoveSetMutation,
           variables: {
             setId: set.id
           },
@@ -129,7 +127,7 @@ export default {
             const set = data.removeSet.set;
 
             const result = store.readQuery({
-              query: SetsQuery,
+              query: queries.SetsQuery,
               variables: {
                 exerciseId: set.exercise.id
               }
@@ -138,7 +136,7 @@ export default {
             result.sets = result.sets.filter(s => s.id !== set.id);
 
             store.writeQuery({
-              query: SetsQuery,
+              query: queries.SetsQuery,
               variables: {
                 exerciseId: set.exercise.id
               },
@@ -158,18 +156,19 @@ export default {
     },
 
     updateSet() {
-      const { set } = this.$props;
+      const set = this.set;
+      const { weight, unit, repetitions, bodyweight } = this;
 
       this.$apollo
         .mutate({
-          mutation: UpdateSetMutation,
+          mutation: mutations.updateSetMutation,
           variables: {
             setId: set.id,
             setFields: {
-              weight: this.weight,
-              repetitions: this.repetitions,
-              unit: this.unit,
-              bodyweight: this.bodyweight
+              weight,
+              repetitions,
+              unit,
+              bodyweight
             }
           }
         })
