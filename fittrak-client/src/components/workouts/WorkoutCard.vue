@@ -4,25 +4,31 @@
     dark
     @click.stop="viewWorkout"
   >
-    <v-card-title> 
-      <v-flex>#{{ workout.id }}</v-flex>
-      <v-spacer />
-      <v-flex>
-        <v-chip 
-          label 
-          v-bind="{[`color`]: `${workout.color} darken-2`}"
-        >
-          <v-icon left>label</v-icon>
-          {{ getHumanStatus }}
-        </v-chip>
-      </v-flex>
+    <v-card-title primary-title> 
+      <span class="headline">Workout from {{ started }}</span>
+
+      <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
+
     </v-card-title>
 
-    <v-card-text class="headline">
-      {{ workout.id }} 
-      Status: {{ getHumanStatus }}, Started: <span>{{ started }}</span>
-      <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
+    <v-card-text>
+      <div>
+        Time Spent:
+      </div>
+      <div>
+        Total Weight:
+      </div>
     </v-card-text>
+
+    <div class="status">
+      <v-chip 
+        label 
+        v-bind="{[`color`]: `${workout.color} darken-2`}"
+      >
+        <v-icon left>label</v-icon>
+        {{ getHumanStatus }}
+      </v-chip>
+    </div>
 
     <v-divider light />
 
@@ -68,10 +74,6 @@ export default {
     // Human friendly status
     getHumanStatus: data => {
       return STATUS_MAP[data.workout.status];
-    },
-
-    exercises: data => {
-      return data.workout.exercises.filter(e => e.isActive);
     },
 
     started: data => {
@@ -134,4 +136,9 @@ export default {
 </script>
 
 <style scoped>
+div.status {
+  position: absolute;
+  right: -10px;
+  top: -11px;
+}
 </style>
