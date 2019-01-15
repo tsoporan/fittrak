@@ -18,6 +18,12 @@
       <div>
         Total Weight:
       </div>
+      <div>
+        Type: Custom
+      </div>
+      <div>
+        Exercises: {{ exercises.length }}
+      </div>
     </v-card-text>
 
     <div class="status">
@@ -25,7 +31,7 @@
         label 
         v-bind="{[`color`]: `${workout.color} darken-2`}"
       >
-        <v-icon left>label</v-icon>
+        <v-icon left>{{ statusIcon }}</v-icon>
         {{ getHumanStatus }}
       </v-chip>
     </div>
@@ -62,7 +68,13 @@
 
 <script>
 import { queries, mutations } from "@/graphql";
-import { STATUS_MAP } from "@/constants";
+import {
+  STATUS_MAP,
+  PENDING,
+  COMPLETE,
+  IN_PROGRESS,
+  CANCELLED
+} from "@/constants";
 
 import { format } from "date-fns";
 import distanceInWords from "date-fns/distance_in_words";
@@ -84,6 +96,15 @@ export default {
 
     ended: data => {
       return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
+    },
+
+    statusIcon: data => {
+      return {
+        [PENDING]: "hourglass_empty",
+        [IN_PROGRESS]: "hourglass_full",
+        [CANCELLED]: "cancel",
+        [COMPLETE]: "check_circle"
+      }[data.workout.status];
     }
   },
 
