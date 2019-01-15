@@ -1,37 +1,58 @@
 <template>
-  <v-list-tile @click.stop="viewWorkout">
+  <v-card
+    :color="workout.color"
+    dark
+    @click.stop="viewWorkout"
+  >
+    <v-card-title> 
+      {{ workout.id }}
+    </v-card-title>
 
-    <v-list-tile-content>
-      <v-list-tile-title>
-        #{{ $props.workout.slug }}
-      </v-list-tile-title>
-      <v-list-tile-sub-title>
-        Status: {{ getHumanStatus }}, Started: <span>{{ started }}</span>
-        <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
-      </v-list-tile-sub-title>
-    </v-list-tile-content>
+    <v-card-text class="headline">
+      {{ workout.id }} 
+      Status: {{ getHumanStatus }}, Started: <span>{{ started }}</span>
+      <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
+    </v-card-text>
 
-    <v-list-tile-action>
-      <v-btn 
-        icon 
-        @click.stop="removeWorkout">
-        <v-icon>delete</v-icon>
-      </v-btn>
-    </v-list-tile-action>
+    <v-divider light />
 
-  </v-list-tile>
+    <v-card-actions>
+      <v-toolbar 
+        flat 
+        dark 
+        :color="workout.color">
+
+        <v-btn 
+          icon>
+          <v-icon>share</v-icon>
+        </v-btn>
+
+        <v-spacer />
+
+        <v-btn 
+          icon>
+          <v-icon>favorite</v-icon>
+        </v-btn>
+        <v-btn 
+          @click.stop="removeWorkout"
+          icon>
+          <v-icon>delete</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-card-actions>
+
+  </v-card>
 </template>
 
 <script>
+import { queries, mutations } from "@/graphql";
 import { STATUS_MAP } from "@/constants";
-import REMOVE_WORKOUT from "@/graphql/mutations/removeWorkout.graphql";
-import WORKOUTS from "@/graphql/queries/workouts.graphql";
 
 import { format } from "date-fns";
 import distanceInWords from "date-fns/distance_in_words";
 
 export default {
-  name: "WorkoutItem",
+  name: "WorkoutCard",
 
   computed: {
     // Human friendly status
@@ -59,15 +80,16 @@ export default {
       const workoutId = this.$props.workout.id;
 
       this.$apollo.mutate({
-        mutation: REMOVE_WORKOUT,
+        mutation: mutations.RemoveWorkout,
 
         variables: {
           workoutId: workoutId
-        },
+        }
 
+        /*
         update(store) {
           const data = store.readQuery({
-            query: WORKOUTS
+            query: query.WorkoutsQuery
           });
 
           const filteredWorkouts = data.workouts.filter(
@@ -77,10 +99,11 @@ export default {
           data.workouts = filteredWorkouts;
 
           store.writeQuery({
-            query: WORKOUTS,
+            query: query.WorkoutsQuery,
             data
           });
         }
+        */
       });
     },
 
