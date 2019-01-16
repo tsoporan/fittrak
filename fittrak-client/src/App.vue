@@ -116,7 +116,6 @@ export default {
   components: {
     Sidebar,
     AppSnackbar,
-    Loader,
     CreateWorkout,
     Loader
   }
