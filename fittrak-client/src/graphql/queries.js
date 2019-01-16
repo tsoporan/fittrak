@@ -23,6 +23,7 @@ const workoutsQuery = gql`
       dateEnded
       status
       slug
+      exerciseCount
     }
   }
 `;
