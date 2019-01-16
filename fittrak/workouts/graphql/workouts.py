@@ -31,8 +31,14 @@ class WorkoutFieldInputType(graphene.InputObjectType):
 
 
 class WorkoutType(DjangoObjectType):
+    exercise_count = graphene.Int()
+
     class Meta:
         model = Workout
+
+    @staticmethod
+    def resolve_exercise_count(workout, info):
+        return workout.exercises.count()
 
 
 class CreateWorkout(graphene.Mutation):
