@@ -22,7 +22,7 @@
         Type: Custom
       </div>
       <div>
-        Exercises: {{ exercises.length }}
+        Exercises: {{ workout.exerciseCount }}
       </div>
     </v-card-text>
 
