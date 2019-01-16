@@ -5,25 +5,46 @@
     @click.stop="viewWorkout"
   >
     <v-card-title primary-title> 
-      <span class="headline">Workout from {{ started }}</span>
-
-      <div v-if="workout.date_ended">, Ended: {{ ended }}</div>
-
+      <span class="headline">{{ started }}</span>
     </v-card-title>
 
+    <v-divider light />
+
     <v-card-text>
-      <div>
-        Time Spent:
-      </div>
-      <div>
-        Total Weight:
-      </div>
-      <div>
-        Type: Custom
-      </div>
-      <div>
-        Exercises: {{ workout.exerciseCount }}
-      </div>
+      <v-layout
+        row 
+      >
+        <v-flex 
+          class="subheading" 
+          md6 
+          xs12>
+          <div> 
+            Time Spent <span :class="relativeDarkness">Test</span>
+          </div>
+          <div>
+            Total Weight
+          </div>
+          <div>
+            Type: Custom
+          </div>
+          <div>
+            Exercises: {{ workout.exerciseCount }}
+          </div>
+        </v-flex>
+
+        <v-flex 
+          class="subheading" 
+          md6 
+          xs12>
+          <div>
+            Created on {{ workout.created_at }}
+          </div>
+          <div>
+            Last updated {{ workout.updated_at }}
+          </div>
+        </v-flex>
+      </v-layout>
+
     </v-card-text>
 
     <div class="status">
@@ -95,7 +116,11 @@ export default {
     },
 
     ended: data => {
-      return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
+      if (data.workout.dateEnded) {
+        return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
+      }
+
+      return "∞";
     },
 
     statusIcon: data => {
@@ -105,6 +130,18 @@ export default {
         [CANCELLED]: "cancel",
         [COMPLETE]: "check_circle"
       }[data.workout.status];
+    },
+
+    relativeDarkness: data => {
+      const { color } = data.workout;
+
+      const textColor = `${color}--text`;
+      const textColorDarkened = `text--darken-4`;
+
+      return {
+        [textColor]: true,
+        [textColorDarkened]: true
+      };
     }
   },
 
