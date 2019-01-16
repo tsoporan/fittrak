@@ -49,27 +49,6 @@ export default {
     };
   },
 
-  /*
-  created() {
-    // Set the status if we're currently in view
-    const { status } = this.$route.params;
-
-    if (status) {
-      this.selectedStatus = getStatusBySlug(status);
-    }
-  },
-
-  watch: {
-    $route(to) {
-      const { status } = to.params;
-
-      if (status) {
-        this.selectedStatus = getStatusBySlug(status);
-      }
-    }
-  },
-  */
-
   computed: {
     coloredWorkouts() {
       return this.workouts.map(workout => ({
