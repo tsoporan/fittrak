@@ -3,7 +3,7 @@
     <v-btn 
       icon
       dark
-      color="primary_dark"
+      color="primaryDark"
       @click.stop="createWorkout" 
       :loading="loading" 
     ><v-icon>add</v-icon>

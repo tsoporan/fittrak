@@ -49,7 +49,7 @@
         mt-3>
         <v-btn 
           dark
-          color="dark_grey"
+          color="darkGrey"
           depressed
           @click.stop="updateSettings"
         >Save</v-btn>

@@ -1,7 +1,7 @@
 <template>
   <v-card 
     flat 
-    color="main_bg"> 
+    color="mainBg"> 
     <v-card-title>
       <span class="headline grey--text text--darken-2">Latest</span>
       <v-spacer />
