@@ -153,7 +153,7 @@ export default {
         mutation: mutations.RemoveWorkout,
 
         variables: {
-          workoutId: workoutId
+          workoutId
         }
 
         /*
