@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCustomExercise AddCustomExercise renders 1`] = `
+<v-dialog-stub fullscreen="true" maxwidth="none" origin="center center" width="auto" transition="dialog-bottom-transition" hide-overlay="">
+  <v-btn-stub activeclass="v-btn--active" tag="button" type="button" color="primary" dark="">Add Custom</v-btn-stub>
+  <v-card-stub elevation="2">
+    <v-toolbar-stub scrollthreshold="300" dark="" color="primary">
+      <v-btn-stub activeclass="v-btn--active" icon="true" tag="button" type="button" dark="">
+        <v-icon-stub>close</v-icon-stub>
+      </v-btn-stub>
+      <v-toolbar-title-stub>Add Custom Exercise</v-toolbar-title-stub>
+      <v-spacer-stub></v-spacer-stub>
+      <v-toolbar-items-stub>
+        <v-btn-stub activeclass="v-btn--active" flat="true" tag="button" type="button" dark="">Save</v-btn-stub>
+      </v-toolbar-items-stub>
+    </v-toolbar-stub>
+    <v-card-text-stub>
+      <v-layout-stub tag="div" wrap="">
+        <v-flex-stub tag="div" xs12="">
+          <v-text-field-stub placeholder="Exercise name"></v-text-field-stub>
+        </v-flex-stub>
+        <v-flex-stub tag="div" xs12="">
+          <v-autocomplete-stub allowoverflow="true" browserautocomplete="" filter="function _default(item, queryText, itemText) {
+                var hasValue = function hasValue(val) {
+                    return val != null ? val : '';
+                };
+                var text = hasValue(itemText);
+                var query = hasValue(queryText);
+                return text.toString().toLowerCase().indexOf(query.toString().toLowerCase()) > -1;
+            }" menuprops="[object Object]" items="" placeholder="Select muscle group" clearable=""></v-autocomplete-stub>
+        </v-flex-stub>
+      </v-layout-stub>
+    </v-card-text-stub>
+  </v-card-stub>
+</v-dialog-stub>
+`;
