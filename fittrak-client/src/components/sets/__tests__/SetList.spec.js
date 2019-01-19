@@ -13,7 +13,10 @@ describe("SetList.vue", () => {
             weight: 100,
             unit: "LB"
           }
-        ]
+        ],
+        exercise: {
+          id: 1
+        }
       }
     });
     expect(component.html()).toMatchSnapshot();
