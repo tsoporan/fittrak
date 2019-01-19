@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: cd fittrak-client && npm install
       - run: cd fittrak-client && npm run lint
-      - run: cd fittrak-client && npm run test-with-coverage
+      - run: cd fittrak-client && npm run test:unit
 
   test-back-end:
     docker:
