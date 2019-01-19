@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Workout Workout page renders 1`] = `
+<v-container-stub tag="div" row="" wrap="">
+  <v-layout-stub tag="div" row="" wrap="">
+    <workoutheader-stub workout="[object Object]"></workoutheader-stub>
+    <exerciseactions-stub workout="[object Object]"></exerciseactions-stub>
+    <exerciselist-stub exercises=""></exerciselist-stub>
+  </v-layout-stub>
+</v-container-stub>
+`;

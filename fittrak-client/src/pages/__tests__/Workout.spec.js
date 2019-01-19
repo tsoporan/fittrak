@@ -4,7 +4,13 @@ import Workout from "@/pages/Workout";
 
 describe("Workout", () => {
   test("Workout page renders", () => {
-    const app = shallowMount(Workout);
+    const app = shallowMount(Workout, {
+      mocks: {
+        $apollo: {
+          loading: false
+        }
+      }
+    });
     expect(app.html()).toMatchSnapshot();
   });
 });
