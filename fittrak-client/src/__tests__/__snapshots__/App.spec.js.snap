@@ -2,12 +2,15 @@
 
 exports[`App.vue Renders 1`] = `
 <v-app-stub id="app">
-  <v-layout-stub tag="div" justify-center="" align-center="" fill-height="">
-    <v-flex-stub tag="div" text-xs-center="">
-      <v-progress-circular-stub indeterminate="true" rotate="0" size="64" width="4" value="0" color="primary"></v-progress-circular-stub>
-      <v-flex-stub tag="div" mt-2="">Firing up ... 💪</v-flex-stub>
-      <!---->
-    </v-flex-stub>
-  </v-layout-stub>
+  <v-container-stub tag="div" fill-height="">
+    <v-layout-stub tag="div" row="" wrap="" align-center="">
+      <v-flex-stub tag="div" text-xs-center="">
+        <v-flex-stub tag="div">
+          <loader-stub color="white" size="24"></loader-stub> <span class="headline">Firing up ... 💪</span>
+        </v-flex-stub>
+        <!---->
+      </v-flex-stub>
+    </v-layout-stub>
+  </v-container-stub>
 </v-app-stub>
 `;

@@ -2,6 +2,8 @@
 
 exports[`Settings Settings page renders 1`] = `
 <v-container-stub tag="div">
-  <settingsdatacontainer-stub></settingsdatacontainer-stub>
+  <v-layout-stub tag="div" row="">
+    <usersettings-stub></usersettings-stub>
+  </v-layout-stub>
 </v-container-stub>
 `;
