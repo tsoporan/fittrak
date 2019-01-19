@@ -1,6 +1,6 @@
 # Fittrack CircleCI config
 
-version: 2.1
+version: 2.0
 
 jobs:
   test-front-end:
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - checkout
-      - run: pipenv install
+      - run: pipenv install --system --ignore-pipfile
       - run: |
           export DJANGO_SECRET_KEY=DUMMY
           export DJANGO_HASHIDS_SALT=DUMMY
@@ -33,12 +33,12 @@ jobs:
     docker:
       - image: circleci/node:8.10
 
-    working_directory: ~/fittrak
+    working_directory: ~/fittrak/fittrak-client
 
     steps:
       - checkout
-      - run: cd fittrak-client && npm install
-      - run: cd fittrak-client && npm run build --no-babelrc
+      - run: npm install
+      - run: npm run build --no-babelrc
 
 workflows:
   version: 2
