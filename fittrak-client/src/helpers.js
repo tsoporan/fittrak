@@ -30,4 +30,37 @@ function showSnackbar(type, text, bus = EventBus) {
   });
 }
 
-export { getStatusBySlug, statusToSlug, showSnackbar, EventBus };
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function getRandomColor() {
+  const choices = [
+    "red",
+    "green",
+    "purple",
+    "orange",
+    "blue",
+    "indigo",
+    "deep-purple",
+    "pink",
+    "light-blue",
+    "cyan",
+    "teal",
+    "lime",
+    "amber",
+    "deep-orange",
+    "blue-grey",
+    "grey"
+  ];
+
+  return pickRandom(choices);
+}
+
+export {
+  getStatusBySlug,
+  statusToSlug,
+  showSnackbar,
+  EventBus,
+  getRandomColor
+};

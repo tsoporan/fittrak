@@ -1,21 +1,18 @@
 <template>
-  <v-flex 
-    xs6 
-    text-xs-right>
+  <v-flex text-xs-right>
     <v-btn 
-      :loading="loading" 
-      large 
+      icon
+      dark
+      color="primaryDark"
       @click.stop="createWorkout" 
-      class="success">
-      Create Workout
+      :loading="loading" 
+    ><v-icon>add</v-icon>
     </v-btn>
-  </v-flex> 
+  </v-flex>
 </template>
 
 <script>
-import WorkoutsQuery from "@/graphql/queries/workouts.graphql";
-import CreateWorkoutMutation from "@/graphql/mutations/createWorkout.graphql";
-
+import { queries, mutations } from "@/graphql";
 import { showSnackbar } from "@/helpers";
 
 export default {
@@ -33,22 +30,24 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: CreateWorkoutMutation,
+          mutation: mutations.createWorkoutMutation
 
+          /*
           update: (store, { data }) => {
             const newWorkout = data.createWorkout.workout;
             const result = store.readQuery({
-              query: WorkoutsQuery
+              query: queries.workoutsQuery
             });
 
             // Prepend the latest workout
             result.workouts.unshift(newWorkout);
 
             store.writeQuery({
-              query: WorkoutsQuery,
+              query: queries.workoutsQuery,
               data: result
             });
           }
+          */
         })
         .then(resp => {
           const workout = resp.data.createWorkout.workout;

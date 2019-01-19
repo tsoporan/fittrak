@@ -8,7 +8,7 @@
       app
       dark
     >
-      <SidebarNavigationItems />
+      <Sidebar :viewer=viewer />
     </v-navigation-drawer>
 
     <v-toolbar 
@@ -22,12 +22,7 @@
         :class="{ main: $route.name === APP_NAME }">{{ $route.name }}</v-toolbar-title>
       <v-spacer/>
       <v-layout>
-        <v-flex text-xs-right>
-          <Loader />
-        </v-flex>
-        <v-flex text-xs-right>
-          <v-flex>Heya, <strong>{{ viewer }}</strong></v-flex>
-        </v-flex>
+        <CreateWorkout />
       </v-layout>
     </v-toolbar>
 
@@ -42,39 +37,45 @@
     <AppSnackbar />
   </v-app>
   <v-app v-else>
-    <v-layout 
-      justify-center 
-      align-center 
-      fill-height>
-      <v-flex text-xs-center>
-        <v-progress-circular 
-          color="primary" 
-          size="64" 
-          :indeterminate="true"/>
-        <v-flex mt-2>Firing up ... 💪</v-flex>
-        <v-flex 
-          v-if="error" 
-          mt-2>
-          <p>
-            Hmm, looks like there was an issue making the connection. Please try again!
-            If this persists please contact: <a href="mailto:help@fittrak.ca">help@fittrak.ca</a>
-          </p>
-          <v-btn 
-            @click="signOut" 
-            depressed 
-            color="secondary">Sign out</v-btn>
+    <v-container
+      fill-height
+    >
+      <v-layout 
+        row
+        wrap
+        align-center
+      >
+        <v-flex text-xs-center>
+          <v-flex>
+            <Loader />
+            <span class="headline">Firing up ... 💪</span>
+          </v-flex>
+          <v-flex 
+            v-if="error" 
+            mt-2>
+            <p>
+              Hmm, looks like there was an issue making the connection. Please try again!
+              If this persists please contact: <a href="mailto:help@fittrak.ca">help@fittrak.ca</a>
+            </p>
+            <v-btn 
+              @click="signOut" 
+              depressed 
+              color="secondary">Sign out</v-btn>
+          </v-flex>
         </v-flex>
-      </v-flex>
-    </v-layout>
+      </v-layout>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import VIEWER from "@/graphql/queries/viewer.graphql";
+import { queries } from "@/graphql";
 
-import SidebarNavigationItems from "@/components/sidebar/SidebarNavigationItems";
-import AppSnackbar from "@/components/app/AppSnackbar";
 import Loader from "@/components/app/Loader";
+import Sidebar from "@/components/app/Sidebar";
+import AppSnackbar from "@/components/app/AppSnackbar";
+
+import CreateWorkout from "@/components/workouts/CreateWorkout";
 
 import { APP_NAME, SIGNOUT_URL } from "@/constants";
 
@@ -85,7 +86,7 @@ export default {
     return {
       APP_NAME,
       drawer: null,
-      viewer: "Stranger",
+      viewer: { username: "Stranger" },
       error: false
     };
   },
@@ -96,31 +97,27 @@ export default {
     }
   },
 
-  /*
-  props: {
-    source: {
-      type: String,
-      required: true
-    }
-  },
-  */
-
-  components: {
-    SidebarNavigationItems,
-    AppSnackbar,
-    Loader
-  },
-
   apollo: {
     viewer: {
-      query: VIEWER,
-      update: data => data.viewer.username,
+      query: queries.viewerQuery,
+
+      update(data) {
+        return data.viewer;
+      },
+
       error(error) {
         // TODO: Send error up
         console.log(`Error: ${error}`); // eslint-disable-line
         this.error = true;
       }
     }
+  },
+
+  components: {
+    Sidebar,
+    AppSnackbar,
+    CreateWorkout,
+    Loader
   }
 };
 </script>

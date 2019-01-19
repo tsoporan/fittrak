@@ -68,7 +68,12 @@ export default {
       const { exercise } = this.$props;
       const { repetitions, weight, unit, bodyweight } = this;
 
-      if (!(repetitions && weight && unit)) return;
+      // TODO: Proper validation
+      const requiredSet = repetitions && weight && unit;
+
+      if (!requiredSet) {
+        return;
+      }
 
       this.$apollo
         .mutate({

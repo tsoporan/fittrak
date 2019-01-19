@@ -169,8 +169,6 @@ export default {
     addExercises() {
       const workout = this.workout;
 
-      console.log("WORKOUT", workout.id);
-
       if (!this.newExercises.length) {
         return;
       }

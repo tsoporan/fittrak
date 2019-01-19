@@ -48,8 +48,9 @@
         text-xs-right 
         mt-3>
         <v-btn 
-          flat
-          outline
+          dark
+          color="darkGrey"
+          depressed
           @click.stop="updateSettings"
         >Save</v-btn>
       </v-flex>
