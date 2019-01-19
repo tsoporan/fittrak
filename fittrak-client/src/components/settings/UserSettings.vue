@@ -66,7 +66,7 @@ import { showSnackbar } from "@/helpers";
 export default {
   name: "UserSettings",
 
-  data: function() {
+  data() {
     return {
       valid: true
     };

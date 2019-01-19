@@ -4,8 +4,7 @@ exports[`History History page renders 1`] = `
 <v-container-stub tag="div">
   <v-layout-stub tag="div" row="" wrap="">
     <v-flex-stub tag="div" xs12="">
-      <workouthistorytoolbar-stub></workouthistorytoolbar-stub>
-      <workoutlist-stub status=""></workoutlist-stub>
+      Nothing to see here.
     </v-flex-stub>
   </v-layout-stub>
 </v-container-stub>

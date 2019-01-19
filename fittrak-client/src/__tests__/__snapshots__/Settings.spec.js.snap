@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Settings Settings page renders 1`] = `
-<v-container-stub tag="div">
-  <settingsdatacontainer-stub></settingsdatacontainer-stub>
-</v-container-stub>
-`;
