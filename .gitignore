@@ -12,6 +12,7 @@ fittrak/static
 infra/.terraform
 data
 ipython-data
+coverage
 
 # Sqlite
 *.db

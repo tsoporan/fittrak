@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
   },
   "dependencies": {
     "@sentry/browser": "^4.4.2",
@@ -16,6 +17,7 @@
     "apollo-link-error": "^1.1.5",
     "apollo-link-http": "^1.5.9",
     "apollo-link-retry": "^2.2.8",
+    "codacy-coverage": "^3.4.0",
     "date-fns": "^1.30.1",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
@@ -93,6 +95,11 @@
       "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
     ],
     "testURL": "http://localhost/",
-    "setupTestFrameworkScriptFile": "<rootDir>/jest-setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/jest-setup.js",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js, vue}",
+      "!**/node_modules/**"
+    ]
   }
 }
