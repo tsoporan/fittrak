@@ -1,19 +1,19 @@
 # Fittrack CircleCI config
 
-version: 2.0
+version: 2.1
 
 jobs:
   test-front-end:
     docker:
       - image: circleci/node:8.10
 
-    working_directory: ~/fittrak
+    working_directory: ~/fittrak/fittrak-client
 
     steps:
       - checkout
-      - run: cd fittrak-client && npm install
-      - run: cd fittrak-client && npm run lint
-      - run: cd fittrak-client && npm run test:unit
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test-with-coverage
 
   test-back-end:
     docker:
@@ -29,7 +29,7 @@ jobs:
           export DJANGO_HASHIDS_SALT=DUMMY
           pipenv run fittrak/manage.py test
 
-  build:
+  build-frontend:
     docker:
       - image: circleci/node:8.10
 
@@ -42,8 +42,8 @@ jobs:
 
 workflows:
   version: 2
-  test-backend-and-frontend:
+  test-build:
     jobs:
-      - test-front-end
       - test-back-end
-      - build
+      - test-front-end
+      - build-frontend
