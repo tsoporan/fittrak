@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { queries, mutations } from "@/graphql";
+import { mutations } from "@/graphql";
 import {
   STATUS_MAP,
   PENDING,

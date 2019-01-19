@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { queries, mutations } from "@/graphql";
+import { mutations } from "@/graphql";
 import { showSnackbar } from "@/helpers";
 
 export default {
