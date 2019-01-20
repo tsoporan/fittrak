@@ -76,9 +76,10 @@
             </v-flex>
             <v-flex 
               v-else
-              text-xs-center
+              mr-3
+              ml-3
             >
-              <p class="grey--text text--darken-4">No exercises selected yet!</p>
+              <p class="subheading grey--text text--darken-2">No exercises selected yet!</p>
             </v-flex>
 
             <v-divider/>
@@ -186,12 +187,7 @@ export default {
       dialog: false,
       exerciseTypes: [],
       searchSelectedExercises: [],
-      selectedExercises: [
-        { id: 1, name: "Barbell Benchpress" },
-        { id: 2, name: "Barbell Squat" },
-        { id: 3, name: "Row" },
-        { id: 4, name: "Chin-up" }
-      ],
+      selectedExercises: [],
       popularExerciseTypes: []
     };
   },
