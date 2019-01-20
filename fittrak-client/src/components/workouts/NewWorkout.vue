@@ -124,7 +124,7 @@
               <v-autocomplete
                 v-model="newExercises"
                 :items="exerciseTypes"
-                placeholder="ex. Benchpress"
+                placeholder="ex. Bench press"
                 browser-autcomplete
                 clearable
                 chips
@@ -133,7 +133,8 @@
                 multiple
                 small-chips
                 solo
-                color="primary"
+                outline
+                flat
                 light
               />
             </v-form>
