@@ -10,7 +10,7 @@
         dark
         slot="activator" 
         color="primaryDark" 
-        @click.stop="dialog = true" 
+        @click.stop="createWorkout" 
         :loading="loading" 
       ><v-icon>add</v-icon></v-btn>
       <v-card>
@@ -31,7 +31,7 @@
             <v-btn 
               dark 
               flat 
-              @click.native="createWorkout">Start</v-btn>
+              @click.native="startWorkout">Start</v-btn>
           </v-toolbar-items>
         </v-toolbar>
 
@@ -237,14 +237,17 @@ export default {
       this.searchSelectedExercises = [];
     },
 
+    startWorkout() {
+      console.log("Start workout");
+    },
+
     createWorkout() {
       this.loading = true;
 
       this.$apollo
         .mutate({
-          mutation: mutations.createWorkoutMutation
+          mutation: mutations.createWorkoutMutation,
 
-          /*
           update: (store, { data }) => {
             const newWorkout = data.createWorkout.workout;
             const result = store.readQuery({
@@ -259,26 +262,17 @@ export default {
               data: result
             });
           }
-          */
         })
-        .then(resp => {
-          const workout = resp.data.createWorkout.workout;
-
+        .then(() => {
           this.loading = false;
-
-          showSnackbar("success", "New workout created.");
-
-          this.$router.push({
-            name: "Workout",
-            params: { workoutId: workout.id }
-          });
+          this.dialog = true;
         })
         .catch(() => {
           this.loading = false;
 
           showSnackbar(
             "error",
-            "Oops, there seems to be a problem, support has been notified."
+            "Oops, there seems to have been a problem creating your workout."
           );
         });
     }
