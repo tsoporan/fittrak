@@ -61,6 +61,15 @@ const exerciseTypesQuery = gql`
   }
 `;
 
+const popularExerciseTypesQuery = gql`
+  query popularExerciseTypes {
+    popularExerciseTypes {
+      id
+      name
+    }
+  }
+`;
+
 const muscleGroupsQuery = gql`
   query muscleGroups {
     muscleGroups {
@@ -118,6 +127,7 @@ const setsQuery = gql`
 export default {
   viewerQuery,
   exerciseTypesQuery,
+  popularExerciseTypesQuery,
   muscleGroupsQuery,
   workoutsQuery,
   workoutQuery,
