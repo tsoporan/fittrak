@@ -2,6 +2,8 @@
 
 import graphene
 
+from django.db.models import Count
+
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
@@ -20,6 +22,8 @@ class Query:
     )
 
     exercise_types = graphene.List(ExerciseTypeType)
+
+    popular_exercise_types = graphene.List(ExerciseTypeType)
 
     exercises = graphene.List(ExerciseType, workout_id=graphene.Int(required=True))
 
@@ -59,6 +63,18 @@ class Query:
         all_types = ExerciseTypeModel.objects.filter(is_active=True).exclude(user=user)
 
         return user_types | all_types
+
+    @staticmethod
+    def resolve_popular_exercise_types(_, info):
+        user = info.context.user
+
+        popular = (
+            ExerciseTypeModel.objects.filter(is_active=True)
+            .annotate(num_exercises=Count("exercise"))
+            .order_by("-num_exercises")[:5]
+        )
+
+        return popular
 
     @staticmethod
     def resolve_exercises(_, info, workout_id):
