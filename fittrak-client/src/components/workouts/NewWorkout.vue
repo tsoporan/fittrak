@@ -89,11 +89,11 @@
             mt-3>
             <v-subheader>Popular exercises</v-subheader>
             <v-flex 
-              v-if="popularExercises.length" 
+              v-if="popularExerciseTypes.length" 
               mr-2 
               ml-2>
               <v-chip 
-                v-for="exercise in popularExercises" 
+                v-for="exercise in popularExerciseTypes" 
                 :key="exercise.id"
                 :disabled="inSelected(exercise.id)"
                 color="darkGrey"
@@ -192,7 +192,7 @@ export default {
         { id: 3, name: "Row" },
         { id: 4, name: "Chin-up" }
       ],
-      popularExercises: [{ id: 5, name: "Shoulder Press" }]
+      popularExerciseTypes: []
     };
   },
 
@@ -203,6 +203,10 @@ export default {
       update(data) {
         return data.exerciseTypes.map(exerciseType => exerciseType.name);
       }
+    },
+
+    popularExerciseTypes: {
+      query: queries.popularExerciseTypesQuery
     }
   },
 
@@ -238,7 +242,10 @@ export default {
     },
 
     startWorkout() {
-      console.log("Start workout");
+      if (!this.selectedExercises.length) {
+        showSnackbar("orange", "Uh-oh looks like you have no exercises added.");
+        return;
+      }
     },
 
     createWorkout() {
