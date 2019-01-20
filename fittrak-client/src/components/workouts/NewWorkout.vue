@@ -122,14 +122,13 @@
             <v-subheader>Search exercises</v-subheader>
             <v-form class="mr-3 ml-3">
               <v-autocomplete
-                v-model="newExercises"
+                v-model="searchSelectedExercises"
                 :items="exerciseTypes"
                 placeholder="ex. Bench press"
                 browser-autcomplete
                 clearable
                 chips
                 deletable-chips
-                hint
                 multiple
                 small-chips
                 solo
@@ -138,12 +137,32 @@
                 light
               />
             </v-form>
+
             <v-flex 
+              text-xs-right 
+              mr-3 
+              ml-3>
+
+              <v-btn
+                color="grey"
+                dark>Add custom
+              </v-btn>
+
+              <v-btn
+                :disabled="!searchSelectedExercises.length"
+                @click.stop="addMultiSelected"
+              >Add Selected</v-btn>
+
+            </v-flex>
+
+            <v-flex 
+              mt-3
               mr-3 
               ml-3>
               <p class="subheading grey--text text--darken-2">Search across all exercises. If you can't find what you're
               looking for you can add a custom exercise as well.</p>
             </v-flex>
+
           </v-flex>
 
         </v-layout>
@@ -153,7 +172,9 @@
 </template>
 
 <script>
-import { mutations } from "@/graphql";
+import uuid from "uuid/v4";
+
+import { queries, mutations } from "@/graphql";
 import { showSnackbar } from "@/helpers";
 
 export default {
@@ -164,7 +185,7 @@ export default {
       loading: false,
       dialog: false,
       exerciseTypes: [],
-      newExercises: [],
+      searchSelectedExercises: [],
       selectedExercises: [
         { id: 1, name: "Barbell Benchpress" },
         { id: 2, name: "Barbell Squat" },
@@ -173,6 +194,16 @@ export default {
       ],
       popularExercises: [{ id: 5, name: "Shoulder Press" }]
     };
+  },
+
+  apollo: {
+    exerciseTypes: {
+      query: queries.exerciseTypesQuery,
+
+      update(data) {
+        return data.exerciseTypes.map(exerciseType => exerciseType.name);
+      }
+    }
   },
 
   methods: {
@@ -191,6 +222,19 @@ export default {
       this.selectedExercises = this.selectedExercises.filter(
         ex => ex.id !== exerciseId
       );
+    },
+
+    addMultiSelected() {
+      const selectedWithIds = this.searchSelectedExercises.map(selected => {
+        return {
+          name: selected,
+          id: uuid()
+        };
+      });
+
+      this.selectedExercises = [...selectedWithIds, ...this.selectedExercises];
+
+      this.searchSelectedExercises = [];
     },
 
     createWorkout() {
