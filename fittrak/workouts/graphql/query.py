@@ -119,3 +119,5 @@ class Query:
             )
         except Exercise.DoesNotExist:
             raise GraphQLError("Exercise not found.")
+
+        return exercise
