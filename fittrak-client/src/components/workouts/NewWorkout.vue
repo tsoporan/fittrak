@@ -278,9 +278,11 @@ export default {
           }
         })
         .then(() => {
+          this.selectedExercises = [];
           showSnackbar("success", "Workout started!");
         })
         .catch(() => {
+          this.selectedExercises = [];
           showSnackbar("error", "Could not start workout.");
         });
     },
