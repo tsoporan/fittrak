@@ -258,19 +258,23 @@ export default {
         return;
       }
 
+      // Ensure matches the input type
+      const normalizedSelected = this.selectedExercises.map(exercise => ({
+        id: exercise.id,
+        name: exercise.name
+      }));
+
       this.$apollo
         .mutate({
-          mutations: mutations.updateWorkoutMutation,
+          mutation: mutations.updateWorkoutMutation,
 
-          variables() {
-            return {
-              workoutId: workout.id,
-              workoutFields: {
-                dateStarted: new Date(),
-                status: IN_PROGRESS,
-                exerciseTypes: this.selectedExercises
-              }
-            };
+          variables: {
+            workoutId: workout.id,
+            workoutFields: {
+              dateStarted: new Date(),
+              status: IN_PROGRESS,
+              exerciseTypes: normalizedSelected
+            }
           }
         })
         .then(() => {
