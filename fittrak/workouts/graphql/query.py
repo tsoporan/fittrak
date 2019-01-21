@@ -2,14 +2,26 @@
 
 import graphene
 
-from workouts.models import Exercise
-from workouts.models import ExerciseType as ExerciseTypeModel
-from workouts.models import MuscleGroup, Set, Workout
+from django.db.models import Count
 
-from .exercises import ExerciseType, ExerciseTypeType
-from .helpers import get_object
-from .sets import SetType
-from .workouts import MuscleGroupType, WorkoutStatusesEnum, WorkoutType
+from graphql import GraphQLError
+
+from workouts.models import (
+    Exercise,
+    ExerciseType as ExerciseTypeModel,
+    Set,
+    Workout,
+    MuscleGroup,
+)
+
+from .types import (
+    ExerciseType,
+    ExerciseTypeType,
+    SetType,
+    MuscleGroupType,
+    WorkoutStatusesEnum,
+    WorkoutType,
+)
 
 
 class Query:
@@ -20,6 +32,8 @@ class Query:
     )
 
     exercise_types = graphene.List(ExerciseTypeType)
+
+    popular_exercise_types = graphene.List(ExerciseTypeType)
 
     exercises = graphene.List(ExerciseType, workout_id=graphene.Int(required=True))
 
@@ -61,6 +75,18 @@ class Query:
         return user_types | all_types
 
     @staticmethod
+    def resolve_popular_exercise_types(_, info):
+        user = info.context.user
+
+        popular = (
+            ExerciseTypeModel.objects.filter(is_active=True)
+            .annotate(num_exercises=Count("exercise"))
+            .order_by("-num_exercises")[:5]
+        )
+
+        return popular
+
+    @staticmethod
     def resolve_exercises(_, info, workout_id):
         user = info.context.user
 
@@ -76,10 +102,22 @@ class Query:
     def resolve_workout(_, info, workout_id):
         user = info.context.user
 
-        return get_object(Workout, {"id": workout_id, "user": user.id})
+        try:
+            workout = Workout.objects.get(is_active=True, id=workout_id, user=user.id)
+        except Workout.DoesNotExist:
+            raise GraphQLError("Workout not found.")
+
+        return workout
 
     @staticmethod
     def resolve_exercise(_, info, exercise_id):
         user = info.context.user
 
-        return get_object(Exercise, {"id": exercise_id, "user": user.id})
+        try:
+            exercise = Exercise.objects.get(
+                is_active=True, id=exercise_id, user=user.id
+            )
+        except Exercise.DoesNotExist:
+            raise GraphQLError("Exercise not found.")
+
+        return exercise

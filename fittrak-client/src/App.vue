@@ -22,7 +22,7 @@
         :class="{ main: $route.name === APP_NAME }">{{ $route.name }}</v-toolbar-title>
       <v-spacer/>
       <v-layout>
-        <CreateWorkout />
+        <NewWorkout />
       </v-layout>
     </v-toolbar>
 
@@ -75,7 +75,7 @@ import Loader from "@/components/app/Loader";
 import Sidebar from "@/components/app/Sidebar";
 import AppSnackbar from "@/components/app/AppSnackbar";
 
-import CreateWorkout from "@/components/workouts/CreateWorkout";
+import NewWorkout from "@/components/workouts/NewWorkout";
 
 import { APP_NAME, SIGNOUT_URL } from "@/constants";
 
@@ -116,7 +116,7 @@ export default {
   components: {
     Sidebar,
     AppSnackbar,
-    CreateWorkout,
+    NewWorkout,
     Loader
   }
 };

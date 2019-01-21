@@ -98,6 +98,7 @@ const createWorkoutMutation = gql`
         }
         isActive
         status
+        exerciseCount
       }
     }
   }

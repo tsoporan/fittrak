@@ -1,12 +1,14 @@
 """
-Graphql User types
+Users GraphQL types
 """
 
 import graphene
+
 from django.contrib.auth import get_user_model
+
 from graphene_django.types import DjangoObjectType
 
-from ..models import Profile
+from users.models import Profile
 
 
 class UnitEnumType(graphene.Enum):

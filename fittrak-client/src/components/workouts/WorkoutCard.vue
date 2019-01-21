@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { queries, mutations } from "@/graphql";
+import { mutations } from "@/graphql";
 import {
   STATUS_MAP,
   PENDING,
@@ -136,7 +136,7 @@ export default {
       const { color } = data.workout;
 
       const textColor = `${color}--text`;
-      const textColorDarkened = `text--darken-4`;
+      const textColorDarkened = "text--darken-4";
 
       return {
         [textColor]: true,

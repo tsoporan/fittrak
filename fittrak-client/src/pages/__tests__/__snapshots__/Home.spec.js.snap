@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Home page renders 1`] = `
+<v-container-stub tag="div" fluid="" grid-list-xl="">
+  <v-layout-stub tag="div" row="">
+    <v-flex-stub tag="div">
+      <workoutfilterheader-stub></workoutfilterheader-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+  <v-layout-stub tag="div" fill-height="">
+    <v-flex-stub tag="div">
+      <workoutcardlist-stub workouts=""></workoutcardlist-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>
+`;
