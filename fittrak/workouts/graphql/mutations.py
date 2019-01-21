@@ -87,10 +87,16 @@ class UpdateWorkout(graphene.Mutation):
             dirty = True
 
         if exerciseTypes:
-            type_ids = [e.id for e in exerciseTypes]
+            dirty = True
 
-            for i in type_ids:
-                Exercise.objects.create(workout=workout, exercise_type_id=i)
+            types = ExerciseTypeModel.objects.filter(
+                id__in=[e.id for e in exerciseTypes]
+            )
+
+            for exercise_type in types:
+                Exercise.objects.create(
+                    workout=workout, exercise_type=exercise_type, user=user
+                )
 
         if dirty:
             workout.updated_at = timezone.now()
