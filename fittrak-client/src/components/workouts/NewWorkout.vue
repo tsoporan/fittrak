@@ -125,6 +125,8 @@
               <v-autocomplete
                 v-model="searchSelectedExercises"
                 :items="exerciseTypes"
+                item-text="name"
+                item-value="name"
                 placeholder="ex. Bench press"
                 browser-autcomplete
                 clearable
@@ -173,10 +175,10 @@
 </template>
 
 <script>
-import uuid from "uuid/v4";
-
 import { queries, mutations } from "@/graphql";
 import { showSnackbar } from "@/helpers";
+
+import { IN_PROGRESS } from "@/constants";
 
 export default {
   name: "CreateWorkout",
@@ -188,7 +190,8 @@ export default {
       exerciseTypes: [],
       searchSelectedExercises: [],
       selectedExercises: [],
-      popularExerciseTypes: []
+      popularExerciseTypes: [],
+      workout: null
     };
   },
 
@@ -197,7 +200,7 @@ export default {
       query: queries.exerciseTypesQuery,
 
       update(data) {
-        return data.exerciseTypes.map(exerciseType => exerciseType.name);
+        return data.exerciseTypes;
       }
     },
 
@@ -225,10 +228,12 @@ export default {
     },
 
     addMultiSelected() {
-      const selectedWithIds = this.searchSelectedExercises.map(selected => {
+      const selectedWithIds = this.searchSelectedExercises.map(name => {
+        const item = this.exerciseTypes.find(item => item.name === name);
+
         return {
-          name: selected,
-          id: uuid()
+          name,
+          id: item.id
         };
       });
 
@@ -238,10 +243,42 @@ export default {
     },
 
     startWorkout() {
+      const workout = this.workout;
+
       if (!this.selectedExercises.length) {
         showSnackbar("orange", "Uh-oh looks like you have no exercises added.");
         return;
       }
+
+      if (!(workout && workout.id)) {
+        showSnackbar(
+          "error",
+          "Hmm seems like there isn't an attached work out. Please create again."
+        );
+        return;
+      }
+
+      this.$apollo
+        .mutate({
+          mutations: mutations.updateWorkoutMutation,
+
+          variables() {
+            return {
+              workoutId: workout.id,
+              workoutFields: {
+                dateStarted: new Date(),
+                status: IN_PROGRESS,
+                exerciseTypes: this.selectedExercises
+              }
+            };
+          }
+        })
+        .then(() => {
+          showSnackbar("success", "Workout started!");
+        })
+        .catch(() => {
+          showSnackbar("error", "Could not start workout.");
+        });
     },
 
     createWorkout() {
@@ -266,9 +303,11 @@ export default {
             });
           }
         })
-        .then(() => {
+        .then(resp => {
           this.loading = false;
           this.dialog = true;
+
+          this.workout = resp.data.createWorkout.workout;
         })
         .catch(() => {
           this.loading = false;
