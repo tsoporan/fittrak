@@ -1,9 +1,10 @@
 """ Users GraphQL Query"""
 
 import graphene
+
 from graphql import GraphQLError
 
-from .user import Viewer
+from .types import Viewer
 
 
 class Query:

@@ -1,15 +1,18 @@
 """
-GraphQL Settings types
+Users GraphQL mutations
 """
 
 import graphene
+
 from django.utils import timezone
+
 from graphene_django.types import DjangoObjectType
+
 from graphql import GraphQLError
 
 from users.models import Profile
 
-from .user import UnitEnumType, Viewer
+from .types import UnitEnumType, Viewer
 
 
 class UpdateSettings(graphene.Mutation):
