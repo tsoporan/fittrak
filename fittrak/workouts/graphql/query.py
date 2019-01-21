@@ -103,7 +103,7 @@ class Query:
         user = info.context.user
 
         try:
-            workout = Workout.objects.get(is_active=True, id=workout_id, user=user_id)
+            workout = Workout.objects.get(is_active=True, id=workout_id, user=user.id)
         except Workout.DoesNotExist:
             raise GraphQLError("Workout not found.")
 
