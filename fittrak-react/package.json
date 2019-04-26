@@ -12,7 +12,7 @@
     "graphql": "^14.2.1",
     "js-cookie": "^2.2.0",
     "react": "^16.8.6",
-    "react-apollo": "^2.5.4",
+    "react-apollo": "^2.5.5",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "typestyle": "^2.0.2"
