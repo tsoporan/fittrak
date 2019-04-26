@@ -2,14 +2,15 @@ import React from "react";
 
 import MainLayout from "../layouts/Main";
 
-import PageHeaderBar from "../components/Header";
-import AppBottomNavigation from "../components/BottomNav";
+import { AppHeader } from "../components/Header";
+import { AppBottomNavigation } from "../components/Navigation";
+import { ContentWrapper } from "../components/Content";
 
 const Landing = () => {
   return (
     <MainLayout>
-      <PageHeaderBar pageTitle="Landing" />
-      <div>Body</div>
+      <AppHeader pageTitle="FitTrak" />
+      <ContentWrapper>Body</ContentWrapper>
       <AppBottomNavigation />
     </MainLayout>
   );

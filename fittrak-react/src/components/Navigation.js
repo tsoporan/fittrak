@@ -8,11 +8,11 @@ const styles = {
   root: {}
 };
 
-const AppBottomNavigation = props => {
+const $AppBottomNavigation = props => {
   const { classes } = props;
 
   return (
-    <BottomNavigation classes={classes.root} showLabels>
+    <BottomNavigation className={classes.root} showLabels>
       <BottomNavigationAction label="New" />
       <BottomNavigationAction label="Test" />
       <BottomNavigationAction label="Test2" />
@@ -20,4 +20,6 @@ const AppBottomNavigation = props => {
   );
 };
 
-export default withStyles(styles)(AppBottomNavigation);
+const AppBottomNavigation = withStyles(styles)($AppBottomNavigation);
+
+export { AppBottomNavigation };

@@ -8,6 +8,11 @@ const styles = theme => {
   return {
     root: {
       flexGrow: 1
+    },
+    item: {
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column"
     }
   };
 };
@@ -16,9 +21,11 @@ const MainLayout = props => {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
-      <Grid>{props.children}</Grid>
-    </div>
+    <Grid container className={classes.root}>
+      <Grid item xs={12} className={classes.item}>
+        {props.children}
+      </Grid>
+    </Grid>
   );
 };
 
