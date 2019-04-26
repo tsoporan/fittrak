@@ -1,33 +1,24 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 
 import { ApolloProvider } from "react-apollo";
+import { Router } from "@reach/router";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 import client from "./config";
 
-class App extends Component {
-  render() {
-    return (
+import Landing from "./pages/Landing";
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <CssBaseline />
       <ApolloProvider client={client}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
+        <Router>
+          <Landing path="/" />
+        </Router>
       </ApolloProvider>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
 
 export default App;
