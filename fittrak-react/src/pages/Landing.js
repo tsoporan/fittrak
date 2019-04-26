@@ -1,13 +1,17 @@
 import React from "react";
 
+import MainLayout from "../layouts/Main";
+
 import PageHeaderBar from "../components/Header";
+import AppBottomNavigation from "../components/BottomNav";
 
 const Landing = () => {
   return (
-    <div>
+    <MainLayout>
       <PageHeaderBar pageTitle="Landing" />
       <div>Body</div>
-    </div>
+      <AppBottomNavigation />
+    </MainLayout>
   );
 };
 
