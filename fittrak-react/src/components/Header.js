@@ -16,13 +16,13 @@ const $AppHeader = props => {
   const { classes, pageTitle } = props;
 
   return (
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography variant="h6" color="inherit">
-            {pageTitle}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Typography variant="h6" color="inherit">
+          {pageTitle}
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 

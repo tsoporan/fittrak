@@ -12,6 +12,10 @@ import Landing from "./pages/Landing";
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true // Sup[port typo v2
+  },
+  palette: {
+    primary: { main: "#03A9F4", contrastText: "#F5F5F5" },
+    secondary: { main: "#37474F" }
   }
 });
 
