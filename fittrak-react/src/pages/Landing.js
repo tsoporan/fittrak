@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 import MainLayout from "../layouts/Main";
 import AppHeader from "../components/Header";
-import { AppBottomNavigation } from "../components/Navigation";
+import { LandingNavigation } from "../components/Navigation";
 import { ContentWrapper } from "../components/Content";
 
 const styles = theme => {
@@ -22,29 +22,29 @@ const styles = theme => {
   };
 };
 
-const Landing = props => {
-  const { viewer, classes } = props;
+class Landing extends React.Component {
+  render() {
+    const { classes } = this.props;
 
-  return (
-    <MainLayout>
-      <AppHeader pageTitle="FitTrak" viewer={viewer} />
-      <ContentWrapper>
-        <p>
-          Welcome {viewer.username}({viewer.email})
-        </p>
-      </ContentWrapper>
+    return (
+      <MainLayout>
+        <AppHeader pageTitle="FitTrak" />
+        <ContentWrapper>
+          <p>Boom</p>
+        </ContentWrapper>
 
-      <Fab
-        size="small"
-        className={classes.fab}
-        color="secondary"
-        aria-label="Create Workout"
-      >
-        <AddIcon />
-      </Fab>
-      <AppBottomNavigation />
-    </MainLayout>
-  );
-};
+        <Fab
+          size="small"
+          className={classes.fab}
+          color="secondary"
+          aria-label="Create Workout"
+        >
+          <AddIcon />
+        </Fab>
+        <LandingNavigation />
+      </MainLayout>
+    );
+  }
+}
 
 export default withStyles(styles)(Landing);

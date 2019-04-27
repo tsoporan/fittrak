@@ -11,6 +11,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
+import AuthContext from "../context";
+
 const styles = {
   grow: {
     flexGrow: 1
@@ -33,7 +35,8 @@ class AppHeader extends React.Component {
   };
 
   render() {
-    const { pageTitle, viewer, classes } = this.props;
+    const { pageTitle, classes } = this.props;
+    const viewer = this.context;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -71,5 +74,8 @@ class AppHeader extends React.Component {
     );
   }
 }
+
+// Wire up user context
+AppHeader.contextType = AuthContext;
 
 export default withStyles(styles)(AppHeader);

@@ -8,8 +8,11 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import client from "./config";
 
 import Landing from "./pages/Landing";
+import NewWorkout from "./pages/NewWorkout";
 
 import queries from "./graphql/queries";
+
+import AuthContext from "./context";
 
 const theme = createMuiTheme({
   typography: {
@@ -33,9 +36,12 @@ const App = () => {
               if (error) return "Error";
 
               return (
-                <Router>
-                  <Landing path="/" viewer={data.viewer} />
-                </Router>
+                <AuthContext.Provider value={data.viewer}>
+                  <Router>
+                    <Landing path="/" />
+                    <NewWorkout path="/new-workout" />
+                  </Router>
+                </AuthContext.Provider>
               );
             }}
           </Query>

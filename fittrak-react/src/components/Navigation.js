@@ -14,7 +14,7 @@ const styles = {
   root: {}
 };
 
-class $AppBottomNavigation extends React.Component {
+class $LandingNavigation extends React.Component {
   state = {
     value: 0
   };
@@ -43,6 +43,6 @@ class $AppBottomNavigation extends React.Component {
   }
 }
 
-const AppBottomNavigation = withStyles(styles)($AppBottomNavigation);
+const LandingNavigation = withStyles(styles)($LandingNavigation);
 
-export { AppBottomNavigation };
+export { LandingNavigation };
