@@ -17,7 +17,7 @@ const $ContentWrapper = props => {
 
   return (
     <Grid className={classes.root} item>
-      Body item
+      {props.children}
     </Grid>
   );
 };

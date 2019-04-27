@@ -6,26 +6,65 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+
 const styles = {
-  root: {
+  grow: {
     flexGrow: 1
   }
 };
 
-const $AppHeader = props => {
-  const { classes, pageTitle } = props;
+class AppHeader extends React.Component {
+  state = {
+    anchorEl: null
+  };
 
-  return (
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <Typography variant="h6" color="inherit">
-          {pageTitle}
-        </Typography>
-      </Toolbar>
-    </AppBar>
-  );
-};
+  handleMenu = evt => {
+    this.setState({
+      anchorEl: evt.currentTarget
+    });
+  };
 
-const AppHeader = withStyles(styles)($AppHeader);
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
 
-export { AppHeader };
+  render() {
+    const { pageTitle, viewer, classes } = this.props;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
+
+    return (
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            {pageTitle}
+          </Typography>
+          <IconButton
+            aria-owns={open ? "menu-appbar" : undefined}
+            aria-haspopup="true"
+            onClick={this.handleMenu}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <Typography color="inherit">Hi, {viewer.username}</Typography>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={this.handleClose}
+          >
+            <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+            <MenuItem onClick={this.handleClose}>My account</MenuItem>
+          </Menu>
+        </Toolbar>
+      </AppBar>
+    );
+  }
+}
+
+export default withStyles(styles)(AppHeader);
