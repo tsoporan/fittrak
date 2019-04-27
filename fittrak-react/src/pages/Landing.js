@@ -15,7 +15,7 @@ const styles = theme => {
   return {
     fab: {
       position: "absolute",
-      bottom: theme.spacing.unit * 4,
+      bottom: theme.spacing.unit * 4.5,
       left: "50%",
       transform: "translateX(-50%)"
     }
@@ -35,6 +35,7 @@ const Landing = props => {
       </ContentWrapper>
 
       <Fab
+        size="small"
         className={classes.fab}
         color="secondary"
         aria-label="Create Workout"
