@@ -1,5 +1,5 @@
 import React from "react";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider, Query } from "react-apollo";
 import { Router } from "@reach/router";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,6 +8,8 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import client from "./config";
 
 import Landing from "./pages/Landing";
+
+import queries from "./graphql/queries";
 
 const theme = createMuiTheme({
   typography: {
@@ -25,9 +27,18 @@ const App = () => {
       <CssBaseline />
       <ApolloProvider client={client}>
         <MuiThemeProvider theme={theme}>
-          <Router>
-            <Landing path="/" />
-          </Router>
+          <Query query={queries.viewerQuery}>
+            {({ loading, error, data }) => {
+              if (loading) return "Loading";
+              if (error) return "Error";
+
+              return (
+                <Router>
+                  <Landing path="/" viewer={data.viewer} />
+                </Router>
+              );
+            }}
+          </Query>
         </MuiThemeProvider>
       </ApolloProvider>
     </React.Fragment>
