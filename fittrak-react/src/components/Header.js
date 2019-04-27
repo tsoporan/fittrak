@@ -40,7 +40,12 @@ class AppHeader extends React.Component {
     return (
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography
+            style={{ fontFamily: "Kaushan Script" }}
+            variant="h5"
+            color="inherit"
+            className={classes.grow}
+          >
             {pageTitle}
           </Typography>
           <IconButton
