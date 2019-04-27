@@ -16,11 +16,11 @@ import AuthContext from "./context";
 
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true // Sup[port typo v2
+    useNextVariants: true // Support typography v2
   },
   palette: {
-    primary: { main: "#03A9F4", contrastText: "#F5F5F5" },
-    secondary: { main: "#37474F" }
+    primary: { main: "#06d6a0", contrastText: "#ffffff" },
+    secondary: { main: "#222222" }
   }
 });
 

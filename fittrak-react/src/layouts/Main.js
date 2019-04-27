@@ -3,11 +3,13 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
+import grey from "@material-ui/core/colors/grey";
 
 const styles = theme => {
   return {
     root: {
-      flexGrow: 1
+      flexGrow: 1,
+      backgroundColor: grey[200]
     },
     item: {
       minHeight: "100vh",
