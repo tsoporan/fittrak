@@ -8,14 +8,18 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const styles = {};
+const styles = {
+  root: {
+    margin: "10px"
+  }
+};
 
 class WorkoutCard extends React.Component {
   render() {
-    const { workout } = this.props;
+    const { workout, classes } = this.props;
 
     return (
-      <Card>
+      <Card className={classes.root}>
         <CardContent>
           <Typography gutterBottom>Workout {workout.id}</Typography>
           <CardActions>
