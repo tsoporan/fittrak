@@ -5,6 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
+import grey from "@material-ui/core/colors/grey";
+
 import ShowChart from "@material-ui/icons/ShowChart";
 import History from "@material-ui/icons/History";
 import Settings from "@material-ui/icons/Settings";
@@ -14,11 +16,12 @@ const styles = {
   root: {
     width: "100%",
     position: "fixed",
-    bottom: 0
+    bottom: 0,
+    borderTop: `1px solid ${grey[200]}`
   }
 };
 
-class $LandingNavigation extends React.Component {
+class $LandingBottomNavigation extends React.Component {
   state = {
     value: 0
   };
@@ -47,6 +50,6 @@ class $LandingNavigation extends React.Component {
   }
 }
 
-const LandingNavigation = withStyles(styles)($LandingNavigation);
+const LandingBottomNavigation = withStyles(styles)($LandingBottomNavigation);
 
-export { LandingNavigation };
+export { LandingBottomNavigation };

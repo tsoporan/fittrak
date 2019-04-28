@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 import MainLayout from "../layouts/Main";
 import AppHeader from "../components/Header";
-import { LandingNavigation } from "../components/Navigation";
+import { LandingBottomNavigation } from "../components/Navigation";
 import { ContentWrapper } from "../components/Content";
 
 import WorkoutList from "../components/WorkoutList";
@@ -44,7 +44,7 @@ class Landing extends React.Component {
         >
           <AddIcon />
         </Fab>
-        <LandingNavigation />
+        <LandingBottomNavigation />
       </MainLayout>
     );
   }
