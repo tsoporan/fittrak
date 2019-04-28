@@ -14,7 +14,7 @@ class WorkoutList extends React.Component {
           if (error) return "Error loading workouts";
 
           return data.workouts.map(workout => {
-            return <WorkoutCard workout={workout} />;
+            return <WorkoutCard key={workout.id} workout={workout} />;
           });
         }}
       </Query>
