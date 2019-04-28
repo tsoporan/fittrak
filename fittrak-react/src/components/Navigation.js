@@ -11,7 +11,11 @@ import Settings from "@material-ui/icons/Settings";
 import List from "@material-ui/icons/List";
 
 const styles = {
-  root: {}
+  root: {
+    width: "100%",
+    position: "fixed",
+    bottom: 0
+  }
 };
 
 class $LandingNavigation extends React.Component {

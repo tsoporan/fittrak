@@ -10,14 +10,17 @@ import AppHeader from "../components/Header";
 import { LandingNavigation } from "../components/Navigation";
 import { ContentWrapper } from "../components/Content";
 
+import WorkoutList from "../components/WorkoutList";
+
 const styles = theme => {
   console.log("theme", theme);
   return {
     fab: {
-      position: "absolute",
+      position: "fixed",
       bottom: theme.spacing.unit * 4.5,
       left: "50%",
-      transform: "translateX(-50%)"
+      transform: "translateX(-50%)",
+      zIndex: 1
     }
   };
 };
@@ -30,7 +33,7 @@ class Landing extends React.Component {
       <MainLayout>
         <AppHeader pageTitle="FitTrak" />
         <ContentWrapper>
-          <p>Boom</p>
+          <WorkoutList />
         </ContentWrapper>
 
         <Fab
