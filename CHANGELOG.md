@@ -1,5 +1,48 @@
 # Change Log
 
+## [v1.3.4](https://github.com/tsoporan/fittrak/tree/v1.3.4) (2019-08-03)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.3...v1.3.4)
+
+**Implemented enhancements:**
+
+- Logo for manifest appIcons and favicon [\#157](https://github.com/tsoporan/fittrak/issues/157)
+- User settings [\#106](https://github.com/tsoporan/fittrak/issues/106)
+- Re-work data [\#164](https://github.com/tsoporan/fittrak/pull/164) ([tsoporan](https://github.com/tsoporan))
+- User settings [\#158](https://github.com/tsoporan/fittrak/pull/158) ([tsoporan](https://github.com/tsoporan))
+
+**Closed issues:**
+
+- "New workout" flow [\#162](https://github.com/tsoporan/fittrak/issues/162)
+- Improve mobile UI [\#161](https://github.com/tsoporan/fittrak/issues/161)
+- Re-work data loading [\#160](https://github.com/tsoporan/fittrak/issues/160)
+
+**Merged pull requests:**
+
+- Track env and release with Sentry [\#173](https://github.com/tsoporan/fittrak/pull/173) ([tsoporan](https://github.com/tsoporan))
+- Sentry integration [\#172](https://github.com/tsoporan/fittrak/pull/172) ([tsoporan](https://github.com/tsoporan))
+- Bump django from 2.2 to 2.2.3 [\#170](https://github.com/tsoporan/fittrak/pull/170) ([dependabot[bot]](https://github.com/apps/dependabot))
+- New workout flow [\#167](https://github.com/tsoporan/fittrak/pull/167) ([tsoporan](https://github.com/tsoporan))
+- Update tests [\#166](https://github.com/tsoporan/fittrak/pull/166) ([tsoporan](https://github.com/tsoporan))
+- Improve mobile UI [\#165](https://github.com/tsoporan/fittrak/pull/165) ([tsoporan](https://github.com/tsoporan))
+
+## [v1.3.3](https://github.com/tsoporan/fittrak/tree/v1.3.3) (2019-01-06)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.2...v1.3.3)
+
+**Implemented enhancements:**
+
+- Additional snackbars [\#152](https://github.com/tsoporan/fittrak/pull/152) ([tsoporan](https://github.com/tsoporan))
+
+## [v1.3.2](https://github.com/tsoporan/fittrak/tree/v1.3.2) (2018-10-18)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.1...v1.3.2)
+
+## [v1.3.1](https://github.com/tsoporan/fittrak/tree/v1.3.1) (2018-10-18)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3...v1.3.1)
+
+**Implemented enhancements:**
+
+- Mobile page titles [\#155](https://github.com/tsoporan/fittrak/pull/155) ([tsoporan](https://github.com/tsoporan))
+- Updates to manifest [\#154](https://github.com/tsoporan/fittrak/pull/154) ([tsoporan](https://github.com/tsoporan))
+
 ## [v1.3](https://github.com/tsoporan/fittrak/tree/v1.3) (2018-10-14)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.2...v1.3)
 
@@ -7,7 +50,7 @@
 
 - Ability to indicate body weight [\#146](https://github.com/tsoporan/fittrak/issues/146)
 - Support bodyweight [\#153](https://github.com/tsoporan/fittrak/pull/153) ([tsoporan](https://github.com/tsoporan))
-- Sentry error logging [\#151](https://github.com/tsoporan/fittrak/pull/151) ([tsoporan](https://github.com/tsoporan))
+- Sentry error logging \(client\) [\#151](https://github.com/tsoporan/fittrak/pull/151) ([tsoporan](https://github.com/tsoporan))
 - Fix alignment issues on mobile [\#148](https://github.com/tsoporan/fittrak/pull/148) ([tsoporan](https://github.com/tsoporan))
 
 **Fixed bugs:**
