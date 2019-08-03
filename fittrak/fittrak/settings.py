@@ -5,6 +5,11 @@ Django settings for fittrak project.
 import os
 import sys
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), integrations=[DjangoIntegration()])
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -93,6 +98,7 @@ DATABASES = {
 }
 
 # Patch the DB to be sqlite in test env
+
 if "test" in sys.argv:
     defaults = {"ENGINE": "django.db.backends.sqlite3", "NAME": "fittrak_test"}
 
@@ -187,6 +193,7 @@ ALLOWED_HOSTS = ["fittrak.ca"]
 
 # Production override
 # TODO: should really be separate settings files
+
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 
