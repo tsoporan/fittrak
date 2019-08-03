@@ -1,5 +1,5 @@
-from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
 
 from fittrak.schema import schema
 

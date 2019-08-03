@@ -3,20 +3,18 @@ Workout GraphQL mutations
 """
 
 import graphene
-
 from django.utils import timezone
-
 from graphql import GraphQLError
 
 from workouts.models import MuscleGroup, Workout
 
 from .types import (
-    WorkoutType,
+    ExerciseInputType,
     ExerciseType,
+    SetFieldInputType,
     SetType,
     WorkoutFieldInputType,
-    ExerciseInputType,
-    SetFieldInputType,
+    WorkoutType,
 )
 
 

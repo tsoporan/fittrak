@@ -1,26 +1,22 @@
 """Root GraphQL Schema"""
 
 import graphene
-
 from graphene_django.debug import DjangoDebug
 
-from workouts.graphql.query import Query as WorkoutsQuery
-
+from users.graphql.mutations import UpdateSettings
+from users.graphql.query import Query as UsersQuery
 from workouts.graphql.mutations import (
-    CreateWorkout,
-    RemoveWorkout,
-    UpdateWorkout,
     AddCustomExercise,
     AddExercises,
-    RemoveExercise,
     AddSet,
+    CreateWorkout,
+    RemoveExercise,
     RemoveSet,
+    RemoveWorkout,
     UpdateSet,
+    UpdateWorkout,
 )
-
-from users.graphql.query import Query as UsersQuery
-
-from users.graphql.mutations import UpdateSettings
+from workouts.graphql.query import Query as WorkoutsQuery
 
 
 class RootQuery(WorkoutsQuery, UsersQuery, graphene.ObjectType):

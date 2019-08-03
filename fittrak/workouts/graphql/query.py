@@ -1,24 +1,18 @@
 """Workouts GraphQL Query"""
 
 import graphene
-
 from django.db.models import Count
-
 from graphql import GraphQLError
 
-from workouts.models import (
-    Exercise,
-    ExerciseType as ExerciseTypeModel,
-    Set,
-    Workout,
-    MuscleGroup,
-)
+from workouts.models import Exercise
+from workouts.models import ExerciseType as ExerciseTypeModel
+from workouts.models import MuscleGroup, Set, Workout
 
 from .types import (
     ExerciseType,
     ExerciseTypeType,
-    SetType,
     MuscleGroupType,
+    SetType,
     WorkoutStatusesEnum,
     WorkoutType,
 )

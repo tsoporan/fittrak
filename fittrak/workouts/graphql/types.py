@@ -3,16 +3,11 @@ Workout GraphQL types
 """
 
 import graphene
-
 from graphene_django.types import DjangoObjectType
 
-from workouts.models import (
-    Exercise,
-    MuscleGroup,
-    Workout,
-    ExerciseType as ExerciseTypeModel,
-    Set,
-)
+from workouts.models import Exercise
+from workouts.models import ExerciseType as ExerciseTypeModel
+from workouts.models import MuscleGroup, Set, Workout
 
 
 class MuscleGroupType(DjangoObjectType):

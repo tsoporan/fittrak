@@ -1,7 +1,6 @@
 """ Users GraphQL Query"""
 
 import graphene
-
 from graphql import GraphQLError
 
 from .types import Viewer
