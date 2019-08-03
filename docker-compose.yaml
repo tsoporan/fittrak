@@ -5,9 +5,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=fittrak
-      - POSTGRES_USER=fittrak
-      - POSTGRES_PASSWORD=fittrak
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./data/fittrak-db:/var/lib/postgresql/data
 
@@ -22,15 +22,18 @@ services:
       - "./fittrak:/usr/src/app/fittrak"
       - "./ipython-data:/root/.ipython/profile_default"
     environment:
-      - DJANGO_SECRET_KEY=foo
-      - DJANGO_HASHIDS_SALT=bar
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_HASHIDS_SALT=${DJANGO_HASHIDS_SALT}
       - DJANGO_DEBUG=False
       - DB_ENGINE=django.db.backends.postgresql
-      - DB_NAME=fittrak
-      - DB_USER=fittrak
-      - DB_PASSWORD=fittrak
-      - DB_PORT=5432
-      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DB_HOST=${DB_HOST}
+      - SENTRY_DSN=${SENTRY_DSN}
+      - SENTRY_ENV=${SENTRY_ENV}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
     depends_on:
       - db
 
