@@ -19,6 +19,7 @@ django-allow-cidr = "*"
 "psycopg2-binary" = "*"
 django-allauth = "*"
 requests = "==2.20"
+sentry-sdk = "==0.10.2"
 
 [dev-packages]
 snapshottest = "*"
