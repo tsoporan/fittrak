@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Exercise, ExerciseType, Set, Workout
+from .models import Exercise, ExerciseType, Set, Workout, WorkoutEvent
 
 
 @admin.register(Workout)
@@ -42,3 +42,8 @@ class ExerciseAdmin(admin.ModelAdmin):
         return obj.exercise_type.name
 
     get_type.short_description = "Type"
+
+
+@admin.register(WorkoutEvent)
+class WorkoutEventAdmin(admin.ModelAdmin):
+    date_hierarchy = "created_at"

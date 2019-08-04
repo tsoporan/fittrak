@@ -1,5 +1,7 @@
 import hashids
 from django.conf import settings
+from django.contrib.postgres.fields import JSONField
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -37,10 +39,29 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
         format_by = "%Y-%m-%d %H:%m"
         start = self.date_started.strftime(format_by)
         end = "N/A"
+
         if self.date_ended:
             end = self.date_ended.strftime(format_by)
 
-        return "{} -- {} to {}".format(self.user, start, end)
+        return f"{self.user} - Start: {start} - End: {end}"
+
+
+class WorkoutEvent(BaseModel, UserBaseModel):
+    """
+    Tracks state change on a Workout
+    """
+
+    workout = models.ForeignKey("Workout", on_delete=models.CASCADE)
+    action = models.CharField(max_length=64)
+    message = models.TextField(
+        blank=True, help_text="Store the human friendly representation of the change"
+    )
+
+    # DjangoJSONEncoder deals with datetimes and uuids, default encoder does not
+    state = JSONField(encoder=DjangoJSONEncoder, help_text="Store the model state")
+
+    def __str__(self):
+        return f"{self.workout}"
 
 
 class MuscleGroup(BaseModel):

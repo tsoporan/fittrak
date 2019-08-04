@@ -13,6 +13,8 @@ infra/.terraform
 data
 ipython-data
 coverage
+tags
+.mypy_cache
 
 # Sqlite
 *.db
