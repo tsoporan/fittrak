@@ -4,7 +4,6 @@ Workout GraphQL types
 
 import graphene
 from graphene_django.types import DjangoObjectType
-
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
@@ -16,10 +15,10 @@ class MuscleGroupType(DjangoObjectType):
 
 
 class WorkoutStatusesEnum(graphene.Enum):
-    PENDING = Workout.PENDING
     IN_PROGRESS = Workout.IN_PROGRESS
-    CANCELLED = Workout.CANCELLED
     COMPLETE = Workout.COMPLETE
+    CANCELLED = Workout.CANCELLED
+    PAUSED = Workout.PAUSED
 
 
 class ExerciseTypeType(DjangoObjectType):
@@ -37,6 +36,9 @@ class ExerciseTypeInputType(graphene.InputObjectType):
 class WorkoutFieldInputType(graphene.InputObjectType):
     date_started = graphene.types.datetime.DateTime()
     date_ended = graphene.types.datetime.DateTime()
+
+    # Only allowed status changes from client
+    # i.e pending and archive are reserved for creation and "removal"
     status = graphene.Field(WorkoutStatusesEnum)
     exercise_types = graphene.List(ExerciseTypeInputType)
 

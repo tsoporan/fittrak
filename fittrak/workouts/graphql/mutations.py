@@ -5,7 +5,6 @@ Workout GraphQL mutations
 import graphene
 from django.utils import timezone
 from graphql import GraphQLError
-
 from workouts.helpers import create_workout_event, merge_dicts, model_as_dict
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
@@ -54,6 +53,7 @@ class RemoveWorkout(graphene.Mutation):
 
         workout.updated_at = timezone.now()
         workout.is_active = False
+        workout.status = Workout.ARCHIVED
         workout.save()
 
         create_workout_event(
@@ -82,16 +82,28 @@ class UpdateWorkout(graphene.Mutation):
         except Workout.DoesNotExist:
             raise GraphQLError("Workout not found.")
 
-        exerciseTypes = None
-
-        if "exerciseTypes" in workout_fields:
-            exerciseTypes = workout_fields.pop("exerciseTypes")
-
         dirty = False
 
-        # Unpack the fields and update the model
+        # Must happen before as exercises require special handling
+        # TODO: Separate concerns?
+        exerciseTypes = workout_fields.pop("exerciseTypes", None)
+
+        if exerciseTypes:
+            dirty = True
+
+            types = ExerciseTypeModel.objects.filter(
+                id__in=[e.id for e in exerciseTypes]
+            )
+
+            for exercise_type in types:
+                Exercise.objects.get_or_create(
+                    workout=workout, exercise_type=exercise_type, user=user
+                )
+
         prev_state = model_as_dict(workout)
         changed = {}
+
+        # Unpack the fields and update the model
 
         for field_name, value in workout_fields.items():
             if not hasattr(workout, field_name):
@@ -102,18 +114,6 @@ class UpdateWorkout(graphene.Mutation):
             changed.update({field_name: value})
 
             dirty = True
-
-        if exerciseTypes:
-            dirty = True
-
-            types = ExerciseTypeModel.objects.filter(
-                id__in=[e.id for e in exerciseTypes]
-            )
-
-            for exercise_type in types:
-                Exercise.objects.create(
-                    workout=workout, exercise_type=exercise_type, user=user
-                )
 
         if dirty:
             workout.updated_at = timezone.now()
