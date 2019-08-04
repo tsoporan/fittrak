@@ -53,7 +53,6 @@ def create_workout_event(
     if not state:
         state = model_as_dict(workout)
 
-    print("state", serialize_state(state))
     message = template.format(state=serialize_state(state))
 
     WorkoutEvent.objects.create(
