@@ -5,7 +5,6 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
 from fittrak.utils.models import BaseModel, UserBaseModel, WorkoutBaseModel
 
 
@@ -14,12 +13,16 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
     IN_PROGRESS = "IN_PROGRESS"
     CANCELLED = "CANCELLED"
     COMPLETE = "COMPLETE"
+    ARCHIVED = "ARCHIVED"
+    PAUSED = "PAUSED"
 
     STATUS_CHOICES = (
         (PENDING, "Pending"),
         (IN_PROGRESS, "In Progress"),
         (CANCELLED, "Cancelled"),
         (COMPLETE, "Complete"),
+        (ARCHIVED, "Archived"),
+        (PAUSED, "Paused"),
     )
 
     slug = models.CharField(
