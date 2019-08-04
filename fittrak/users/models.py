@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from fittrak.utils.models import BaseModel
 
 NOT_SET = "NOT_SET"
 VERIFIED = "VERIFIED"
@@ -15,7 +16,7 @@ class User(AbstractUser):
     pass
 
 
-class Profile(models.Model):
+class Profile(BaseModel):
     LBS = "LBS"
     KGS = "KGS"
 
