@@ -5,14 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('workouts', '0005_workoutevent'),
-    ]
+    dependencies = [("workouts", "0005_workoutevent")]
 
     operations = [
         migrations.AlterField(
-            model_name='workout',
-            name='status',
-            field=models.CharField(choices=[('PENDING', 'Pending'), ('IN_PROGRESS', 'In Progress'), ('CANCELLED', 'Cancelled'), ('COMPLETE', 'Complete'), ('ARCHIVED', 'Archived'), ('PAUSED', 'Paused')], default='PENDING', max_length=32),
-        ),
+            model_name="workout",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("PENDING", "Pending"),
+                    ("IN_PROGRESS", "In Progress"),
+                    ("CANCELLED", "Cancelled"),
+                    ("COMPLETE", "Complete"),
+                    ("ARCHIVED", "Archived"),
+                    ("PAUSED", "Paused"),
+                ],
+                default="PENDING",
+                max_length=32,
+            ),
+        )
     ]

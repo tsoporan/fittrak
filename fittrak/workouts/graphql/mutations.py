@@ -10,8 +10,14 @@ from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
 
-from .types import (ExerciseInputType, ExerciseType, SetFieldInputType,
-                    SetType, WorkoutFieldInputType, WorkoutType)
+from .types import (
+    ExerciseInputType,
+    ExerciseType,
+    SetFieldInputType,
+    SetType,
+    WorkoutFieldInputType,
+    WorkoutType,
+)
 
 
 class CreateWorkout(graphene.Mutation):

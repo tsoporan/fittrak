@@ -11,25 +11,57 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('workouts', '0004_set_bodyweight'),
+        ("workouts", "0004_set_bodyweight"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='WorkoutEvent',
+            name="WorkoutEvent",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_active', models.BooleanField(default=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('action', models.CharField(max_length=64)),
-                ('message', models.TextField(blank=True, help_text='Store the human friendly representation of the change')),
-                ('state', django.contrib.postgres.fields.jsonb.JSONField(encoder=django.core.serializers.json.DjangoJSONEncoder, help_text='Store the model state')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('workout', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='workouts.Workout')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("is_active", models.BooleanField(default=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("action", models.CharField(max_length=64)),
+                (
+                    "message",
+                    models.TextField(
+                        blank=True,
+                        help_text="Store the human friendly representation of the change",
+                    ),
+                ),
+                (
+                    "state",
+                    django.contrib.postgres.fields.jsonb.JSONField(
+                        encoder=django.core.serializers.json.DjangoJSONEncoder,
+                        help_text="Store the model state",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "workout",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="workouts.Workout",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-        ),
+            options={"abstract": False},
+        )
     ]
