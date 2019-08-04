@@ -194,7 +194,7 @@ SOCIALACCOUNT_PROVIDERS = {
     "google": {"SCOPE": ["profile", "email"], "AUTH_PARAMS": {"access_type": "online"}}
 }
 
-ALLOWED_HOSTS = ["fittrak.ca"]
+ALLOWED_HOSTS = ["fittrak.ca", "www.fittrak.ca"]
 
 # Production override
 # TODO: should really be separate settings files
