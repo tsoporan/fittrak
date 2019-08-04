@@ -6,16 +6,13 @@ import graphene
 from django.utils import timezone
 from graphql import GraphQLError
 
-from workouts.models import MuscleGroup, Workout
+from workouts.helpers import create_workout_event, merge_dicts, model_as_dict
+from workouts.models import Exercise
+from workouts.models import ExerciseType as ExerciseTypeModel
+from workouts.models import MuscleGroup, Set, Workout
 
-from .types import (
-    ExerciseInputType,
-    ExerciseType,
-    SetFieldInputType,
-    SetType,
-    WorkoutFieldInputType,
-    WorkoutType,
-)
+from .types import (ExerciseInputType, ExerciseType, SetFieldInputType,
+                    SetType, WorkoutFieldInputType, WorkoutType)
 
 
 class CreateWorkout(graphene.Mutation):
@@ -29,6 +26,13 @@ class CreateWorkout(graphene.Mutation):
             raise GraphQLError("Not authenticated.")
 
         new_workout = Workout.objects.create(user=user, date_started=timezone.now())
+
+        create_workout_event(
+            user=user,
+            action="create_workout",
+            workout=new_workout,
+            state=model_as_dict(new_workout),
+        )
 
         return CreateWorkout(workout=new_workout)
 
@@ -52,6 +56,13 @@ class RemoveWorkout(graphene.Mutation):
         workout.is_active = False
         workout.save()
 
+        create_workout_event(
+            user=user,
+            action="remove_workout",
+            workout=workout,
+            state=model_as_dict(workout),
+        )
+
         return RemoveWorkout(workout=workout)
 
 
@@ -72,16 +83,24 @@ class UpdateWorkout(graphene.Mutation):
             raise GraphQLError("Workout not found.")
 
         exerciseTypes = None
+
         if "exerciseTypes" in workout_fields:
             exerciseTypes = workout_fields.pop("exerciseTypes")
 
         dirty = False
+
         # Unpack the fields and update the model
-        for name, value in workout_fields.items():
-            if not hasattr(workout, name):
+        prev_state = model_as_dict(workout)
+        changed = {}
+
+        for field_name, value in workout_fields.items():
+            if not hasattr(workout, field_name):
                 continue
 
-            setattr(workout, name, value)
+            setattr(workout, field_name, value)
+
+            changed.update({field_name: value})
+
             dirty = True
 
         if exerciseTypes:
@@ -99,6 +118,19 @@ class UpdateWorkout(graphene.Mutation):
         if dirty:
             workout.updated_at = timezone.now()
             workout.save()
+
+            create_workout_event(
+                user=user,
+                action="update_workout",
+                workout=workout,
+                state=merge_dicts(
+                    {
+                        "previous": {**prev_state},
+                        "current": model_as_dict(workout),
+                        "changed": changed,
+                    }
+                ),
+            )
 
         return UpdateWorkout(workout=workout)
 
