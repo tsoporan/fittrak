@@ -5,7 +5,7 @@ const BundleTracker = require("webpack-bundle-tracker");
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  baseUrl: isProd ? "/static/" : "/",
+  publicPath: isProd ? "/static/" : "/",
   outputDir: "../fittrak/assets/bundles",
 
   configureWebpack: {
@@ -33,5 +33,11 @@ module.exports = {
     msTileColor: "#444444",
     workboxPluginMode: "GenerateSW",
     manifestPath: "manifest.json"
+  },
+
+  runtimeCompiler: true,
+
+  css: {
+    sourceMap: true
   }
 };
