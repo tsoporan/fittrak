@@ -6,7 +6,11 @@
 
     <v-app-bar color="primary" dark fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title class="logo main">{{ title }}</v-toolbar-title>
+      <v-toolbar-title
+        class="logo"
+        :class="{ main: $route.name === APP_NAME }"
+        >{{ title }}</v-toolbar-title
+      >
       <v-spacer />
 
       <slot></slot>
@@ -17,13 +21,16 @@
 <script>
 import Sidebar from "@/components/app/Sidebar";
 
+import { APP_NAME } from "@/constants";
+
 export default {
   name: "AppBar",
 
   data() {
     return {
       drawer: null,
-      viewer: { username: "Stranger" }
+      viewer: { username: "Stranger" },
+      APP_NAME
     };
   },
 
