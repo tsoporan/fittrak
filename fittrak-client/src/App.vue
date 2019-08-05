@@ -31,20 +31,16 @@
 </template>
 
 <script>
-import { queries } from "@/graphql";
-
 import Loader from "@/components/app/Loader";
 import AppSnackbar from "@/components/app/AppSnackbar";
 
-import { APP_NAME, SIGNOUT_URL } from "@/constants";
+import { SIGNOUT_URL } from "@/constants";
 
 export default {
   name: "App",
 
   data() {
     return {
-      APP_NAME,
-      viewer: { username: "Stranger" },
       error: false
     };
   },
@@ -52,22 +48,6 @@ export default {
   methods: {
     signOut() {
       this.$router.replace(SIGNOUT_URL);
-    }
-  },
-
-  apollo: {
-    viewer: {
-      query: queries.viewerQuery,
-
-      update(data) {
-        return data.viewer;
-      },
-
-      error(error) {
-        // TODO: Send error up
-        console.log(`Error: ${error}`); // eslint-disable-line
-        this.error = true;
-      }
     }
   },
 

@@ -22,6 +22,7 @@
 import Sidebar from "@/components/app/Sidebar";
 
 import { APP_NAME } from "@/constants";
+import { queries } from "@/graphql";
 
 export default {
   name: "AppBar",
@@ -29,7 +30,7 @@ export default {
   data() {
     return {
       drawer: null,
-      viewer: { username: "Stranger" },
+      viewer: { username: "..." },
       APP_NAME
     };
   },
@@ -43,6 +44,22 @@ export default {
 
   components: {
     Sidebar
+  },
+
+  apollo: {
+    viewer: {
+      query: queries.viewerQuery,
+
+      update(data) {
+        return data.viewer;
+      },
+
+      error(error) {
+        // TODO: Send error up
+        console.log(`Error: ${error}`); // eslint-disable-line
+        this.error = true;
+      }
+    }
   }
 };
 </script>

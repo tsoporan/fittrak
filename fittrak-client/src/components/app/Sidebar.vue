@@ -79,16 +79,19 @@
 </template>
 
 <script>
+const RELEASES_URL = "https://github.com/tsoporan/fittrak/releases";
+const LOGOUT_URL = "/accounts/logout/";
+
 export default {
-  name: "SidebarNavigationItems",
+  name: "Sidebar",
 
   methods: {
     toReleaseNotes() {
-      window.location.href = "https://github.com/tsoporan/fittrak/releases";
+      window.location.href = RELEASES_URL;
     },
     logout() {
       // Allow server side routing to kick in and logout session
-      window.location.replace("/accounts/logout/");
+      window.location.replace(LOGOUT_URL);
     }
   },
 
