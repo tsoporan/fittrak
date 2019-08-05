@@ -6,7 +6,7 @@
     <v-container fluid grid-list-xl>
       <v-layout row>
         <v-flex>
-          <WorkoutFilterHeader />
+          <WorkoutFilterToolbar />
         </v-flex>
       </v-layout>
       <v-layout fill-height>
@@ -26,7 +26,7 @@ import { queries } from "@/graphql";
 
 import AppBar from "@/components/app/AppBar";
 import Loader from "@/components/app/Loader";
-import WorkoutFilterHeader from "@/components/workouts/WorkoutFilterHeader";
+import WorkoutFilterToolbar from "@/components/workouts/WorkoutFilterToolbar";
 import WorkoutCardList from "@/components/workouts/WorkoutCardList";
 
 import { showSnackbar } from "@/helpers";
@@ -56,7 +56,7 @@ export default {
 
   components: {
     AppBar,
-    WorkoutFilterHeader,
+    WorkoutFilterToolbar,
     WorkoutCardList,
     Loader
   }

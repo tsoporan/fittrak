@@ -20,7 +20,7 @@
 import { getRandomColor } from "@/helpers";
 
 import WorkoutCard from "@/components/workouts/WorkoutCard";
-import WorkoutFilterHeader from "@/components/workouts/WorkoutFilterHeader";
+import WorkoutFilterToolbar from "@/components/workouts/WorkoutFilterToolbar";
 
 export default {
   name: "WorkoutCardList",
@@ -42,7 +42,7 @@ export default {
 
   components: {
     WorkoutCard,
-    WorkoutFilterHeader
+    WorkoutFilterToolbar
   },
 
   props: {
