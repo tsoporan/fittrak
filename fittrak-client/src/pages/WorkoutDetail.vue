@@ -1,33 +1,16 @@
 <template>
-  <v-container
-    fill-height
-    v-if="$apollo.loading"
-  >
-    <v-layout 
-      row
-      wrap
-      align-center
-      justify-center
-    >
+  <v-container fill-height v-if="$apollo.loading">
+    <v-layout row wrap align-center justify-center>
       <v-flex text-xs-center>
-        <Loader 
-          size="48"
-          color="primary"
-        />
+        <Loader size="48" color="primary" />
         <span class="headline">
           Preparing workout ...
         </span>
       </v-flex>
     </v-layout>
   </v-container>
-  <v-container
-    row 
-    wrap
-    v-else
-  >
-    <v-layout 
-      row 
-      wrap>
+  <v-container row wrap v-else>
+    <v-layout row wrap>
       <WorkoutHeader :workout="workout" />
       <ExerciseActions :workout="workout" />
       <ExerciseList :exercises="exercises" />
