@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list-item>
-      <v-list-item-avatar>
+      <v-list-item-avatar size="32">
         <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
       </v-list-item-avatar>
       <v-list-item-content>
