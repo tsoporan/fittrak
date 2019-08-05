@@ -1,91 +1,58 @@
 <template>
   <v-list-tile v-if="!editing">
     <v-list-tile-content>
-      <v-list-tile-title>{{ repetitions }} x {{ weight }} {{ unit }} <span v-if="bodyweight">(BW)</span>
+      <v-list-tile-title
+        >{{ repetitions }} x {{ weight }} {{ unit }}
+        <span v-if="bodyweight">(BW)</span>
       </v-list-tile-title>
     </v-list-tile-content>
 
     <v-list-tile-action>
-      <v-btn 
-        small 
-        flat 
-        color="info" 
-        icon 
-        @click.stop="editSet">
+      <v-btn small flat color="info" icon @click.stop="editSet">
         <v-icon>edit</v-icon>
       </v-btn>
     </v-list-tile-action>
 
     <v-list-tile-action>
-      <v-btn 
-        small 
-        flat 
-        color="info" 
-        icon 
-        @click.stop="removeSet">
+      <v-btn small flat color="info" icon @click.stop="removeSet">
         <v-icon>delete</v-icon>
       </v-btn>
     </v-list-tile-action>
   </v-list-tile>
   <v-flex v-else>
-    <v-layout 
-      row 
-      wrap>
+    <v-layout row wrap>
       <v-flex xs12>
-        <v-text-field 
-          v-model="repetitions" 
-          placeholder="Reps" 
-          type="number" />
+        <v-text-field v-model="repetitions" placeholder="Reps" type="number" />
       </v-flex>
 
       <v-flex xs12>
-        <v-text-field 
-          v-model="weight" 
-          placeholder="Weight" 
-          type="number" />
+        <v-text-field v-model="weight" placeholder="Weight" type="number" />
       </v-flex>
 
       <v-flex xs12>
-        <v-radio-group 
-          v-model="unit" 
-          row 
-          class="mt-3">
-          <v-radio 
-            color="primary" 
-            label="LB" 
-            value="LB" />
-          <v-radio 
-            color="primary" 
-            label="KG" 
-            value="KG" />
+        <v-radio-group v-model="unit" row class="mt-3">
+          <v-radio color="primary" label="LB" value="LB" />
+          <v-radio color="primary" label="KG" value="KG" />
         </v-radio-group>
       </v-flex>
 
       <v-flex xs12>
-        <v-checkbox 
-          v-model="bodyweight" 
-          color="primary" 
-          label="Using bodyweight"/>
+        <v-checkbox
+          v-model="bodyweight"
+          color="primary"
+          label="Using bodyweight"
+        />
       </v-flex>
 
-      <v-flex 
-        xs12 
-        text-xs-right 
-        mt-3 
-        mb-3>
-        <v-btn 
-          small 
-          outline 
-          color="gray" 
-          @click.stop="editing = false">Cancel</v-btn>
-        <v-btn 
-          small 
-          depressed 
-          color="success" 
-          @click.stop="updateSet">Save</v-btn>
+      <v-flex xs12 text-xs-right mt-3 mb-3>
+        <v-btn small outline color="gray" @click.stop="editing = false"
+          >Cancel</v-btn
+        >
+        <v-btn small depressed color="success" @click.stop="updateSet"
+          >Save</v-btn
+        >
       </v-flex>
     </v-layout>
-
   </v-flex>
 </template>
 

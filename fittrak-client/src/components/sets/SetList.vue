@@ -1,10 +1,6 @@
 <template>
   <v-list v-if="sets.length">
-    <SetItem
-      v-for="set in sets"
-      :key="set.id"
-      :set="set"
-    />
+    <SetItem v-for="set in sets" :key="set.id" :set="set" />
   </v-list>
 
   <p v-else>

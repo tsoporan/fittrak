@@ -1,10 +1,6 @@
 <template>
   <v-flex>
-    <v-btn 
-      @click.stop="goBack" 
-      flat 
-      color="secondary" 
-      outline>Back</v-btn>
+    <v-btn @click.stop="goBack" flat color="secondary" outline>Back</v-btn>
   </v-flex>
 </template>
 

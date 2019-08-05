@@ -1,22 +1,9 @@
 <template>
   <v-flex xs12>
-    <v-form
-      ref="form" 
-      v-model="valid"
-      lazy-validation
-    >
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field v-model="viewer.username" label="Username" disabled />
 
-      <v-text-field
-        v-model="viewer.username"
-        label="Username"
-        disabled
-      />
-
-      <v-text-field
-        v-model="viewer.email"
-        label="Email"
-        disabled
-      />
+      <v-text-field v-model="viewer.email" label="Email" disabled />
 
       <v-text-field
         v-model="viewer.profile.height"
@@ -34,25 +21,16 @@
         v-model="viewer.profile.preferredUnit"
         label="Preferred Unit"
       >
-        <v-radio 
-          label="LBS" 
-          value="LBS"/>
-        <v-radio 
-          label="KGS" 
-          value="KGS"/>
+        <v-radio label="LBS" value="LBS" />
+        <v-radio label="KGS" value="KGS" />
       </v-radio-group>
 
       <v-divider />
 
-      <v-flex 
-        text-xs-right 
-        mt-3>
-        <v-btn 
-          dark
-          color="darkGrey"
-          depressed
-          @click.stop="updateSettings"
-        >Save</v-btn>
+      <v-flex text-xs-right mt-3>
+        <v-btn dark color="darkGrey" depressed @click.stop="updateSettings"
+          >Save</v-btn
+        >
       </v-flex>
     </v-form>
   </v-flex>

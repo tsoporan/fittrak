@@ -1,57 +1,33 @@
 <template>
-  <v-card
-    :color="workout.color"
-    dark
-    @click.stop="viewWorkout"
-  >
-    <v-card-title primary-title> 
+  <v-card :color="workout.color" dark @click.stop="viewWorkout">
+    <v-card-title primary-title>
       <span class="headline">{{ started }}</span>
     </v-card-title>
 
     <v-divider light />
 
     <v-card-text>
-      <v-layout
-        row 
-      >
-        <v-flex 
-          class="subheading" 
-          md6 
-          xs12>
-          <div> 
-            Time Spent <span :class="relativeDarkness">Test</span>
-          </div>
+      <v-layout row>
+        <v-flex class="subheading" md6 xs12>
+          <div>Time Spent <span :class="relativeDarkness">Test</span></div>
           <div>
             Total Weight
           </div>
           <div>
             Type: Custom
           </div>
-          <div>
-            Exercises: {{ workout.exerciseCount }}
-          </div>
+          <div>Exercises: {{ workout.exerciseCount }}</div>
         </v-flex>
 
-        <v-flex 
-          class="subheading" 
-          md6 
-          xs12>
-          <div>
-            Created on {{ workout.created_at }}
-          </div>
-          <div>
-            Last updated {{ workout.updated_at }}
-          </div>
+        <v-flex class="subheading" md6 xs12>
+          <div>Created on {{ workout.created_at }}</div>
+          <div>Last updated {{ workout.updated_at }}</div>
         </v-flex>
       </v-layout>
-
     </v-card-text>
 
     <div class="status">
-      <v-chip 
-        label 
-        v-bind="{[`color`]: `${workout.color} darken-2`}"
-      >
+      <v-chip label v-bind="{ [`color`]: `${workout.color} darken-2` }">
         <v-icon left>{{ statusIcon }}</v-icon>
         {{ getHumanStatus }}
       </v-chip>
@@ -60,30 +36,21 @@
     <v-divider light />
 
     <v-card-actions>
-      <v-toolbar 
-        flat 
-        dark 
-        :color="workout.color">
-
-        <v-btn 
-          icon>
+      <v-toolbar flat dark :color="workout.color">
+        <v-btn icon>
           <v-icon>share</v-icon>
         </v-btn>
 
         <v-spacer />
 
-        <v-btn 
-          icon>
+        <v-btn icon>
           <v-icon>favorite</v-icon>
         </v-btn>
-        <v-btn 
-          @click.stop="removeWorkout"
-          icon>
+        <v-btn @click.stop="removeWorkout" icon>
           <v-icon>delete</v-icon>
         </v-btn>
       </v-toolbar>
     </v-card-actions>
-
   </v-card>
 </template>
 

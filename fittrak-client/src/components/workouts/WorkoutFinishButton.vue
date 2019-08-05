@@ -1,10 +1,8 @@
 <template>
   <v-flex text-xs-right>
-    <v-btn 
-      :loading="loading" 
-      color="info" 
-      depressed 
-      @click.stop="finishWorkout">Finish</v-btn>
+    <v-btn :loading="loading" color="info" depressed @click.stop="finishWorkout"
+      >Finish</v-btn
+    >
   </v-flex>
 </template>
 

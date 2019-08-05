@@ -1,16 +1,9 @@
 <template>
   <v-flex xs12>
-    <v-layout 
-      justify-space-between 
-      row 
-      wrap>
+    <v-layout justify-space-between row wrap>
       <BackButton />
-      <WorkoutStartButton 
-        v-if="!complete && !inProgress" 
-        :workout="workout" />
-      <WorkoutFinishButton 
-        v-if="!complete && inProgress" 
-        :workout="workout" />
+      <WorkoutStartButton v-if="!complete && !inProgress" :workout="workout" />
+      <WorkoutFinishButton v-if="!complete && inProgress" :workout="workout" />
     </v-layout>
   </v-flex>
 </template>

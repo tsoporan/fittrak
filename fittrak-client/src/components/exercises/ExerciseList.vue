@@ -1,9 +1,10 @@
 <template>
   <v-flex xs12>
-    <v-expansion-panel 
-      v-if="exercises && exercises.length" 
-      expand 
-      v-model="panel">
+    <v-expansion-panel
+      v-if="exercises && exercises.length"
+      expand
+      v-model="panel"
+    >
       <v-expansion-panel-content
         v-for="exercise in exercises"
         :key="exercise.id"
@@ -16,38 +17,35 @@
           <v-divider />
 
           <v-flex ma-4>
-            <v-layout 
-              row 
-              wrap>
+            <v-layout row wrap>
               <v-flex text-xs-right>
-                <v-btn 
-                  small 
-                  flat 
-                  color="info" 
-                  icon 
-                  @click.stop="removeExercise(exercise)">
+                <v-btn
+                  small
+                  flat
+                  color="info"
+                  icon
+                  @click.stop="removeExercise(exercise)"
+                >
                   <v-icon>delete</v-icon>
                 </v-btn>
               </v-flex>
             </v-layout>
 
-            <h2 class="display-0"> Add Set </h2>
+            <h2 class="display-0">Add Set</h2>
             <AddSet :exercise="exercise" />
           </v-flex>
 
           <v-divider />
 
           <v-flex ma-4>
-            <p/>
-            <h2 class="display-0"> Set List </h2>
+            <p />
+            <h2 class="display-0">Set List</h2>
             <SetList :exercise="exercise" />
           </v-flex>
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
-    <v-flex 
-      v-else 
-      text-xs-center>
+    <v-flex v-else text-xs-center>
       No exercises! 😞
     </v-flex>
   </v-flex>

@@ -14,11 +14,7 @@
         small-chips
       />
 
-
-      <v-btn
-        @click.stop="addExercises"
-        :disabled="!newExercises.length"
-      >
+      <v-btn @click.stop="addExercises" :disabled="!newExercises.length">
         Add Exercises
       </v-btn>
 

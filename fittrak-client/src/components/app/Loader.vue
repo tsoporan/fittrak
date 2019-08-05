@@ -1,9 +1,6 @@
 <template>
   <v-flex text-xs-center>
-    <v-progress-circular 
-      :color="color" 
-      :size="size"
-      :indeterminate="true"/>
+    <v-progress-circular :color="color" :size="size" :indeterminate="true" />
   </v-flex>
 </template>
 

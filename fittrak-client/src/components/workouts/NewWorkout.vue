@@ -1,125 +1,96 @@
 <template>
   <v-flex text-xs-right>
-    <v-dialog 
-      v-model="dialog" 
-      fullscreen 
-      hide-overlay 
-      transition="dialog-bottom-transition">
-      <v-btn 
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
+      <v-btn
         icon
         dark
-        slot="activator" 
-        color="primaryDark" 
-        @click.stop="createWorkout" 
-        :loading="loading" 
-      ><v-icon>add</v-icon></v-btn>
+        slot="activator"
+        color="primaryDark"
+        @click.stop="createWorkout"
+        :loading="loading"
+        ><v-icon>add</v-icon></v-btn
+      >
       <v-card>
-        <v-toolbar 
-          dark 
-          color="primary"
-          fixed
-        >
-          <v-btn 
-            icon 
-            dark 
-            @click.native="dialog = false">
+        <v-toolbar dark color="primary" fixed>
+          <v-btn icon dark @click.native="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>New Workout</v-toolbar-title>
-          <v-spacer/>
+          <v-spacer />
           <v-toolbar-items>
-            <v-btn 
-              dark 
-              flat 
-              @click.native="startWorkout">Start</v-btn>
+            <v-btn dark flat @click.native="startWorkout">Start</v-btn>
           </v-toolbar-items>
         </v-toolbar>
 
         <!-- Body -->
 
-        <v-layout 
-          row 
-          wrap
-          class="mt-4" 
-        >
-
+        <v-layout row wrap class="mt-4">
           <v-flex>
             <p class="headline grey--text text--darken-2 ma-3 mt-5">
               Set up your workout
             </p>
-            <p class="subheading ma-3 grey--text text--darken-2">Stage your workout below by selecting exercises. Once
-            you're ready hit "Start" to begin the workout.</p>
+            <p class="subheading ma-3 grey--text text--darken-2">
+              Stage your workout below by selecting exercises. Once you're ready
+              hit "Start" to begin the workout.
+            </p>
             <v-divider />
           </v-flex>
 
-          <v-flex 
-            xs12 
-          >
+          <v-flex xs12>
             <v-subheader>Staged workout</v-subheader>
-            <v-flex 
-              v-if="selectedExercises.length" 
-              mb-4
-              mr-2
-              ml-2
-            >
-              <v-chip 
+            <v-flex v-if="selectedExercises.length" mb-4 mr-2 ml-2>
+              <v-chip
                 color="primaryDark"
                 :key="exercise.id"
                 dark
                 v-for="exercise in selectedExercises"
               >
                 {{ exercise.name }}
-                <v-icon 
-                  right
-                  @click.stop="deselectExercise(exercise.id)">cancel</v-icon>
+                <v-icon right @click.stop="deselectExercise(exercise.id)"
+                  >cancel</v-icon
+                >
               </v-chip>
             </v-flex>
-            <v-flex 
-              v-else
-              mr-3
-              ml-3
-            >
-              <p class="subheading grey--text text--darken-2">No exercises selected yet!</p>
+            <v-flex v-else mr-3 ml-3>
+              <p class="subheading grey--text text--darken-2">
+                No exercises selected yet!
+              </p>
             </v-flex>
 
-            <v-divider/>
+            <v-divider />
           </v-flex>
 
-          <v-flex 
-            xs12 
-            mt-3>
+          <v-flex xs12 mt-3>
             <v-subheader>Popular exercises</v-subheader>
-            <v-flex 
-              v-if="popularExerciseTypes.length" 
-              mr-2 
-              ml-2>
-              <v-chip 
-                v-for="exercise in popularExerciseTypes" 
+            <v-flex v-if="popularExerciseTypes.length" mr-2 ml-2>
+              <v-chip
+                v-for="exercise in popularExerciseTypes"
                 :key="exercise.id"
                 :disabled="inSelected(exercise.id)"
                 color="darkGrey"
-                dark 
+                dark
               >
-                {{ exercise.name }} 
-                <v-icon 
-                  right
-                  @click.stop="selectExercise(exercise)"
-                >add_circle</v-icon>
+                {{ exercise.name }}
+                <v-icon right @click.stop="selectExercise(exercise)"
+                  >add_circle</v-icon
+                >
               </v-chip>
             </v-flex>
 
-            <v-flex 
-              mt-3
-              mr-3 
-              ml-3>
-              <p class="subheading grey--text text--darken-2"> Popular exercises are
-              intelligently selected across all users with a bias towards your workout habits.</p>
+            <v-flex mt-3 mr-3 ml-3>
+              <p class="subheading grey--text text--darken-2">
+                Popular exercises are intelligently selected across all users
+                with a bias towards your workout habits.
+              </p>
             </v-flex>
           </v-flex>
 
-          <v-flex 
-            xs12 
-            mt-3>
+          <v-flex xs12 mt-3>
             <v-subheader>Search exercises</v-subheader>
             <v-form class="mr-3 ml-3">
               <v-autocomplete
@@ -141,33 +112,23 @@
               />
             </v-form>
 
-            <v-flex 
-              text-xs-right 
-              mr-3 
-              ml-3>
-
-              <v-btn
-                color="grey"
-                dark>Add custom
-              </v-btn>
+            <v-flex text-xs-right mr-3 ml-3>
+              <v-btn color="grey" dark>Add custom </v-btn>
 
               <v-btn
                 :disabled="!searchSelectedExercises.length"
                 @click.stop="addMultiSelected"
-              >Add Selected</v-btn>
-
+                >Add Selected</v-btn
+              >
             </v-flex>
 
-            <v-flex 
-              mt-3
-              mr-3 
-              ml-3>
-              <p class="subheading grey--text text--darken-2">Search across all exercises. If you can't find what you're
-              looking for you can add a custom exercise as well.</p>
+            <v-flex mt-3 mr-3 ml-3>
+              <p class="subheading grey--text text--darken-2">
+                Search across all exercises. If you can't find what you're
+                looking for you can add a custom exercise as well.
+              </p>
             </v-flex>
-
           </v-flex>
-
         </v-layout>
       </v-card>
     </v-dialog>
