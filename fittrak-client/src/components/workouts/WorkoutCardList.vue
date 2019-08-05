@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-space-around wrap mt-3 v-if="workouts.length">
-    <template v-for="workout in coloredWorkouts">
+    <template v-for="workout in mappedWorkouts">
       <v-flex xs12 md4 :key="workout.id">
         <WorkoutCard :workout="workout" :key="workout.id" />
       </v-flex>
@@ -17,10 +17,9 @@
 </template>
 
 <script>
-import { getRandomColor } from "@/helpers";
+import { getStatusColor } from "@/helpers";
 
 import WorkoutCard from "@/components/workouts/WorkoutCard";
-import WorkoutFilterToolbar from "@/components/workouts/WorkoutFilterToolbar";
 
 export default {
   name: "WorkoutCardList",
@@ -32,17 +31,16 @@ export default {
   },
 
   computed: {
-    coloredWorkouts() {
+    mappedWorkouts() {
       return this.workouts.map(workout => ({
         ...workout,
-        color: getRandomColor()
+        color: getStatusColor(workout.status)
       }));
     }
   },
 
   components: {
-    WorkoutCard,
-    WorkoutFilterToolbar
+    WorkoutCard
   },
 
   props: {

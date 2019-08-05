@@ -4,7 +4,14 @@
 
 import Vue from "vue";
 
-import { STATUS_MAP } from "@/constants";
+import {
+  STATUS_MAP,
+  PENDING,
+  CANCELLED,
+  COMPLETE,
+  PAUSED,
+  IN_PROGRESS
+} from "@/constants";
 
 function getStatusBySlug(slug) {
   const statusKey = slug.toUpperCase().replace("-", "_");
@@ -30,31 +37,16 @@ function showSnackbar(type, text, bus = EventBus) {
   });
 }
 
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+function getStatusColor(status) {
+  const statusMap = {
+    [PENDING]: "blue-grey",
+    [IN_PROGRESS]: "blue",
+    [COMPLETE]: "green",
+    [CANCELLED]: "red",
+    [PAUSED]: "grey"
+  };
 
-function getRandomColor() {
-  const choices = [
-    "red",
-    "green",
-    "purple",
-    "orange",
-    "blue",
-    "indigo",
-    "deep-purple",
-    "pink",
-    "light-blue",
-    "cyan",
-    "teal",
-    "lime",
-    "amber",
-    "deep-orange",
-    "blue-grey",
-    "grey"
-  ];
-
-  return pickRandom(choices);
+  return statusMap[status];
 }
 
 export {
@@ -62,5 +54,5 @@ export {
   statusToSlug,
   showSnackbar,
   EventBus,
-  getRandomColor
+  getStatusColor
 };
