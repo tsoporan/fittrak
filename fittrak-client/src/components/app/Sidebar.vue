@@ -16,8 +16,8 @@
 
     <v-divider />
 
-    <v-list dense nav flat>
-      <v-list-item link to="/">
+    <v-list dense nav>
+      <v-list-item link to="/" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>home</v-icon>
         </v-list-item-icon>
@@ -26,7 +26,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link to="/progress">
+      <v-list-item link to="/progress" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>trending_up</v-icon>
         </v-list-item-icon>
@@ -35,7 +35,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link to="/history">
+      <v-list-item link to="/history" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>history</v-icon>
         </v-list-item-icon>
@@ -44,7 +44,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link to="/settings">
+      <v-list-item link to="/settings" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>settings</v-icon>
         </v-list-item-icon>
