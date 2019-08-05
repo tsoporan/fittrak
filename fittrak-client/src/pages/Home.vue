@@ -3,19 +3,16 @@
     <AppBar title="FitTrak">
       <v-btn>Test</v-btn>
     </AppBar>
-    <v-container fluid grid-list-xl>
-      <v-layout row>
-        <v-flex>
-          <WorkoutFilterToolbar />
-        </v-flex>
+
+    <v-container fluid>
+      <v-layout row pa-4>
+        <WorkoutFilterToolbar />
       </v-layout>
-      <v-layout fill-height>
-        <v-flex v-if="$apollo.loading">
-          <Loader color="primary" size="48" />
-        </v-flex>
-        <v-flex v-else>
+      <v-layout row fill-height pa-4 justify-center>
+        <Loader color="primary" size="64" v-if="$apollo.loading" />
+        <v-container grid-list-xl fluid v-else>
           <WorkoutCardList :workouts="workouts" />
-        </v-flex>
+        </v-container>
       </v-layout>
     </v-container>
   </div>
