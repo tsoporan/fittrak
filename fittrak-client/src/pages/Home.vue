@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppBar title="FitTrak">
-      <v-btn>Test</v-btn>
+      <CreateWorkout />
     </AppBar>
 
     <v-container fluid>
@@ -25,6 +25,7 @@ import AppBar from "@/components/app/AppBar";
 import Loader from "@/components/app/Loader";
 import WorkoutFilterToolbar from "@/components/workouts/WorkoutFilterToolbar";
 import WorkoutCardList from "@/components/workouts/WorkoutCardList";
+import CreateWorkout from "@/components/workouts/CreateWorkout";
 
 import { showSnackbar } from "@/helpers";
 
@@ -55,6 +56,7 @@ export default {
     AppBar,
     WorkoutFilterToolbar,
     WorkoutCardList,
+    CreateWorkout,
     Loader
   }
 };
