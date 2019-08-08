@@ -47,7 +47,7 @@ export default {
       },
 
       error() {
-        showSnackbar("error", "Could not load workouts.");
+        showSnackbar("error", "Could not load workouts.", true);
       }
     }
   },
