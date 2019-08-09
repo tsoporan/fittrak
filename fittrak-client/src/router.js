@@ -19,7 +19,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/workouts/:workoutId/detail",
+      path: "/workouts/:workoutId",
       name: "WorkoutDetail",
       component: WorkoutDetail
     },
