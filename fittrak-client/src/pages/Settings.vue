@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <AppBar title="Settings" />
-    <v-container>
-      <v-layout row>
+  <div style="height:100%">
+    <v-container fluid fill-height>
+      <AppBar title="Settings" />
+      <v-layout row pa-4>
         <UserSettings :viewer="viewer" />
       </v-layout>
     </v-container>
