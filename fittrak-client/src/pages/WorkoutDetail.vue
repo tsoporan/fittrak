@@ -1,7 +1,7 @@
 <template>
   <div style="height:100%">
     <AppBar :title="title" />
-    <v-container fill-height fluid v-if="!$apollo.loading">
+    <v-container fill-height fluid v-if="$apollo.loading">
       <v-layout
         fill-height
         row
@@ -17,11 +17,14 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-container v-else>
-      <v-layout>
-        <WorkoutHeader :workout="workout" />
-        <ExerciseActions :workout="workout" />
+    <v-container v-else fill-height fluid>
+      <v-layout v-if="exercises.length">
         <ExerciseList :exercises="exercises" />
+      </v-layout>
+      <v-layout v-else fill-height row align-center justify-center>
+        <p text-xs-center class="headline">
+          Hrm, no exercises? 🤔
+        </p>
       </v-layout>
     </v-container>
   </div>
@@ -31,8 +34,6 @@
 import { queries } from "@/graphql";
 
 import Loader from "@/components/app/Loader";
-import WorkoutHeader from "@/components/workouts/WorkoutHeader";
-import ExerciseActions from "@/components/exercises/ExerciseActions";
 import ExerciseList from "@/components/exercises/ExerciseList";
 import AppBar from "@/components/app/AppBar";
 
@@ -75,8 +76,6 @@ export default {
 
   components: {
     AppBar,
-    WorkoutHeader,
-    ExerciseActions,
     ExerciseList,
     Loader
   }
