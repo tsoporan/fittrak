@@ -114,17 +114,17 @@
         grow
         height="64"
       >
-        <v-btn value="cancel">
+        <v-btn @click.stop="cancelWorkout" value="cancel">
           <span>Cancel</span>
           <v-icon>cancel</v-icon>
         </v-btn>
 
-        <v-btn value="hold">
-          <span>Hold</span>
+        <v-btn @click.stop="pauseWorkout" value="hold">
+          <span>Pause</span>
           <v-icon>pause</v-icon>
         </v-btn>
 
-        <v-btn value="start">
+        <v-btn @click.stop="startWorkout" value="start">
           <span>Start</span>
           <v-icon>play_arrow</v-icon>
         </v-btn>
@@ -259,6 +259,14 @@ export default {
           this.selectedExercises = [];
           showSnackbar("error", "Could not start workout.", true);
         });
+    },
+
+    cancelWorkout() {
+      console.log("cancelling workout");
+    },
+
+    pauseWorkout() {
+      console.log("pausing workout");
     }
   },
 
