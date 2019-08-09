@@ -1,21 +1,30 @@
 <template>
-  <v-container fill-height v-if="$apollo.loading">
-    <v-layout row wrap align-center justify-center>
-      <v-flex text-xs-center>
-        <Loader size="48" color="primary" />
-        <span class="headline">
-          Preparing workout ...
-        </span>
-      </v-flex>
-    </v-layout>
-  </v-container>
-  <v-container row wrap v-else>
-    <v-layout row wrap>
-      <WorkoutHeader :workout="workout" />
-      <ExerciseActions :workout="workout" />
-      <ExerciseList :exercises="exercises" />
-    </v-layout>
-  </v-container>
+  <div style="height:100%">
+    <AppBar :title="title" />
+    <v-container fill-height fluid v-if="!$apollo.loading">
+      <v-layout
+        fill-height
+        row
+        align-center
+        justify-center
+        justify-content-center
+      >
+        <v-flex text-center>
+          <Loader size="64" color="primary" />
+          <p text-xs-center class="headline">
+            🏋️ Loading workout ...
+          </p>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container v-else>
+      <v-layout>
+        <WorkoutHeader :workout="workout" />
+        <ExerciseActions :workout="workout" />
+        <ExerciseList :exercises="exercises" />
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -25,6 +34,7 @@ import Loader from "@/components/app/Loader";
 import WorkoutHeader from "@/components/workouts/WorkoutHeader";
 import ExerciseActions from "@/components/exercises/ExerciseActions";
 import ExerciseList from "@/components/exercises/ExerciseList";
+import AppBar from "@/components/app/AppBar";
 
 export default {
   name: "Workout",
@@ -32,7 +42,8 @@ export default {
   data() {
     return {
       workout: {},
-      exercises: []
+      exercises: [],
+      title: `Workout #${this.$route.params.workoutId}`
     };
   },
 
@@ -63,6 +74,7 @@ export default {
   },
 
   components: {
+    AppBar,
     WorkoutHeader,
     ExerciseActions,
     ExerciseList,
