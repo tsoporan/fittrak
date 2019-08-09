@@ -20,7 +20,7 @@
             <span class="caption"> &mdash; tailored for you 🤓</span>
           </div>
           <v-flex pt-3>
-            <v-form class="">
+            <v-form>
               <v-autocomplete
                 v-model="searchSelectedExercises"
                 :items="exerciseTypes"
@@ -33,25 +33,25 @@
                 deletable-chips
                 multiple
                 small-chips
-                solo
-                light
-              />
+                outlined
+                flat
+                full-width
+                dense
+                @blur="addMultiSelected"
+              >
+                <template v-slot:no-data>
+                  Hrm, that exercise doesn't exist.
+                </template>
+              </v-autocomplete>
             </v-form>
-          </v-flex>
 
-          <!--
+            <!--
             TODO: Can this be done in the input on
             a non found exercise?
           <v-flex text-xs-right mr-3 ml-3>
             <v-btn rounded dark>Add custom </v-btn>
-
-            TODO: Should auto add
-            <v-btn
-              :disabled="!searchSelectedExercises.length"
-              @click.stop="addMultiSelected"
-              >Add Selected</v-btn
+          -->
           </v-flex>
-              >-->
         </v-flex>
 
         <v-flex xs12 pt-2 pb-2>
@@ -62,6 +62,7 @@
           <v-flex v-if="popularExerciseTypes.length" mr-2 ml-2>
             <v-chip-group multiple column dark color="darkGrey">
               <v-chip
+                small
                 v-for="exercise in popularExerciseTypes"
                 :key="exercise.id"
                 :disabled="inSelected(exercise.id)"
@@ -87,6 +88,7 @@
           <v-flex v-if="selectedExercises.length" mb-4 mr-2 ml-2>
             <v-chip-group multiple column dark>
               <v-chip
+                small
                 :key="exercise.id"
                 v-for="exercise in selectedExercises"
                 color="primary"
@@ -108,8 +110,7 @@
 
       <v-bottom-navigation
         fixed
-        dark
-        background-color="darkGrey"
+        background-color="grey lighten-2"
         grow
         height="64"
       >
@@ -225,7 +226,8 @@ export default {
       if (!(workout && workout.id)) {
         showSnackbar(
           "error",
-          "Hmm seems like there isn't an attached work out. Please create again."
+          "Hmm seems like there isn't an attached work out. Please create again.",
+          true
         );
         return;
       }
@@ -255,7 +257,7 @@ export default {
         })
         .catch(() => {
           this.selectedExercises = [];
-          showSnackbar("error", "Could not start workout.");
+          showSnackbar("error", "Could not start workout.", true);
         });
     }
   },
