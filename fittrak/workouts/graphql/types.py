@@ -75,7 +75,7 @@ class SetType(DjangoObjectType):
 
 
 class SetFieldInputType(graphene.InputObjectType):
-    weight = graphene.Int(required=True)
+    weight = graphene.Decimal(required=True)
     repetitions = graphene.Int(required=True)
     unit = graphene.String(required=True)
     bodyweight = graphene.Boolean(required=False)

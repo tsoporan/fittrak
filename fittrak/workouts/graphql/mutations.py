@@ -237,7 +237,7 @@ class AddSet(graphene.Mutation):
     class Arguments:
         exercise_id = graphene.Int(required=True)
         repetitions = graphene.Int(required=True)
-        weight = graphene.Int(required=True)
+        weight = graphene.Decimal(required=True)
         unit = graphene.String(required=True)
         bodyweight = graphene.Boolean(default_value=False)
 

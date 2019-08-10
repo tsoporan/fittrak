@@ -160,7 +160,7 @@ const addSetMutation = gql`
   mutation addSet(
     $exerciseId: Int!
     $repetitions: Int!
-    $weight: Int!
+    $weight: Decimal!
     $unit: String!
     $bodyweight: Boolean
   ) {
