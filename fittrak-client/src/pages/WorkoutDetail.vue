@@ -32,6 +32,10 @@
           <v-icon>arrow_back</v-icon>
         </v-btn>
 
+        <v-btn color="orange" @click.stop="workoutSetup" icon>
+          <v-icon>settings</v-icon>
+        </v-btn>
+
         <v-btn color="blue" @click.stop="pauseWorkout" icon>
           <v-icon>pause</v-icon>
         </v-btn>
@@ -92,6 +96,14 @@ export default {
   methods: {
     goBack() {
       return this.$router.go(-1);
+    },
+    workoutSetup() {
+      return this.$router.push({
+        name: "WorkoutSetup",
+        params: {
+          workoutId: this.workout.id
+        }
+      });
     },
     pauseWorkout() {
       console.log("pause workout");
