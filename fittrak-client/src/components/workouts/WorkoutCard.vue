@@ -77,14 +77,14 @@ export default {
     },
 
     started: data => {
-      return distanceInWords(new Date(), data.workout.dateStarted, {
+      return distanceInWords(new Date(), data.workout.startedAt, {
         addSuffix: true
       });
     },
 
     ended: data => {
-      if (data.workout.dateEnded) {
-        return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
+      if (data.workout.endedAt) {
+        return format(data.workout.endedAt, "YYYY-MM-DD [@] h:MMA");
       }
 
       return "∞";

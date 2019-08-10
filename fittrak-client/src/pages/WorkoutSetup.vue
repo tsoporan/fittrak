@@ -238,7 +238,7 @@ export default {
           variables: {
             workoutId: workout.id,
             workoutFields: {
-              dateStarted: new Date(),
+              startedAt: new Date(),
               status: IN_PROGRESS,
               exerciseTypes: normalizedSelected
             }

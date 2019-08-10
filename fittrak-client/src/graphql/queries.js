@@ -19,8 +19,8 @@ const workoutsQuery = gql`
   query workouts($status: WorkoutStatusesEnum, $limit: Int) {
     workouts(status: $status, limit: $limit) {
       id
-      dateStarted
-      dateEnded
+      startedAt
+      endedAt
       status
       slug
       exerciseCount
@@ -33,14 +33,14 @@ const workoutQuery = gql`
     workout(workoutId: $workoutId) {
       id
       status
-      dateStarted
-      dateEnded
+      startedAt
+      endedAt
       exercises {
         id
         slug
         name
-        dateStarted
-        dateEnded
+        startedAt
+        endedAt
         sets {
           id
           weight
@@ -85,8 +85,8 @@ const exercisesQuery = gql`
       id
       slug
       name
-      dateStarted
-      dateEnded
+      startedAt
+      endedAt
       workout {
         id
       }

@@ -34,7 +34,7 @@ export default {
           variables: {
             workoutId: workout.id,
             workoutFields: {
-              dateEnded: new Date(),
+              endedAt: new Date(),
               status: COMPLETE
             }
           }
