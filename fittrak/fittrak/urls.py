@@ -10,6 +10,9 @@ from graphene_django.views import GraphQLView
 from .schema import schema
 from .views import index
 
+# Updates django admin branding
+admin.site.site_header = "FitTrak Backend Admin"
+
 
 class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
     # Leads to a 403 instead of redirect to login
