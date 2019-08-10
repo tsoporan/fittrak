@@ -1,8 +1,8 @@
-import datetime
-from typing import Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from .models import WorkoutEvent
 
+# TODO: Rework this, need a more powerful templating language? Jinja?
 action_template: dict = {
     "create_workout": 'New workout created at "{state[created_at]}"',
     "update_workout": 'Workout "{state[current[slug]]}" has been updated with: "{state[changed]}"',
@@ -10,51 +10,41 @@ action_template: dict = {
 }
 
 
-def merge_dicts(*dicts) -> dict:
-    result: dict = {}
-
-    for d in dicts:
-        result.update(d)
-
-    return result
-
-
-def model_as_dict(model) -> dict:
+def clean_models(models: List) -> List[Dict]:
     """
-    Turns a model into a dict stripping away 'unwanted' fields, i.e start
-    with an underscore
+    Turns a model into a dict stripping away 'unwanted' fields
+    i.e fields starting with an underscore
     """
-    fields = vars(model)
 
-    return {key: value for key, value in fields.items() if not key.startswith("_")}
+    cleaned = []
 
+    for model in models:
+        fields = vars(model)
 
-def serialize_state(state):
-    for k, v in state.items():
-        if isinstance(v, datetime.datetime):
-            state[k] = v.strftime("%Y-%m-%d %H:%M")
+        cleaned.append(
+            {key: value for key, value in fields.items() if not key.startswith("_")}
+        )
 
-    return state
+    return cleaned
 
 
 def create_workout_event(
-    *, workout, action: str, user, state: Optional[Dict] = None
+    *, workout, action: str, user, state: Optional[Dict[str, Any]] = None
 ) -> None:
-    try:
-        template = action_template[action]
-    except KeyError:
-        # TODO: Logging
-        pass
-
     # Use the current model as state by default,
     # otherwise favour the new state passed in - useful for
     # updated fields.
 
     if not state:
-        state = model_as_dict(workout)
+        state = clean_models([workout])
+    else:
+        # Custom state should be "dictized", however
+        # values can be arrays
 
-    message = template.format(state=serialize_state(state))
+        for k, v in state.items():
+            if isinstance(v, list):
+                state[k] = clean_models(v)
+            else:
+                state[k] = clean_models([v])
 
-    WorkoutEvent.objects.create(
-        workout=workout, action=action, user=user, state=state, message=message
-    )
+    WorkoutEvent.objects.create(workout=workout, action=action, user=user, state=state)

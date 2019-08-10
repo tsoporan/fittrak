@@ -6,17 +6,16 @@ from .models import Exercise, ExerciseType, Set, Workout, WorkoutEvent
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
     search_fields = ("user__email", "user__username", "slug")
-    date_hierarchy = "date_started"
+    date_hierarchy = "started_at"
     list_display = (
         "id",
         "slug",
         "user",
         "status",
-        "date_started",
-        "date_ended",
+        "started_at",
+        "ended_at",
         "is_active",
         "created_at",
-        "updated_at",
     )
     list_filter = ("is_active", "status", "created_at")
 
@@ -27,6 +26,22 @@ class ExerciseTypeAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "name", "is_active", "created_at")
     list_filter = ("is_active", "created_at")
     date_hierarchy = "created_at"
+
+
+@admin.register(Set)
+class SetAdmin(admin.ModelAdmin):
+    date_hierarchy = "created_at"
+    list_display = (
+        "id",
+        "user",
+        "weight",
+        "repetitions",
+        "unit",
+        "bodyweight",
+        "exercise",
+        "is_active",
+    )
+    list_filter = ("created_at", "is_active")
 
 
 class SetInline(admin.StackedInline):
@@ -42,14 +57,15 @@ class ExerciseAdmin(admin.ModelAdmin):
         "user__email",
         "user__username",
     )
-    date_hierarchy = "date_started"
+    date_hierarchy = "created_at"
     list_display = (
         "id",
         "get_type",
         "slug",
         "workout",
-        "date_started",
-        "date_ended",
+        "started_at",
+        "ended_at",
+        "created_at",
         "is_active",
     )
     list_filter = ("created_at", "is_active")

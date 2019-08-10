@@ -5,7 +5,7 @@ Workout GraphQL mutations
 import graphene
 from django.utils import timezone
 from graphql import GraphQLError
-from workouts.helpers import create_workout_event, merge_dicts, model_as_dict
+from workouts.helpers import create_workout_event
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
@@ -30,14 +30,9 @@ class CreateWorkout(graphene.Mutation):
         if user.is_anonymous:
             raise GraphQLError("Not authenticated.")
 
-        new_workout = Workout.objects.create(user=user, date_started=timezone.now())
+        new_workout = Workout.objects.create(user=user)
 
-        create_workout_event(
-            user=user,
-            action="create_workout",
-            workout=new_workout,
-            state=model_as_dict(new_workout),
-        )
+        create_workout_event(user=user, action="create_workout", workout=new_workout)
 
         return CreateWorkout(workout=new_workout)
 
@@ -57,17 +52,11 @@ class RemoveWorkout(graphene.Mutation):
         except Workout.DoesNotExist:
             raise GraphQLError("Workout not found.")
 
-        workout.updated_at = timezone.now()
         workout.is_active = False
         workout.status = Workout.ARCHIVED
-        workout.save()
+        workout.save(update_fields=["is_active", "status"])
 
-        create_workout_event(
-            user=user,
-            action="remove_workout",
-            workout=workout,
-            state=model_as_dict(workout),
-        )
+        create_workout_event(user=user, action="remove_workout", workout=workout)
 
         return RemoveWorkout(workout=workout)
 
@@ -88,6 +77,8 @@ class UpdateWorkout(graphene.Mutation):
         except Workout.DoesNotExist:
             raise GraphQLError("Workout not found.")
 
+        before_workout = vars(workout)
+
         dirty = False
 
         # Must happen before as exercises require special handling
@@ -106,9 +97,6 @@ class UpdateWorkout(graphene.Mutation):
                     workout=workout, exercise_type=exercise_type, user=user
                 )
 
-        prev_state = model_as_dict(workout)
-        changed = {}
-
         # Unpack the fields and update the model
 
         for field_name, value in workout_fields.items():
@@ -117,25 +105,21 @@ class UpdateWorkout(graphene.Mutation):
 
             setattr(workout, field_name, value)
 
-            changed.update({field_name: value})
-
             dirty = True
 
+        after_workout = vars(workout)
+
         if dirty:
-            workout.updated_at = timezone.now()
             workout.save()
 
             create_workout_event(
                 user=user,
                 action="update_workout",
                 workout=workout,
-                state=merge_dicts(
-                    {
-                        "previous": {**prev_state},
-                        "current": model_as_dict(workout),
-                        "changed": changed,
-                    }
-                ),
+                state={
+                    "previous_workout": before_workout,
+                    "current_workout": after_workout,
+                },
             )
 
         return UpdateWorkout(workout=workout)
@@ -163,6 +147,17 @@ class AddCustomExercise(graphene.Mutation):
 
         exercise = Exercise.objects.create(
             user=user, workout=workout, exercise_type=exercise_type
+        )
+
+        create_workout_event(
+            user=user,
+            action="add_custom_exercise_to_workout",
+            workout=workout,
+            state={
+                "exericse": exercise,
+                "exercise_type": exercise_type,
+                "muscle_group": muscle_group,
+            },
         )
 
         return AddCustomExercise(exercise=exercise)
@@ -204,6 +199,13 @@ class AddExercises(graphene.Mutation):
 
             added.append(exercise)
 
+        create_workout_event(
+            user=user,
+            action="add_exercises_to_workout",
+            workout=workout,
+            state={"exercises": added},
+        )
+
         return AddExercises(workout=workout, exercises=added)
 
 
@@ -225,10 +227,19 @@ class RemoveExercise(graphene.Mutation):
         except Exercise.DoesNotExist:
             raise GraphQLError("Exercise not found.")
 
+        workout = exercise.workout
+
         exercise.is_active = False
         exercise.save()
 
-        return RemoveExercise(exercise=exercise, workout=exercise.workout)
+        create_workout_event(
+            user=user,
+            action="remove_exercise_from_workout",
+            workout=workout,
+            state={"exercise": exercise},
+        )
+
+        return RemoveExercise(exercise=exercise, workout=workout)
 
 
 class AddSet(graphene.Mutation):
@@ -265,6 +276,13 @@ class AddSet(graphene.Mutation):
             bodyweight=bodyweight,
         )
 
+        create_workout_event(
+            user=user,
+            action="add_set_to_workout",
+            workout=exercise.workout,
+            state={"set": _set, "exercise": exercise},
+        )
+
         return AddSet(set=_set, exercise=exercise)
 
 
@@ -287,6 +305,8 @@ class UpdateSet(graphene.Mutation):
 
         dirty = False
 
+        before_set = vars(_set)
+
         for name, value in set_fields.items():
             if not hasattr(_set, name):
                 continue
@@ -295,9 +315,22 @@ class UpdateSet(graphene.Mutation):
 
             dirty = True
 
+        after_set = vars(_set)
+
         if dirty:
             _set.updated_at = timezone.now()
             _set.save()
+
+        create_workout_event(
+            user=user,
+            action="update_set_on_workout",
+            workout=_set.exercise.workout,
+            state={
+                "before_set": before_set,
+                "after_set": after_set,
+                "exercise": _set.exercise,
+            },
+        )
 
         return UpdateSet(set=_set, exercise=_set.exercise)
 
@@ -321,5 +354,12 @@ class RemoveSet(graphene.Mutation):
         _set.is_active = False
         _set.updated_at = timezone.now()
         _set.save()
+
+        create_workout_event(
+            user=user,
+            action="remove_set_from_workout",
+            workout=_set.exercise.workout,
+            state={"set": _set, "exercise": _set.exercise},
+        )
 
         return RemoveSet(set=_set, exercise=_set.exercise)
