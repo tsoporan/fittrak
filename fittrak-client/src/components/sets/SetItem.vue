@@ -8,13 +8,13 @@
     </v-list-tile-content>
 
     <v-list-tile-action>
-      <v-btn small flat color="info" icon @click.stop="editSet">
+      <v-btn small text color="info" icon @click.stop="editSet">
         <v-icon>edit</v-icon>
       </v-btn>
     </v-list-tile-action>
 
     <v-list-tile-action>
-      <v-btn small flat color="info" icon @click.stop="removeSet">
+      <v-btn small text color="info" icon @click.stop="removeSet">
         <v-icon>delete</v-icon>
       </v-btn>
     </v-list-tile-action>

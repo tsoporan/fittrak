@@ -19,7 +19,9 @@
     </v-container>
     <v-container v-else fluid>
       <v-layout v-if="exercises.length" row pa-3 mb-12>
-        <v-card>Card test</v-card>
+        <v-flex mb-3>
+          <Tip>Test</Tip>
+        </v-flex>
         <ExerciseList :exercises="exercises" />
       </v-layout>
       <v-layout v-else fill-height row align-center justify-center>
@@ -54,6 +56,7 @@ import { queries } from "@/graphql";
 import Loader from "@/components/app/Loader";
 import ExerciseList from "@/components/exercises/ExerciseList";
 import AppBar from "@/components/app/AppBar";
+import Tip from "@/components/app/Tip";
 import WorkoutFooter from "@/components/workouts/WorkoutFooter";
 
 export default {
@@ -115,6 +118,7 @@ export default {
 
   components: {
     AppBar,
+    Tip,
     ExerciseList,
     Loader,
     WorkoutFooter

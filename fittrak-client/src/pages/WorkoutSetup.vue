@@ -5,15 +5,13 @@
     <v-container fluid>
       <v-layout row mb-12 ma-1>
         <v-flex>
-          <v-card>
-            <v-card-text>
-              💡 Build your workout below! Once you're ready
-              <kbd><v-icon color="white">play_arrow</v-icon></kbd> your workout.
-              Not yet ready to start?
-              <kbd><v-icon color="white">pause</v-icon></kbd> and come back to
-              it later!
-            </v-card-text>
-          </v-card>
+          <Tip>
+            Build your workout below! Once you're ready
+            <kbd><v-icon color="white">play_arrow</v-icon></kbd> your workout.
+            Not yet ready to start?
+            <kbd><v-icon color="white">pause</v-icon></kbd> and come back to it
+            later!
+          </Tip>
         </v-flex>
 
         <v-flex xs12 pt-5>
@@ -135,6 +133,7 @@ import { showSnackbar } from "@/helpers";
 import { IN_PROGRESS } from "@/constants";
 
 import AppBar from "@/components/app/AppBar";
+import Tip from "@/components/app/Tip";
 import WorkoutFooter from "@/components/workouts/WorkoutFooter";
 
 export default {
@@ -288,7 +287,8 @@ export default {
 
   components: {
     AppBar,
-    WorkoutFooter
+    WorkoutFooter,
+    Tip
   }
 };
 </script>
