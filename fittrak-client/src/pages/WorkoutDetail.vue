@@ -26,6 +26,19 @@
           Hrm, no exercises? 🤔
         </p>
       </v-layout>
+      <WorkoutFooter>
+        <v-btn color="darkGrey" @click.stop="goBack" icon>
+          <v-icon>arrow_back</v-icon>
+        </v-btn>
+
+        <v-btn color="blue" @click.stop="pauseWorkout" icon>
+          <v-icon>pause</v-icon>
+        </v-btn>
+
+        <v-btn color="green" @click.stop="finishWorkout" icon>
+          <v-icon>check_circle</v-icon>
+        </v-btn>
+      </WorkoutFooter>
     </v-container>
   </div>
 </template>
@@ -36,6 +49,7 @@ import { queries } from "@/graphql";
 import Loader from "@/components/app/Loader";
 import ExerciseList from "@/components/exercises/ExerciseList";
 import AppBar from "@/components/app/AppBar";
+import WorkoutFooter from "@/components/workouts/WorkoutFooter";
 
 export default {
   name: "Workout",
@@ -77,7 +91,8 @@ export default {
   components: {
     AppBar,
     ExerciseList,
-    Loader
+    Loader,
+    WorkoutFooter
   }
 };
 </script>

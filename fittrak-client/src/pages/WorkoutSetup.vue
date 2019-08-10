@@ -115,11 +115,11 @@
           <v-icon>arrow_back</v-icon>
         </v-btn>
 
-        <v-btn color="darkGrey" @click.stop="pauseWorkout" icon>
-          <v-icon>pause</v-icon>
+        <v-btn color="red" @click.stop="cancelWorkout" icon>
+          <v-icon>cancel</v-icon>
         </v-btn>
 
-        <v-btn color="darkGrey" @click.stop="startWorkout" icon>
+        <v-btn color="green" @click.stop="startWorkout" icon>
           <v-icon>play_arrow</v-icon>
         </v-btn>
       </WorkoutFooter>
@@ -265,8 +265,8 @@ export default {
       return this.$router.go(-1);
     },
 
-    pauseWorkout() {
-      console.log("pausing workout");
+    cancelWorkout() {
+      console.log("cancel workout");
     }
   },
 
