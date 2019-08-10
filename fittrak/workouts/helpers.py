@@ -18,8 +18,6 @@ def clean_models(models: List) -> List[Dict]:
 
     cleaned = []
 
-    print("models", models)
-
     for model in models:
         fields = vars(model)
 
