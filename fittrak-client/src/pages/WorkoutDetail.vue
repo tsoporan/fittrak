@@ -17,8 +17,9 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-container v-else fill-height fluid>
-      <v-layout v-if="exercises.length">
+    <v-container v-else fluid>
+      <v-layout v-if="exercises.length" row pa-3 mb-12>
+        <v-card>Card test</v-card>
         <ExerciseList :exercises="exercises" />
       </v-layout>
       <v-layout v-else fill-height row align-center justify-center>
@@ -85,6 +86,18 @@ export default {
         };
       },
       update: data => data.exercises
+    }
+  },
+
+  methods: {
+    goBack() {
+      return this.$router.go(-1);
+    },
+    pauseWorkout() {
+      console.log("pause workout");
+    },
+    finishWorkout() {
+      console.log("finish workout");
     }
   },
 
