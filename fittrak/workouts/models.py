@@ -47,7 +47,7 @@ class Workout(UserBaseModel):
         ordering = ("-id",)
 
     def __str__(self):
-        return f"{self.user}"
+        return f"#{self.id}-{self.slug} - {self.user}"
 
     def is_finished(self):
         return True if self.ended_at else False
@@ -64,12 +64,18 @@ class WorkoutEvent(UserBaseModel):
     # DjangoJSONEncoder deals with datetimes and uuids, default encoder does not
     state = JSONField(encoder=DjangoJSONEncoder, help_text="Store the model state")
 
+    class Meta:
+        ordering = ("-id",)
+
     def __str__(self):
         return f"{self.workout}"
 
 
 class MuscleGroup(UserBaseModel):
     name = models.CharField(max_length=250, unique=True)
+
+    class Meta:
+        ordering = ("-id",)
 
     def __str__(self):
         return self.name
@@ -83,6 +89,7 @@ class ExerciseType(UserBaseModel):
 
     class Meta:
         unique_together = ("user", "name")
+        ordering = ("-id",)
 
     def __str__(self):
         return self.name

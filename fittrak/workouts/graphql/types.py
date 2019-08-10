@@ -34,8 +34,8 @@ class ExerciseTypeInputType(graphene.InputObjectType):
 
 
 class WorkoutFieldInputType(graphene.InputObjectType):
-    date_started = graphene.types.datetime.DateTime()
-    date_ended = graphene.types.datetime.DateTime()
+    started_at = graphene.types.datetime.DateTime()
+    ended_at = graphene.types.datetime.DateTime()
 
     # Only allowed status changes from client
     # i.e pending and archive are reserved for creation and "removal"

@@ -2,6 +2,8 @@
 Workout GraphQL mutations
 """
 
+from copy import deepcopy
+
 import graphene
 from django.utils import timezone
 from graphql import GraphQLError
@@ -10,14 +12,8 @@ from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
 
-from .types import (
-    ExerciseInputType,
-    ExerciseType,
-    SetFieldInputType,
-    SetType,
-    WorkoutFieldInputType,
-    WorkoutType,
-)
+from .types import (ExerciseInputType, ExerciseType, SetFieldInputType,
+                    SetType, WorkoutFieldInputType, WorkoutType)
 
 
 class CreateWorkout(graphene.Mutation):
@@ -77,7 +73,7 @@ class UpdateWorkout(graphene.Mutation):
         except Workout.DoesNotExist:
             raise GraphQLError("Workout not found.")
 
-        before_workout = vars(workout)
+        before_workout = deepcopy(workout)
 
         dirty = False
 
@@ -107,8 +103,6 @@ class UpdateWorkout(graphene.Mutation):
 
             dirty = True
 
-        after_workout = vars(workout)
-
         if dirty:
             workout.save()
 
@@ -116,10 +110,7 @@ class UpdateWorkout(graphene.Mutation):
                 user=user,
                 action="update_workout",
                 workout=workout,
-                state={
-                    "previous_workout": before_workout,
-                    "current_workout": after_workout,
-                },
+                state={"before_workout": before_workout, "after_workout": workout},
             )
 
         return UpdateWorkout(workout=workout)
@@ -194,7 +185,7 @@ class AddExercises(graphene.Mutation):
                 user=user,
                 workout=workout,
                 exercise_type=exercise_type,
-                date_started=timezone.now(),
+                started_at=timezone.now(),
             )
 
             added.append(exercise)
@@ -305,7 +296,7 @@ class UpdateSet(graphene.Mutation):
 
         dirty = False
 
-        before_set = vars(_set)
+        before_set = deepcopy(_set)
 
         for name, value in set_fields.items():
             if not hasattr(_set, name):
@@ -314,8 +305,6 @@ class UpdateSet(graphene.Mutation):
             setattr(_set, name, value)
 
             dirty = True
-
-        after_set = vars(_set)
 
         if dirty:
             _set.updated_at = timezone.now()
@@ -327,7 +316,7 @@ class UpdateSet(graphene.Mutation):
             workout=_set.exercise.workout,
             state={
                 "before_set": before_set,
-                "after_set": after_set,
+                "after_set": _set,
                 "exercise": _set.exercise,
             },
         )
