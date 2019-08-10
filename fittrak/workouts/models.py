@@ -5,10 +5,10 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from fittrak.utils.models import BaseModel, UserBaseModel, WorkoutBaseModel
+from fittrak.utils.models import UserBaseModel
 
 
-class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
+class Workout(UserBaseModel):
     PENDING = "PENDING"
     IN_PROGRESS = "IN_PROGRESS"
     CANCELLED = "CANCELLED"
@@ -35,30 +35,31 @@ class Workout(BaseModel, UserBaseModel, WorkoutBaseModel):
 
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default=PENDING)
 
+    started_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp workout started"
+    )
+
+    ended_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp workout ended"
+    )
+
     class Meta:
         ordering = ("-id",)
 
     def __str__(self):
-        format_by = "%Y-%m-%d %H:%m"
-        start = self.date_started.strftime(format_by)
-        end = "N/A"
+        return f"{self.user}"
 
-        if self.date_ended:
-            end = self.date_ended.strftime(format_by)
-
-        return f"{self.user} - Start: {start} - End: {end}"
+    def is_finished(self):
+        return True if self.ended_at else False
 
 
-class WorkoutEvent(BaseModel, UserBaseModel):
+class WorkoutEvent(UserBaseModel):
     """
     Tracks state change on a Workout
     """
 
     workout = models.ForeignKey("Workout", on_delete=models.CASCADE)
     action = models.CharField(max_length=64)
-    message = models.TextField(
-        blank=True, help_text="Store the human friendly representation of the change"
-    )
 
     # DjangoJSONEncoder deals with datetimes and uuids, default encoder does not
     state = JSONField(encoder=DjangoJSONEncoder, help_text="Store the model state")
@@ -67,14 +68,14 @@ class WorkoutEvent(BaseModel, UserBaseModel):
         return f"{self.workout}"
 
 
-class MuscleGroup(BaseModel):
+class MuscleGroup(UserBaseModel):
     name = models.CharField(max_length=250, unique=True)
 
     def __str__(self):
         return self.name
 
 
-class ExerciseType(BaseModel, UserBaseModel):
+class ExerciseType(UserBaseModel):
     name = models.CharField(max_length=250)
     muscle_group = models.ForeignKey(
         MuscleGroup, null=True, blank=True, on_delete=models.CASCADE
@@ -87,7 +88,7 @@ class ExerciseType(BaseModel, UserBaseModel):
         return self.name
 
 
-class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
+class Exercise(UserBaseModel):
     workout = models.ForeignKey(
         Workout,
         null=True,
@@ -106,6 +107,16 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
         help_text="A human easy to read/share name for exercise",
     )
 
+    started_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp Exercise started"
+    )
+
+    ended_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp Exercise ended"
+    )
+
+    duration = models.DurationField(null=True, blank=True)
+
     class Meta:
         ordering = ("-id",)
 
@@ -113,7 +124,7 @@ class Exercise(BaseModel, UserBaseModel, WorkoutBaseModel):
         return self.exercise_type.name
 
 
-class Set(BaseModel, UserBaseModel, WorkoutBaseModel):
+class Set(UserBaseModel):
     LB = "LB"
     KG = "KG"
 
@@ -123,9 +134,19 @@ class Set(BaseModel, UserBaseModel, WorkoutBaseModel):
         Exercise, related_name="sets", on_delete=models.CASCADE
     )
     repetitions = models.PositiveIntegerField()
-    weight = models.PositiveIntegerField()
-    unit = models.CharField(max_length=32, choices=UNITS, default=LB)
+    weight = models.DecimalField(max_digits=4, decimal_places=2)
+    unit = models.CharField(max_length=2, choices=UNITS, default=LB)
     bodyweight = models.BooleanField(default=False)
+
+    started_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp Set started"
+    )
+
+    ended_at = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp Set ended"
+    )
+
+    duration = models.DurationField(null=True, blank=True)
 
     class Meta:
         ordering = ("-id",)
