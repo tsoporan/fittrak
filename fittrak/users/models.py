@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from fittrak.utils.models import BaseModel
 
 NOT_SET = "NOT_SET"
 VERIFIED = "VERIFIED"
@@ -16,13 +15,14 @@ class User(AbstractUser):
     pass
 
 
-class Profile(BaseModel):
+class Profile(models.Model):
     LBS = "LBS"
     KGS = "KGS"
 
     PREFERRED_UNITS = ((LBS, "LBS"), (KGS, "KGS"))
 
-    date_created = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     verification_token = models.CharField(max_length=32, default=NOT_SET)
