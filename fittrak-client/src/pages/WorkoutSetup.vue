@@ -108,27 +108,19 @@
         </v-flex>
       </v-layout>
 
-      <v-bottom-navigation
-        fixed
-        background-color="grey lighten-2"
-        grow
-        height="64"
-      >
-        <v-btn @click.stop="cancelWorkout" value="cancel">
-          <span>Cancel</span>
+      <WorkoutFooter>
+        <v-btn color="darkGrey" @click.stop="cancelWorkout" icon>
           <v-icon>cancel</v-icon>
         </v-btn>
 
-        <v-btn @click.stop="pauseWorkout" value="hold">
-          <span>Pause</span>
+        <v-btn color="darkGrey" @click.stop="pauseWorkout" icon>
           <v-icon>pause</v-icon>
         </v-btn>
 
-        <v-btn @click.stop="startWorkout" value="start">
-          <span>Start</span>
+        <v-btn color="darkGrey" @click.stop="startWorkout" icon>
           <v-icon>play_arrow</v-icon>
         </v-btn>
-      </v-bottom-navigation>
+      </WorkoutFooter>
     </v-container>
   </div>
 </template>
@@ -140,6 +132,7 @@ import { showSnackbar } from "@/helpers";
 import { IN_PROGRESS } from "@/constants";
 
 import AppBar from "@/components/app/AppBar";
+import WorkoutFooter from "@/components/workouts/WorkoutFooter";
 
 export default {
   name: "WorkoutSetup",
@@ -256,7 +249,6 @@ export default {
           showSnackbar("success", "Workout started!");
         })
         .catch(() => {
-          this.selectedExercises = [];
           showSnackbar("error", "Could not start workout.", true);
         });
     },
@@ -271,7 +263,8 @@ export default {
   },
 
   components: {
-    AppBar
+    AppBar,
+    WorkoutFooter
   }
 };
 </script>
