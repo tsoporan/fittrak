@@ -120,7 +120,8 @@
         </v-btn>
 
         <v-btn color="green" @click.stop="startWorkout" icon>
-          <v-icon>play_arrow</v-icon>
+          <v-icon v-if="!isWorkoutStarted">play_arrow</v-icon>
+          <v-icon v-else>arrow_forward</v-icon>
         </v-btn>
       </WorkoutFooter>
     </v-container>
@@ -177,6 +178,12 @@ export default {
     }
   },
 
+  computed: {
+    isWorkoutStarted: function() {
+      return this.workout.status === IN_PROGRESS;
+    }
+  },
+
   methods: {
     inSelected(exerciseId) {
       return Boolean(this.selectedExercises.find(ex => ex.id === exerciseId));
@@ -212,6 +219,15 @@ export default {
 
     startWorkout() {
       const workout = this.workout;
+
+      if (this.isWorkoutStarted) {
+        return this.$router.push({
+          name: "WorkoutDetail",
+          params: {
+            workoutId: workout.id
+          }
+        });
+      }
 
       if (!this.selectedExercises.length) {
         showSnackbar("orange", "Uh-oh looks like you have no exercises added.");
