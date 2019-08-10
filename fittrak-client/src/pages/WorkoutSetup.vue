@@ -8,8 +8,10 @@
           <v-card>
             <v-card-text>
               💡 Build your workout below! Once you're ready
-              <kbd>start</kbd> your workout. Not yet ready to start? Place your
-              workout on <kbd>hold</kbd> and come back to it later!
+              <kbd><v-icon color="white">play_arrow</v-icon></kbd> your workout.
+              Not yet ready to start?
+              <kbd><v-icon color="white">pause</v-icon></kbd> and come back to
+              it later!
             </v-card-text>
           </v-card>
         </v-flex>
@@ -109,8 +111,8 @@
       </v-layout>
 
       <WorkoutFooter>
-        <v-btn color="darkGrey" @click.stop="cancelWorkout" icon>
-          <v-icon>cancel</v-icon>
+        <v-btn color="darkGrey" @click.stop="goBack" icon>
+          <v-icon>arrow_back</v-icon>
         </v-btn>
 
         <v-btn color="darkGrey" @click.stop="pauseWorkout" icon>
@@ -245,16 +247,22 @@ export default {
           }
         })
         .then(() => {
-          this.selectedExercises = [];
           showSnackbar("success", "Workout started!");
+
+          this.$router.push({
+            name: "WorkoutDetail",
+            params: {
+              workoutId: workout.id
+            }
+          });
         })
         .catch(() => {
           showSnackbar("error", "Could not start workout.", true);
         });
     },
 
-    cancelWorkout() {
-      console.log("cancelling workout");
+    goBack() {
+      return this.$router.go(-1);
     },
 
     pauseWorkout() {
