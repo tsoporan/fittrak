@@ -1,27 +1,22 @@
 <template>
   <v-card :color="workout.color" dark @click.stop="viewWorkout">
-    <v-card-title primary-title>
-      <span class="headline">{{ started }}</span>
-    </v-card-title>
-
-    <v-divider light />
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title class="headline">
+          <span :class="relativeDarkness">#{{ workout.id }}</span>
+        </v-list-item-title>
+        <v-list-item-subtitle> started {{ started }} </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
 
     <v-card-text>
-      <v-layout row>
-        <v-flex class="subheading" md6 xs12>
-          <div>Time Spent <span :class="relativeDarkness">Test</span></div>
-          <div>
-            Total Weight
-          </div>
-          <div>
-            Type: Custom
-          </div>
-          <div>Exercises: {{ workout.exerciseCount }}</div>
-        </v-flex>
+      <v-layout row wrap align-center>
+        <v-flex xs12 title text-center>
+          <span :class="relativeDarkness">{{ workout.exerciseCount }}</span>
+          exercises,
 
-        <v-flex class="subheading" md6 xs12>
-          <div>Created on {{ workout.created_at }}</div>
-          <div>Last updated {{ workout.updated_at }}</div>
+          <span :class="relativeDarkness">{{ workout.totalWeight || 0 }}</span>
+          total weight
         </v-flex>
       </v-layout>
     </v-card-text>
@@ -36,18 +31,18 @@
     <v-divider light />
 
     <v-card-actions>
-      <v-toolbar flat dark :color="workout.color">
-        <v-btn icon>
+      <v-toolbar dense flat dark :color="workout.color">
+        <v-btn small icon>
           <v-icon>share</v-icon>
         </v-btn>
 
         <v-spacer />
 
-        <v-btn icon>
+        <v-btn small icon>
           <v-icon>favorite</v-icon>
         </v-btn>
-        <v-btn @click.stop="removeWorkout" icon>
-          <v-icon>delete</v-icon>
+        <v-btn small @click.stop="archiveWorkout" icon>
+          <v-icon>archive</v-icon>
         </v-btn>
       </v-toolbar>
     </v-card-actions>
@@ -113,7 +108,7 @@ export default {
   },
 
   methods: {
-    removeWorkout() {
+    archiveWorkout() {
       const workoutId = this.$props.workout.id;
 
       this.$apollo.mutate({

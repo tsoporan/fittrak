@@ -1,7 +1,7 @@
 <template>
-  <v-layout row justify-space-around wrap mt-3 v-if="workouts.length">
+  <v-layout row wrap mt-3 v-if="workouts.length">
     <template v-for="workout in mappedWorkouts">
-      <v-flex xs12 md4 :key="workout.id">
+      <v-flex xs12 md3 :key="workout.id">
         <WorkoutCard :workout="workout" :key="workout.id" />
       </v-flex>
     </template>

@@ -24,6 +24,7 @@ const workoutsQuery = gql`
       status
       slug
       exerciseCount
+      totalWeight
     }
   }
 `;
@@ -48,6 +49,8 @@ const workoutQuery = gql`
           unit
         }
       }
+      exerciseCount
+      totalWeight
     }
   }
 `;
