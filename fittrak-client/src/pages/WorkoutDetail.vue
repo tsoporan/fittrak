@@ -20,7 +20,17 @@
     <v-container v-else fluid>
       <v-layout v-if="exercises.length" row pa-3 mb-12>
         <v-flex mb-3>
-          <Tip>Test</Tip>
+          <Tip>
+            <template v-slot:icon>
+              🏋️
+            </template>
+            You're on your way to a stronger you 💪! Mark an exercise and
+            workout <v-icon color="green">check_circle</v-icon> when you're done
+            with them! You can also <v-icon color="blue">pause</v-icon> your
+            workout and get back to it later or
+            <v-icon color="orange">settings</v-icon> to configure your
+            exercises. Enjoy! 💚
+          </Tip>
         </v-flex>
         <ExerciseList :exercises="exercises" />
       </v-layout>

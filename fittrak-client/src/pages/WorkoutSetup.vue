@@ -7,10 +7,9 @@
         <v-flex>
           <Tip>
             Build your workout below! Once you're ready
-            <kbd><v-icon color="white">play_arrow</v-icon></kbd> your workout.
-            Not yet ready to start?
-            <kbd><v-icon color="white">pause</v-icon></kbd> and come back to it
-            later!
+            <v-icon color="green">play_arrow</v-icon> your workout. Made an
+            oops? <v-icon color="red">cancel</v-icon> and we'll forget all about
+            it.
           </Tip>
         </v-flex>
 
@@ -40,7 +39,9 @@
                 @blur="addMultiSelected"
               >
                 <template v-slot:no-data>
-                  Hrm, that exercise doesn't exist.
+                  <p style="margin:0; padding:5px">
+                    Hrm, that exercise doesn't exist. 🤔
+                  </p>
                 </template>
               </v-autocomplete>
             </v-form>
