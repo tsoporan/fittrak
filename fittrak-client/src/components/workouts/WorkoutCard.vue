@@ -32,17 +32,18 @@
 
     <v-card-actions>
       <v-toolbar dense flat dark :color="workout.color">
-        <v-btn small icon>
-          <v-icon>share</v-icon>
+        <v-btn small icon @click.stop="archiveWorkout">
+          <v-icon>archive</v-icon>
         </v-btn>
 
         <v-spacer />
 
-        <v-btn small icon>
-          <v-icon>favorite</v-icon>
+        <v-btn small icon @click.stop="shareWorkout">
+          <v-icon>share</v-icon>
         </v-btn>
-        <v-btn small @click.stop="archiveWorkout" icon>
-          <v-icon>archive</v-icon>
+
+        <v-btn small icon @click.stop="favoriteWorkout">
+          <v-icon>favorite</v-icon>
         </v-btn>
       </v-toolbar>
     </v-card-actions>
@@ -108,6 +109,12 @@ export default {
   },
 
   methods: {
+    favoriteWorkout() {
+      return;
+    },
+    shareWorkout() {
+      return;
+    },
     archiveWorkout() {
       const workoutId = this.$props.workout.id;
 
@@ -140,9 +147,13 @@ export default {
     },
 
     viewWorkout() {
-      const workoutId = this.$props.workout.id;
+      const { workout } = this.$props;
 
-      this.$router.push(`/workouts/${workoutId}`);
+      if (workout.status === PENDING) {
+        return this.$router.push(`/workouts/${workout.id}/setup`);
+      }
+
+      return this.$router.push(`/workouts/${workout.id}`);
     }
   },
 
