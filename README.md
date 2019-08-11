@@ -6,7 +6,10 @@
 
 A no-frills fitness tracking tool for the stats inclined 🤓.
 
-![FitTrak Screen](https://user-images.githubusercontent.com/130991/46576510-5a7b2800-c999-11e8-8052-1298a53852bb.png)
+![2019-08-11-133727_1886x1076_scrot](https://user-images.githubusercontent.com/130991/62837444-6b419d80-bc3d-11e9-82f6-bfaa2cca3110.png)
+![2019-08-11-133646_1891x1074_scrot](https://user-images.githubusercontent.com/130991/62837445-6b419d80-bc3d-11e9-8ef2-15ebe618740e.png)
+![2019-08-11-133602_1892x1076_scrot](https://user-images.githubusercontent.com/130991/62837446-6b419d80-bc3d-11e9-9657-0fc2438e3602.png)
+
 
 ---
 
