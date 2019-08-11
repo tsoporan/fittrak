@@ -19,13 +19,14 @@
     <v-list dense nav>
       <v-list-item link to="/" color="grey lighten-3">
         <v-list-item-icon>
-          <v-icon>home</v-icon>
+          <v-icon>dashboard</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
+      <!-- TODO: Implement
       <v-list-item link to="/progress" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>trending_up</v-icon>
@@ -34,7 +35,9 @@
           <v-list-item-title>Progress</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      -->
 
+      <!-- TODO: Implement
       <v-list-item link to="/history" color="grey lighten-3">
         <v-list-item-icon>
           <v-icon>history</v-icon>
@@ -43,6 +46,7 @@
           <v-list-item-title>History</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      -->
 
       <v-list-item link to="/settings" color="grey lighten-3">
         <v-list-item-icon>
