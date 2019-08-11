@@ -17,7 +17,8 @@
         <v-flex xs12 title text-center>
           <span :class="relativeDarkness">{{ workout.exerciseCount }}</span>
           exercises, moved
-          <span :class="relativeDarkness">{{ workout.totalWeight || 0 }} </span
+          <span :class="relativeDarkness"
+            >~{{ Math.round(workout.totalWeight) || 0 }} </span
           >lbs
         </v-flex>
       </v-layout>
