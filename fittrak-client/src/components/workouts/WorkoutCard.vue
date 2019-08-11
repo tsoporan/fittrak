@@ -16,10 +16,9 @@
       <v-layout row wrap align-center>
         <v-flex xs12 title text-center>
           <span :class="relativeDarkness">{{ workout.exerciseCount }}</span>
-          exercises,
-
-          <span :class="relativeDarkness">{{ workout.totalWeight || 0 }}</span>
-          total weight
+          exercises, moved
+          <span :class="relativeDarkness">{{ workout.totalWeight || 0 }} </span
+          >lbs
         </v-flex>
       </v-layout>
     </v-card-text>
