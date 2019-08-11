@@ -1,3 +1,4 @@
+import decimal
 from typing import Any, Dict, List, Optional
 
 from .models import WorkoutEvent
@@ -48,3 +49,10 @@ def create_workout_event(
                 state[k] = clean_models([v])
 
     WorkoutEvent.objects.create(workout=workout, action=action, user=user, state=state)
+
+
+def convert_to_lbs(weight: decimal.Decimal, incoming_unit: str):
+    if incoming_unit == "KG":
+        return weight * decimal.Decimal("2.204623")
+
+    return weight

@@ -5,6 +5,7 @@ from decimal import Decimal
 
 import graphene
 from graphene_django.types import DjangoObjectType
+from workouts.helpers import convert_to_lbs
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
@@ -64,13 +65,19 @@ class WorkoutType(DjangoObjectType):
         exercises = workout.exercises.filter(is_active=True).values("id")
         sets = (
             Set.objects.filter(exercise__in=exercises, is_active=True)
-            .values("repetitions", "weight")
+            .values("repetitions", "weight", "unit")
             .exclude(repetitions__isnull=True)
             .exclude(weight__isnull=True)
         )
 
         if sets:
-            return sum([s["repetitions"] * s["weight"] for s in sets])
+            return sum(
+                [
+                    s["repetitions"] * convert_to_lbs(s["weight"], s["unit"])
+
+                    for s in sets
+                ]
+            )
 
         return Decimal(0)
 
