@@ -7,28 +7,27 @@
 
       <v-text-field
         v-model="viewer.profile.height"
-        label="Height"
+        label="Height (cm)"
         type="number"
       />
 
       <v-text-field
         v-model="viewer.profile.weight"
-        label="Weight"
+        label="Weight (lbs)"
         type="number"
       />
 
       <v-radio-group
         v-model="viewer.profile.preferredUnit"
-        label="Preferred Unit"
+        label="Preferred Workout Unit"
       >
-        <v-radio label="LBS" value="LBS" />
-        <v-radio label="KGS" value="KGS" />
+        <v-radio color="primary" label="LBS" value="LBS" />
+        <v-radio color="primary" label="KGS" value="KGS" />
       </v-radio-group>
-
       <v-divider />
 
-      <v-flex text-xs-right mt-3>
-        <v-btn dark color="darkGrey" depressed @click.stop="updateSettings"
+      <v-flex text-end mt-4>
+        <v-btn rounded dark color="darkGrey" @click.stop="updateSettings"
           >Save</v-btn
         >
       </v-flex>
