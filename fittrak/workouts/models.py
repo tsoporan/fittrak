@@ -141,7 +141,7 @@ class Set(UserBaseModel):
         Exercise, related_name="sets", on_delete=models.CASCADE
     )
     repetitions = models.PositiveIntegerField()
-    weight = models.DecimalField(max_digits=4, decimal_places=2)
+    weight = models.DecimalField(max_digits=6, decimal_places=2)
     unit = models.CharField(max_length=2, choices=UNITS, default=LB)
     bodyweight = models.BooleanField(default=False)
 

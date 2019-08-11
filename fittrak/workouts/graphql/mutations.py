@@ -7,13 +7,20 @@ from copy import deepcopy
 import graphene
 from django.utils import timezone
 from graphql import GraphQLError
+
 from workouts.helpers import create_workout_event
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
 
-from .types import (ExerciseInputType, ExerciseType, SetFieldInputType,
-                    SetType, WorkoutFieldInputType, WorkoutType)
+from .types import (
+    ExerciseInputType,
+    ExerciseType,
+    SetFieldInputType,
+    SetType,
+    WorkoutFieldInputType,
+    WorkoutType,
+)
 
 
 class CreateWorkout(graphene.Mutation):
