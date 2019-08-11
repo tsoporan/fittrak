@@ -1,56 +1,40 @@
 <template>
-  <v-flex xs12>
-    <v-expansion-panel 
-      v-if="exercises && exercises.length" 
-      expand 
-      v-model="panel">
-      <v-expansion-panel-content
-        v-for="exercise in exercises"
-        :key="exercise.id"
-      >
-        <v-flex slot="header">
-          <strong>{{ exercise.name }} </strong>
-        </v-flex>
+  <v-expansion-panels v-model="panel" :disabled="disabled" multiple>
+    <v-expansion-panel v-for="exercise in exercises" :key="exercise.id">
+      <v-expansion-panel-header>
+        <h2 class="heading">{{ exercise.name }}</h2>
+      </v-expansion-panel-header>
 
-        <v-card>
-          <v-divider />
+      <v-expansion-panel-content>
+        <v-layout row wrap>
+          <!--
+          <v-flex xs12>
+            <v-btn
+              small
+              text
+              color="info"
+              icon
+              @click.stop="removeExercise(exercise)"
+            >
+              <v-icon>delete</v-icon>
+            </v-btn>
+          </v-flex>
+          -->
 
-          <v-flex ma-4>
-            <v-layout 
-              row 
-              wrap>
-              <v-flex text-xs-right>
-                <v-btn 
-                  small 
-                  flat 
-                  color="info" 
-                  icon 
-                  @click.stop="removeExercise(exercise)">
-                  <v-icon>delete</v-icon>
-                </v-btn>
-              </v-flex>
-            </v-layout>
-
-            <h2 class="display-0"> Add Set </h2>
+          <v-flex xs12>
+            <h3 class="title pa-3">New Set</h3>
             <AddSet :exercise="exercise" />
           </v-flex>
 
-          <v-divider />
-
-          <v-flex ma-4>
-            <p/>
-            <h2 class="display-0"> Set List </h2>
+          <v-flex xs12>
+            <v-divider />
+            <h2 class="title pa-3">Sets</h2>
             <SetList :exercise="exercise" />
           </v-flex>
-        </v-card>
+        </v-layout>
       </v-expansion-panel-content>
     </v-expansion-panel>
-    <v-flex 
-      v-else 
-      text-xs-center>
-      No exercises! 😞
-    </v-flex>
-  </v-flex>
+  </v-expansion-panels>
 </template>
 
 <script>
@@ -66,7 +50,8 @@ export default {
 
   data() {
     return {
-      panel: [true]
+      panel: [],
+      disabled: false
     };
   },
 

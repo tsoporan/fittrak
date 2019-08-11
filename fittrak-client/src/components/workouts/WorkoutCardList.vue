@@ -1,31 +1,13 @@
 <template>
-  <v-layout 
-    row 
-    justify-space-around
-    wrap
-    mt-3
-    v-if="workouts.length"
-  >
-    <template
-      v-for="workout in coloredWorkouts"
-    >
-      <v-flex
-        xs12
-        md4
-        :key="workout.id"
-      > 
-        <WorkoutCard
-          :workout="workout" 
-          :key="workout.id" />
+  <v-layout row wrap mt-3 v-if="workouts.length">
+    <template v-for="workout in mappedWorkouts">
+      <v-flex xs12 md3 :key="workout.id">
+        <WorkoutCard :workout="workout" :key="workout.id" />
       </v-flex>
     </template>
   </v-layout>
 
-  <v-layout
-    v-else 
-    text-xs-center
-    align-content-center
-  >
+  <v-layout v-else text-xs-center align-content-center>
     <v-flex>
       <span class="headline">
         No workouts available! 😞
@@ -35,10 +17,9 @@
 </template>
 
 <script>
-import { getRandomColor } from "@/helpers";
+import { getStatusColor } from "@/helpers";
 
 import WorkoutCard from "@/components/workouts/WorkoutCard";
-import WorkoutFilterHeader from "@/components/workouts/WorkoutFilterHeader";
 
 export default {
   name: "WorkoutCardList",
@@ -50,17 +31,16 @@ export default {
   },
 
   computed: {
-    coloredWorkouts() {
+    mappedWorkouts() {
       return this.workouts.map(workout => ({
         ...workout,
-        color: getRandomColor()
+        color: getStatusColor(workout.status)
       }));
     }
   },
 
   components: {
-    WorkoutCard,
-    WorkoutFilterHeader
+    WorkoutCard
   },
 
   props: {

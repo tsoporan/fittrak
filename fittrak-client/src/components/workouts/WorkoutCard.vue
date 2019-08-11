@@ -1,57 +1,31 @@
 <template>
-  <v-card
-    :color="workout.color"
-    dark
-    @click.stop="viewWorkout"
-  >
-    <v-card-title primary-title> 
-      <span class="headline">{{ started }}</span>
-    </v-card-title>
-
-    <v-divider light />
+  <v-card :color="workout.color" dark @click.stop="viewWorkout">
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-list-item-title class="headline">
+          <span :class="relativeDarkness">#{{ workout.id }}</span>
+        </v-list-item-title>
+        <v-list-item-subtitle v-if="started">
+          started {{ started }}
+        </v-list-item-subtitle>
+        <v-list-item-subtitle v-else> waiting to start </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
 
     <v-card-text>
-      <v-layout
-        row 
-      >
-        <v-flex 
-          class="subheading" 
-          md6 
-          xs12>
-          <div> 
-            Time Spent <span :class="relativeDarkness">Test</span>
-          </div>
-          <div>
-            Total Weight
-          </div>
-          <div>
-            Type: Custom
-          </div>
-          <div>
-            Exercises: {{ workout.exerciseCount }}
-          </div>
-        </v-flex>
-
-        <v-flex 
-          class="subheading" 
-          md6 
-          xs12>
-          <div>
-            Created on {{ workout.created_at }}
-          </div>
-          <div>
-            Last updated {{ workout.updated_at }}
-          </div>
+      <v-layout row wrap align-center>
+        <v-flex xs12 title text-center>
+          <span :class="relativeDarkness">{{ workout.exerciseCount }}</span>
+          exercises, moved
+          <span :class="relativeDarkness"
+            >~{{ Math.round(workout.totalWeight) || 0 }} </span
+          >lbs
         </v-flex>
       </v-layout>
-
     </v-card-text>
 
     <div class="status">
-      <v-chip 
-        label 
-        v-bind="{[`color`]: `${workout.color} darken-2`}"
-      >
+      <v-chip label v-bind="{ [`color`]: `${workout.color} darken-2` }">
         <v-icon left>{{ statusIcon }}</v-icon>
         {{ getHumanStatus }}
       </v-chip>
@@ -60,30 +34,22 @@
     <v-divider light />
 
     <v-card-actions>
-      <v-toolbar 
-        flat 
-        dark 
-        :color="workout.color">
-
-        <v-btn 
-          icon>
-          <v-icon>share</v-icon>
+      <v-toolbar dense flat dark :color="workout.color">
+        <v-btn small icon @click.stop="archiveWorkout">
+          <v-icon>archive</v-icon>
         </v-btn>
 
         <v-spacer />
 
-        <v-btn 
-          icon>
-          <v-icon>favorite</v-icon>
+        <v-btn small icon @click.stop="shareWorkout">
+          <v-icon>share</v-icon>
         </v-btn>
-        <v-btn 
-          @click.stop="removeWorkout"
-          icon>
-          <v-icon>delete</v-icon>
+
+        <v-btn small icon @click.stop="favoriteWorkout">
+          <v-icon>favorite</v-icon>
         </v-btn>
       </v-toolbar>
     </v-card-actions>
-
   </v-card>
 </template>
 
@@ -110,14 +76,18 @@ export default {
     },
 
     started: data => {
-      return distanceInWords(new Date(), data.workout.dateStarted, {
-        addSuffix: true
-      });
+      if (data.workout.startedAt) {
+        return distanceInWords(new Date(), data.workout.startedAt, {
+          addSuffix: true
+        });
+      }
+
+      return null;
     },
 
     ended: data => {
-      if (data.workout.dateEnded) {
-        return format(data.workout.dateEnded, "YYYY-MM-DD [@] h:MMA");
+      if (data.workout.endedAt) {
+        return format(data.workout.endedAt, "YYYY-MM-DD [@] h:MMA");
       }
 
       return "∞";
@@ -146,7 +116,13 @@ export default {
   },
 
   methods: {
-    removeWorkout() {
+    favoriteWorkout() {
+      return;
+    },
+    shareWorkout() {
+      return;
+    },
+    archiveWorkout() {
       const workoutId = this.$props.workout.id;
 
       this.$apollo.mutate({
@@ -178,9 +154,13 @@ export default {
     },
 
     viewWorkout() {
-      const workoutId = this.$props.workout.id;
+      const { workout } = this.$props;
 
-      this.$router.push(`/workouts/${workoutId}`);
+      if (workout.status === PENDING) {
+        return this.$router.push(`/workouts/${workout.id}/setup`);
+      }
+
+      return this.$router.push(`/workouts/${workout.id}`);
     }
   },
 

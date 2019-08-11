@@ -1,15 +1,7 @@
 <template>
-  <v-snackbar
-    v-model="open"
-    :timeout="timeout"
-    :bottom="bottom"
-    :color="color"
-  >
+  <v-snackbar v-model="open" :timeout="timeout" :bottom="bottom" :color="color">
     {{ text }}
-    <v-btn
-      flat
-      @click="open = false"
-    >
+    <v-btn dark text @click="open = false">
       Close
     </v-btn>
   </v-snackbar>
@@ -28,7 +20,7 @@ export default {
       this.open = true;
       this.color = msg.type;
       this.text = msg.text;
-      this.timeout = msg.timeout || DEFAULT_TIMEOUT;
+      this.timeout = msg.sticky ? 0 : msg.timeout || DEFAULT_TIMEOUT;
     });
   },
 
@@ -38,7 +30,8 @@ export default {
       bottom: true,
       timeout: DEFAULT_TIMEOUT,
       color: "success", // Color matches type
-      text: ""
+      text: "",
+      sticky: false
     };
   }
 };

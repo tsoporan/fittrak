@@ -1,12 +1,12 @@
 <template>
-  <v-flex 
-    xs6 
-    text-xs-right>
-    <v-btn 
-      :loading="loading" 
-      color="success" 
-      depressed 
-      @click.stop="startWorkout">Start</v-btn>
+  <v-flex xs6 text-xs-right>
+    <v-btn
+      :loading="loading"
+      color="success"
+      depressed
+      @click.stop="startWorkout"
+      >Start</v-btn
+    >
   </v-flex>
 </template>
 
@@ -38,7 +38,7 @@ export default {
           variables: {
             workoutId: workout.id,
             workoutFields: {
-              dateStarted: new Date(),
+              startedAt: new Date(),
               status: IN_PROGRESS
             }
           }

@@ -1,92 +1,68 @@
 <template>
-  <v-list-tile v-if="!editing">
-    <v-list-tile-content>
-      <v-list-tile-title>{{ repetitions }} x {{ weight }} {{ unit }} <span v-if="bodyweight">(BW)</span>
-      </v-list-tile-title>
-    </v-list-tile-content>
+  <v-list-item inactive v-if="!editing" style="width:100%">
+    <v-list-item-content>
+      <v-list-item-title>
+        {{ repetitions }} x {{ weight }} {{ unit }}
+      </v-list-item-title>
 
-    <v-list-tile-action>
-      <v-btn 
-        small 
-        flat 
-        color="info" 
-        icon 
-        @click.stop="editSet">
-        <v-icon>edit</v-icon>
-      </v-btn>
-    </v-list-tile-action>
+      <v-list-item-subtitle v-if="!bodyweight">
+        {{ repetitions * weight }} {{ unit }}s
+      </v-list-item-subtitle>
+      <v-list-item-subtitle v-else>Body weight</v-list-item-subtitle>
+    </v-list-item-content>
+    <v-list-item-action @click.stop="editSet" style="cursor:pointer">
+      <v-icon color="blue">edit</v-icon>
+    </v-list-item-action>
+    <v-list-item-action @click.stop="removeSet" style="cursor:pointer">
+      <v-icon color="red lighten-1">delete</v-icon>
+    </v-list-item-action>
+  </v-list-item>
 
-    <v-list-tile-action>
-      <v-btn 
-        small 
-        flat 
-        color="info" 
-        icon 
-        @click.stop="removeSet">
-        <v-icon>delete</v-icon>
-      </v-btn>
-    </v-list-tile-action>
-  </v-list-tile>
-  <v-flex v-else>
-    <v-layout 
-      row 
-      wrap>
+  <v-list-item v-else>
+    <v-layout row wrap pl-4 pr-4 pb-5>
       <v-flex xs12>
-        <v-text-field 
-          v-model="repetitions" 
-          placeholder="Reps" 
-          type="number" />
+        <v-text-field v-model="repetitions" placeholder="Reps" type="number" />
       </v-flex>
 
       <v-flex xs12>
-        <v-text-field 
-          v-model="weight" 
-          placeholder="Weight" 
-          type="number" />
+        <v-text-field v-model="weight" placeholder="Weight" type="number" />
       </v-flex>
 
       <v-flex xs12>
-        <v-radio-group 
-          v-model="unit" 
-          row 
-          class="mt-3">
-          <v-radio 
-            color="primary" 
-            label="LB" 
-            value="LB" />
-          <v-radio 
-            color="primary" 
-            label="KG" 
-            value="KG" />
+        <v-radio-group v-model="unit" row class="mt-3">
+          <v-radio color="primary" label="LB" value="LB" />
+          <v-radio color="primary" label="KG" value="KG" />
         </v-radio-group>
       </v-flex>
 
       <v-flex xs12>
-        <v-checkbox 
-          v-model="bodyweight" 
-          color="primary" 
-          label="Using bodyweight"/>
+        <v-checkbox
+          v-model="bodyweight"
+          color="primary"
+          label="Using bodyweight"
+        />
       </v-flex>
 
-      <v-flex 
-        xs12 
-        text-xs-right 
-        mt-3 
-        mb-3>
-        <v-btn 
-          small 
-          outline 
-          color="gray" 
-          @click.stop="editing = false">Cancel</v-btn>
-        <v-btn 
-          small 
-          depressed 
-          color="success" 
-          @click.stop="updateSet">Save</v-btn>
+      <v-flex xs12 text-end>
+        <v-btn
+          small
+          rounded
+          color="grey lighten-2"
+          @click.stop="editing = false"
+          >Cancel</v-btn
+        >
+        <v-btn
+          class="ml-2"
+          small
+          rounded
+          dark
+          color="darkGrey"
+          @click.stop="updateSet"
+          >Save</v-btn
+        >
       </v-flex>
     </v-layout>
-
-  </v-flex>
+  </v-list-item>
 </template>
 
 <script>
@@ -109,6 +85,16 @@ export default {
     };
   },
 
+  computed: {
+    /*
+    isSetDone: function() {
+      const set = this.$props;
+
+      return set.status === SET_DONE;
+    }
+    */
+  },
+
   methods: {
     editSet() {
       this.editing = true;
@@ -119,7 +105,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: queries.RemoveSetMutation,
+          mutation: mutations.removeSetMutation,
           variables: {
             setId: set.id
           },
@@ -127,7 +113,7 @@ export default {
             const set = data.removeSet.set;
 
             const result = store.readQuery({
-              query: queries.SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: set.exercise.id
               }
@@ -136,7 +122,7 @@ export default {
             result.sets = result.sets.filter(s => s.id !== set.id);
 
             store.writeQuery({
-              query: queries.SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: set.exercise.id
               },
@@ -150,7 +136,8 @@ export default {
         .catch(() => {
           showSnackbar(
             "error",
-            "Could not remove Set. Support has been notified."
+            "Could not remove Set. Support has been notified.",
+            true
           );
         });
     },

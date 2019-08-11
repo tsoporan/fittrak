@@ -1,79 +1,4 @@
-import "@babel/polyfill";
-
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
-
-import Vuetify, {
-  VApp,
-  VNavigationDrawer,
-  VMenu,
-  VFooter,
-  VList,
-  VBtn,
-  VBtnToggle,
-  VIcon,
-  VDivider,
-  VToolbar,
-  VChip,
-  VForm,
-  VTextField,
-  VExpansionPanel,
-  VRadioGroup,
-  VProgressCircular,
-  VCard,
-  VAutocomplete,
-  VSubheader,
-  VDialog,
-  VSnackbar,
-  VCheckbox,
-  VGrid,
-  transitions
-} from "vuetify";
-
-// Required styles
-import "vuetify/src/stylus/app.styl";
-
-Vue.use(Vuetify, {
-  components: {
-    VApp,
-    VNavigationDrawer,
-    VMenu,
-    VFooter,
-    VList,
-    VBtn,
-    VBtnToggle,
-    VIcon,
-    VGrid,
-    VToolbar,
-    VDivider,
-    VChip,
-    VForm,
-    VTextField,
-    VExpansionPanel,
-    VRadioGroup,
-    VProgressCircular,
-    VCard,
-    VAutocomplete,
-    VSubheader,
-    VDialog,
-    VSnackbar,
-    VCheckbox,
-    transitions
-  },
-  theme: {
-    primary: "#06d6a0",
-    primaryDark: "#00ae80",
-    secondary: "#26547c",
-    accent: "#4ce0d2",
-    error: "#d62246",
-    info: "#26547c",
-    success: "#06d6a0",
-    warning: "#ffd166",
-    mainBg: "#fafafa",
-    darkGrey: "#424242"
-  }
-});
 
 import App from "./App";
 import router from "./router";
@@ -91,6 +16,8 @@ import VueApollo from "vue-apollo";
 import "./registerServiceWorker";
 
 import * as Sentry from "@sentry/browser";
+import * as Integrations from "@sentry/integrations";
+import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
@@ -154,17 +81,17 @@ Vue.use(VueApollo);
 
 /* eslint-disable no-new */
 new Vue({
-  el: "#app",
   router,
   apolloProvider,
   components: { App },
-  template: "<App/>"
-});
+  template: "<App/>",
+  vuetify
+}).$mount("#app");
 
 // Init Sentry
 Sentry.init({
   dsn: SENTRY_DSN,
-  integrations: [new Sentry.Integrations.Vue({ Vue })],
+  integrations: [new Integrations.Vue({ Vue, attachProps: true })],
   environment: SENTRY_ENV,
   release: SENTRY_RELEASE
 });

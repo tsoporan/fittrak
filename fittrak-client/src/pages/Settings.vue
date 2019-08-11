@@ -1,14 +1,18 @@
 <template>
-  <v-container>
-    <v-layout row>
-      <UserSettings :viewer="viewer" />
-    </v-layout>
-  </v-container>
+  <div style="height:100%">
+    <v-container fluid fill-height>
+      <AppBar title="Settings" />
+      <v-layout row pa-4>
+        <UserSettings :viewer="viewer" />
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import { queries } from "@/graphql";
 
+import AppBar from "@/components/app/AppBar";
 import UserSettings from "@/components/settings/UserSettings";
 
 export default {
@@ -31,6 +35,7 @@ export default {
   },
 
   components: {
+    AppBar,
     UserSettings
   }
 };

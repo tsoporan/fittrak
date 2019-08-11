@@ -7,13 +7,20 @@ from copy import deepcopy
 import graphene
 from django.utils import timezone
 from graphql import GraphQLError
+
 from workouts.helpers import create_workout_event
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
 from workouts.models import MuscleGroup, Set, Workout
 
-from .types import (ExerciseInputType, ExerciseType, SetFieldInputType,
-                    SetType, WorkoutFieldInputType, WorkoutType)
+from .types import (
+    ExerciseInputType,
+    ExerciseType,
+    SetFieldInputType,
+    SetType,
+    WorkoutFieldInputType,
+    WorkoutType,
+)
 
 
 class CreateWorkout(graphene.Mutation):
@@ -79,13 +86,13 @@ class UpdateWorkout(graphene.Mutation):
 
         # Must happen before as exercises require special handling
         # TODO: Separate concerns?
-        exerciseTypes = workout_fields.pop("exerciseTypes", None)
+        exercise_types = workout_fields.pop("exercise_types", None)
 
-        if exerciseTypes:
+        if exercise_types:
             dirty = True
 
             types = ExerciseTypeModel.objects.filter(
-                id__in=[e.id for e in exerciseTypes]
+                id__in=[e.id for e in exercise_types]
             )
 
             for exercise_type in types:
@@ -237,7 +244,7 @@ class AddSet(graphene.Mutation):
     class Arguments:
         exercise_id = graphene.Int(required=True)
         repetitions = graphene.Int(required=True)
-        weight = graphene.Int(required=True)
+        weight = graphene.Decimal(required=True)
         unit = graphene.String(required=True)
         bodyweight = graphene.Boolean(default_value=False)
 

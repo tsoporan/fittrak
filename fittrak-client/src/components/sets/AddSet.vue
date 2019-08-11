@@ -1,48 +1,41 @@
 <template>
   <v-form>
-    <v-flex>
-      <v-text-field 
-        v-model="repetitions" 
-        placeholder="Repetitions" 
-        type="number" />
-    </v-flex>
+    <v-container grid-list-xl>
+      <v-flex>
+        <v-text-field
+          v-model="repetitions"
+          placeholder="Repetitions"
+          type="number"
+          required
+        />
+      </v-flex>
 
-    <v-flex>
-      <v-text-field 
-        v-model="weight" 
-        placeholder="Weight" 
-        type="number" />
-    </v-flex>
+      <v-flex>
+        <v-text-field
+          v-model="weight"
+          placeholder="Weight"
+          type="number"
+          required
+        />
+      </v-flex>
 
-    <v-flex xs12>
-      <v-radio-group 
-        v-model="unit" 
-        row>
-        <v-radio 
-          color="primary" 
-          label="LB" 
-          value="LB" />
-        <v-radio 
-          color="primary" 
-          label="KG" 
-          value="KG" />
-      </v-radio-group>
-    </v-flex>
+      <v-flex xs12>
+        <v-radio-group v-model="unit" row>
+          <v-radio color="primary" label="LB" value="LB" />
+          <v-radio color="primary" label="KG" value="KG" />
+        </v-radio-group>
+      </v-flex>
 
-    <v-flex xs12>
-      <v-checkbox 
-        v-model="bodyweight" 
-        label="Using bodyweight"/>
-    </v-flex>
+      <v-flex xs12>
+        <v-checkbox v-model="bodyweight" label="Using bodyweight" />
+      </v-flex>
 
-    <v-flex 
-      xs12 
-      text-xs-right>
-      <v-btn 
-        depressed 
-        color="secondary" 
-        @click.stop="addSet">Add</v-btn>
-    </v-flex>
+      <v-flex xs12 text-end>
+        <v-btn small rounded dark color="darkGrey" @click.stop="addSet">
+          Add
+        </v-btn>
+      </v-flex>
+    </v-container>
   </v-form>
 </template>
 

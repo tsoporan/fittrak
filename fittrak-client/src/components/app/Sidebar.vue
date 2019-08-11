@@ -1,91 +1,101 @@
 <template>
-  <v-list dark>
-    <v-list-tile>
-      <v-list-tile-content>
-        <v-list-tile-title class="title">
-          Heya, <span class="primary--text text--lighten-1">{{ viewer.username }}</span>
-        </v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
-    <v-divider />
-
-    <router-link 
-      tag="v-list-tile" 
-      to="/">
-      <v-list-tile-action>
-        <v-icon>home</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Home</v-list-tile-title>
-      </v-list-tile-content>
-    </router-link>
-
-    <router-link 
-      tag="v-list-tile" 
-      to="/progress">
-      <v-list-tile-action>
-        <v-icon>trending_up</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Progress</v-list-tile-title>
-      </v-list-tile-content>
-    </router-link>
-
-    <router-link 
-      tag="v-list-tile" 
-      to="/history">
-      <v-list-tile-action>
-        <v-icon>history</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>History</v-list-tile-title>
-      </v-list-tile-content>
-    </router-link>
-
-    <router-link 
-      tag="v-list-tile" 
-      to="/settings">
-      <v-list-tile-action>
-        <v-icon>settings</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Settings</v-list-tile-title>
-      </v-list-tile-content>
-    </router-link>
+  <div>
+    <v-list-item>
+      <v-list-item-avatar size="32" color="grey darken-2">
+        <v-icon>account_circle</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title
+          >Heya,
+          <span class="primary--text text--lighten-1">{{
+            viewer.username
+          }}</span></v-list-item-title
+        >
+      </v-list-item-content>
+    </v-list-item>
 
     <v-divider />
 
-    <v-list-tile @click="toReleaseNotes">
-      <v-list-tile-action>
-        <v-icon>notes</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Release Notes</v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
+    <v-list dense nav>
+      <v-list-item link to="/" color="grey lighten-3">
+        <v-list-item-icon>
+          <v-icon>dashboard</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
-    <v-list-tile @click="logout">
-      <v-list-tile-action>
-        <v-icon>exit_to_app</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>Sign out</v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
-  </v-list>
+      <!-- TODO: Implement
+      <v-list-item link to="/progress" color="grey lighten-3">
+        <v-list-item-icon>
+          <v-icon>trending_up</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Progress</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      -->
+
+      <!-- TODO: Implement
+      <v-list-item link to="/history" color="grey lighten-3">
+        <v-list-item-icon>
+          <v-icon>history</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>History</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      -->
+
+      <v-list-item link to="/settings" color="grey lighten-3">
+        <v-list-item-icon>
+          <v-icon>settings</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Settings</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
+    <v-divider />
+
+    <v-list dense nav>
+      <v-list-item link @click="toReleaseNotes">
+        <v-list-item-icon>
+          <v-icon>notes</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Release Notes</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item link @click="logout">
+        <v-list-item-icon>
+          <v-icon>exit_to_app</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Sign out</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </div>
 </template>
 
 <script>
+const RELEASES_URL = "https://github.com/tsoporan/fittrak/releases";
+const LOGOUT_URL = "/accounts/logout/";
+
 export default {
-  name: "SidebarNavigationItems",
+  name: "Sidebar",
 
   methods: {
     toReleaseNotes() {
-      window.location.href = "https://github.com/tsoporan/fittrak/releases";
+      window.location.href = RELEASES_URL;
     },
     logout() {
       // Allow server side routing to kick in and logout session
-      window.location.replace("/accounts/logout/");
+      window.location.replace(LOGOUT_URL);
     }
   },
 

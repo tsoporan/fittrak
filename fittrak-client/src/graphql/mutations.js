@@ -15,8 +15,8 @@ const addCustomExerciseMutation = gql`
         id
         slug
         name
-        dateStarted
-        dateEnded
+        startedAt
+        endedAt
         workout {
           id
         }
@@ -66,8 +66,8 @@ const updateWorkoutMutation = gql`
     updateWorkout(workoutId: $workoutId, workoutFields: $workoutFields) {
       workout {
         id
-        dateEnded
-        dateStarted
+        endedAt
+        startedAt
         status
       }
     }
@@ -91,14 +91,13 @@ const createWorkoutMutation = gql`
       workout {
         id
         slug
-        dateStarted
-        dateEnded
+        startedAt
+        endedAt
         exercises {
           id
         }
         isActive
         status
-        exerciseCount
       }
     }
   }
@@ -111,8 +110,8 @@ const addExercisesMutation = gql`
         id
         slug
         name
-        dateStarted
-        dateEnded
+        startedAt
+        endedAt
         sets {
           id
           weight
@@ -160,7 +159,7 @@ const addSetMutation = gql`
   mutation addSet(
     $exerciseId: Int!
     $repetitions: Int!
-    $weight: Int!
+    $weight: Decimal!
     $unit: String!
     $bodyweight: Boolean
   ) {
