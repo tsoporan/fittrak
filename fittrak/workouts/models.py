@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import hashids
 from django.conf import settings
 from django.contrib.postgres.fields import JSONField
@@ -141,7 +143,7 @@ class Set(UserBaseModel):
         Exercise, related_name="sets", on_delete=models.CASCADE
     )
     repetitions = models.PositiveIntegerField()
-    weight = models.DecimalField(max_digits=6, decimal_places=2)
+    weight = models.DecimalField(max_digits=6, decimal_places=2, default=Decimal(0))
     unit = models.CharField(max_length=2, choices=UNITS, default=LB)
     bodyweight = models.BooleanField(default=False)
 

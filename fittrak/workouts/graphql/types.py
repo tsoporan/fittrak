@@ -1,8 +1,8 @@
 """
 Workout GraphQL types
 """
-
 import graphene
+from django.db.models import Sum
 from graphene_django.types import DjangoObjectType
 from workouts.models import Exercise
 from workouts.models import ExerciseType as ExerciseTypeModel
@@ -45,6 +45,7 @@ class WorkoutFieldInputType(graphene.InputObjectType):
 
 class WorkoutType(DjangoObjectType):
     exercise_count = graphene.Int()
+    total_weight = graphene.Decimal()
 
     class Meta:
         model = Workout
@@ -52,6 +53,22 @@ class WorkoutType(DjangoObjectType):
     @staticmethod
     def resolve_exercise_count(workout, info):
         return workout.exercises.count()
+
+    @staticmethod
+    def resolve_total_weight(workout, info):
+        """
+        Sum of all weight in workout sets
+        """
+
+        exercises = workout.exercises.filter(is_active=True).values("id")
+
+        total_weight = (
+            Set.objects.filter(exercise__in=exercises)
+            .filter(is_active=True)
+            .aggregate(total=Sum("weight"))["total"]
+        )
+
+        return total_weight
 
 
 class ExerciseInputType(graphene.InputObjectType):
