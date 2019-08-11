@@ -1,11 +1,15 @@
 <template>
-  <v-list v-if="sets.length">
-    <SetItem v-for="set in sets" :key="set.id" :set="set" />
-  </v-list>
+  <v-container grid-list-xl fluid>
+    <v-layout row>
+      <v-list two-line flat v-if="sets.length" style="width:100%">
+        <SetItem v-for="set in sets" :key="set.id" :set="set" />
+      </v-list>
 
-  <p v-else>
-    No sets!
-  </p>
+      <v-flex v-else text-center>
+        No sets yet 😔
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

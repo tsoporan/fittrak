@@ -2,11 +2,12 @@
   <v-expansion-panels v-model="panel" :disabled="disabled" multiple>
     <v-expansion-panel v-for="exercise in exercises" :key="exercise.id">
       <v-expansion-panel-header>
-        <span class="title">{{ exercise.name }}</span>
+        <h2 class="heading">{{ exercise.name }}</h2>
       </v-expansion-panel-header>
 
       <v-expansion-panel-content>
         <v-layout row wrap>
+          <!--
           <v-flex xs12>
             <v-btn
               small
@@ -18,14 +19,16 @@
               <v-icon>delete</v-icon>
             </v-btn>
           </v-flex>
+          -->
 
           <v-flex xs12>
-            <h2 class="display-0">Add Set</h2>
+            <h3 class="title pa-3">New Set</h3>
             <AddSet :exercise="exercise" />
           </v-flex>
 
           <v-flex xs12>
-            <h2 class="display-0">Set List</h2>
+            <v-divider />
+            <h2 class="title pa-3">Sets</h2>
             <SetList :exercise="exercise" />
           </v-flex>
         </v-layout>
@@ -47,7 +50,7 @@ export default {
 
   data() {
     return {
-      panel: [0],
+      panel: [],
       disabled: false
     };
   },
