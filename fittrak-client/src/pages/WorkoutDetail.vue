@@ -52,7 +52,12 @@
           <v-icon>pause</v-icon>
         </v-btn>
 
-        <v-btn color="green" @click.stop="finishWorkout" icon>
+        <v-btn
+          :loading="loading"
+          color="green"
+          @click.stop="finishWorkout"
+          icon
+        >
           <v-icon>check_circle</v-icon>
         </v-btn>
       </WorkoutFooter>
@@ -62,6 +67,10 @@
 
 <script>
 import { queries } from "@/graphql";
+import { mutations } from "@/graphql";
+
+import { COMPLETE } from "@/constants";
+import { showSnackbar } from "@/helpers";
 
 import Loader from "@/components/app/Loader";
 import ExerciseList from "@/components/exercises/ExerciseList";
@@ -76,7 +85,8 @@ export default {
     return {
       workout: {},
       exercises: [],
-      title: `Workout #${this.$route.params.workoutId}`
+      title: `Workout #${this.$route.params.workoutId}`,
+      loading: false
     };
   },
 
@@ -110,6 +120,7 @@ export default {
     goBack() {
       return this.$router.go(-1);
     },
+
     workoutSetup() {
       return this.$router.push({
         name: "WorkoutSetup",
@@ -118,11 +129,46 @@ export default {
         }
       });
     },
+
     pauseWorkout() {
       console.log("pause workout");
     },
+
     finishWorkout() {
-      console.log("finish workout");
+      const workout = this.workout;
+
+      this.loading = true;
+
+      this.$apollo
+        .mutate({
+          mutation: mutations.updateWorkoutMutation,
+
+          variables: {
+            workoutId: workout.id,
+            workoutFields: {
+              endedAt: new Date(),
+              status: COMPLETE
+            }
+          }
+        })
+        .then(() => {
+          this.loading = false;
+
+          this.$router.push({
+            name: "FitTrak"
+          });
+
+          showSnackbar("success", "Workout finished.");
+        })
+        .catch(() => {
+          this.loading = false;
+
+          showSnackbar(
+            "error",
+            "Oops, could not finish workout. Support has been notified.",
+            true
+          );
+        });
     }
   },
 
