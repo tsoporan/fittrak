@@ -5,7 +5,10 @@
         <v-list-item-title class="headline">
           <span :class="relativeDarkness">#{{ workout.id }}</span>
         </v-list-item-title>
-        <v-list-item-subtitle> started {{ started }} </v-list-item-subtitle>
+        <v-list-item-subtitle v-if="started">
+          started {{ started }}
+        </v-list-item-subtitle>
+        <v-list-item-subtitle v-else> waiting to start </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -73,9 +76,13 @@ export default {
     },
 
     started: data => {
-      return distanceInWords(new Date(), data.workout.startedAt, {
-        addSuffix: true
-      });
+      if (data.workout.startedAt) {
+        return distanceInWords(new Date(), data.workout.startedAt, {
+          addSuffix: true
+        });
+      }
+
+      return null;
     },
 
     ended: data => {
