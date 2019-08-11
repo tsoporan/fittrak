@@ -1,7 +1,7 @@
 # Change Log
 
-## [v1.3.4](https://github.com/tsoporan/fittrak/tree/v1.3.4) (2019-08-03)
-[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.3...v1.3.4)
+## [v1.4](https://github.com/tsoporan/fittrak/tree/v1.4) (2019-08-11)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.4...v1.4)
 
 **Implemented enhancements:**
 
@@ -9,39 +9,50 @@
 - User settings [\#106](https://github.com/tsoporan/fittrak/issues/106)
 - Re-work data [\#164](https://github.com/tsoporan/fittrak/pull/164) ([tsoporan](https://github.com/tsoporan))
 - User settings [\#158](https://github.com/tsoporan/fittrak/pull/158) ([tsoporan](https://github.com/tsoporan))
+- Mobile page titles [\#155](https://github.com/tsoporan/fittrak/pull/155) ([tsoporan](https://github.com/tsoporan))
+- Updates to manifest [\#154](https://github.com/tsoporan/fittrak/pull/154) ([tsoporan](https://github.com/tsoporan))
+- Additional snackbars [\#152](https://github.com/tsoporan/fittrak/pull/152) ([tsoporan](https://github.com/tsoporan))
 
 **Closed issues:**
 
+- Vuetify2 [\#179](https://github.com/tsoporan/fittrak/issues/179)
+- Stage/setup workout should be separate step [\#176](https://github.com/tsoporan/fittrak/issues/176)
+- Workout detail [\#168](https://github.com/tsoporan/fittrak/issues/168)
 - "New workout" flow [\#162](https://github.com/tsoporan/fittrak/issues/162)
 - Improve mobile UI [\#161](https://github.com/tsoporan/fittrak/issues/161)
 - Re-work data loading [\#160](https://github.com/tsoporan/fittrak/issues/160)
+- Workout events [\#159](https://github.com/tsoporan/fittrak/issues/159)
 
 **Merged pull requests:**
 
+- Update create workout event + missed fields [\#182](https://github.com/tsoporan/fittrak/pull/182) ([tsoporan](https://github.com/tsoporan))
+- Bump django from 2.2.3 to 2.2.4 [\#180](https://github.com/tsoporan/fittrak/pull/180) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Events and model changes [\#181](https://github.com/tsoporan/fittrak/pull/181) ([tsoporan](https://github.com/tsoporan))
+- Update workout statuses and workflow \(back-end\) [\#178](https://github.com/tsoporan/fittrak/pull/178) ([tsoporan](https://github.com/tsoporan))
+- Basic workout events [\#177](https://github.com/tsoporan/fittrak/pull/177) ([tsoporan](https://github.com/tsoporan))
+- Vuetify2 + v1.4 Refactor [\#175](https://github.com/tsoporan/fittrak/pull/175) ([tsoporan](https://github.com/tsoporan))
+- Register Profile admin [\#174](https://github.com/tsoporan/fittrak/pull/174) ([tsoporan](https://github.com/tsoporan))
 - Track env and release with Sentry [\#173](https://github.com/tsoporan/fittrak/pull/173) ([tsoporan](https://github.com/tsoporan))
 - Sentry integration [\#172](https://github.com/tsoporan/fittrak/pull/172) ([tsoporan](https://github.com/tsoporan))
-- Bump django from 2.2 to 2.2.3 [\#170](https://github.com/tsoporan/fittrak/pull/170) ([dependabot[bot]](https://github.com/apps/dependabot))
 - New workout flow [\#167](https://github.com/tsoporan/fittrak/pull/167) ([tsoporan](https://github.com/tsoporan))
 - Update tests [\#166](https://github.com/tsoporan/fittrak/pull/166) ([tsoporan](https://github.com/tsoporan))
 - Improve mobile UI [\#165](https://github.com/tsoporan/fittrak/pull/165) ([tsoporan](https://github.com/tsoporan))
 
+## [v1.3.4](https://github.com/tsoporan/fittrak/tree/v1.3.4) (2019-08-03)
+[Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.3...v1.3.4)
+
+**Merged pull requests:**
+
+- Bump django from 2.2 to 2.2.3 [\#170](https://github.com/tsoporan/fittrak/pull/170) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.3.3](https://github.com/tsoporan/fittrak/tree/v1.3.3) (2019-01-06)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.2...v1.3.3)
-
-**Implemented enhancements:**
-
-- Additional snackbars [\#152](https://github.com/tsoporan/fittrak/pull/152) ([tsoporan](https://github.com/tsoporan))
 
 ## [v1.3.2](https://github.com/tsoporan/fittrak/tree/v1.3.2) (2018-10-18)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3.1...v1.3.2)
 
 ## [v1.3.1](https://github.com/tsoporan/fittrak/tree/v1.3.1) (2018-10-18)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.3...v1.3.1)
-
-**Implemented enhancements:**
-
-- Mobile page titles [\#155](https://github.com/tsoporan/fittrak/pull/155) ([tsoporan](https://github.com/tsoporan))
-- Updates to manifest [\#154](https://github.com/tsoporan/fittrak/pull/154) ([tsoporan](https://github.com/tsoporan))
 
 ## [v1.3](https://github.com/tsoporan/fittrak/tree/v1.3) (2018-10-14)
 [Full Changelog](https://github.com/tsoporan/fittrak/compare/v1.2...v1.3)
