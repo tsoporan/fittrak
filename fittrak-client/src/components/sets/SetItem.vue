@@ -105,7 +105,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: queries.RemoveSetMutation,
+          mutation: mutations.removeSetMutation,
           variables: {
             setId: set.id
           },
@@ -113,7 +113,7 @@ export default {
             const set = data.removeSet.set;
 
             const result = store.readQuery({
-              query: queries.SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: set.exercise.id
               }
@@ -122,7 +122,7 @@ export default {
             result.sets = result.sets.filter(s => s.id !== set.id);
 
             store.writeQuery({
-              query: queries.SetsQuery,
+              query: queries.setsQuery,
               variables: {
                 exerciseId: set.exercise.id
               },
@@ -136,7 +136,8 @@ export default {
         .catch(() => {
           showSnackbar(
             "error",
-            "Could not remove Set. Support has been notified."
+            "Could not remove Set. Support has been notified.",
+            true
           );
         });
     },
