@@ -137,6 +137,12 @@ export default {
     finishWorkout() {
       const workout = this.workout;
 
+      if (workout.status === COMPLETE) {
+        return this.$router.push({
+          name: "FitTrak"
+        });
+      }
+
       this.loading = true;
 
       this.$apollo
