@@ -1,19 +1,19 @@
 version: '3'
 services:
-  db:
-    image: postgres:9.6
+  fittrak_db:
+    image: postgres:11
     ports:
       - "5432:5432"
+    restart: always
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./data/fittrak-db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
 
   api:
     build:
-      dockerfile: docker/Dockerfile.webapp.dev
       context: .
     command: ["sh", "scripts/start-dev.sh"]
     ports:
@@ -35,23 +35,8 @@ services:
       - SENTRY_ENV=${SENTRY_ENV}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
     depends_on:
-      - db
-
-  app:
-    build:
-      dockerfile: docker/Dockerfile.frontend
-      context: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - "./fittrak-client/src:/usr/src/app/src"
-    environment:
-      - NODE_ENV=development
-      - VUE_APP_API_URL=http://localhost:8000/graphql
-    depends_on:
-      - api
+      - fittrak_db
 
 volumes:
   fittrak:
-  fittrak-client:
   ipython-data:
