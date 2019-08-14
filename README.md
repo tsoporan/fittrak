@@ -25,7 +25,7 @@ For local dev you'll require:
 #### Back-end
 
 The back-end consists of a [Django](https://www.djangoproject.com/) powered Python application which exposes a [GraphQL](https://graphql.org/learn/) API using [Graphene](http://graphene-python.org/). Django is being used to deal with
-authentication, and other various functions, and as such there are some views which are rendered from Django. You may think of Django renders the template which houses the front-end SPA.
+authentication, and other various functions, and as such there are some views which are rendered from Django. You may think of Django as rendering the template which houses the front-end SPA.
 
 #### Front-end
 
@@ -60,7 +60,7 @@ You can also run everything independently, which would require: `postgresql`, `p
 With docker we can conveniently package these up and not worry about external deps.
 
 **NOTE:** When running independently make sure you're aware of the env variables required (check `env.example` and set
-`.env`), i.e:
+`.env`)
 
 There are two services that comprise the back-end: `api` and `fittrak_db`. `docker-compose up` brings
 them all up though you may start each one with their respective `docker-compose up <service_name>`
@@ -93,6 +93,7 @@ To apply DB migrations we can run a command in the container:
 Tests can be run with the usual:
 
 - `docker-compose run api python fittrak/manage.py test`
+- `npm run test:unit`
 
 ---
 
