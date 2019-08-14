@@ -10,11 +10,11 @@ fittrak/assets
 fittrak-client/dist
 fittrak/static
 infra/.terraform
-data
 ipython-data
 coverage
 tags
 .mypy_cache
+db/
 
 # Sqlite
 *.db
