@@ -4,7 +4,10 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
-A no-frills fitness tracking tool for the stats inclined 🤓.
+A data-driven workout tracking tool for the quantified-self 🤓.
+
+**NOTE:** This is the core, open sourced version, of FitTrak and may be lagging behind the deployed version at
+https://fittrak.ca!
 
 ![2019-08-11-133727_1886x1076_scrot](https://user-images.githubusercontent.com/130991/62837444-6b419d80-bc3d-11e9-82f6-bfaa2cca3110.png)
 ![fittrak-side](https://user-images.githubusercontent.com/130991/62837525-7c3ede80-bc3e-11e9-9f6f-b1f9baf4cd54.png)
