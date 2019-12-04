@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "==2.2.4"
+Django = "==2.2.8"
 hashids = "==1.2.0"
 django-cors-headers = "==3.0.2"
 django-extensions = "==2.2.1"
