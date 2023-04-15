@@ -73,10 +73,7 @@ class ExerciseAdmin(admin.ModelAdmin):
 
     @staticmethod
     def get_type(obj):
-        if not hasattr(obj, "exercise_type"):
-            return "N/A"
-
-        return obj.exercise_type.name
+        return obj.exercise_type.name if hasattr(obj, "exercise_type") else "N/A"
 
     get_type.short_description = "Type"
 

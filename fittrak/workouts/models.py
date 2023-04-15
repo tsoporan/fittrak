@@ -52,7 +52,7 @@ class Workout(UserBaseModel):
         return f"#{self.id}-{self.slug} - {self.user}"
 
     def is_finished(self):
-        return True if self.ended_at else False
+        return bool(self.ended_at)
 
 
 class WorkoutEvent(UserBaseModel):

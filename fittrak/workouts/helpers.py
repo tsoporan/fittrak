@@ -43,11 +43,7 @@ def create_workout_event(
         # values can be arrays
 
         for k, v in state.items():
-            if isinstance(v, list):
-                state[k] = clean_models(v)
-            else:
-                state[k] = clean_models([v])
-
+            state[k] = clean_models(v) if isinstance(v, list) else clean_models([v])
     WorkoutEvent.objects.create(workout=workout, action=action, user=user, state=state)
 
 

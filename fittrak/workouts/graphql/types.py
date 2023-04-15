@@ -63,20 +63,15 @@ class WorkoutType(DjangoObjectType):
         """
 
         exercises = workout.exercises.filter(is_active=True).values("id")
-        sets = (
+        if sets := (
             Set.objects.filter(exercise__in=exercises, is_active=True)
             .values("repetitions", "weight", "unit")
             .exclude(repetitions__isnull=True)
             .exclude(weight__isnull=True)
-        )
-
-        if sets:
+        ):
             return sum(
-                [
-                    s["repetitions"] * convert_to_lbs(s["weight"], s["unit"])
-
-                    for s in sets
-                ]
+                s["repetitions"] * convert_to_lbs(s["weight"], s["unit"])
+                for s in sets
             )
 
         return Decimal(0)

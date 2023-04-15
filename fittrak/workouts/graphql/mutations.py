@@ -84,11 +84,7 @@ class UpdateWorkout(graphene.Mutation):
 
         dirty = False
 
-        # Must happen before as exercises require special handling
-        # TODO: Separate concerns?
-        exercise_types = workout_fields.pop("exercise_types", None)
-
-        if exercise_types:
+        if exercise_types := workout_fields.pop("exercise_types", None):
             dirty = True
 
             types = ExerciseTypeModel.objects.filter(
